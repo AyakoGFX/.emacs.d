@@ -283,44 +283,52 @@
   ("C-c g g" . magit-status))
 
 (use-package lsp-mode
-    :ensure t
-    :hook ((c-mode . lsp)
-	   (c++-mode . lsp))
-    :commands lsp
-    :config
-    (setq lsp-prefer-flymake nil
-	  lsp-idle-delay 0.0)
+      :ensure t
+      :hook ((c-mode . lsp)
+	     (c++-mode . lsp))
+      :commands lsp
+      :config
+      (setq lsp-prefer-flymake nil
+	    lsp-idle-delay 0.0)
 
-  ;; Enable additional modes and integrations in hooks
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
+      ;; Enable additional modes and integrations in hooks
+      (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+      (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
 
-(global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
-(setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
+    (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
+    (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
 
 
-  (use-package lsp-ui
-    :ensure t
-    :after lsp-mode
-    :config
-    (setq lsp-ui-sideline-enable t
-	  lsp-ui-doc-use-childframe t
-	  lsp-ui-doc-enable t))
+    (use-package lsp-ui
+      :ensure t
+      :config
+      (setq lsp-ui-sideline-enable t
+	    lsp-ui-doc-enable t
+	    lsp-ui-doc-delay 0.4
+	    lsp-ui-doc-show t
+	    lsp-ui-doc-show-with-cursor nil
+	    lsp-ui-doc-use-childframe t
+	    lsp-ui-peek-enable t
+	    lsp-ui-peek-show-directory t))
 
+  ;; Set key binding for showing the documentation
+(define-key lsp-mode-map (kbd "C-c d") 'lsp-ui-doc-show)  ;; Change "C-c d" to your preferred keybinding
+
+;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
+(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
 
   (use-package company
-    :ensure t
-    :after (lsp-mode company-yasnippet)
-    :config
-    (add-hook 'lsp-mode-hook 'company-mode)
-    (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+      :ensure t
+      :after (lsp-mode company-yasnippet)
+      :config
+      (add-hook 'lsp-mode-hook 'company-mode)
+      (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
 
-  (use-package yasnippet
-    :ensure t
-    :config
-    (yas-global-mode 1))  ; Enable yasnippet globally
-
-  ;; Set up TAB key for company completion
-  (add-hook 'company-mode-hook
-	    (lambda ()
-	      (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)))
+    (use-package yasnippet
+      :ensure t
+      :config
+      (yas-reload-all)
+      (add-hook 'prog-mode-hook 'yas-minor-mode)
+      (add-hook 'text-mode-hook 'yas-minor-mode))
+    (yas-global-mode 1)  ; Enable yasnippet
