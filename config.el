@@ -207,6 +207,18 @@
 (with-eval-after-load 'evil
   (evil-define-key 'normal 'global (kbd "C-M-u") 'vundo))
 
+(global-set-key (kbd "C-x u") 'vundo)
+
+;; (use-package multiple-cursors
+;;   :ensure t)
+;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+;; (global-set-key (kbd "C->")         'mc/mark-next-like-this)
+;; (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+;; (global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+;; (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+;; (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
+(global-set-key (kbd "C-c v")         'set-rectangular-region-anchor)
+
 ;; remap redo from C-M-_ to  C-x U 
   (global-set-key (kbd "C-x U") 'undo-redo)
 
@@ -269,3 +281,46 @@
   (setq git-commit-summary-max-length 50)
   :bind
   ("C-c g g" . magit-status))
+
+(use-package lsp-mode
+    :ensure t
+    :hook ((c-mode . lsp)
+	   (c++-mode . lsp))
+    :commands lsp
+    :config
+    (setq lsp-prefer-flymake nil
+	  lsp-idle-delay 0.0)
+
+  ;; Enable additional modes and integrations in hooks
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
+
+(global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
+(setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
+
+
+  (use-package lsp-ui
+    :ensure t
+    :after lsp-mode
+    :config
+    (setq lsp-ui-sideline-enable t
+	  lsp-ui-doc-use-childframe t
+	  lsp-ui-doc-enable t))
+
+
+  (use-package company
+    :ensure t
+    :after (lsp-mode company-yasnippet)
+    :config
+    (add-hook 'lsp-mode-hook 'company-mode)
+    (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+
+  (use-package yasnippet
+    :ensure t
+    :config
+    (yas-global-mode 1))  ; Enable yasnippet globally
+
+  ;; Set up TAB key for company completion
+  (add-hook 'company-mode-hook
+	    (lambda ()
+	      (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)))

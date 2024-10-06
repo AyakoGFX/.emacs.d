@@ -250,39 +250,52 @@ do not touch it will mess up vertigo *comp* ex C-x b
 
 ** undo-tree vundo
 #+BEGIN_SRC emacs-lisp
-(use-package vundo
-  :commands (vundo)
-  :ensure t
-  :config
-  ;; Take less on-screen space.
-  (setq vundo-compact-display t)
+  (use-package vundo
+    :commands (vundo)
+    :ensure t
+    :config
+    ;; Take less on-screen space.
+    (setq vundo-compact-display t)
 
-  ;; Better contrasting highlight.
-  (custom-set-faces
-    '(vundo-node ((t (:foreground "#808080"))))
-    '(vundo-stem ((t (:foreground "#808080"))))
-    '(vundo-highlight ((t (:foreground "#FFFF00")))))
+    ;; Better contrasting highlight.
+    (custom-set-faces
+      '(vundo-node ((t (:foreground "#808080"))))
+      '(vundo-stem ((t (:foreground "#808080"))))
+      '(vundo-highlight ((t (:foreground "#FFFF00")))))
 
-  ;; Use `HJKL` VIM-like motion, also Home/End to jump around.
-  (define-key vundo-mode-map (kbd "l") #'vundo-forward)
-  (define-key vundo-mode-map (kbd "<right>") #'vundo-forward)
-  (define-key vundo-mode-map (kbd "h") #'vundo-backward)
-  (define-key vundo-mode-map (kbd "<left>") #'vundo-backward)
-  (define-key vundo-mode-map (kbd "j") #'vundo-next)
-  (define-key vundo-mode-map (kbd "<down>") #'vundo-next)
-  (define-key vundo-mode-map (kbd "k") #'vundo-previous)
-  (define-key vundo-mode-map (kbd "<up>") #'vundo-previous)
-  (define-key vundo-mode-map (kbd "<home>") #'vundo-stem-root)
-  (define-key vundo-mode-map (kbd "<end>") #'vundo-stem-end)
-  (define-key vundo-mode-map (kbd "q") #'vundo-quit)
-  (define-key vundo-mode-map (kbd "C-g") #'vundo-quit)
-  (define-key vundo-mode-map (kbd "RET") #'vundo-confirm))
+    ;; Use `HJKL` VIM-like motion, also Home/End to jump around.
+    (define-key vundo-mode-map (kbd "l") #'vundo-forward)
+    (define-key vundo-mode-map (kbd "<right>") #'vundo-forward)
+    (define-key vundo-mode-map (kbd "h") #'vundo-backward)
+    (define-key vundo-mode-map (kbd "<left>") #'vundo-backward)
+    (define-key vundo-mode-map (kbd "j") #'vundo-next)
+    (define-key vundo-mode-map (kbd "<down>") #'vundo-next)
+    (define-key vundo-mode-map (kbd "k") #'vundo-previous)
+    (define-key vundo-mode-map (kbd "<up>") #'vundo-previous)
+    (define-key vundo-mode-map (kbd "<home>") #'vundo-stem-root)
+    (define-key vundo-mode-map (kbd "<end>") #'vundo-stem-end)
+    (define-key vundo-mode-map (kbd "q") #'vundo-quit)
+    (define-key vundo-mode-map (kbd "C-g") #'vundo-quit)
+    (define-key vundo-mode-map (kbd "RET") #'vundo-confirm))
 
-(with-eval-after-load 'evil
-  (evil-define-key 'normal 'global (kbd "C-M-u") 'vundo))
+  (with-eval-after-load 'evil
+    (evil-define-key 'normal 'global (kbd "C-M-u") 'vundo))
+
+  (global-set-key (kbd "C-x u") 'vundo)
 #+END_SRC
 
-
+** multiple cursors
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package multiple-cursors
+  ;;   :ensure t)
+  ;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  ;; (global-set-key (kbd "C->")         'mc/mark-next-like-this)
+  ;; (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+  ;; (global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+  ;; (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+  ;; (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
+  (global-set-key (kbd "C-c v")         'set-rectangular-region-anchor)
+#+END_SRC
 * key-map
 #+BEGIN_SRC emacs-lisp
     ;; remap redo from C-M-_ to  C-x U 
@@ -352,3 +365,54 @@ do not touch it will mess up vertigo *comp* ex C-x b
   :bind
   ("C-c g g" . magit-status))
 #+END_SRC
+
+* Dev
+** lsp-mod
+#+begin_src emacs-lisp
+    (use-package lsp-mode
+      :ensure t
+      :hook ((c-mode . lsp)
+	     (c++-mode . lsp))
+      :commands lsp
+      :config
+      (setq lsp-prefer-flymake nil
+	    lsp-idle-delay 0.0)
+
+    ;; Enable additional modes and integrations in hooks
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+    (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
+
+  (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
+  (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
+
+
+    (use-package lsp-ui
+      :ensure t
+      :after lsp-mode
+      :config
+      (setq lsp-ui-sideline-enable t
+	    lsp-ui-doc-use-childframe t
+	    lsp-ui-doc-enable t))
+
+
+    (use-package company
+      :ensure t
+      :after (lsp-mode company-yasnippet)
+      :config
+      (add-hook 'lsp-mode-hook 'company-mode)
+      (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+
+    (use-package yasnippet
+      :ensure t
+      :config
+      (yas-global-mode 1))  ; Enable yasnippet globally
+
+    ;; Set up TAB key for company completion
+    (add-hook 'company-mode-hook
+	      (lambda ()
+		(define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)))
+#+end_src
+
+
+
+
