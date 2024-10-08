@@ -8,5 +8,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+	my/backward-kill-spaces-or-char-or-word
 	org-self-insert-command
 	))
