@@ -232,71 +232,79 @@
 ;; (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 (global-set-key (kbd "C-c v")         'set-rectangular-region-anchor)
 
-;; remap redo from C-M-_ to  C-x U 
-(global-set-key (kbd "C-x U") 'undo-redo)
+;; Bind `previous-buffer` globally
+;; Bind `next-buffer` globally
+(global-set-key [mouse-9] #'next-buffer)
+(global-set-key [mouse-8] #'previous-buffer)
+(global-set-key (kbd "M-,") 'next-buffer)
+(global-set-key (kbd "M-.") 'previous-buffer)
 
-;; Visiting the configuration
-(defun config-visit ()
-  (interactive)
-  (find-file "~/.emacs.d/config.org"))
-(global-set-key (kbd "C-c e") 'config-visit)
 
-;; Toggle maximize buffer
-(defun toggle-maximize-buffer () "Maximize buffer"
-       (interactive)
-       (if (= 1 (length (window-list)))
-	   (jump-to-register '_)
-	 (progn
-	   (set-register '_ (list (current-window-configuration)))
-	   (delete-other-windows))))
-(global-set-key [(super shift return)] 'toggle-maximize-buffer) 
+    ;; remap redo from C-M-_ to  C-x U 
+    (global-set-key (kbd "C-x U") 'undo-redo)
 
-;;Always murder current buffer
-(defun kill-curr-buffer ()
-  (interactive)
-  (kill-buffer (current-buffer)))
-(global-set-key (kbd "C-x k") 'kill-curr-buffer)
+    ;; Visiting the configuration
+    (defun config-visit ()
+      (interactive)
+      (find-file "~/.emacs.d/config.org"))
+    (global-set-key (kbd "C-c e") 'config-visit)
 
-;;  Kill whole word
-(defun kill-whole-word ()
-  (interactive)
-  (backward-word)
-  (kill-word 1))
-(global-set-key (kbd "C-c w w") 'kill-whole-word)
+    ;; Toggle maximize buffer
+    (defun toggle-maximize-buffer () "Maximize buffer"
+	   (interactive)
+	   (if (= 1 (length (window-list)))
+	       (jump-to-register '_)
+	     (progn
+	       (set-register '_ (list (current-window-configuration)))
+	       (delete-other-windows))))
+    (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
 
-;;  Copy whole line
-(defun copy-whole-line ()
-  (interactive)
-  (save-excursion
-    (kill-new
-     (buffer-substring
-      (point-at-bol)
-      (point-at-eol)))))
-(global-set-key (kbd "C-c w l") 'copy-whole-line)
-;;Kill all buffers
-(defun kill-all-buffers ()
-  (interactive)
-  (mapc 'kill-buffer (buffer-list)))
-(global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
+    ;;Always murder current buffer
+    (defun kill-curr-buffer ()
+      (interactive)
+      (kill-buffer (current-buffer)))
+    (global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
-;; comment and un comment
-;; Comment and uncomment region with C-c c and C-c u
-(global-set-key (kbd "C-c c") 'comment-region)
-(global-set-key (kbd "C-c u") 'uncomment-region)
+    ;;  Kill whole word
+    (defun kill-whole-word ()
+      (interactive)
+      (backward-word)
+      (kill-word 1))
+    (global-set-key (kbd "C-c w w") 'kill-whole-word)
 
-;; Optional: Use C-; to comment/uncomment
-(global-set-key (kbd "C-;") 'comment-line)
-;; fixed backward word del
-(defun my/backward-kill-spaces-or-char-or-word ()
-  (interactive)
-  (cond
-   ((looking-back (rx (char word)) 1)
-    (backward-kill-word 1))
-   ((looking-back (rx (char blank)) 1)
-    (delete-horizontal-space t))
-   (t
-    (backward-delete-char 1))))
-(global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
+    ;;  Copy whole line
+    (defun copy-whole-line ()
+      (interactive)
+      (save-excursion
+	(kill-new
+	 (buffer-substring
+	  (point-at-bol)
+	  (point-at-eol)))))
+    (global-set-key (kbd "C-c w l") 'copy-whole-line)
+    ;;Kill all buffers
+    (defun kill-all-buffers ()
+      (interactive)
+      (mapc 'kill-buffer (buffer-list)))
+    (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
+
+    ;; comment and un comment
+    ;; Comment and uncomment region with C-c c and C-c u
+    (global-set-key (kbd "C-c c") 'comment-region)
+    (global-set-key (kbd "C-c u") 'uncomment-region)
+
+    ;; Optional: Use C-; to comment/uncomment
+    (global-set-key (kbd "C-;") 'comment-line)
+    ;; fixed backward word del
+    (defun my/backward-kill-spaces-or-char-or-word ()
+      (interactive)
+      (cond
+       ((looking-back (rx (char word)) 1)
+	(backward-kill-word 1))
+       ((looking-back (rx (char blank)) 1)
+	(delete-horizontal-space t))
+       (t
+	(backward-delete-char 1))))
+    (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 (use-package magit
   :ensure t
@@ -313,6 +321,12 @@
 (interactive)
 (let ((pop-up-windows nil))
   (call-interactively 'magit-status)))
+
+(use-package diff-hl
+  :ensure t
+  :config
+  (global-diff-hl-mode)
+  (diff-hl-dired-mode 'toggle))
 
 (use-package lsp-mode
   :ensure t
@@ -419,37 +433,56 @@
 	   "CANCELLED(c)"))) ; Task has been cancelled
 
 (use-package org-roam
-  :ensure t
-  :custom
-  (org-roam-directory (file-truename "~/roam/"))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n g" . org-roam-graph)
-	 ("C-c n i" . org-roam-node-insert)
-	 ("C-c n c" . org-roam-capture)
-	 ("C-c n I" . my/org-roam-node-insert-immediate)
-	 ;; Dailies
-	 ("C-c n j" . org-roam-dailies-capture-today))
-  :config
+    :ensure t
+    :custom
+    (org-roam-directory (file-truename "~/roam/"))
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+	   ("C-c n f" . org-roam-node-find)
+	   ("C-c n g" . org-roam-graph)
+	   ("C-c n i" . org-roam-node-insert)
+	   ("C-c n c" . org-roam-capture)
+	   ("C-c n I" . my/org-roam-node-insert-immediate)
+	   ;; Dailies
+	   ("C-c n j" . org-roam-dailies-capture-today))
+    :config
+    (setq org-roam-completion-everywhere t)
+    ;; If using org-roam-protocol
+    (require 'org-roam-protocol))
+  (setq org-roam-capture-templates
+	'(("d" "default" plain "%?"
+	   :target (file+head "${slug}.org"
+			      "#+title: ${title}\n#+filetags:\n")
+	   :unnarrowed t)))
   (org-roam-db-autosync-mode)
-  (setq org-roam-completion-everywhere t)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
-(setq org-roam-capture-templates
-      '(("d" "default" plain "%?"
-	 :target (file+head "${slug}.org"
-			    "#+title: ${title}\n")
-	 :unnarrowed t)))
-;; func
-(defun my/org-roam-node-insert-immediate (arg &rest args)
-  (interactive "P")
-  (let ((args (cons arg args))
-	(org-roam-capture-templates (list (append (car org-roam-capture-templates)
-						  '(:immediate-finish t)))))
-    (apply #'org-roam-node-insert args)))
+  (org-roam-db-sync)
+;;(add-hook 'org-open-at-point-functions #'org-roam-id-open) 
 
-(defun my/org-roam-list-tags ()
-  "List all unique tags from Org Roam notes in a separate buffer."
+
+  ;; func
+
+(defun my/org-roam-search ()
+  "Search org-roam directory using consult-ripgrep. With live-preview."
+  (interactive)
+  (let ((consult-ripgrep-args "rg --null --ignore-case --type org --line-buffered --color=never --max-columns=500 --no-heading --line-number"))
+    (consult-ripgrep org-roam-directory)))
+
+  (defun my/org-roam-search ()
+  "Search org-roam directory using consult-ripgrep. With live-preview."
+  (interactive)
+  (let ((consult-ripgrep-args "rg --null --ignore-case --type org --line-buffered --color=never --max-columns=500 --no-heading --line-number"))
+    (consult-ripgrep org-roam-directory)))
+
+
+  (defun my/org-roam-node-insert-immediate (arg &rest args)
+    (interactive "P")
+    (let ((args (cons arg args))
+	  (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+						    '(:immediate-finish t)))))
+      (apply #'org-roam-node-insert args)))
+
+
+  (defun my/org-roam-list-tags ()
+  "List all unique tags from Org Roam notes in the minibuffer."
   (interactive)
   (if (not (bound-and-true-p org-roam-directory))
       (error "Org Roam directory is not set.")
@@ -462,7 +495,29 @@
 	  (org-element-map (org-element-parse-buffer) 'headline
 	    (lambda (headline)
 	      (let ((headline-tags (org-element-property :tags headline)))
-		(setq tags (append tags headline-tags))))))))))
+		(when headline-tags
+		  (dolist (tag headline-tags)
+		    (unless (member tag tags)
+		      (push tag tags)))))))))
+      ;; Display the tags in the minibuffer
+      (message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
+
+  ;; this not working in gnu emacs
+  ;; (defun my/org-roam-list-tags ()
+  ;;   "List all unique tags from Org Roam notes in a separate buffer."
+  ;;   (interactive)
+  ;;   (if (not (bound-and-true-p org-roam-directory))
+  ;;       (error "Org Roam directory is not set.")
+  ;;     (let ((tags '()))
+  ;;       ;; Collect tags from Org Roam notes
+  ;;       (dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
+  ;; 	(with-temp-buffer
+  ;; 	  (insert-file-contents file)
+  ;; 	  (org-mode)
+  ;; 	  (org-element-map (org-element-parse-buffer) 'headline
+  ;; 	    (lambda (headline)
+  ;; 	      (let ((headline-tags (org-element-property :tags headline)))
+  ;; 		(setq tags (append tags headline-tags))))))))))
 
 (custom-set-faces
    ;; Font sizes and colors for Org mode headers using Doom One theme colors
@@ -478,17 +533,19 @@
    )
 
 (use-package jinx  
-    :ensure t  
-    :hook ((LaTeX-mode . jinx-mode)  
-	   (latex-mode . jinx-mode)  
-	   (markdown-mode . jinx-mode)  
-	   (org-mode . jinx-mode)
-	   (text-mode . jinx-mode)
-	   )  
+    :ensure t
+    :hook (emacs-startup . global-jinx-mode)
+    ;; :hook ((LaTeX-mode . jinx-mode)  
+	   ;; (latex-mode . jinx-mode)  
+	   ;; (markdown-mode . jinx-mode)  
+	   ;; (org-mode . jinx-mode)
+	   ;; (text-mode . jinx-mode)
+	   ;; )  
     ;; :bind ([remap ispell-word] . jinx-correct)  
-    )
+   )
+;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
   ;; Jinx keybindings
-(global-set-key (kbd "C-c s c") 'jinx-correct)
+(global-set-key (kbd "C-c s s") 'jinx-correct)
 (global-set-key (kbd "C-c s n") 'jinx-next)
 (global-set-key (kbd "C-c s p") 'jinx-previous)
 (global-set-key (kbd "C-c s l") 'jinx-languages)

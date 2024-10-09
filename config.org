@@ -391,7 +391,7 @@ do not touch it will mess up vertigo *comp* ex C-x b
 
 #+END_SRC
 
-* Magit 
+* Magit & git tools
 #+BEGIN_SRC emacs-lisp
   (use-package magit
     :ensure t
@@ -409,7 +409,14 @@ do not touch it will mess up vertigo *comp* ex C-x b
   (let ((pop-up-windows nil))
     (call-interactively 'magit-status)))
 #+END_SRC
-
+** diff-hl 
+#+begin_src emacs-lisp
+  (use-package diff-hl
+    :ensure t
+    :config
+    (global-diff-hl-mode)
+    (diff-hl-dired-mode 'toggle))
+#+end_src
 * Dev
 ** lsp-mod
 to add more lang support you just need to add to hook ex below
@@ -513,70 +520,98 @@ to add more lang support you just need to add to hook ex below
 #+END_SRC
 ** pure org
 #+BEGIN_SRC emacs-lisp
-  (use-package org
-    :ensure t)
-  (setq org-return-follows-link t)  
-  (setq org-directory "~/roam/org"
-	org-default-notes-file (expand-file-name "notes.org" org-directory)
-	org-ellipsis " ↴ " ; ⇩ ▼ ↴
-	;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
-	;; org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
-	org-log-done 'time
-	org-hide-emphasis-markers t
-	;; ex. of org-link-abbrev-alist in action
-	;; [[arch-wiki:Name_of_Page][Description]]
-	org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
-	  '(("google" . "http://www.google.com/search?q=")
-	    ("arch-wiki" . "https://wiki.archlinux.org/index.php/")
-	    ("ddg" . "https://duckduckgo.com/?q=")
-	    ("wiki" . "https://en.wikipedia.org/wiki/"))
-	org-table-convert-region-max-lines 20000
-	org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
-	  '((sequence
-	     "TODO(t)"           ; A task that is ready to be tackled
-	     "BLOG(b)"           ; Blog writing assignments
-	     "GYM(g)"            ; Things to accomplish at the gym
-	     "PROJ(p)"           ; A project that contains other tasks
-	     "VIDEO(v)"          ; Video assignments
-	     "WAIT(w)"           ; Something is holding up this task
-	     "|"                 ; The pipe necessary to separate "active" states and "inactive" states
-	     "DONE(d)"           ; Task has been completed
-	     "CANCELLED(c)"))) ; Task has been cancelled  
+    (use-package org
+      :ensure t)
+    (setq org-return-follows-link t)  
+    (setq org-directory "~/roam/org"
+	  org-default-notes-file (expand-file-name "notes.org" org-directory)
+	  org-ellipsis " ↴ " ; ⇩ ▼ ↴
+	  ;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
+	  ;; org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
+	  org-log-done 'time
+	  org-hide-emphasis-markers t
+	  ;; ex. of org-link-abbrev-alist in action
+	  ;; [[arch-wiki:Name_of_Page][Description]]
+	  org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
+	    '(("google" . "http://www.google.com/search?q=")
+	      ("arch-wiki" . "https://wiki.archlinux.org/index.php/")
+	      ("ddg" . "https://duckduckgo.com/?q=")
+	      ("wiki" . "https://en.wikipedia.org/wiki/"))
+	  org-table-convert-region-max-lines 20000
+	  org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+	    '((sequence
+	       "TODO(t)"           ; A task that is ready to be tackled
+	       "BLOG(b)"           ; Blog writing assignments
+	       "GYM(g)"            ; Things to accomplish at the gym
+	       "PROJ(p)"           ; A project that contains other tasks
+	       "VIDEO(v)"          ; Video assignments
+	       "WAIT(w)"           ; Something is holding up this task
+	       "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+	       "DONE(d)"           ; Task has been completed
+	       "CANCELLED(c)"))) ; Task has been cancelled
+
+  ;; bro i add this because my org-roam-node not opening in Full screen
+  ;; https://emacs.stackexchange.com/questions/62720/open-org-link-in-the-same-window
+      (setq org-link-frame-setup
+     '((vm . vm-visit-folder-other-frame)
+       (vm-imap . vm-visit-imap-folder-other-frame)
+       (gnus . org-gnus-no-new-news)
+       (file . find-file)
+       (wl . wl-other-frame)))  
 #+END_SRC
 ** org roam
 #+BEGIN_SRC emacs-lisp
-  (use-package org-roam
-    :ensure t
-    :custom
-    (org-roam-directory (file-truename "~/roam/"))
-    :bind (("C-c n l" . org-roam-buffer-toggle)
-	   ("C-c n f" . org-roam-node-find)
-	   ("C-c n g" . org-roam-graph)
-	   ("C-c n i" . org-roam-node-insert)
-	   ("C-c n c" . org-roam-capture)
-	   ("C-c n I" . my/org-roam-node-insert-immediate)
-	   ;; Dailies
-	   ("C-c n j" . org-roam-dailies-capture-today))
-    :config
+    (use-package org-roam
+      :ensure t
+      :custom
+      (org-roam-directory (file-truename "~/roam/"))
+      :bind (("C-c n l" . org-roam-buffer-toggle)
+	     ("C-c n f" . org-roam-node-find)
+	     ("C-c n g" . org-roam-graph)
+	     ("C-c n i" . org-roam-node-insert)
+	     ("C-c n c" . org-roam-capture)
+	     ("C-c n I" . my/org-roam-node-insert-immediate)
+	     ;; Dailies
+	     ("C-c n j" . org-roam-dailies-capture-today))
+      :config
+      (setq org-roam-completion-everywhere t)
+      ;; If using org-roam-protocol
+      (require 'org-roam-protocol))
+    (setq org-roam-capture-templates
+	  '(("d" "default" plain "%?"
+	     :target (file+head "${slug}.org"
+				"#+title: ${title}\n#+filetags:\n")
+	     :unnarrowed t)))
     (org-roam-db-autosync-mode)
-    (setq org-roam-completion-everywhere t)
-    ;; If using org-roam-protocol
-    (require 'org-roam-protocol))
-  (setq org-roam-capture-templates
-	'(("d" "default" plain "%?"
-	   :target (file+head "${slug}.org"
-			      "#+title: ${title}\n")
-	   :unnarrowed t)))
-  ;; func
-  (defun my/org-roam-node-insert-immediate (arg &rest args)
-    (interactive "P")
-    (let ((args (cons arg args))
-	  (org-roam-capture-templates (list (append (car org-roam-capture-templates)
-						    '(:immediate-finish t)))))
-      (apply #'org-roam-node-insert args)))
+    (org-roam-db-sync)
+  ;;(add-hook 'org-open-at-point-functions #'org-roam-id-open) 
 
-  (defun my/org-roam-list-tags ()
-    "List all unique tags from Org Roam notes in a separate buffer."
+
+    ;; func
+
+  (defun my/org-roam-search ()
+    "Search org-roam directory using consult-ripgrep. With live-preview."
+    (interactive)
+    (let ((consult-ripgrep-args "rg --null --ignore-case --type org --line-buffered --color=never --max-columns=500 --no-heading --line-number"))
+      (consult-ripgrep org-roam-directory)))
+
+    (defun my/org-roam-search ()
+    "Search org-roam directory using consult-ripgrep. With live-preview."
+    (interactive)
+    (let ((consult-ripgrep-args "rg --null --ignore-case --type org --line-buffered --color=never --max-columns=500 --no-heading --line-number"))
+      (consult-ripgrep org-roam-directory)))
+
+
+    (defun my/org-roam-node-insert-immediate (arg &rest args)
+      (interactive "P")
+      (let ((args (cons arg args))
+	    (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+						      '(:immediate-finish t)))))
+	(apply #'org-roam-node-insert args)))
+
+
+    (defun my/org-roam-list-tags ()
+    "List all unique tags from Org Roam notes in the minibuffer."
     (interactive)
     (if (not (bound-and-true-p org-roam-directory))
 	(error "Org Roam directory is not set.")
@@ -589,7 +624,29 @@ to add more lang support you just need to add to hook ex below
 	    (org-element-map (org-element-parse-buffer) 'headline
 	      (lambda (headline)
 		(let ((headline-tags (org-element-property :tags headline)))
-		  (setq tags (append tags headline-tags))))))))))
+		  (when headline-tags
+		    (dolist (tag headline-tags)
+		      (unless (member tag tags)
+			(push tag tags)))))))))
+	;; Display the tags in the minibuffer
+	(message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
+
+    ;; this not working in gnu emacs
+    ;; (defun my/org-roam-list-tags ()
+    ;;   "List all unique tags from Org Roam notes in a separate buffer."
+    ;;   (interactive)
+    ;;   (if (not (bound-and-true-p org-roam-directory))
+    ;;       (error "Org Roam directory is not set.")
+    ;;     (let ((tags '()))
+    ;;       ;; Collect tags from Org Roam notes
+    ;;       (dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
+    ;; 	(with-temp-buffer
+    ;; 	  (insert-file-contents file)
+    ;; 	  (org-mode)
+    ;; 	  (org-element-map (org-element-parse-buffer) 'headline
+    ;; 	    (lambda (headline)
+    ;; 	      (let ((headline-tags (org-element-property :tags headline)))
+    ;; 		(setq tags (append tags headline-tags))))))))))
 
 #+END_SRC
 ***  Font sizes and colors for Org mode headers using Doom One theme colors
@@ -609,7 +666,7 @@ to add more lang support you just need to add to hook ex below
 #+END_SRC
 
 * spellcheck with jinx aka just-in-time
-install dep
+install dep 
 
 - Debian, Ubuntu: =libenchant-2-dev=, =pkgconf=
 - Arch, Gentoo: =enchant=, =pkgconf=
@@ -620,15 +677,17 @@ install dep
 - FreeBSD, OpenBSD, Mac: =enchant2=, =pkgconf=
 #+begin_src emacs-lisp
     (use-package jinx  
-      :ensure t  
-      :hook ((LaTeX-mode . jinx-mode)  
-	     (latex-mode . jinx-mode)  
-	     (markdown-mode . jinx-mode)  
-	     (org-mode . jinx-mode)
-	     (text-mode . jinx-mode)
-	     )  
+      :ensure t
+      :hook (emacs-startup . global-jinx-mode)
+      ;; :hook ((LaTeX-mode . jinx-mode)  
+	     ;; (latex-mode . jinx-mode)  
+	     ;; (markdown-mode . jinx-mode)  
+	     ;; (org-mode . jinx-mode)
+	     ;; (text-mode . jinx-mode)
+	     ;; )  
       ;; :bind ([remap ispell-word] . jinx-correct)  
-      )
+     )
+  ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
     ;; Jinx keybindings
   (global-set-key (kbd "C-c s s") 'jinx-correct)
   (global-set-key (kbd "C-c s n") 'jinx-next)
@@ -644,7 +703,12 @@ https://github.com/dimitri/switch-window
 https://github.com/abo-abo/ace-window
 ** TODO org roam node open in full screen?
 ** TODO install consult-riggrep
+** TODO roam-ui
+** add SUDO EDIT SUPPORT 
 ** DONE add spell checking support
 CLOSED: [2024-10-08 Tue 14:49]
 
 
+{
+ ctrl-alt-f and ctrl-alt-p 
+}
