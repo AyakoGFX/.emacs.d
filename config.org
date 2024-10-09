@@ -773,7 +773,27 @@ to add more lang support you just need to add to hook ex below
    ;; Add more levels and colors as needed
    )
 #+END_SRC
+*** org-roam-ui
+#+begin_src emacs-lisp
+  (use-package simple-httpd
+    :ensure t)
 
+  (use-package websocket
+    :ensure t)
+
+  (use-package org-roam-ui
+    :ensure t
+    :after org-roam
+    ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+    ;;         a hookable mode anymore, you're advised to pick something yourself
+    ;;         if you don't care about startup time, use
+    ;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+	  org-roam-ui-follow t
+	  org-roam-ui-update-on-save t
+	  org-roam-ui-open-on-start t))
+#+end_src
 * spellcheck with jinx aka just-in-time
 install dep 
 
@@ -814,8 +834,9 @@ https://github.com/abo-abo/ace-window
 CLOSED: [2024-10-10 Thu 00:56]
 ** DONE install consult-riggrep
 CLOSED: [2024-10-10 Thu 01:18]
-** TODO roam-ui
-** add SUDO EDIT SUPPORT 
+** DONE roam-ui
+CLOSED: [2024-10-10 Thu 01:35]
+** TODO ADD SUDO EDIT SUPPORT 
 ** DONE add spell checking support
 CLOSED: [2024-10-08 Tue 14:49]
 
