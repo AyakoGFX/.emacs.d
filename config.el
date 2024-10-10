@@ -144,16 +144,16 @@
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
   (defun crm-indicator (args)
     (cons (format "[CRM%s] %s"
-                  (replace-regexp-in-string
-                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-                   crm-separator)
-                  (car args))
-          (cdr args)))
+		  (replace-regexp-in-string
+		   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+		   crm-separator)
+		  (car args))
+	  (cdr args)))
   (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
   ;; Do not allow the cursor in the minibuffer prompt
   (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
+	'(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
 (setq read-file-name-completion-ignore-case t
@@ -173,6 +173,37 @@
 
 ;;  (ido-mode 1)
 ;;  (setq ido-separator "\n")
+
+(use-package corfu
+    :ensure t
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+    (corfu-auto t)                 ;; Enable auto completion
+    ;; (corfu-separator ?\s)          ;; Orderless field separator
+    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+(corfu-quit-no-match 'separator)      ;; Never quit, even if there is no match
+    ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+    ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+    ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+    ;; :hook ((prog-mode . corfu-mode)
+    ;;        (shell-mode . corfu-mode)
+    ;;        (eshell-mode . corfu-mode))
+
+    ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+    ;; be used globally (M-/).  See also the customization variable
+    ;; `global-corfu-modes' to exclude certain modes.
+    :init
+    (global-corfu-mode))
+
+  (use-package emacs
+    :ensure t
+    :custom
+    (tab-always-indent 'complete)
+    (text-mode-ispell-word-completion nil)
+    (read-extended-command-predicate #'command-completion-default-include-p))
 
 ;; Example configuration for Consult
 (use-package consult
@@ -561,6 +592,7 @@
 	   ;; Dailies
 	   ("C-c n j" . org-roam-dailies-capture-today))
     :config
+    (setq org-roam-dailies-directory "daily/") ;; set org roam journsl dir defult i daily/ you can any folder name (e.g) journal/
     (setq org-roam-completion-everywhere t)
     ;; If using org-roam-protocol
     (require 'org-roam-protocol))

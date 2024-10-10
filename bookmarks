@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/roam/make_swap_file_in_btrfs_and_ext4.org")
- (front-context-string)
- (rear-context-string . " btrfs and ext4\n")
- (position . 110)
- (last-modified 26371 60467 96035 710000))
+ (filename . "~/roam/daily/2024-10-10.org")
+ (front-context-string . "* this is my fir")
+ (rear-context-string . "tle: 2024-10-10\n")
+ (position . 88)
+ (last-modified 26375 33786 403107 318000))
 )
