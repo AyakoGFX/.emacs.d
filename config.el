@@ -85,6 +85,10 @@
     ;; off
     ;; (setq display-line-numbers-type nil)
 
+(use-package sudo-edit
+:ensure t
+:bind ("C-c C-0" . sudo-edit))
+
 (use-package all-the-icons
   :ensure t
   :init)
@@ -175,35 +179,35 @@
 ;;  (setq ido-separator "\n")
 
 (use-package corfu
-    :ensure t
-    :custom
-    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-    (corfu-auto t)                 ;; Enable auto completion
-    ;; (corfu-separator ?\s)          ;; Orderless field separator
-    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-(corfu-quit-no-match 'separator)      ;; Never quit, even if there is no match
-    ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-    ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+  :ensure t
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  (corfu-quit-no-match 'separator)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
-    ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
-    ;; :hook ((prog-mode . corfu-mode)
-    ;;        (shell-mode . corfu-mode)
-    ;;        (eshell-mode . corfu-mode))
+  ;; Enable Corfu only for certain modes. See also `global-corfu-modes'.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
 
-    ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
-    ;; be used globally (M-/).  See also the customization variable
-    ;; `global-corfu-modes' to exclude certain modes.
-    :init
-    (global-corfu-mode))
+  ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
+  ;; be used globally (M-/).  See also the customization variable
+  ;; `global-corfu-modes' to exclude certain modes.
+  :init
+  (global-corfu-mode))
 
-  (use-package emacs
-    :ensure t
-    :custom
-    (tab-always-indent 'complete)
-    (text-mode-ispell-word-completion nil)
-    (read-extended-command-predicate #'command-completion-default-include-p))
+(use-package emacs
+  :ensure t
+  :custom
+  (tab-always-indent 'complete)
+  (text-mode-ispell-word-completion nil)
+  (read-extended-command-predicate #'command-completion-default-include-p))
 
 ;; Example configuration for Consult
 (use-package consult
@@ -537,13 +541,14 @@
   (deft-extension '("txt" "org" "md"))
   (deft-use-filename-as-title t)
   (deft-recursive t))
-(global-set-key (kbd "C-c n d") 'deft-find-file)
-(global-set-key (kbd "C-c C-g") 'deft-find-file)
+(global-set-key (kbd "C-c n F") 'deft)
+(global-set-key (kbd "C-c n m") 'deft-find-file)
 
 (use-package org
     :ensure t)
   (setq org-return-follows-link t)  
   (setq org-directory "~/roam/org"
+	org-attach-directory "~/roam/img/"
 	org-default-notes-file (expand-file-name "notes.org" org-directory)
 	org-ellipsis " ↴ " ; ⇩ ▼ ↴
 	;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
@@ -579,34 +584,57 @@
      (file . find-file)
      (wl . wl-other-frame)))
 
+(use-package org-download
+:ensure t
+:config
+(setq org-download-image-dir "~/roam/img/")
+(setq-default org-download-image-dir "~/roam/img/"))
+
 (use-package org-roam
-    :ensure t
-    :custom
-    (org-roam-directory (file-truename "~/roam/"))
-    :bind (("C-c n l" . org-roam-buffer-toggle)
-	   ("C-c n f" . org-roam-node-find)
-	   ("C-c n g" . org-roam-graph)
-	   ("C-c n i" . org-roam-node-insert)
-	   ("C-c n c" . org-roam-capture)
-	   ("C-c n I" . my/org-roam-node-insert-immediate)
-	   ;; Dailies
-	   ("C-c n j" . org-roam-dailies-capture-today))
-    :config
-    (setq org-roam-dailies-directory "daily/") ;; set org roam journsl dir defult i daily/ you can any folder name (e.g) journal/
-    (setq org-roam-completion-everywhere t)
-    ;; If using org-roam-protocol
-    (require 'org-roam-protocol))
-  (setq org-roam-capture-templates
-	'(("d" "default" plain "%?"
-	   :target (file+head "${slug}.org"
-			      "#+title: ${title}\n#+filetags:\n")
-	   :unnarrowed t)))
-  (org-roam-db-autosync-mode)
-  (org-roam-db-sync)
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/roam/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n g" . org-roam-graph)
+	 ("C-c n i" . org-roam-node-insert)
+	 ("C-c n c" . org-roam-capture)
+	 ("C-c n I" . my/org-roam-node-insert-immediate)
+	 ;; Dailies
+	 ("C-c n j" . org-roam-dailies-capture-today)
+	 ("C-c n d t" . org-roam-dailies-goto-today)       ; Go to today's daily note
+	 ("C-c n d y" . org-roam-dailies-capture-yesterday) ; Capture yesterday's daily note
+	 ("C-c n d Y" . org-roam-dailies-goto-yesterday)    ; Go to yesterday's daily note
+	 ("C-c n d T" . org-roam-dailies-capture-tomorrow)  ; Capture tomorrow's daily note
+	 ("C-c n d O" . org-roam-dailies-goto-tomorrow)     ; Go to tomorrow's daily note
+	 ("C-c n d d" . org-roam-dailies-capture-date)      ; Capture a note for a specific date
+	 ("C-c n d D" . org-roam-dailies-goto-date)         ; Go to a note for a specific date
+	 ("C-c n d n" . org-roam-dailies-goto-next-note)    ; Go to next daily note
+	 ("C-c n d p" . org-roam-dailies-goto-previous-note) ; Go to previous daily note
+	 )
+
+  :config
+  (setq org-roam-dailies-directory "daily/") ;; set org roam journsl dir defult i daily/ you can any folder name (e.g) journal/
+  (setq org-roam-completion-everywhere t)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+(setq org-roam-capture-templates
+      '(("d" "default" plain "%?"
+	 :target (file+head "${slug}.org"
+			    "#+title: ${title}\n#+filetags:\n")
+
+	 (setq org-roam-dailies-capture-templates
+	       '(("d" "default" entry "* %<%I:%M %p>: %?"
+		  :if-new (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n"))))
+
+
+	 :unnarrowed t)))
+(org-roam-db-autosync-mode)
+(org-roam-db-sync)
 ;;(add-hook 'org-open-at-point-functions #'org-roam-id-open) 
 
 
-  ;; func
+;; func
 
 (defun my/org-roam-search ()
   "Search org-roam directory using consult-ripgrep. With live-preview."
@@ -614,22 +642,22 @@
   (let ((consult-ripgrep-args "rg --null --ignore-case --type org --line-buffered --color=never --max-columns=500 --no-heading --line-number"))
     (consult-ripgrep org-roam-directory)))
 
-  (defun my/org-roam-search ()
+(defun my/org-roam-search ()
   "Search org-roam directory using consult-ripgrep. With live-preview."
   (interactive)
   (let ((consult-ripgrep-args "rg --null --ignore-case --type org --line-buffered --color=never --max-columns=500 --no-heading --line-number"))
     (consult-ripgrep org-roam-directory)))
 
 
-  (defun my/org-roam-node-insert-immediate (arg &rest args)
-    (interactive "P")
-    (let ((args (cons arg args))
-	  (org-roam-capture-templates (list (append (car org-roam-capture-templates)
-						    '(:immediate-finish t)))))
-      (apply #'org-roam-node-insert args)))
+(defun my/org-roam-node-insert-immediate (arg &rest args)
+  (interactive "P")
+  (let ((args (cons arg args))
+	(org-roam-capture-templates (list (append (car org-roam-capture-templates)
+						  '(:immediate-finish t)))))
+    (apply #'org-roam-node-insert args)))
 
 
-  (defun my/org-roam-list-tags ()
+(defun my/org-roam-list-tags ()
   "List all unique tags from Org Roam notes in the minibuffer."
   (interactive)
   (if (not (bound-and-true-p org-roam-directory))
@@ -650,22 +678,22 @@
       ;; Display the tags in the minibuffer
       (message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
 
-  ;; this not working in gnu emacs
-  ;; (defun my/org-roam-list-tags ()
-  ;;   "List all unique tags from Org Roam notes in a separate buffer."
-  ;;   (interactive)
-  ;;   (if (not (bound-and-true-p org-roam-directory))
-  ;;       (error "Org Roam directory is not set.")
-  ;;     (let ((tags '()))
-  ;;       ;; Collect tags from Org Roam notes
-  ;;       (dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
-  ;; 	(with-temp-buffer
-  ;; 	  (insert-file-contents file)
-  ;; 	  (org-mode)
-  ;; 	  (org-element-map (org-element-parse-buffer) 'headline
-  ;; 	    (lambda (headline)
-  ;; 	      (let ((headline-tags (org-element-property :tags headline)))
-  ;; 		(setq tags (append tags headline-tags))))))))))
+;; this not working in gnu emacs
+;; (defun my/org-roam-list-tags ()
+;;   "List all unique tags from Org Roam notes in a separate buffer."
+;;   (interactive)
+;;   (if (not (bound-and-true-p org-roam-directory))
+;;       (error "Org Roam directory is not set.")
+;;     (let ((tags '()))
+;;       ;; Collect tags from Org Roam notes
+;;       (dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
+;; 	(with-temp-buffer
+;; 	  (insert-file-contents file)
+;; 	  (org-mode)
+;; 	  (org-element-map (org-element-parse-buffer) 'headline
+;; 	    (lambda (headline)
+;; 	      (let ((headline-tags (org-element-property :tags headline)))
+;; 		(setq tags (append tags headline-tags))))))))))
 
 (custom-set-faces
    ;; Font sizes and colors for Org mode headers using Doom One theme colors
