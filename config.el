@@ -41,7 +41,7 @@
   (dashboard-setup-startup-hook)
   (setq dashboard-startup-banner "~/.emacs.d/img/logo.svg")
   (setq dashboard-items '((recents  . 5)
-			  (projects . 5)))
+			    (projects . 5)))
   (setq dashboard-banner-logo-title "I am just a coder for fun"))
 (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
  (setq dashboard-display-icons-p t)
@@ -148,21 +148,21 @@
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
   (defun crm-indicator (args)
     (cons (format "[CRM%s] %s"
-		  (replace-regexp-in-string
-		   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-		   crm-separator)
-		  (car args))
-	  (cdr args)))
+		    (replace-regexp-in-string
+		     "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+		     crm-separator)
+		    (car args))
+	    (cdr args)))
   (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
   ;; Do not allow the cursor in the minibuffer prompt
   (setq minibuffer-prompt-properties
-	'(read-only t cursor-intangible t face minibuffer-prompt))
+	  '(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode))
 
 (setq read-file-name-completion-ignore-case t
-      read-buffer-completion-ignore-case t
-      completion-ignore-case t)
+	read-buffer-completion-ignore-case t
+	completion-ignore-case t)
 
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
@@ -214,57 +214,57 @@
   :ensure t
   ;; Replace bindings. Lazily loaded by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
-	 ("C-c M-x" . consult-mode-command)
-	 ("C-c h" . consult-history)
-	 ("C-c k" . consult-kmacro)
-	 ("C-c m" . consult-man)
-	 ("C-c i" . consult-info)
-	 ([remap Info-search] . consult-info)
-	 ;; C-x bindings in `ctl-x-map'
-	 ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-	 ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-	 ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-	 ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-	 ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
-	 ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
-	 ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
-	 ;; Custom M-# bindings for fast register access
-	 ("M-#" . consult-register-load)
-	 ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-	 ("C-M-#" . consult-register)
-	 ;; Other custom bindings
-	 ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-	 ;; M-g bindings in `goto-map'
-	 ("M-g e" . consult-compile-error)
-	 ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-	 ("M-g g" . consult-goto-line)             ;; orig. goto-line
-	 ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-	 ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-	 ("M-g m" . consult-mark)
-	 ("M-g k" . consult-global-mark)
-	 ("M-g i" . consult-imenu)
-	 ("M-g I" . consult-imenu-multi)
-	 ;; M-s bindings in `search-map'
-	 ("M-s d" . consult-find)                  ;; Alternative: consult-fd
-	 ("M-s c" . consult-locate)
-	 ("M-s g" . consult-grep)
-	 ("M-s G" . consult-git-grep)
-	 ("M-s r" . consult-ripgrep)
-	 ("M-s l" . consult-line)
-	 ("M-s L" . consult-line-multi)
-	 ("M-s k" . consult-keep-lines)
-	 ("M-s u" . consult-focus-lines)
-	 ;; Isearch integration
-	 ("M-s e" . consult-isearch-history)
-	 :map isearch-mode-map
-	 ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
-	 ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
-	 ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
-	 ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
-	 ;; Minibuffer history
-	 :map minibuffer-local-map
-	 ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-	 ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+	   ("C-c M-x" . consult-mode-command)
+	   ("C-c h" . consult-history)
+	   ("C-c k" . consult-kmacro)
+	   ("C-c m" . consult-man)
+	   ("C-c i" . consult-info)
+	   ([remap Info-search] . consult-info)
+	   ;; C-x bindings in `ctl-x-map'
+	   ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+	   ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+	   ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+	   ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+	   ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+	   ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+	   ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+	   ;; Custom M-# bindings for fast register access
+	   ("M-#" . consult-register-load)
+	   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+	   ("C-M-#" . consult-register)
+	   ;; Other custom bindings
+	   ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+	   ;; M-g bindings in `goto-map'
+	   ("M-g e" . consult-compile-error)
+	   ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+	   ("M-g g" . consult-goto-line)             ;; orig. goto-line
+	   ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+	   ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+	   ("M-g m" . consult-mark)
+	   ("M-g k" . consult-global-mark)
+	   ("M-g i" . consult-imenu)
+	   ("M-g I" . consult-imenu-multi)
+	   ;; M-s bindings in `search-map'
+	   ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+	   ("M-s c" . consult-locate)
+	   ("M-s g" . consult-grep)
+	   ("M-s G" . consult-git-grep)
+	   ("M-s r" . consult-ripgrep)
+	   ("M-s l" . consult-line)
+	   ("M-s L" . consult-line-multi)
+	   ("M-s k" . consult-keep-lines)
+	   ("M-s u" . consult-focus-lines)
+	   ;; Isearch integration
+	   ("M-s e" . consult-isearch-history)
+	   :map isearch-mode-map
+	   ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+	   ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+	   ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+	   ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+	   ;; Minibuffer history
+	   :map minibuffer-local-map
+	   ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+	   ("M-r" . consult-history))                ;; orig. previous-matching-history-element
 
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
@@ -277,7 +277,7 @@
   ;; preview for `consult-register', `consult-register-load',
   ;; `consult-register-store' and the Emacs built-ins.
   (setq register-preview-delay 0.5
-	register-preview-function #'consult-register-format)
+	  register-preview-function #'consult-register-format)
 
   ;; Optionally tweak the register preview window.
   ;; This adds thin lines, sorting and hides the mode line of the window.
@@ -285,7 +285,7 @@
 
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
-	xref-show-definitions-function #'consult-xref)
+	  xref-show-definitions-function #'consult-xref)
 
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
@@ -387,46 +387,46 @@
 
     ;; Visiting the configuration
     (defun config-visit ()
-      (interactive)
-      (find-file "~/.emacs.d/config.org"))
+	(interactive)
+	(find-file "~/.emacs.d/config.org"))
     (global-set-key (kbd "C-c e") 'config-visit)
 
     ;; Toggle maximize buffer
     (defun toggle-maximize-buffer () "Maximize buffer"
-	   (interactive)
-	   (if (= 1 (length (window-list)))
-	       (jump-to-register '_)
-	     (progn
-	       (set-register '_ (list (current-window-configuration)))
-	       (delete-other-windows))))
+	     (interactive)
+	     (if (= 1 (length (window-list)))
+		 (jump-to-register '_)
+	       (progn
+		 (set-register '_ (list (current-window-configuration)))
+		 (delete-other-windows))))
     (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
 
     ;;Always murder current buffer
     (defun kill-curr-buffer ()
-      (interactive)
-      (kill-buffer (current-buffer)))
+	(interactive)
+	(kill-buffer (current-buffer)))
     (global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
     ;;  Kill whole word
     (defun kill-whole-word ()
-      (interactive)
-      (backward-word)
-      (kill-word 1))
+	(interactive)
+	(backward-word)
+	(kill-word 1))
     (global-set-key (kbd "C-c w w") 'kill-whole-word)
 
     ;;  Copy whole line
     (defun copy-whole-line ()
-      (interactive)
-      (save-excursion
-	(kill-new
-	 (buffer-substring
-	  (point-at-bol)
-	  (point-at-eol)))))
+	(interactive)
+	(save-excursion
+	  (kill-new
+	   (buffer-substring
+	    (point-at-bol)
+	    (point-at-eol)))))
     (global-set-key (kbd "C-c w l") 'copy-whole-line)
     ;;Kill all buffers
     (defun kill-all-buffers ()
-      (interactive)
-      (mapc 'kill-buffer (buffer-list)))
+	(interactive)
+	(mapc 'kill-buffer (buffer-list)))
     (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
 
     ;; comment and un comment
@@ -438,14 +438,14 @@
     (global-set-key (kbd "C-;") 'comment-line)
     ;; fixed backward word del
     (defun my/backward-kill-spaces-or-char-or-word ()
-      (interactive)
-      (cond
-       ((looking-back (rx (char word)) 1)
-	(backward-kill-word 1))
-       ((looking-back (rx (char blank)) 1)
-	(delete-horizontal-space t))
-       (t
-	(backward-delete-char 1))))
+	(interactive)
+	(cond
+	 ((looking-back (rx (char word)) 1)
+	  (backward-kill-word 1))
+	 ((looking-back (rx (char blank)) 1)
+	  (delete-horizontal-space t))
+	 (t
+	  (backward-delete-char 1))))
     (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 (use-package magit
@@ -545,44 +545,44 @@
 (global-set-key (kbd "C-c n m") 'deft-find-file)
 
 (use-package org
-    :ensure t)
+	:ensure t)
   (setq org-return-follows-link t)  
   (setq org-directory "~/roam/org"
-	org-attach-directory "~/roam/img/"
-	org-default-notes-file (expand-file-name "notes.org" org-directory)
-	org-ellipsis " ↴ " ; ⇩ ▼ ↴
-	;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
-	;; org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
-	org-log-done 'time
-	org-hide-emphasis-markers t
-	;; ex. of org-link-abbrev-alist in action
-	;; [[arch-wiki:Name_of_Page][Description]]
-	org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
-	  '(("google" . "http://www.google.com/search?q=")
-	    ("arch-wiki" . "https://wiki.archlinux.org/index.php/")
-	    ("ddg" . "https://duckduckgo.com/?q=")
-	    ("wiki" . "https://en.wikipedia.org/wiki/"))
-	org-table-convert-region-max-lines 20000
-	org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
-	  '((sequence
-	     "TODO(t)"           ; A task that is ready to be tackled
-	     "BLOG(b)"           ; Blog writing assignments
-	     "GYM(g)"            ; Things to accomplish at the gym
-	     "PROJ(p)"           ; A project that contains other tasks
-	     "VIDEO(v)"          ; Video assignments
-	     "WAIT(w)"           ; Something is holding up this task
-	     "|"                 ; The pipe necessary to separate "active" states and "inactive" states
-	     "DONE(d)"           ; Task has been completed
-	     "CANCELLED(c)"))) ; Task has been cancelled
+	    org-attach-directory "~/roam/img/"
+	    org-default-notes-file (expand-file-name "notes.org" org-directory)
+	    org-ellipsis " ↴ " ; ⇩ ▼ ↴
+	    ;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
+	    ;; org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
+	    org-log-done 'time
+	    org-hide-emphasis-markers t
+	    ;; ex. of org-link-abbrev-alist in action
+	    ;; [[arch-wiki:Name_of_Page][Description]]
+	    org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
+	      '(("google" . "http://www.google.com/search?q=")
+		("arch-wiki" . "https://wiki.archlinux.org/index.php/")
+		("ddg" . "https://duckduckgo.com/?q=")
+		("wiki" . "https://en.wikipedia.org/wiki/"))
+	    org-table-convert-region-max-lines 20000
+	    org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+	      '((sequence
+		 "TODO(t)"           ; A task that is ready to be tackled
+		 "BLOG(b)"           ; Blog writing assignments
+		 "GYM(g)"            ; Things to accomplish at the gym
+		 "PROJ(p)"           ; A project that contains other tasks
+		 "VIDEO(v)"          ; Video assignments
+		 "WAIT(w)"           ; Something is holding up this task
+		 "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+		 "DONE(d)"           ; Task has been completed
+		 "CANCELLED(c)"))) ; Task has been cancelled
 
 ;; bro i add this because my org-roam-node not opening in Full screen
 ;; https://emacs.stackexchange.com/questions/62720/open-org-link-in-the-same-window
-    (setq org-link-frame-setup
+	(setq org-link-frame-setup
    '((vm . vm-visit-folder-other-frame)
-     (vm-imap . vm-visit-imap-folder-other-frame)
-     (gnus . org-gnus-no-new-news)
-     (file . find-file)
-     (wl . wl-other-frame)))
+	 (vm-imap . vm-visit-imap-folder-other-frame)
+	 (gnus . org-gnus-no-new-news)
+	 (file . find-file)
+	 (wl . wl-other-frame)))
 
 (use-package org-download
 :ensure t
@@ -595,23 +595,23 @@
   :custom
   (org-roam-directory (file-truename "~/roam/"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n g" . org-roam-graph)
-	 ("C-c n i" . org-roam-node-insert)
-	 ("C-c n c" . org-roam-capture)
-	 ("C-c n I" . my/org-roam-node-insert-immediate)
-	 ;; Dailies
-	 ("C-c n j" . org-roam-dailies-capture-today)
-	 ("C-c n d t" . org-roam-dailies-goto-today)       ; Go to today's daily note
-	 ("C-c n d y" . org-roam-dailies-capture-yesterday) ; Capture yesterday's daily note
-	 ("C-c n d Y" . org-roam-dailies-goto-yesterday)    ; Go to yesterday's daily note
-	 ("C-c n d T" . org-roam-dailies-capture-tomorrow)  ; Capture tomorrow's daily note
-	 ("C-c n d O" . org-roam-dailies-goto-tomorrow)     ; Go to tomorrow's daily note
-	 ("C-c n d d" . org-roam-dailies-capture-date)      ; Capture a note for a specific date
-	 ("C-c n d D" . org-roam-dailies-goto-date)         ; Go to a note for a specific date
-	 ("C-c n d n" . org-roam-dailies-goto-next-note)    ; Go to next daily note
-	 ("C-c n d p" . org-roam-dailies-goto-previous-note) ; Go to previous daily note
-	 )
+	   ("C-c n f" . org-roam-node-find)
+	   ("C-c n g" . org-roam-graph)
+	   ("C-c n i" . org-roam-node-insert)
+	   ("C-c n c" . org-roam-capture)
+	   ("C-c n I" . my/org-roam-node-insert-immediate)
+	   ;; Dailies
+	   ("C-c n j" . org-roam-dailies-capture-today)
+	   ("C-c n d t" . org-roam-dailies-goto-today)       ; Go to today's daily note
+	   ("C-c n d y" . org-roam-dailies-capture-yesterday) ; Capture yesterday's daily note
+	   ("C-c n d Y" . org-roam-dailies-goto-yesterday)    ; Go to yesterday's daily note
+	   ("C-c n d T" . org-roam-dailies-capture-tomorrow)  ; Capture tomorrow's daily note
+	   ("C-c n d O" . org-roam-dailies-goto-tomorrow)     ; Go to tomorrow's daily note
+	   ("C-c n d d" . org-roam-dailies-capture-date)      ; Capture a note for a specific date
+	   ("C-c n d D" . org-roam-dailies-goto-date)         ; Go to a note for a specific date
+	   ("C-c n d n" . org-roam-dailies-goto-next-note)    ; Go to next daily note
+	   ("C-c n d p" . org-roam-dailies-goto-previous-note) ; Go to previous daily note
+	   )
 
   :config
   (setq org-roam-dailies-directory "daily/") ;; set org roam journsl dir defult i daily/ you can any folder name (e.g) journal/
@@ -619,16 +619,16 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 (setq org-roam-capture-templates
-      '(("d" "default" plain "%?"
-	 :target (file+head "${slug}.org"
-			    "#+title: ${title}\n#+filetags:\n")
+	'(("d" "default" plain "%?"
+	   :target (file+head "${slug}.org"
+			      "#+title: ${title}\n#+filetags:\n")
+	   
+	   (setq org-roam-dailies-capture-templates
+		 '(("d" "default" entry "* %<%I:%M %p>: %?"
+		    :if-new (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n"))))
 
-	 (setq org-roam-dailies-capture-templates
-	       '(("d" "default" entry "* %<%I:%M %p>: %?"
-		  :if-new (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n"))))
 
-
-	 :unnarrowed t)))
+	   :unnarrowed t)))
 (org-roam-db-autosync-mode)
 (org-roam-db-sync)
 ;;(add-hook 'org-open-at-point-functions #'org-roam-id-open) 
@@ -652,8 +652,8 @@
 (defun my/org-roam-node-insert-immediate (arg &rest args)
   (interactive "P")
   (let ((args (cons arg args))
-	(org-roam-capture-templates (list (append (car org-roam-capture-templates)
-						  '(:immediate-finish t)))))
+	  (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+						    '(:immediate-finish t)))))
     (apply #'org-roam-node-insert args)))
 
 
@@ -661,22 +661,22 @@
   "List all unique tags from Org Roam notes in the minibuffer."
   (interactive)
   (if (not (bound-and-true-p org-roam-directory))
-      (error "Org Roam directory is not set.")
+	(error "Org Roam directory is not set.")
     (let ((tags '()))
-      ;; Collect tags from Org Roam notes
-      (dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
-	(with-temp-buffer
-	  (insert-file-contents file)
-	  (org-mode)
-	  (org-element-map (org-element-parse-buffer) 'headline
-	    (lambda (headline)
-	      (let ((headline-tags (org-element-property :tags headline)))
-		(when headline-tags
-		  (dolist (tag headline-tags)
-		    (unless (member tag tags)
-		      (push tag tags)))))))))
-      ;; Display the tags in the minibuffer
-      (message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
+	;; Collect tags from Org Roam notes
+	(dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
+	  (with-temp-buffer
+	    (insert-file-contents file)
+	    (org-mode)
+	    (org-element-map (org-element-parse-buffer) 'headline
+	      (lambda (headline)
+		(let ((headline-tags (org-element-property :tags headline)))
+		  (when headline-tags
+		    (dolist (tag headline-tags)
+		      (unless (member tag tags)
+			(push tag tags)))))))))
+	;; Display the tags in the minibuffer
+	(message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
 
 ;; this not working in gnu emacs
 ;; (defun my/org-roam-list-tags ()
@@ -723,19 +723,19 @@
   ;;  :hook (after-init . org-roam-ui-mode)
   :config
   (setq org-roam-ui-sync-theme t
-	org-roam-ui-follow t
-	org-roam-ui-update-on-save t
-	org-roam-ui-open-on-start t))
+	  org-roam-ui-follow t
+	  org-roam-ui-update-on-save t
+	  org-roam-ui-open-on-start t))
 
 (use-package jinx  
     :ensure t
     :hook (emacs-startup . global-jinx-mode)
     ;; :hook ((LaTeX-mode . jinx-mode)  
-	   ;; (latex-mode . jinx-mode)  
-	   ;; (markdown-mode . jinx-mode)  
-	   ;; (org-mode . jinx-mode)
-	   ;; (text-mode . jinx-mode)
-	   ;; )  
+	     ;; (latex-mode . jinx-mode)  
+	     ;; (markdown-mode . jinx-mode)  
+	     ;; (org-mode . jinx-mode)
+	     ;; (text-mode . jinx-mode)
+	     ;; )  
     ;; :bind ([remap ispell-word] . jinx-correct)  
    )
 ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
