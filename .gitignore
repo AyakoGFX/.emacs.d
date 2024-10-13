@@ -1,0 +1,8 @@
+# Ignore Emacs directories
+auto-save-list/
+eln-cache/
+elpa/
+.cache/
+transient/
+snippets/
+

@@ -30,11 +30,7 @@
      "30d174000ea9cbddecd6cc695943afb7dba66b302a14f9db5dd65074e70cc744"
      default))
  '(lsp-ui-doc-position 'at-point)
- '(package-selected-packages
-   '(compat diff-hl dired doom-modeline doom-themes org-download
-	    org-roam-ui org-tempo simple-httpd sudo-edit
-	    treemacs-icons-dired vertico visual-fill-column websocket
-	    wucuo)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

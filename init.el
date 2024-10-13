@@ -13,8 +13,8 @@
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
 
 ;; Set eln-cache dir
-(when (boundp 'native-comp-eln-load-path)
-  (startup-redirect-eln-cache (expand-file-name "~/emacs-link-dir" user-emacs-directory)))
+;; (when (boundp 'native-comp-eln-load-path)
+;;   (startup-redirect-eln-cache (expand-file-name "~/emacs-link-dir" user-emacs-directory)))
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file)
