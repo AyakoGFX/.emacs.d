@@ -1,4 +1,4 @@
-* Appearance
+n* Appearance
 ** Theme
 to set =Theme= you can set via =M-x customize-themes= and kishore
 set and save so the theme will load properly in =emacsclient=
@@ -14,6 +14,7 @@ set and save so the theme will load properly in =emacsclient=
     (tool-bar-mode -1)
     (fringe-mode -1)
     (scroll-bar-mode -1))
+  (setq frame-resize-pixelwise t)
 #+END_SRC
 
 ** Font
@@ -21,7 +22,7 @@ set and save so the theme will load properly in =emacsclient=
   (add-to-list 'default-frame-alist
                '(font . "JetBrainsMono Nerd Font-19"))
 #+END_SRC
-** Madeline
+* Madeline
 #+BEGIN_SRC emacs-lisp
   ;; (use-package spaceline
   ;; :ensure t
@@ -122,14 +123,17 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
 
 *** On relative line numbers
 #+BEGIN_SRC emacs-lisp
-    ;; (setq display-line-numbers-type 'relative)
-    ;; (setq display-line-numbers-mode)
+      ;; (setq display-line-numbers-type 'relative)
+      ;; (setq display-line-numbers-mode)
 
-  (setq display-line-numbers-type 'relative)  ;; Use 't for absolute numbers
-    (global-display-line-numbers-mode 1)
+    (setq display-line-numbers-type 'relative)  ;; Use 't for absolute numbers
+      (global-display-line-numbers-mode 1)
 
-      ;; off
-      ;; (setq display-line-numbers-type nil)
+  ;; of in org mode only
+  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+        ;; off
+        ;; (setq display-line-numbers-type nil)
 #+END_SRC
 *** sudo edit
 #+begin_src emacs-lisp
@@ -636,20 +640,20 @@ to add more lang support you just need to add to hook ex below
 
 * fixs
 #+BEGIN_SRC emacs-lisp
-(use-package ansi-color
-  :ensure t
-  :init
-  (defun my-compilation-filter ()
-    (ansi-color-apply-on-region (point-min) (point-max)))
-  :hook (compilation-filter . my-compilation-filter))
+  (use-package ansi-color
+    :ensure t
+    :init
+    (defun my-compilation-filter ()
+      (ansi-color-apply-on-region (point-min) (point-max)))
+    :hook (compilation-filter . my-compilation-filter))
 #+END_SRC
 
 ** use bash instead of other shells
 #+BEGIN_SRC emacs-lisp
-  (setq explicit-shell-file-name "/bin/bash")
-  (setq explicit-bash-args '("--login" "-i"))
-  (setq term-shell "/bin/bash")
-  (setq shell-file-name "/bin/bash")
+(setq explicit-shell-file-name "/bin/bash")
+(setq explicit-bash-args '("--login" "-i"))
+(setq term-shell "/bin/bash")
+(setq shell-file-name "/bin/bash")
 #+END_SRC
 
 * org + org roam
@@ -859,9 +863,8 @@ to add more lang support you just need to add to hook ex below
 	  org-roam-ui-update-on-save t
 	  org-roam-ui-open-on-start t))
 #+end_src
-* spellcheck with jinx aka just-in-time
-install dep 
-
+* Emacs for writers 
+** spellcheck with jinx aka just-in-time
 - Debian, Ubuntu: =libenchant-2-dev=, =pkgconf=
 - Arch, Gentoo: =enchant=, =pkgconf=
 - Guix: =emacs-jinx= defined in =emacs-xyz.scm=
@@ -891,6 +894,20 @@ install dep
   (global-set-key (kbd "C-c s w") 'jinx-correct-word)
   (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
 #+end_src
+** visual-fill-column
+#+begin_src emacs-lisp
+  (use-package visual-fill-column
+  :ensure t
+  :hook (org-mode . visual-fill-column-mode)
+  :custom
+  (visual-fill-column-center-text t)
+  (visual-fill-column-width 110))
+
+(use-package visual-line-mode
+  :ensure nil
+  :hook
+  (org-mode . visual-line-mode))
+#+end_src
 * TODO
 window navigation in Emacs ace-window or switch-window
 https://github.com/dimitri/switch-window
@@ -901,7 +918,8 @@ CLOSED: [2024-10-10 Thu 00:56]
 CLOSED: [2024-10-10 Thu 01:18]
 ** DONE roam-ui
 CLOSED: [2024-10-10 Thu 01:35]
-** TODO ADD SUDO EDIT SUPPORT 
+** DONE ADD SUDO EDIT SUPPORT 
+CLOSED: [2024-10-13 Sun 13:53]
 ** DONE add spell checking support
 CLOSED: [2024-10-08 Tue 14:49]
 

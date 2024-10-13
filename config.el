@@ -9,6 +9,7 @@
   (tool-bar-mode -1)
   (fringe-mode -1)
   (scroll-bar-mode -1))
+(setq frame-resize-pixelwise t)
 
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font-19"))
@@ -77,13 +78,16 @@
 )
 
 ;; (setq display-line-numbers-type 'relative)
-  ;; (setq display-line-numbers-mode)
+    ;; (setq display-line-numbers-mode)
 
-(setq display-line-numbers-type 'relative)  ;; Use 't for absolute numbers
-  (global-display-line-numbers-mode 1)
+  (setq display-line-numbers-type 'relative)  ;; Use 't for absolute numbers
+    (global-display-line-numbers-mode 1)
 
-    ;; off
-    ;; (setq display-line-numbers-type nil)
+;; of in org mode only
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+      ;; off
+      ;; (setq display-line-numbers-type nil)
 
 (use-package sudo-edit
 :ensure t
@@ -747,3 +751,15 @@
 (global-set-key (kbd "C-c s a") 'jinx-correct-all)
 (global-set-key (kbd "C-c s w") 'jinx-correct-word)
 (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+
+(use-package visual-fill-column
+  :ensure t
+  :hook (org-mode . visual-fill-column-mode)
+  :custom
+  (visual-fill-column-center-text t)
+  (visual-fill-column-width 110))
+
+(use-package visual-line-mode
+  :ensure nil
+  :hook
+  (org-mode . visual-line-mode))

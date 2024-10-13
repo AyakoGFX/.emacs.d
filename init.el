@@ -12,6 +12,13 @@
 
 (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))
 
+;; Set eln-cache dir
+(when (boundp 'native-comp-eln-load-path)
+  (startup-redirect-eln-cache (expand-file-name "~/emacs-link-dir" user-emacs-directory)))
+
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file)
+;; (setq custom-file (expand-file-name "custom.el" user-emacs-directory)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
