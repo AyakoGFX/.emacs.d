@@ -4,9 +4,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(doom-one))
+ '(custom-enabled-themes '(doom-gruvbox))
  '(custom-safe-themes
-   '("88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e"
+   '("48042425e84cd92184837e01d0b4fe9f912d875c43021c3bcb7eeb51f1be5710"
+     "6f1f6a1a3cff62cc860ad6e787151b9b8599f4471d40ed746ea2819fcd184e1a"
+     "34cf3305b35e3a8132a0b1bdf2c67623bc2cb05b125f8d7d26bd51fd16d547ec"
+     "b754d3a03c34cfba9ad7991380d26984ebd0761925773530e24d8dd8b6894738"
+     "6a5584ee8de384f2d8b1a1c30ed5b8af1d00adcbdcd70ba1967898c265878acf"
+     "88f7ee5594021c60a4a6a1c275614103de8c1435d6d08cc58882f920e0cec65e"
      "f64189544da6f16bab285747d04a92bd57c7e7813d8c24c30f382f087d460a33"
      "6e18353d35efc18952c57d3c7ef966cad563dc65a2bba0660b951d990e23fc07"
      "113a135eb7a2ace6d9801469324f9f7624f8c696b72e3709feb7368b06ddaccc"
@@ -30,7 +35,14 @@
      "30d174000ea9cbddecd6cc695943afb7dba66b302a14f9db5dd65074e70cc744"
      default))
  '(lsp-ui-doc-position 'at-point)
- '(package-selected-packages nil))
+ '(org-modules
+   '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc
+	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
+ '(package-selected-packages
+   '(compat diff-hl dired doom-modeline doom-themes org-download
+	    org-roam-ui org-tempo simple-httpd sudo-edit
+	    treemacs-icons-dired vertico websocket wucuo
+	    yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

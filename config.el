@@ -522,6 +522,8 @@
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
 (yas-global-mode 1)  ; Enable yasnippet
+(use-package yasnippet-snippets
+:ensure t)
 
 (use-package wks-mode
   :load-path ("~/.emacs.d/manual/"))
@@ -549,44 +551,47 @@
 (global-set-key (kbd "C-c n m") 'deft-find-file)
 
 (use-package org
-	:ensure t)
-  (setq org-return-follows-link t)  
-  (setq org-directory "~/roam/org"
-	    org-attach-directory "~/roam/img/"
-	    org-default-notes-file (expand-file-name "notes.org" org-directory)
-	    org-ellipsis " ↴ " ; ⇩ ▼ ↴
-	    ;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
-	    ;; org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
-	    org-log-done 'time
-	    org-hide-emphasis-markers t
-	    ;; ex. of org-link-abbrev-alist in action
-	    ;; [[arch-wiki:Name_of_Page][Description]]
-	    org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
-	      '(("google" . "http://www.google.com/search?q=")
-		("arch-wiki" . "https://wiki.archlinux.org/index.php/")
-		("ddg" . "https://duckduckgo.com/?q=")
-		("wiki" . "https://en.wikipedia.org/wiki/"))
-	    org-table-convert-region-max-lines 20000
-	    org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
-	      '((sequence
-		 "TODO(t)"           ; A task that is ready to be tackled
-		 "BLOG(b)"           ; Blog writing assignments
-		 "GYM(g)"            ; Things to accomplish at the gym
-		 "PROJ(p)"           ; A project that contains other tasks
-		 "VIDEO(v)"          ; Video assignments
-		 "WAIT(w)"           ; Something is holding up this task
-		 "|"                 ; The pipe necessary to separate "active" states and "inactive" states
-		 "DONE(d)"           ; Task has been completed
-		 "CANCELLED(c)"))) ; Task has been cancelled
+  	:ensure t
+  	:config (require 'org-tempo))
+    (setq org-return-follows-link t)  
+    (setq org-directory "~/roam/org"
+  	    org-attach-directory "~/roam/img/"
+  	    org-default-notes-file (expand-file-name "notes.org" org-directory)
+  	    org-ellipsis " ↴ " ; ⇩ ▼ ↴
+  	    ;; org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
+  	    ;; org-superstar-itembullet-alist '((?+ . ?➤) (?- . ?✦)) ; changes +/- symbols in item lists
+  	    org-log-done 'time
+  	    org-hide-emphasis-markers t
+  	    ;; ex. of org-link-abbrev-alist in action
+  	    ;; [[arch-wiki:Name_of_Page][Description]]
+  	    org-link-abbrev-alist    ; This overwrites the default Doom org-link-abbrev-list
+  	      '(("google" . "http://www.google.com/search?q=")
+  		("arch-wiki" . "https://wiki.archlinux.org/index.php/")
+  		("ddg" . "https://duckduckgo.com/?q=")
+  		("wiki" . "https://en.wikipedia.org/wiki/"))
+  	    org-table-convert-region-max-lines 20000
+  	    org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+  	      '((sequence
+  		 "TODO(t)"           ; A task that is ready to be tackled
+  		 "BLOG(b)"           ; Blog writing assignments
+  		 "GYM(g)"            ; Things to accomplish at the gym
+  		 "PROJ(p)"           ; A project that contains other tasks
+  		 "VIDEO(v)"          ; Video assignments
+  		 "WAIT(w)"           ; Something is holding up this task
+  		 "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+  		 "DONE(d)"           ; Task has been completed
+  		 "CANCELLED(c)"))) ; Task has been cancelled
 
-;; bro i add this because my org-roam-node not opening in Full screen
-;; https://emacs.stackexchange.com/questions/62720/open-org-link-in-the-same-window
-	(setq org-link-frame-setup
-   '((vm . vm-visit-folder-other-frame)
-	 (vm-imap . vm-visit-imap-folder-other-frame)
-	 (gnus . org-gnus-no-new-news)
-	 (file . find-file)
-	 (wl . wl-other-frame)))
+  ;; bro i add this because my org-roam-node not opening in Full screen
+  ;; https://emacs.stackexchange.com/questions/62720/open-org-link-in-the-same-window
+  	(setq org-link-frame-setup
+     '((vm . vm-visit-folder-other-frame)
+  	 (vm-imap . vm-visit-imap-folder-other-frame)
+  	 (gnus . org-gnus-no-new-news)
+  	 (file . find-file)
+  	 (wl . wl-other-frame)))
+;; https://emacs.stackexchange.com/questions/46988/why-do-easy-templates-e-g-s-tab-in-org-9-2-not-work
+(add-to-list 'org-modules 'org-tempo t) ;; for complation like <s tab to src-block
 
 (use-package org-download
 :ensure t
