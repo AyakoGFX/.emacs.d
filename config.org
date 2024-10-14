@@ -1,4 +1,7 @@
-n* Appearance
+#+TITLE:My Personal Emacs Config
+#+AUTHOR: KISHORE
+
+* Appearance
 ** Theme
 to set =Theme= you can set via =M-x customize-themes= and kishore
 set and save so the theme will load properly in =emacsclient=
@@ -22,6 +25,13 @@ set and save so the theme will load properly in =emacsclient=
   (add-to-list 'default-frame-alist
                '(font . "JetBrainsMono Nerd Font-19"))
 #+END_SRC
+** colorful-mode
+#+begin_src emacs-lisp
+(use-package colorful-mode
+  :ensure t ; Optional
+  :hook (prog-mode text-mode))  
+#+end_src
+
 * Madeline
 #+BEGIN_SRC emacs-lisp
   ;; (use-package spaceline
@@ -868,6 +878,21 @@ to add more lang support you just need to add to hook ex below
 	  org-roam-ui-update-on-save t
 	  org-roam-ui-open-on-start t))
 #+end_src
+** LaTeX
+#+begin_src emacs-lisp
+(with-eval-after-load 'ox-latex
+(add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
 * Emacs for writers 
 ** spellcheck with jinx aka just-in-time
 - Debian, Ubuntu: =libenchant-2-dev=, =pkgconf=
@@ -913,6 +938,31 @@ to add more lang support you just need to add to hook ex below
   :hook
   (org-mode . visual-line-mode))
 #+end_src
+
+* Optimizing
+#+begin_src emacs-lisp
+    (setq redisplay-dont-pause t) ;; Avoid pausing between updates
+
+    ;; Using garbage magic hack.
+   (use-package gcmh
+     :ensure t
+     :config
+     (gcmh-mode 1))
+  ;; Setting garbage collection threshold
+ (setq gc-cons-threshold 402653184  ;; Set to 384MB (402,653,184 bytes)
+      gc-cons-percentage 0.6)      ;; Set the proportion of memory to trigger GC
+
+  ;; Profile emacs startup
+  (add-hook 'emacs-startup-hook
+            (lambda ()
+              (message "*** Emacs loaded in %s with %d garbage collections."
+                       (format "%.2f seconds"
+                               (float-time
+                                (time-subtract after-init-time before-init-time)))
+                       gcs-done)))
+
+  ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
+#+end_src
 * TODO
 window navigation in Emacs ace-window or switch-window
 https://github.com/dimitri/switch-window
@@ -927,7 +977,6 @@ CLOSED: [2024-10-10 Thu 01:35]
 CLOSED: [2024-10-13 Sun 13:53]
 ** DONE add spell checking support
 CLOSED: [2024-10-08 Tue 14:49]
-
 
 {
  ctrl-alt-f and ctrl-alt-p 

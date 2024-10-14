@@ -4,9 +4,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(doom-gruvbox))
+ '(custom-enabled-themes '(doom-acario-dark))
  '(custom-safe-themes
-   '("48042425e84cd92184837e01d0b4fe9f912d875c43021c3bcb7eeb51f1be5710"
+   '("d6b934330450d9de1112cbb7617eaf929244d192c4ffb1b9e6b63ad574784aad"
+     "8b148cf8154d34917dfc794b5d0fe65f21e9155977a36a5985f89c09a9669aa0"
+     "6f96a9ece5fdd0d3e04daea6aa63e13be26b48717820aa7b5889c602764cf23a"
+     "48042425e84cd92184837e01d0b4fe9f912d875c43021c3bcb7eeb51f1be5710"
      "6f1f6a1a3cff62cc860ad6e787151b9b8599f4471d40ed746ea2819fcd184e1a"
      "34cf3305b35e3a8132a0b1bdf2c67623bc2cb05b125f8d7d26bd51fd16d547ec"
      "b754d3a03c34cfba9ad7991380d26984ebd0761925773530e24d8dd8b6894738"
@@ -38,11 +41,7 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
- '(package-selected-packages
-   '(compat diff-hl dired doom-modeline doom-themes org-download
-	    org-roam-ui org-tempo simple-httpd sudo-edit
-	    treemacs-icons-dired vertico websocket wucuo
-	    yasnippet-snippets)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

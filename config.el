@@ -14,6 +14,10 @@
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font-19"))
 
+(use-package colorful-mode
+  :ensure t ; Optional
+  :hook (prog-mode text-mode))
+
 ;; (use-package spaceline
 ;; :ensure t
 ;; :config
@@ -736,6 +740,19 @@
 	  org-roam-ui-update-on-save t
 	  org-roam-ui-open-on-start t))
 
+(with-eval-after-load 'ox-latex
+(add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
 (use-package jinx  
     :ensure t
     :hook (emacs-startup . global-jinx-mode)
@@ -768,3 +785,25 @@
   :ensure nil
   :hook
   (org-mode . visual-line-mode))
+
+(setq redisplay-dont-pause t) ;; Avoid pausing between updates
+
+   ;; Using garbage magic hack.
+  (use-package gcmh
+    :ensure t
+    :config
+    (gcmh-mode 1))
+ ;; Setting garbage collection threshold
+(setq gc-cons-threshold 402653184  ;; Set to 384MB (402,653,184 bytes)
+     gc-cons-percentage 0.6)      ;; Set the proportion of memory to trigger GC
+
+ ;; Profile emacs startup
+ (add-hook 'emacs-startup-hook
+           (lambda ()
+             (message "*** Emacs loaded in %s with %d garbage collections."
+                      (format "%.2f seconds"
+                              (float-time
+                               (time-subtract after-init-time before-init-time)))
+                      gcs-done)))
+
+ ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)

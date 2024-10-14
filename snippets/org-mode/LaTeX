@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: LaTeX
+# key: <l
+# --
+
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [letterpaper]
+#+OPTIONS: toc:nil
+
+$0
