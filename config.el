@@ -67,6 +67,14 @@
 
 (setq make-backup-files nil)
 (setq auto-save-default nil)
+(setq create-lockfiles nil)
+
+  ;;  or
+    ;; (setq backup-directory-alist
+    ;;     '(("." . "~/.emacs.d/.trash"))
+
+    ;;     (setq auto-save-file-name-transforms
+    ;; 	    '((".*" "~/.emacs.d/.trash/" t)))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -98,21 +106,27 @@
 :bind ("C-c C-0" . sudo-edit))
 
 (use-package all-the-icons
-  :ensure t
-  :init)
+    :ensure t
+    :init)
 
-;; (use-package all-the-icons-dired
-;; :ensure t
-;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  ;; (use-package all-the-icons-dired
+  ;; :ensure t
+  ;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-(use-package treemacs-icons-dired
-  :ensure t
-  :if (display-graphic-p)
-  :config (treemacs-icons-dired-mode))
+  ;; (use-package treemacs-icons-dired
+  ;;   :ensure t
+  ;;   :if (display-graphic-p)
+  ;;   :config (treemacs-icons-dired-mode))
+(use-package dired
+  :ensure nil
+  :config
+  ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
+  (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
 
-(use-package all-the-icons-ibuffer
-  :ensure t
-  :init (all-the-icons-ibuffer-mode 1))
+
+  (use-package all-the-icons-ibuffer
+    :ensure t
+    :init (all-the-icons-ibuffer-mode 1))
 
 (defun my-line-save ()
   (interactive)
@@ -172,6 +186,11 @@
 	read-buffer-completion-ignore-case t
 	completion-ignore-case t)
 
+(use-package marginalia
+  :ensure t
+  :config
+   (marginalia-mode 1))
+
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
   :ensure t
@@ -195,7 +214,7 @@
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   (corfu-quit-no-match 'separator)      ;; Never quit, even if there is no match
   ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+  ;; (corfu-elect 'prompt)      ;; Preselect the prompt
   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
@@ -298,7 +317,6 @@
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
   :config
-
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
   ;; (setq consult-preview-key 'any)
@@ -807,3 +825,30 @@
                       gcs-done)))
 
  ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
+
+(use-package perspective
+  :ensure t
+  :bind (("C-x k" . persp-kill-buffer*))
+  :init
+  (setq persp-mode-prefix-key (kbd "C-x ,"))  ; Set your desired prefix key
+  (persp-mode))
+
+(use-package consult
+  :ensure t
+  :config
+  ;; Hide the default consult buffer source
+  (consult-customize consult--source-buffer :hidden t :default nil)
+
+  ;; Define the custom source for perspectives
+  (defvar consult--source-perspective
+    (list :name     "Perspective"
+          :narrow   ?s
+          :category 'buffer
+          :state    #'consult--buffer-state
+          :default  t
+          :items    #'persp-get-buffer-names))
+
+  ;; Add the perspective source to consult-buffer-sources
+  (unless (boundp 'consult-buffer-sources)
+    (setq consult-buffer-sources '()))  ;; Initialize if not defined
+  (add-to-list 'consult-buffer-sources consult--source-perspective))

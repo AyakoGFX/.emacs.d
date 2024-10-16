@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(doom-acario-dark))
+ '(custom-enabled-themes '(doom-gruvbox))
  '(custom-safe-themes
    '("d6b934330450d9de1112cbb7617eaf929244d192c4ffb1b9e6b63ad574784aad"
      "8b148cf8154d34917dfc794b5d0fe65f21e9155977a36a5985f89c09a9669aa0"
@@ -41,7 +41,16 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(all-the-icons-dired all-the-icons-ibuffer cape colorful-mode company
+			 consult corfu dashboard deft diff-hl
+			 doom-modeline doom-themes fancy-battery
+			 flycheck gcmh jinx lsp-treemacs lsp-ui magit
+			 marginalia multiple-cursors orderless
+			 org-download org-roam-ui perspective
+			 spaceline sudo-edit treemacs-icons-dired
+			 vertico visual-fill-column vterm vundo
+			 which-key wucuo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

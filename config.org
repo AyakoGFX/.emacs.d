@@ -109,6 +109,14 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
 #+BEGIN_SRC emacs-lisp
   (setq make-backup-files nil)
   (setq auto-save-default nil)
+  (setq create-lockfiles nil)
+
+    ;;  or
+      ;; (setq backup-directory-alist
+      ;;     '(("." . "~/.emacs.d/.trash"))
+
+      ;;     (setq auto-save-file-name-transforms
+      ;; 	    '((".*" "~/.emacs.d/.trash/" t)))
 #+END_SRC
 
 *** Change yes-or-no questions into y-or-n questions
@@ -116,7 +124,7 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-
++*** optionla of you use consult-buffer 
 *** recent-files
 #+BEGIN_SRC emacs-lisp
 (use-package recentf
@@ -154,22 +162,28 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
 ** Cool Icons
 =M-x= nerd-icons-install-fonts 
 #+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons
-    :ensure t
-    :init)
+    (use-package all-the-icons
+      :ensure t
+      :init)
 
-  ;; (use-package all-the-icons-dired
-  ;; :ensure t
-  ;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+    ;; (use-package all-the-icons-dired
+    ;; :ensure t
+    ;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-  (use-package treemacs-icons-dired
-    :ensure t
-    :if (display-graphic-p)
-    :config (treemacs-icons-dired-mode))
+    ;; (use-package treemacs-icons-dired
+    ;;   :ensure t
+    ;;   :if (display-graphic-p)
+    ;;   :config (treemacs-icons-dired-mode))
+  (use-package dired
+    :ensure nil
+    :config
+    ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
+    (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
 
-  (use-package all-the-icons-ibuffer
-    :ensure t
-    :init (all-the-icons-ibuffer-mode 1))
+
+    (use-package all-the-icons-ibuffer
+      :ensure t
+      :init (all-the-icons-ibuffer-mode 1))
 #+END_SRC
 
 ** copy current line to the clipboard
@@ -236,7 +250,14 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
 	read-buffer-completion-ignore-case t
 	completion-ignore-case t)
 #+END_SRC
-
+*** marginalia
+just show mode good stuff in vertigo
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :ensure t
+    :config
+     (marginalia-mode 1))
+#+end_src
 *** orderless
 I recommend to give Orderless completion a try, which is more flexible and powerful than the default completion styles.
 #+BEGIN_SRC emacs-lisp
@@ -271,7 +292,7 @@ do not touch it will mess up vertigo *comp* ex C-x b
       ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
       (corfu-quit-no-match 'separator)      ;; Never quit, even if there is no match
       ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-      ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
+      ;; (corfu-elect 'prompt)      ;; Preselect the prompt
       ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
       ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
@@ -300,57 +321,57 @@ do not touch it will mess up vertigo *comp* ex C-x b
     :ensure t
     ;; Replace bindings. Lazily loaded by `use-package'.
     :bind (;; C-c bindings in `mode-specific-map'
-	   ("C-c M-x" . consult-mode-command)
-	   ("C-c h" . consult-history)
-	   ("C-c k" . consult-kmacro)
-	   ("C-c m" . consult-man)
-	   ("C-c i" . consult-info)
-	   ([remap Info-search] . consult-info)
-	   ;; C-x bindings in `ctl-x-map'
-	   ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-	   ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-	   ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-	   ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-	   ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
-	   ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
-	   ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
-	   ;; Custom M-# bindings for fast register access
-	   ("M-#" . consult-register-load)
-	   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-	   ("C-M-#" . consult-register)
-	   ;; Other custom bindings
-	   ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-	   ;; M-g bindings in `goto-map'
-	   ("M-g e" . consult-compile-error)
-	   ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-	   ("M-g g" . consult-goto-line)             ;; orig. goto-line
-	   ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-	   ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-	   ("M-g m" . consult-mark)
-	   ("M-g k" . consult-global-mark)
-	   ("M-g i" . consult-imenu)
-	   ("M-g I" . consult-imenu-multi)
-	   ;; M-s bindings in `search-map'
-	   ("M-s d" . consult-find)                  ;; Alternative: consult-fd
-	   ("M-s c" . consult-locate)
-	   ("M-s g" . consult-grep)
-	   ("M-s G" . consult-git-grep)
-	   ("M-s r" . consult-ripgrep)
-	   ("M-s l" . consult-line)
-	   ("M-s L" . consult-line-multi)
-	   ("M-s k" . consult-keep-lines)
-	   ("M-s u" . consult-focus-lines)
-	   ;; Isearch integration
-	   ("M-s e" . consult-isearch-history)
-	   :map isearch-mode-map
-	   ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
-	   ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
-	   ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
-	   ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
-	   ;; Minibuffer history
-	   :map minibuffer-local-map
-	   ("M-s" . consult-history)                 ;; orig. next-matching-history-element
-	   ("M-r" . consult-history))                ;; orig. previous-matching-history-element
+  	   ("C-c M-x" . consult-mode-command)
+  	   ("C-c h" . consult-history)
+  	   ("C-c k" . consult-kmacro)
+  	   ("C-c m" . consult-man)
+  	   ("C-c i" . consult-info)
+  	   ([remap Info-search] . consult-info)
+  	   ;; C-x bindings in `ctl-x-map'
+  	   ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+  	   ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+  	   ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+  	   ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+  	   ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
+  	   ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+  	   ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+  	   ;; Custom M-# bindings for fast register access
+  	   ("M-#" . consult-register-load)
+  	   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+  	   ("C-M-#" . consult-register)
+  	   ;; Other custom bindings
+  	   ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+  	   ;; M-g bindings in `goto-map'
+  	   ("M-g e" . consult-compile-error)
+  	   ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+  	   ("M-g g" . consult-goto-line)             ;; orig. goto-line
+  	   ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+  	   ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+  	   ("M-g m" . consult-mark)
+  	   ("M-g k" . consult-global-mark)
+  	   ("M-g i" . consult-imenu)
+  	   ("M-g I" . consult-imenu-multi)
+  	   ;; M-s bindings in `search-map'
+  	   ("M-s d" . consult-find)                  ;; Alternative: consult-fd
+  	   ("M-s c" . consult-locate)
+  	   ("M-s g" . consult-grep)
+  	   ("M-s G" . consult-git-grep)
+  	   ("M-s r" . consult-ripgrep)
+  	   ("M-s l" . consult-line)
+  	   ("M-s L" . consult-line-multi)
+  	   ("M-s k" . consult-keep-lines)
+  	   ("M-s u" . consult-focus-lines)
+  	   ;; Isearch integration
+  	   ("M-s e" . consult-isearch-history)
+  	   :map isearch-mode-map
+  	   ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+  	   ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+  	   ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+  	   ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+  	   ;; Minibuffer history
+  	   :map minibuffer-local-map
+  	   ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+  	   ("M-r" . consult-history))                ;; orig. previous-matching-history-element
 
     ;; Enable automatic preview at point in the *Completions* buffer. This is
     ;; relevant when you use the default completion UI.
@@ -363,7 +384,7 @@ do not touch it will mess up vertigo *comp* ex C-x b
     ;; preview for `consult-register', `consult-register-load',
     ;; `consult-register-store' and the Emacs built-ins.
     (setq register-preview-delay 0.5
-	  register-preview-function #'consult-register-format)
+  	  register-preview-function #'consult-register-format)
 
     ;; Optionally tweak the register preview window.
     ;; This adds thin lines, sorting and hides the mode line of the window.
@@ -371,12 +392,11 @@ do not touch it will mess up vertigo *comp* ex C-x b
 
     ;; Use Consult to select xref locations with preview
     (setq xref-show-xrefs-function #'consult-xref
-	  xref-show-definitions-function #'consult-xref)
+  	  xref-show-definitions-function #'consult-xref)
 
     ;; Configure other variables and modes in the :config section,
     ;; after lazily loading the package.
     :config
-
     ;; Optionally configure preview. The default value
     ;; is 'any, such that any key triggers the preview.
     ;; (setq consult-preview-key 'any)
@@ -962,6 +982,41 @@ to add more lang support you just need to add to hook ex below
                        gcs-done)))
 
   ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
+#+end_src
+
+* Perspective.el
+
+#+begin_src emacs-lisp
+(use-package perspective
+  :ensure t
+  :bind (("C-x k" . persp-kill-buffer*))
+  :init
+  (setq persp-mode-prefix-key (kbd "C-x ,"))  ; Set your desired prefix key
+  (persp-mode))
+#+end_src
+
+*** optionla of you use consult-buffer 
+https://github.com/minad/consult/wiki#perspective
+#+begin_src emacs-lisp
+(use-package consult
+  :ensure t
+  :config
+  ;; Hide the default consult buffer source
+  (consult-customize consult--source-buffer :hidden t :default nil)
+
+  ;; Define the custom source for perspectives
+  (defvar consult--source-perspective
+    (list :name     "Perspective"
+          :narrow   ?s
+          :category 'buffer
+          :state    #'consult--buffer-state
+          :default  t
+          :items    #'persp-get-buffer-names))
+
+  ;; Add the perspective source to consult-buffer-sources
+  (unless (boundp 'consult-buffer-sources)
+    (setq consult-buffer-sources '()))  ;; Initialize if not defined
+  (add-to-list 'consult-buffer-sources consult--source-perspective))
 #+end_src
 * TODO
 window navigation in Emacs ace-window or switch-window
