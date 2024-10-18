@@ -111,27 +111,16 @@
 :bind ("C-c C-0" . sudo-edit))
 
 (use-package all-the-icons
-    :ensure t
-    :init)
+  :ensure t
+  :init)
+;; (use-package treemacs-icons-dired
+;;   :ensure t
+;;   :if (display-graphic-p)
+;;   :config (treemacs-icons-dired-mode))
 
-  ;; (use-package all-the-icons-dired
-  ;; :ensuret 
-  ;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
-
-  ;; (use-package treemacs-icons-dired
-  ;;   :ensure t
-  ;;   :if (display-graphic-p)
-  ;;   :config (treemacs-icons-dired-mode))
-(use-package dired
-  :ensure nil
-  :config
-  ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
-  (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
-
-
-  (use-package all-the-icons-ibuffer
-    :ensure t
-    :init (all-the-icons-ibuffer-mode 1))
+(use-package all-the-icons-ibuffer
+  :ensure t
+  :init (all-the-icons-ibuffer-mode 1))
 
 (defun my-line-save ()
   (interactive)
@@ -139,6 +128,67 @@
     (kill-new l)
     (message "saved : %s" l)))
 (local-set-key (kbd "C-c w") #'my-line-save)
+
+;; (use-package dired
+;;   :ensure nil
+;;   :config
+;;   ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
+;;   (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
+
+
+(use-package all-the-icons
+  :ensure t)
+;; Directory operations
+(use-package dired
+  :ensure nil
+  :bind (:map dired-mode-map
+              ("C-c C-p" . wdired-change-to-wdired-mode))
+  :config
+  ;; Guess a default target directory
+  (setq dired-dwim-target t)
+
+  ;; Always delete and copy recursively
+  (setq dired-recursive-deletes 'always
+        dired-recursive-copies 'always)
+
+  ;; Show directory first
+  (setq dired-listing-switches "-alh --group-directories-first"))
+
+  ;; Quick sort dired buffers via hydra
+  (use-package dired-quick-sort
+    :ensure t
+    :bind (:map dired-mode-map
+  		("S" . hydra-dired-quick-sort/body)))
+
+  ;; Show git info in dired
+  (use-package dired-git-info
+    :ensure t
+    :bind (:map dired-mode-map
+  		(")" . dired-git-info-mode)))
+
+  ;; Allow rsync from dired buffers
+  (use-package dired-rsync
+    :ensure t
+    :bind (:map dired-mode-map
+  		("C-c C-r" . dired-rsync)))
+
+  ;; Colorful dired
+  (use-package diredfl
+    :ensure t
+    :hook (dired-mode . diredfl-mode))
+
+  (use-package nerd-icons-dired
+    :ensure t
+    :diminish
+    :if (featurep 'all-the-icons)
+    :custom-face
+    (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
+    :hook (dired-mode . nerd-icons-dired-mode))
+
+
+  ;; `find-dired' alternative using `fd'
+  (when (executable-find "fd")
+    (use-package fd-dired))
 
 ;; Enable vertico
  (use-package compat

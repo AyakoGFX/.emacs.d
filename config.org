@@ -171,21 +171,10 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
     (use-package all-the-icons
       :ensure t
       :init)
-
-    ;; (use-package all-the-icons-dired
-    ;; :ensuret 
-    ;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
-
     ;; (use-package treemacs-icons-dired
     ;;   :ensure t
     ;;   :if (display-graphic-p)
     ;;   :config (treemacs-icons-dired-mode))
-  (use-package dired
-    :ensure nil
-    :config
-    ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
-    (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
-
 
     (use-package all-the-icons-ibuffer
       :ensure t
@@ -202,6 +191,69 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
 (local-set-key (kbd "C-c w") #'my-line-save)
 #+END_SRC
 
+* Dired 
+#+begin_src emacs-lisp
+  ;; (use-package dired
+  ;;   :ensure nil
+  ;;   :config
+  ;;   ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
+  ;;   (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
+
+
+  (use-package all-the-icons
+    :ensure t)
+  ;; Directory operations
+  (use-package dired
+    :ensure nil
+    :bind (:map dired-mode-map
+                ("C-c C-p" . wdired-change-to-wdired-mode))
+    :config
+    ;; Guess a default target directory
+    (setq dired-dwim-target t)
+
+    ;; Always delete and copy recursively
+    (setq dired-recursive-deletes 'always
+          dired-recursive-copies 'always)
+
+    ;; Show directory first
+    (setq dired-listing-switches "-alh --group-directories-first"))
+
+    ;; Quick sort dired buffers via hydra
+    (use-package dired-quick-sort
+      :ensure t
+      :bind (:map dired-mode-map
+    		("S" . hydra-dired-quick-sort/body)))
+
+    ;; Show git info in dired
+    (use-package dired-git-info
+      :ensure t
+      :bind (:map dired-mode-map
+    		(")" . dired-git-info-mode)))
+
+    ;; Allow rsync from dired buffers
+    (use-package dired-rsync
+      :ensure t
+      :bind (:map dired-mode-map
+    		("C-c C-r" . dired-rsync)))
+
+    ;; Colorful dired
+    (use-package diredfl
+      :ensure t
+      :hook (dired-mode . diredfl-mode))
+
+    (use-package nerd-icons-dired
+      :ensure t
+      :diminish
+      :if (featurep 'all-the-icons)
+      :custom-face
+      (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
+      :hook (dired-mode . nerd-icons-dired-mode))
+
+
+    ;; `find-dired' alternative using `fd'
+    (when (executable-find "fd")
+      (use-package fd-dired))
+#+end_src
 ** Completion
 *** vertigo
 #+BEGIN_SRC emacs-lisp
