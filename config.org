@@ -1,6 +1,14 @@
 #+TITLE:My Personal Emacs Config
-#+AUTHOR: KISHpORE
+#+AUTHOR: KISHORE
 
+
+
+* Emacs Reference Config i use
+https://github.com/seagle0128/.emacs.d?tab=readme-ov-file#manual
+https://github.com/Bugswriter/.emacs.d/blob/master/config.org
+https://github.com/Bugswriter/BugsWritersEmacs
+https://github.com/doomemacs/doomemacs
+https://gitlab.com/Clsmith1/dotfiles
 * Appearance
 ** Theme
 to set =Theme= you can set via =M-x customize-themes= and kishore
@@ -40,12 +48,6 @@ set and save so the theme will load properly in =emacsclient=
 
 * Madeline
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package spaceline
-  ;; :ensure t
-  ;; :config
-  ;; (require 'spaceline-config)
-  ;; (setq powerline-default-separator (quote arrow))
-  ;; (spaceline-spacemacs-theme))
   (use-package doom-modeline
     :ensure t
     :config
@@ -57,14 +59,6 @@ set and save so the theme will load properly in =emacsclient=
     (doom-modeline-mode 1))
 #+END_SRC
 
-*** Fancy Battery
-#+BEGIN_SRC emacs-lisp
- ;; (use-package fancy-battery
- ;; :ensure t
- ;; :init
- ;; (fancy-battery-mode 1)
- ;; (setq fancy-battery-show-percentage t))
-#+END_SRC
 ** dashboard
 #+BEGIN_SRC emacs-lisp
   (use-package dashboard
