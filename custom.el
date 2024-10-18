@@ -4,9 +4,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(doom-gruvbox))
+ '(custom-enabled-themes '(catppuccin))
  '(custom-safe-themes
-   '("d6b934330450d9de1112cbb7617eaf929244d192c4ffb1b9e6b63ad574784aad"
+   '("9f297216c88ca3f47e5f10f8bd884ab24ac5bc9d884f0f23589b0a46a608fe14"
+     "6e13ff2c27cf87f095db987bf30beca8697814b90cd837ef4edca18bdd381901"
+     "77fff78cc13a2ff41ad0a8ba2f09e8efd3c7e16be20725606c095f9a19c24d3d"
+     "6e33d3dd48bc8ed38fd501e84067d3c74dfabbfc6d345a92e24f39473096da3f"
+     "7964b513f8a2bb14803e717e0ac0123f100fb92160dcf4a467f530868ebaae3e"
+     "10e5d4cc0f67ed5cafac0f4252093d2119ee8b8cb449e7053273453c1a1eb7cc"
+     "56044c5a9cc45b6ec45c0eb28df100d3f0a576f18eef33ff8ff5d32bac2d9700"
+     "d6b934330450d9de1112cbb7617eaf929244d192c4ffb1b9e6b63ad574784aad"
      "8b148cf8154d34917dfc794b5d0fe65f21e9155977a36a5985f89c09a9669aa0"
      "6f96a9ece5fdd0d3e04daea6aa63e13be26b48717820aa7b5889c602764cf23a"
      "48042425e84cd92184837e01d0b4fe9f912d875c43021c3bcb7eeb51f1be5710"
@@ -42,15 +49,16 @@
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
  '(package-selected-packages
-   '(all-the-icons-dired all-the-icons-ibuffer cape colorful-mode company
-			 consult corfu dashboard deft diff-hl
-			 doom-modeline doom-themes fancy-battery
-			 flycheck gcmh jinx lsp-treemacs lsp-ui magit
-			 marginalia multiple-cursors orderless
-			 org-download org-roam-ui perspective
-			 spaceline sudo-edit treemacs-icons-dired
-			 vertico visual-fill-column vterm vundo
-			 which-key wucuo yasnippet-snippets)))
+   '(all-the-icons-dired all-the-icons-ibuffer cape catppuccin-theme
+			 colorful-mode company consult corfu dashboard
+			 deft diff-hl doom-modeline doom-themes
+			 fancy-battery flycheck gcmh jinx keycast
+			 lsp-treemacs lsp-ui magit marginalia
+			 multiple-cursors orderless org-download
+			 org-roam-ui perspective spaceline sudo-edit
+			 treemacs-icons-dired vertico
+			 visual-fill-column vterm vundo which-key
+			 wucuo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

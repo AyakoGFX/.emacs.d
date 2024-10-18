@@ -1,15 +1,20 @@
 (use-package doom-themes
-  :if window-system
-  :ensure t
-  ;; :init (load-theme 'doom-molokai t)
-  :config
-  (doom-themes-org-config)
-  (doom-themes-visual-bell-config)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (fringe-mode -1)
-  (scroll-bar-mode -1))
-(setq frame-resize-pixelwise t)
+    :if window-system
+    :ensure t
+    ;; :init (load-theme 'doom-molokai t)
+    :config
+    (doom-themes-org-config)
+    (doom-themes-visual-bell-config)
+    (menu-bar-mode -1)
+    (tool-bar-mode -1)
+    (fringe-mode -1)
+    (scroll-bar-mode -1))
+  (setq frame-resize-pixelwise t)
+
+  (use-package catppuccin-theme
+    :ensure t)
+;; Load theme
+  (load-theme 'doom-one t)
 
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font-19"))
@@ -110,7 +115,7 @@
     :init)
 
   ;; (use-package all-the-icons-dired
-  ;; :ensure t
+  ;; :ensuret 
   ;; :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
   ;; (use-package treemacs-icons-dired
@@ -806,25 +811,34 @@
 
 (setq redisplay-dont-pause t) ;; Avoid pausing between updates
 
-   ;; Using garbage magic hack.
-  (use-package gcmh
-    :ensure t
-    :config
-    (gcmh-mode 1))
- ;; Setting garbage collection threshold
-(setq gc-cons-threshold 402653184  ;; Set to 384MB (402,653,184 bytes)
-     gc-cons-percentage 0.6)      ;; Set the proportion of memory to trigger GC
+  (defun my/display-startup-time ()
+  (message "Emacs loaded in %s with %d garbage collections."
+           (format "%.2f seconds"
+                   (float-time
+                   (time-subtract after-init-time before-init-time)))
+           gcs-done))
 
- ;; Profile emacs startup
- (add-hook 'emacs-startup-hook
-           (lambda ()
-             (message "*** Emacs loaded in %s with %d garbage collections."
-                      (format "%.2f seconds"
-                              (float-time
-                               (time-subtract after-init-time before-init-time)))
-                      gcs-done)))
+(add-hook 'emacs-startup-hook #'my/display-startup-time)
 
- ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
+     ;; Using garbage magic hack.
+    (use-package gcmh
+      :ensure t
+      :config
+      (gcmh-mode 1))
+   ;; Setting garbage collection threshold
+  (setq gc-cons-threshold 402653184  ;; Set to 384MB (402,653,184 bytes)
+       gc-cons-percentage 0.6)      ;; Set the proportion of memory to trigger GC
+
+   ;; Profile emacs startup
+   (add-hook 'emacs-startup-hook
+             (lambda ()
+               (message "*** Emacs loaded in %s with %d garbage collections."
+                        (format "%.2f seconds"
+                                (float-time
+                                 (time-subtract after-init-time before-init-time)))
+                        gcs-done)))
+
+   ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
 
 (use-package perspective
   :ensure t
@@ -852,3 +866,20 @@
   (unless (boundp 'consult-buffer-sources)
     (setq consult-buffer-sources '()))  ;; Initialize if not defined
   (add-to-list 'consult-buffer-sources consult--source-perspective))
+
+;; (use-package keycast
+  ;;   :ensure t)
+
+(use-package keycast
+  :ensure t
+  :bind ("C-c t k" . +toggle-keycast)
+  :config
+  (defun +toggle-keycast()
+    (interactive)
+    (if (member '("" keycast-mode-line " ") global-mode-string)
+        (progn (setq global-mode-string (delete '("" keycast-mode-line " ") global-mode-string))
+               (remove-hook 'pre-command-hook 'keycast--update)
+               (message "Keycast OFF"))
+      (add-to-list 'global-mode-string '("" keycast-mode-line " "))
+      (add-hook 'pre-command-hook 'keycast--update t)
+      (message "Keycast ON"))))
