@@ -23,12 +23,6 @@
   :ensure t ; Optional
   :hook (prog-mode text-mode))
 
-;; (use-package spaceline
-;; :ensure t
-;; :config
-;; (require 'spaceline-config)
-;; (setq powerline-default-separator (quote arrow))
-;; (spaceline-spacemacs-theme))
 (use-package doom-modeline
   :ensure t
   :config
@@ -38,12 +32,6 @@
   (setq doom-modeline-time t)
   :init
   (doom-modeline-mode 1))
-
-;; (use-package fancy-battery
-;; :ensure t
-;; :init
-;; (fancy-battery-mode 1)
-;; (setq fancy-battery-show-percentage t))
 
 (use-package dashboard
   :ensure t
