@@ -1,6 +1,7 @@
 # Ignore Emacs directories
 # git rm -r --cached auto-save-list/ eln-cache/ elpa/ .cache/ transient/
 history
+emojis/
 auto-save-list/
 eln-cache/
 elpa/

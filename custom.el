@@ -48,7 +48,20 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
- '(package-selected-packages nil))
+ '(package-selected-packages
+   '(all-the-icons-dired all-the-icons-ibuffer cape catppuccin-theme
+			 colorful-mode company consult corfu dashboard
+			 deft denote diff-hl dired-git-info
+			 dired-quick-sort dired-rsync diredfl
+			 doom-modeline doom-themes emojify
+			 erc-hl-nicks erc-image fancy-battery flycheck
+			 gcmh jinx keycast lsp-treemacs lsp-ui magit
+			 marginalia multiple-cursors nerd-icons-dired
+			 orderless org-download org-roam-ui
+			 perspective spaceline sudo-edit
+			 treemacs-icons-dired vertico
+			 visual-fill-column vterm vundo which-key
+			 wucuo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
