@@ -29,7 +29,7 @@ set and save so the theme will load properly in =emacsclient=
     (use-package catppuccin-theme
       :ensure t)
   ;; Load theme
-    (load-theme 'doom-one t)
+  ;; (load-theme 'doom-one t)
 
 #+END_SRC
 
@@ -158,6 +158,39 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
   :ensure t
   :bind ("C-c C-0" . sudo-edit))
 #+end_src
+
+*** Remembering the last place you visited in a file
+Sometimes it’s convenient for Emacs to remember the last location you were at when you visited a particular file. The save-place-mode can help with that!
+
+Once you turn on this mode, Emacs will drop your cursor to the last visited location in any file that you open.
+#+begin_src elisp
+;; Remember and restore the last cursor location of opened files
+(save-place-mode 1)
+#+end_src
+
+*** Prevent using UI dialog's for prompts
+Emacs will show prompts to confirm many different types of actions, and for some of them it shows a graphical dialog box. If you prefer to keep your Emacs workflow more keyboard-focused, you can turn off those dialog box prompts with this setting:
+#+begin_src elisp
+;; Don't pop up UI dialogs when prompting
+(setq use-dialog-box nil)
+#+end_src
+
+** Automatically revert buffers for changed files
+One thing that can be annoying about Emacs when you first start using it is that it doesn’t automatically refresh file buffers when the file on disk has been changed outside of Emacs. This can often happen when you’re using tools that generate some kind of text file output that you need to read in an Emacs buffer.
+
+The global-auto-revert-mode will make Emacs watch the files for all open buffers for changes on disk and it will automatically refresh those buffers if they don’t have unsaved changes!
+#+begin_src elisp
+;; Revert buffers when the underlying file has changed
+(global-auto-revert-mode 1)
+#+end_src
+I also like adding the following setting to cause other types of buffers in Emacs to update when related files on disk have changed.
+
+The place this is most useful is when you’re using Emacs’ excellent Dired package! The following setting will cause Dired buffers to be automatically refreshed when files get added or deleted from the directory you are browsing:
+#+begin_src elisp
+;; Revert Dired and other buffers
+(setq global-auto-revert-non-file-buffers t)
+#+end_src
+
 ** Cool Icons
 =M-x= nerd-icons-install-fonts 
 #+BEGIN_SRC emacs-lisp
@@ -241,7 +274,6 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
       :custom-face
       (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
       :hook (dired-mode . nerd-icons-dired-mode))
-
 
     ;; `find-dired' alternative using `fd'
     (when (executable-find "fd")
@@ -555,71 +587,72 @@ do not touch it will mess up vertigo *comp* ex C-x b
   (global-set-key (kbd "M-,") 'previous-buffer)
 
 
-      ;; remap redo from C-M-_ to  C-x U 
-      (global-set-key (kbd "C-x U") 'undo-redo)
+  ;; remap redo from C-M-_ to  C-x U 
+  (global-set-key (kbd "C-x U") 'undo-redo)
 
-      ;; Visiting the configuration
-      (defun config-visit ()
-	(interactive)
-	(find-file "~/.emacs.d/config.org"))
-      (global-set-key (kbd "C-c e") 'config-visit)
+  ;; Visiting the configuration
+  (defun config-visit ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (global-set-key (kbd "C-c e") 'config-visit)
 
-      ;; Toggle maximize buffer
-      (defun toggle-maximize-buffer () "Maximize buffer"
-	     (interactive)
-	     (if (= 1 (length (window-list)))
-		 (jump-to-register '_)
-	       (progn
-		 (set-register '_ (list (current-window-configuration)))
-		 (delete-other-windows))))
-      (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
+  ;; Toggle maximize buffer
+  (defun toggle-maximize-buffer () "Maximize buffer"
+         (interactive)
+         (if (= 1 (length (window-list)))
+    	   (jump-to-register '_)
+    	 (progn
+    	   (set-register '_ (list (current-window-configuration)))
+    	   (delete-other-windows))))
+  (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
 
-      ;;Always murder current buffer
-      (defun kill-curr-buffer ()
-	(interactive)
-	(kill-buffer (current-buffer)))
-      (global-set-key (kbd "C-x k") 'kill-curr-buffer)
+  ;;Always murder current buffer
+  (defun kill-curr-buffer ()
+    (interactive)
+    (kill-buffer (current-buffer)))
+  (global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
-      ;;  Kill whole word
-      (defun kill-whole-word ()
-	(interactive)
-	(backward-word)
-	(kill-word 1))
-      (global-set-key (kbd "C-c w w") 'kill-whole-word)
+  ;;  Kill whole word
+  (defun kill-whole-word ()
+    (interactive)
+    (backward-word)
+    (kill-word 1))
+  (global-set-key (kbd "C-c w w") 'kill-whole-word)
 
-      ;;  Copy whole line
-      (defun copy-whole-line ()
-	(interactive)
-	(save-excursion
-	  (kill-new
-	   (buffer-substring
-	    (point-at-bol)
-	    (point-at-eol)))))
-      (global-set-key (kbd "C-c w l") 'copy-whole-line)
-      ;;Kill all buffers
-      (defun kill-all-buffers ()
-	(interactive)
-	(mapc 'kill-buffer (buffer-list)))
-      (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
+  ;;  Copy whole line
+  (defun copy-whole-line ()
+    (interactive)
+    (save-excursion
+      (kill-new
+       (buffer-substring
+        (point-at-bol)
+        (point-at-eol)))))
+  (global-set-key (kbd "C-c w l") 'copy-whole-line)
+  ;;Kill all buffers
+  (defun kill-all-buffers ()
+    (interactive)
+    (mapc 'kill-buffer (buffer-list)))
+  (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
 
-      ;; comment and un comment
-      ;; Comment and uncomment region with C-c c and C-c u
-      (global-set-key (kbd "C-c c") 'comment-region)
-      (global-set-key (kbd "C-c u") 'uncomment-region)
+  ;; comment and un comment
+  ;; Comment and uncomment region with C-c c and C-c u
+  (global-set-key (kbd "C-c c") 'comment-region)
+  (global-set-key (kbd "C-c u") 'uncomment-region)
 
-      ;; Optional: Use C-; to comment/uncomment
-      (global-set-key (kbd "C-;") 'comment-line)
-      ;; fixed backward word del
-      (defun my/backward-kill-spaces-or-char-or-word ()
-	(interactive)
-	(cond
-	 ((looking-back (rx (char word)) 1)
-	  (backward-kill-word 1))
-	 ((looking-back (rx (char blank)) 1)
-	  (delete-horizontal-space t))
-	 (t
-	  (backward-delete-char 1))))
-      (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
+  ;; Optional: Use C-; to comment/uncomment
+  (global-set-key (kbd "C-;") 'comment-line)
+  ;; fixed backward word del
+
+  (defun my/backward-kill-spaces-or-char-or-word ()
+    (interactive)
+    (cond
+     ((looking-back (rx (char word)) 1)
+      (backward-kill-word 1))
+     ((looking-back (rx (char blank)) 1)
+      (delete-horizontal-space t))
+     (t
+      (backward-delete-char 1))))
+  (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 #+END_SRC
 

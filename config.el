@@ -14,7 +14,7 @@
   (use-package catppuccin-theme
     :ensure t)
 ;; Load theme
-  (load-theme 'doom-one t)
+;; (load-theme 'doom-one t)
 
 (add-to-list 'default-frame-alist
              '(font . "JetBrainsMono Nerd Font-19"))
@@ -98,6 +98,18 @@
 :ensure t
 :bind ("C-c C-0" . sudo-edit))
 
+;; Remember and restore the last cursor location of opened files
+(save-place-mode 1)
+
+;; Don't pop up UI dialogs when prompting
+(setq use-dialog-box nil)
+
+;; Revert buffers when the underlying file has changed
+(global-auto-revert-mode 1)
+
+;; Revert Dired and other buffers
+(setq global-auto-revert-non-file-buffers t)
+
 (use-package all-the-icons
   :ensure t
   :init)
@@ -172,7 +184,6 @@
     :custom-face
     (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
     :hook (dired-mode . nerd-icons-dired-mode))
-
 
   ;; `find-dired' alternative using `fd'
   (when (executable-find "fd")
@@ -451,71 +462,72 @@
 (global-set-key (kbd "M-,") 'previous-buffer)
 
 
-    ;; remap redo from C-M-_ to  C-x U 
-    (global-set-key (kbd "C-x U") 'undo-redo)
+;; remap redo from C-M-_ to  C-x U 
+(global-set-key (kbd "C-x U") 'undo-redo)
 
-    ;; Visiting the configuration
-    (defun config-visit ()
-	(interactive)
-	(find-file "~/.emacs.d/config.org"))
-    (global-set-key (kbd "C-c e") 'config-visit)
+;; Visiting the configuration
+(defun config-visit ()
+  (interactive)
+  (find-file "~/.emacs.d/config.org"))
+(global-set-key (kbd "C-c e") 'config-visit)
 
-    ;; Toggle maximize buffer
-    (defun toggle-maximize-buffer () "Maximize buffer"
-	     (interactive)
-	     (if (= 1 (length (window-list)))
-		 (jump-to-register '_)
-	       (progn
-		 (set-register '_ (list (current-window-configuration)))
-		 (delete-other-windows))))
-    (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
+;; Toggle maximize buffer
+(defun toggle-maximize-buffer () "Maximize buffer"
+       (interactive)
+       (if (= 1 (length (window-list)))
+  	   (jump-to-register '_)
+  	 (progn
+  	   (set-register '_ (list (current-window-configuration)))
+  	   (delete-other-windows))))
+(global-set-key [(super shift return)] 'toggle-maximize-buffer) 
 
-    ;;Always murder current buffer
-    (defun kill-curr-buffer ()
-	(interactive)
-	(kill-buffer (current-buffer)))
-    (global-set-key (kbd "C-x k") 'kill-curr-buffer)
+;;Always murder current buffer
+(defun kill-curr-buffer ()
+  (interactive)
+  (kill-buffer (current-buffer)))
+(global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
-    ;;  Kill whole word
-    (defun kill-whole-word ()
-	(interactive)
-	(backward-word)
-	(kill-word 1))
-    (global-set-key (kbd "C-c w w") 'kill-whole-word)
+;;  Kill whole word
+(defun kill-whole-word ()
+  (interactive)
+  (backward-word)
+  (kill-word 1))
+(global-set-key (kbd "C-c w w") 'kill-whole-word)
 
-    ;;  Copy whole line
-    (defun copy-whole-line ()
-	(interactive)
-	(save-excursion
-	  (kill-new
-	   (buffer-substring
-	    (point-at-bol)
-	    (point-at-eol)))))
-    (global-set-key (kbd "C-c w l") 'copy-whole-line)
-    ;;Kill all buffers
-    (defun kill-all-buffers ()
-	(interactive)
-	(mapc 'kill-buffer (buffer-list)))
-    (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
+;;  Copy whole line
+(defun copy-whole-line ()
+  (interactive)
+  (save-excursion
+    (kill-new
+     (buffer-substring
+      (point-at-bol)
+      (point-at-eol)))))
+(global-set-key (kbd "C-c w l") 'copy-whole-line)
+;;Kill all buffers
+(defun kill-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+(global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
 
-    ;; comment and un comment
-    ;; Comment and uncomment region with C-c c and C-c u
-    (global-set-key (kbd "C-c c") 'comment-region)
-    (global-set-key (kbd "C-c u") 'uncomment-region)
+;; comment and un comment
+;; Comment and uncomment region with C-c c and C-c u
+(global-set-key (kbd "C-c c") 'comment-region)
+(global-set-key (kbd "C-c u") 'uncomment-region)
 
-    ;; Optional: Use C-; to comment/uncomment
-    (global-set-key (kbd "C-;") 'comment-line)
-    ;; fixed backward word del
-    (defun my/backward-kill-spaces-or-char-or-word ()
-	(interactive)
-	(cond
-	 ((looking-back (rx (char word)) 1)
-	  (backward-kill-word 1))
-	 ((looking-back (rx (char blank)) 1)
-	  (delete-horizontal-space t))
-	 (t
-	  (backward-delete-char 1))))
-    (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
+;; Optional: Use C-; to comment/uncomment
+(global-set-key (kbd "C-;") 'comment-line)
+;; fixed backward word del
+
+(defun my/backward-kill-spaces-or-char-or-word ()
+  (interactive)
+  (cond
+   ((looking-back (rx (char word)) 1)
+    (backward-kill-word 1))
+   ((looking-back (rx (char blank)) 1)
+    (delete-horizontal-space t))
+   (t
+    (backward-delete-char 1))))
+(global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 (use-package magit
   :ensure t
