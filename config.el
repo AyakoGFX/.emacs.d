@@ -20,7 +20,7 @@
              '(font . "JetBrainsMono Nerd Font-19"))
 
 (use-package colorful-mode
-  :ensure t ; Optional
+  :ensure t
   :hook (prog-mode text-mode))
 
 (use-package doom-modeline
@@ -58,6 +58,11 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+(use-package golden-ratio
+  :ensure t
+  :config
+  (golden-ratio-mode 1))
+
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
@@ -88,7 +93,7 @@
   (setq display-line-numbers-type 'relative)  ;; Use 't for absolute numbers
     (global-display-line-numbers-mode 1)
 
-;; of in org mode only
+;; of in mode only
 (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
 
       ;; off
@@ -247,7 +252,7 @@
 
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
-  :ensure t
+  :ensure tq
   :custom
   ;; Configure a custom style dispatcher (see the Consult wiki)
   ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
@@ -781,6 +786,14 @@
 ;; https://emacs.stackexchange.com/questions/46988/why-do-easy-templates-e-g-s-tab-in-org-9-2-not-work
 (add-to-list 'org-modules 'org-tempo t) ;; for complation like <s tab to src-block
 
+(setq org-agenda-files (list "~/roam/org/agenda.org"))
+(global-set-key (kbd "C-c a") 'org-agenda)
+;; open org-agenda-files
+(global-set-key (kbd "C-c o")
+		(lambda ()
+		  (interactive)
+		  (find-file (car org-agenda-files))))
+
 (use-package org-download
 :ensure t
 :config
@@ -792,23 +805,23 @@
   :custom
   (org-roam-directory (file-truename "~/roam/"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
-	   ("C-c n f" . org-roam-node-find)
-	   ("C-c n g" . org-roam-graph)
-	   ("C-c n i" . org-roam-node-insert)
-	   ("C-c n c" . org-roam-capture)
-	   ("C-c n I" . my/org-roam-node-insert-immediate)
-	   ;; Dailies
-	   ("C-c n j" . org-roam-dailies-capture-today)
-	   ("C-c n d t" . org-roam-dailies-goto-today)       ; Go to today's daily note
-	   ("C-c n d y" . org-roam-dailies-capture-yesterday) ; Capture yesterday's daily note
-	   ("C-c n d Y" . org-roam-dailies-goto-yesterday)    ; Go to yesterday's daily note
-	   ("C-c n d T" . org-roam-dailies-capture-tomorrow)  ; Capture tomorrow's daily note
-	   ("C-c n d O" . org-roam-dailies-goto-tomorrow)     ; Go to tomorrow's daily note
-	   ("C-c n d d" . org-roam-dailies-capture-date)      ; Capture a note for a specific date
-	   ("C-c n d D" . org-roam-dailies-goto-date)         ; Go to a note for a specific date
-	   ("C-c n d n" . org-roam-dailies-goto-next-note)    ; Go to next daily note
-	   ("C-c n d p" . org-roam-dailies-goto-previous-note) ; Go to previous daily note
-	   )
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n g" . org-roam-graph)
+	 ("C-c n i" . org-roam-node-insert)
+	 ("C-c n c" . org-roam-capture)
+	 ("C-c n I" . my/org-roam-node-insert-immediate)
+	 ;; Dailies
+	 ("C-c n j" . org-roam-dailies-capture-today)
+	 ("C-c n d t" . org-roam-dailies-goto-today)       ; Go to today's daily note
+	 ("C-c n d y" . org-roam-dailies-capture-yesterday) ; Capture yesterday's daily note
+	 ("C-c n d Y" . org-roam-dailies-goto-yesterday)    ; Go to yesterday's daily note
+	 ("C-c n d T" . org-roam-dailies-capture-tomorrow)  ; Capture tomorrow's daily note
+	 ("C-c n d O" . org-roam-dailies-goto-tomorrow)     ; Go to tomorrow's daily note
+	 ("C-c n d d" . org-roam-dailies-capture-date)      ; Capture a note for a specific date
+	 ("C-c n d D" . org-roam-dailies-goto-date)         ; Go to a note for a specific date
+	 ("C-c n d n" . org-roam-dailies-goto-next-note)    ; Go to next daily note
+	 ("C-c n d p" . org-roam-dailies-goto-previous-note) ; Go to previous daily note
+	 )
 
   :config
   (setq org-roam-dailies-directory "daily/") ;; set org roam journsl dir defult i daily/ you can any folder name (e.g) journal/
@@ -816,16 +829,16 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 (setq org-roam-capture-templates
-	'(("d" "default" plain "%?"
-	   :target (file+head "${slug}.org"
-			      "#+title: ${title}\n#+filetags:\n")
-	   
-	   (setq org-roam-dailies-capture-templates
-		 '(("d" "default" entry "* %<%I:%M %p>: %?"
-		    :if-new (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n"))))
+      '(("d" "default" plain "%?"
+	 :target (file+head "${slug}.org"
+			    "#+title: ${title}\n#+filetags:\n")
+	 
+	 (setq org-roam-dailies-capture-templates
+	       '(("d" "default" entry "* %<%I:%M %p>: %?"
+		  :if-new (file+head "%<%d-%m-%Y>.org" "#+title: %<%d-%m-%Y>\n"))))
 
 
-	   :unnarrowed t)))
+	 :unnarrowed t)))
 (org-roam-db-autosync-mode)
 (org-roam-db-sync)
 ;;(add-hook 'org-open-at-point-functions #'org-roam-id-open) 
@@ -849,8 +862,8 @@
 (defun my/org-roam-node-insert-immediate (arg &rest args)
   (interactive "P")
   (let ((args (cons arg args))
-	  (org-roam-capture-templates (list (append (car org-roam-capture-templates)
-						    '(:immediate-finish t)))))
+	(org-roam-capture-templates (list (append (car org-roam-capture-templates)
+						  '(:immediate-finish t)))))
     (apply #'org-roam-node-insert args)))
 
 
@@ -858,22 +871,22 @@
   "List all unique tags from Org Roam notes in the minibuffer."
   (interactive)
   (if (not (bound-and-true-p org-roam-directory))
-	(error "Org Roam directory is not set.")
+      (error "Org Roam directory is not set.")
     (let ((tags '()))
-	;; Collect tags from Org Roam notes
-	(dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
-	  (with-temp-buffer
-	    (insert-file-contents file)
-	    (org-mode)
-	    (org-element-map (org-element-parse-buffer) 'headline
-	      (lambda (headline)
-		(let ((headline-tags (org-element-property :tags headline)))
-		  (when headline-tags
-		    (dolist (tag headline-tags)
-		      (unless (member tag tags)
-			(push tag tags)))))))))
-	;; Display the tags in the minibuffer
-	(message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
+      ;; Collect tags from Org Roam notes
+      (dolist (file (directory-files-recursively org-roam-directory "\\.org$"))
+	(with-temp-buffer
+	  (insert-file-contents file)
+	  (org-mode)
+	  (org-element-map (org-element-parse-buffer) 'headline
+	    (lambda (headline)
+	      (let ((headline-tags (org-element-property :tags headline)))
+		(when headline-tags
+		  (dolist (tag headline-tags)
+		    (unless (member tag tags)
+		      (push tag tags)))))))))
+      ;; Display the tags in the minibuffer
+      (message "Unique Tags: %s" (mapconcat 'identity (sort tags 'string<) ", ")))))
 
 ;; this not working in gnu emacs
 ;; (defun my/org-roam-list-tags ()

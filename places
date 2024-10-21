@@ -1,2 +1,7 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 2509))
+(("/home/ayako/.emacs.d/config.org" . 414)
+ ("/home/ayako/roam/org/" (dired-filename . "/home/ayako/roam"))
+ ("/home/ayako/roam/" (dired-filename . "/home/ayako"))
+ ("/home/ayako/" (dired-filename . "/home/ayako/mybook"))
+ ("/home/ayako/mybook/"
+  (dired-filename . "/home/ayako/mybook/What-Woman-Attracted-to.mp4")))

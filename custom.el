@@ -55,13 +55,13 @@
 			 dired-quick-sort dired-rsync diredfl
 			 doom-modeline doom-themes emojify
 			 erc-hl-nicks erc-image fancy-battery flycheck
-			 gcmh jinx keycast lsp-treemacs lsp-ui magit
-			 marginalia multiple-cursors nerd-icons-dired
-			 orderless org-download org-roam-ui
-			 perspective spaceline sudo-edit
+			 gcmh golden-ratio jinx keycast lsp-treemacs
+			 lsp-ui magit marginalia multiple-cursors
+			 nerd-icons-dired orderless org-download
+			 org-roam-ui perspective spaceline sudo-edit
 			 treemacs-icons-dired vertico
 			 visual-fill-column vterm vundo which-key
-			 wucuo yasnippet-snippets)))
+			 wucuo yasnippet-snippets zoom)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
