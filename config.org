@@ -525,8 +525,8 @@ do not touch it will mess up vertigo *comp* ex C-x b
     :ensure t
     :init
     (global-set-key (kbd "<M-return>") 'vterm))
-  ;; (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
-  (setq vterm-shell "/usr/bin/bash") 
+   (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
+  ;; (setq vterm-shell "/usr/bin/bash") 
 #+END_SRC
 
 ** ibuffer
@@ -1019,7 +1019,6 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
 
 
   ;; func
-
   (defun my/org-roam-search ()
     "Search org-roam directory using consult-ripgrep. With live-preview."
     (interactive)
@@ -1211,41 +1210,98 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
    ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
 #+end_src
 
-* Perspective.el
-
+* ditched Perspective.el for =M-x tab-bar-mode=
 #+begin_src emacs-lisp
-(use-package perspective
-  :ensure t
-  :bind (("C-x k" . persp-kill-buffer*))
-  :init
-  (setq persp-mode-prefix-key (kbd "C-x ,"))  ; Set your desired prefix key
-  (persp-mode))
+  ;; (use-package perspective
+  ;;   :ensure t
+  ;;   :bind (("C-x k" . persp-kill-buffer*))
+  ;;   :init
+  ;;   (setq persp-mode-prefix-key (kbd "C-x ,"))  ; Set your desired prefix key
+  ;;   (persp-mode))
 #+end_src
 
-*** optionla of you use consult-buffer 
+*** optionla of you use consult-buffer for Perspective.el
 https://github.com/minad/consult/wiki#perspective
 #+begin_src emacs-lisp
-(use-package consult
-  :ensure t
-  :config
-  ;; Hide the default consult buffer source
-  (consult-customize consult--source-buffer :hidden t :default nil)
+  ;; (use-package consult
+  ;;   :ensure t
+  ;;   :config
+  ;;   ;; Hide the default consult buffer source
+  ;;   (consult-customize consult--source-buffer :hidden t :default nil)
 
-  ;; Define the custom source for perspectives
-  (defvar consult--source-perspective
-    (list :name     "Perspective"
-          :narrow   ?s
-          :category 'buffer
-          :state    #'consult--buffer-state
-          :default  t
-          :items    #'persp-get-buffer-names))
+  ;;   ;; Define the custom source for perspectives
+  ;;   (defvar consult--source-perspective
+  ;;     (list :name     "Perspective"
+  ;;           :narrow   ?s
+  ;;           :category 'buffer
+  ;;           :state    #'consult--buffer-state
+  ;;           :default  t
+  ;;           :items    #'persp-get-buffer-names))
 
-  ;; Add the perspective source to consult-buffer-sources
-  (unless (boundp 'consult-buffer-sources)
-    (setq consult-buffer-sources '()))  ;; Initialize if not defined
-  (add-to-list 'consult-buffer-sources consult--source-perspective))
+  ;;   ;; Add the perspective source to consult-buffer-sources
+  ;;   (unless (boundp 'consult-buffer-sources)
+  ;;     (setq consult-buffer-sources '()))  ;; Initialize if not defined
+  ;;   (add-to-list 'consult-buffer-sources consult--source-perspective))
 #+end_src
 
+* tab-bar-mode
+#+begin_src emacs-lisp
+  (use-package tab-bar
+    :ensure t
+    :init
+    (setq tab-bar-height 30
+          ;; tab-bar-new-tab-choice "*dashboard*"
+          tab-bar-show 1
+          ;; tab-bar-close-button-show nil
+          tab-bar-select-tab-modifiers '(meta) ;; set to alt + 1-9
+          tab-bar-tab-hints t)
+    :config
+    (tab-bar-mode 1)  ; Activate tab bar mode
+    (run-at-time "1 sec" nil
+                 (lambda ()
+  		 (set-face-attribute 'tab-bar nil :font "Monospace-12")))) ;; set font size for tab-bar-mode
+
+  (use-package tabspaces
+    :ensure t
+    :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
+    :commands (tabspaces-switch-or-create-workspace
+               tabspaces-open-or-create-project-and-workspace)
+    :custom
+    (tabspaces-use-filtered-buffers-as-default t)
+    (tabspaces-default-tab "Default")
+    (tabspaces-remove-to-default t)
+    (tabspaces-include-buffers '("*scratch*"))
+    (tabspaces-initialize-project-with-todo t)
+    (tabspaces-todo-file-name "project-todo.org")
+    ;; sessions
+    (tabspaces-session t)
+    (tabspaces-session-auto-restore t)
+    (tab-bar-new-tab-choice "*scratch*"))
+#+end_src
+*** optionla of you use consult-buffer for tab-bar-mode
+#+begin_src emacs-lisp
+
+
+  ;; Filter Buffers for Consult-Buffer
+  (with-eval-after-load 'consult
+    ;; hide full buffer list (still available with "b" prefix)
+    (consult-customize consult--source-buffer :hidden t :default nil)
+    ;; set consult-workspace buffer list
+    (defvar consult--source-workspace
+      (list :name     "Workspace Buffers"
+            :narrow   ?w
+            :history  'buffer-name-history
+            :category 'buffer
+            :state    #'consult--buffer-state
+            :default  t
+            :items    (lambda () (consult--buffer-query
+  				:predicate #'tabspaces--local-buffer-p
+  				:sort 'visibility
+  				:as #'buffer-name)))
+
+      "Set workspace buffer list for consult-buffer.")
+    (add-to-list 'consult-buffer-sources 'consult--source-workspace))
+#+end_src
 * YouTube stuff
 #+begin_src emacs-lisp
     ;; (use-package keycast
@@ -1330,3 +1386,5 @@ CLOSED: [2024-10-08 Tue 14:49]
 
 * deb dep
 sudo apt install libvterm-dev
+
+

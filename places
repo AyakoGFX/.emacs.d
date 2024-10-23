@@ -1,7 +1,22 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 414)
- ("/home/ayako/roam/org/" (dired-filename . "/home/ayako/roam"))
- ("/home/ayako/roam/" (dired-filename . "/home/ayako"))
- ("/home/ayako/" (dired-filename . "/home/ayako/mybook"))
- ("/home/ayako/mybook/"
-  (dired-filename . "/home/ayako/mybook/What-Woman-Attracted-to.mp4")))
+(("/home/ayako/.emacs.d/config.org" . 44834)
+ ("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 673)
+ ("/home/ayako/roam/org/agenda.org" . 190)
+ ("/home/ayako/tmp/emacs/"
+  (dired-filename . "/home/ayako/tmp/emacs/init.el"))
+ ("/home/ayako/roam/org/"
+  (dired-filename . "/home/ayako/roam/org/movies-to-watch.org"))
+ ("/home/ayako/roam/org/movies-to-watch.org" . 26)
+ ("/home/ayako/" (dired-filename . "/home/ayako/pendrive-backup"))
+ ("/home/ayako/pendrive-backup/" . 484)
+ ("/home/ayako/.dotfiles/scripts/"
+  (dired-filename
+   . "/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh"))
+ ("/home/ayako/texput.log" . 238) ("/home/ayako/mybook/" . 587)
+ ("/home/ayako/mybook/How-Do-you-NOT-Bore-a-Girl？--Charm-Yourself.mp4"
+  . 417)
+ ("/home/ayako/.emacs.d/.gitignore" . 81)
+ ("/home/ayako/.emacs.d/.gitattributes" . 66)
+ ("/home/ayako/.dotfiles/"
+  (dired-filename . "/home/ayako/.dotfiles/nvim-myown"))
+ ("/home/ayako/roam/" (dired-filename . "/home/ayako")))

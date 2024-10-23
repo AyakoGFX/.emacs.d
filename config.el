@@ -410,8 +410,8 @@
   :ensure t
   :init
   (global-set-key (kbd "<M-return>") 'vterm))
-;; (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
-(setq vterm-shell "/usr/bin/bash")
+ (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
+;; (setq vterm-shell "/usr/bin/bash")
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-expert t)
@@ -845,7 +845,6 @@
 
 
 ;; func
-
 (defun my/org-roam-search ()
   "Search org-roam directory using consult-ripgrep. With live-preview."
   (interactive)
@@ -1014,32 +1013,85 @@
 
    ;; Silence compiler warnings as they can be pretty disruptive (setq comp-async-report-warnings-errors nil)
 
-(use-package perspective
+;; (use-package perspective
+;;   :ensure t
+;;   :bind (("C-x k" . persp-kill-buffer*))
+;;   :init
+;;   (setq persp-mode-prefix-key (kbd "C-x ,"))  ; Set your desired prefix key
+;;   (persp-mode))
+
+;; (use-package consult
+;;   :ensure t
+;;   :config
+;;   ;; Hide the default consult buffer source
+;;   (consult-customize consult--source-buffer :hidden t :default nil)
+
+;;   ;; Define the custom source for perspectives
+;;   (defvar consult--source-perspective
+;;     (list :name     "Perspective"
+;;           :narrow   ?s
+;;           :category 'buffer
+;;           :state    #'consult--buffer-state
+;;           :default  t
+;;           :items    #'persp-get-buffer-names))
+
+;;   ;; Add the perspective source to consult-buffer-sources
+;;   (unless (boundp 'consult-buffer-sources)
+;;     (setq consult-buffer-sources '()))  ;; Initialize if not defined
+;;   (add-to-list 'consult-buffer-sources consult--source-perspective))
+
+(use-package tab-bar
   :ensure t
-  :bind (("C-x k" . persp-kill-buffer*))
   :init
-  (setq persp-mode-prefix-key (kbd "C-x ,"))  ; Set your desired prefix key
-  (persp-mode))
-
-(use-package consult
-  :ensure t
+  (setq tab-bar-height 30
+        tab-bar-new-tab-choice "*dashboard*"
+        tab-bar-show 1
+        ;; tab-bar-close-button-show nil
+        tab-bar-select-tab-modifiers '(meta) ;; set to alt + 1-9
+        tab-bar-tab-hints t)
   :config
-  ;; Hide the default consult buffer source
-  (consult-customize consult--source-buffer :hidden t :default nil)
+  (tab-bar-mode 1)  ; Activate tab bar mode
+    (run-at-time "1 sec" nil
+           (lambda ()
+             (set-face-attribute 'tab-bar nil :font "Monospace-12")))) ;; set font size for tab-bar-mode
 
-  ;; Define the custom source for perspectives
-  (defvar consult--source-perspective
-    (list :name     "Perspective"
-          :narrow   ?s
+(use-package tabspaces
+  :ensure t
+  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
+  :commands (tabspaces-switch-or-create-workspace
+             tabspaces-open-or-create-project-and-workspace)
+  :custom
+  (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-default-tab "Default")
+  (tabspaces-remove-to-default t)
+  (tabspaces-include-buffers '("*scratch*"))
+  (tabspaces-initialize-project-with-todo t)
+  (tabspaces-todo-file-name "project-todo.org")
+  ;; sessions
+  (tabspaces-session t)
+  (tabspaces-session-auto-restore t)
+  (tab-bar-new-tab-choice "*scratch*"))
+
+;; Filter Buffers for Consult-Buffer
+
+(with-eval-after-load 'consult
+  ;; hide full buffer list (still available with "b" prefix)
+  (consult-customize consult--source-buffer :hidden t :default nil)
+  ;; set consult-workspace buffer list
+  (defvar consult--source-workspace
+    (list :name     "Workspace Buffers"
+          :narrow   ?w
+          :history  'buffer-name-history
           :category 'buffer
           :state    #'consult--buffer-state
           :default  t
-          :items    #'persp-get-buffer-names))
+          :items    (lambda () (consult--buffer-query
+				:predicate #'tabspaces--local-buffer-p
+				:sort 'visibility
+				:as #'buffer-name)))
 
-  ;; Add the perspective source to consult-buffer-sources
-  (unless (boundp 'consult-buffer-sources)
-    (setq consult-buffer-sources '()))  ;; Initialize if not defined
-  (add-to-list 'consult-buffer-sources consult--source-perspective))
+    "Set workspace buffer list for consult-buffer.")
+  (add-to-list 'consult-buffer-sources 'consult--source-workspace))
 
 ;; (use-package keycast
   ;;   :ensure t)

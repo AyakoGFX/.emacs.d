@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(doom-gruvbox))
+ '(custom-enabled-themes '(catppuccin))
  '(custom-safe-themes
    '("9f297216c88ca3f47e5f10f8bd884ab24ac5bc9d884f0f23589b0a46a608fe14"
      "6e13ff2c27cf87f095db987bf30beca8697814b90cd837ef4edca18bdd381901"
