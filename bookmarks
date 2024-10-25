@@ -2,10 +2,7 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored"
- (filename . "~/roam/daily/2024-10-10.org")
- (front-context-string . "* hellow brother")
- (rear-context-string . " am like a god \n")
- (position . 164)
- (last-modified 26375 39934 986079 255000))
+(("org-capture-last-stored" (filename . "~/roam/games_in_emacs.org")
+  (front-context-string) (rear-context-string . "acs\n#+filetags:\n")
+  (position . 104) (last-modified 26393 18512 861162 443000))
 )

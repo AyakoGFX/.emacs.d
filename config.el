@@ -74,6 +74,16 @@
     ;;     (setq auto-save-file-name-transforms
     ;; 	    '((".*" "~/.emacs.d/.trash/" t)))
 
+(setq world-clock-list
+      '(
+	("Australia/Melbourne" "Melbourne")
+	("Asia/kolkata" "India")
+	("America/Chicago" "Chicago")
+	("Asia/Kathmandu" "Kathmandu")
+	("Etc/UTC" "UTC")))
+
+(setq world-clock-time-format "%a, %d %b %I:%M %p %Z")
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (use-package recentf
@@ -408,10 +418,14 @@
 
 (use-package vterm
   :ensure t
+  :init)
+(setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
+ ;; (setq vterm-shell "/usr/bin/bash")
+
+(use-package multi-vterm
+  :ensure t
   :init
-  (global-set-key (kbd "<M-return>") 'vterm))
- (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
-;; (setq vterm-shell "/usr/bin/bash")
+  (global-set-key (kbd "<M-return>") 'multi-vterm))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-expert t)
@@ -606,6 +620,11 @@
 (yas-global-mode 1)  ; Enable yasnippet
 (use-package yasnippet-snippets
 :ensure t)
+
+(use-package sh-script
+  :hook
+  (sh-mode . flymake-mode)
+  (sh-mode . lsp-mode))
 
 (use-package wks-mode
   :load-path ("~/.emacs.d/manual/"))
@@ -1044,16 +1063,16 @@
   :ensure t
   :init
   (setq tab-bar-height 30
-        tab-bar-new-tab-choice "*dashboard*"
+        ;; tab-bar-new-tab-choice "*dashboard*"
         tab-bar-show 1
         ;; tab-bar-close-button-show nil
         tab-bar-select-tab-modifiers '(meta) ;; set to alt + 1-9
         tab-bar-tab-hints t)
   :config
   (tab-bar-mode 1)  ; Activate tab bar mode
-    (run-at-time "1 sec" nil
-           (lambda ()
-             (set-face-attribute 'tab-bar nil :font "Monospace-12")))) ;; set font size for tab-bar-mode
+  (run-at-time "1 sec" nil
+               (lambda ()
+		 (set-face-attribute 'tab-bar nil :font "Monospace-12")))) ;; set font size for tab-bar-mode
 
 (use-package tabspaces
   :ensure t
@@ -1073,7 +1092,6 @@
   (tab-bar-new-tab-choice "*scratch*"))
 
 ;; Filter Buffers for Consult-Buffer
-
 (with-eval-after-load 'consult
   ;; hide full buffer list (still available with "b" prefix)
   (consult-customize consult--source-buffer :hidden t :default nil)

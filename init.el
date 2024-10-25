@@ -4,7 +4,7 @@
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
-
+;; elpa devel https://elpa.gnu.org/devel/
 (package-initialize)
 
 (unless (package-installed-p 'use-package)

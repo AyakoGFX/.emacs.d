@@ -6,7 +6,16 @@
  '(cua-mode nil)
  '(custom-enabled-themes '(catppuccin))
  '(custom-safe-themes
-   '("9f297216c88ca3f47e5f10f8bd884ab24ac5bc9d884f0f23589b0a46a608fe14"
+   '("7ec8fd456c0c117c99e3a3b16aaf09ed3fb91879f6601b1ea0eeaee9c6def5d9"
+     "02d422e5b99f54bd4516d4157060b874d14552fe613ea7047c4a5cfa1288cf4f"
+     "c8b3d9364302b16318e0f231981e94cbe4806cb5cde5732c3e5c3e05e1472434"
+     "8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a"
+     "7c28419e963b04bf7ad14f3d8f6655c078de75e4944843ef9522dbecfcd8717d"
+     "c5878086e65614424a84ad5c758b07e9edcf4c513e08a1c5b1533f313d1b17f1"
+     "2078837f21ac3b0cc84167306fa1058e3199bbd12b6d5b56e3777a4125ff6851"
+     "4990532659bb6a285fee01ede3dfa1b1bdf302c5c3c8de9fad9b6bc63a9252f7"
+     "38c0c668d8ac3841cb9608522ca116067177c92feeabc6f002a27249976d7434"
+     "9f297216c88ca3f47e5f10f8bd884ab24ac5bc9d884f0f23589b0a46a608fe14"
      "6e13ff2c27cf87f095db987bf30beca8697814b90cd837ef4edca18bdd381901"
      "77fff78cc13a2ff41ad0a8ba2f09e8efd3c7e16be20725606c095f9a19c24d3d"
      "6e33d3dd48bc8ed38fd501e84067d3c74dfabbfc6d345a92e24f39473096da3f"
@@ -56,12 +65,12 @@
 			 doom-modeline doom-themes emojify
 			 erc-hl-nicks erc-image fancy-battery flycheck
 			 gcmh golden-ratio jinx keycast lsp-treemacs
-			 lsp-ui magit marginalia multiple-cursors
-			 nerd-icons-dired orderless org-download
-			 org-roam-ui perspective spaceline sudo-edit
-			 treemacs-icons-dired vertico
-			 visual-fill-column vterm vundo which-key
-			 wucuo yasnippet-snippets zoom)))
+			 lsp-ui magit marginalia multi-vterm
+			 multiple-cursors nerd-icons-dired orderless
+			 org-download org-roam-ui perspective
+			 spaceline sudo-edit treemacs-icons-dired
+			 vertico visual-fill-column vterm vundo
+			 which-key wucuo yasnippet-snippets zoom)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

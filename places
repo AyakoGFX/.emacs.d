@@ -1,7 +1,14 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 44834)
- ("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 673)
- ("/home/ayako/roam/org/agenda.org" . 190)
+(("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 244)
+ ("/home/ayako/.emacs.d/snippets/sh-mode/+new-snippet+" . 76)
+ ("/home/ayako/.dotfiles/scripts/irw.sh" . 296)
+ ("/home/ayako/.emacs.d/config.org" . 26436)
+ ("/home/ayako/roam/org/agenda.org" . 984)
+ ("/home/ayako/dwm/config.def.h" . 641)
+ ("/home/ayako/tmp/emacs/init.el" . 25)
+ ("/home/ayako/tmp/emacs/testing.txt" . 10)
+ ("/home/ayako/roam/games_in_emacs.org" . 289)
+ ("/home/ayako/mybook/The-Book-About-Manipulating-Woman.org" . 2309)
  ("/home/ayako/tmp/emacs/"
   (dired-filename . "/home/ayako/tmp/emacs/init.el"))
  ("/home/ayako/roam/org/"
@@ -15,7 +22,6 @@
  ("/home/ayako/texput.log" . 238) ("/home/ayako/mybook/" . 587)
  ("/home/ayako/mybook/How-Do-you-NOT-Bore-a-Girl？--Charm-Yourself.mp4"
   . 417)
- ("/home/ayako/.emacs.d/.gitignore" . 81)
  ("/home/ayako/.emacs.d/.gitattributes" . 66)
  ("/home/ayako/.dotfiles/"
   (dired-filename . "/home/ayako/.dotfiles/nvim-myown"))
