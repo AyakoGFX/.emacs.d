@@ -1,4 +1,4 @@
-;; -*- lisp-data -*- <24/10/25 22:48:12 ~/.emacs.d/tramp>
+;; -*- lisp-data -*- <24/10/28 00:46:20 ~/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
@@ -18,4 +18,6 @@
   ("gid-string" "root") ("groups-integer" (0))
   ("groups-string" ("root")) ("perl-file-spec" t)
   ("perl-cwd-realpath" t) ("perl" "\\perl") ("bzr" nil)
-  ("git" "\\git") ("hg" nil)))
+  ("git" "\\git") ("hg" nil))
+ ((tramp-file-name "ssh" "user" nil "host" nil nil nil) nil)
+ ((tramp-file-name "sudo" "root" nil "Debian-12" nil nil nil) nil))

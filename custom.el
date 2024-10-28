@@ -59,18 +59,19 @@
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
  '(package-selected-packages
    '(all-the-icons-dired all-the-icons-ibuffer cape catppuccin-theme
-			 colorful-mode company consult corfu dashboard
-			 deft denote diff-hl dired-git-info
-			 dired-quick-sort dired-rsync diredfl
-			 doom-modeline doom-themes emojify
-			 erc-hl-nicks erc-image fancy-battery flycheck
-			 gcmh golden-ratio jinx keycast lsp-treemacs
-			 lsp-ui magit marginalia multi-vterm
-			 multiple-cursors nerd-icons-dired orderless
-			 org-download org-roam-ui perspective
-			 spaceline sudo-edit treemacs-icons-dired
-			 vertico visual-fill-column vterm vundo
-			 which-key wucuo yasnippet-snippets zoom)))
+			 colorful-mode company consult consult-denote
+			 corfu dashboard deft denote denote-menu
+			 diff-hl dired-git-info dired-quick-sort
+			 dired-rsync diredfl doom-modeline doom-themes
+			 emojify erc-hl-nicks erc-image fancy-battery
+			 flycheck gcmh golden-ratio jinx keycast
+			 lsp-treemacs lsp-ui magit marginalia
+			 multi-vterm multiple-cursors nerd-icons-dired
+			 orderless org-download org-roam-ui
+			 perspective spaceline sudo-edit
+			 treemacs-icons-dired vertico
+			 visual-fill-column vterm vundo which-key
+			 wucuo yasnippet-snippets zoom)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

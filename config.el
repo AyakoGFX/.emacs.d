@@ -419,7 +419,7 @@
 (use-package vterm
   :ensure t
   :init)
-(setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
+(setq vterm-shell "/usr/bin/zsh")  ;; Adjust the path to fish if necessary
  ;; (setq vterm-shell "/usr/bin/bash")
 
 (use-package multi-vterm
@@ -636,126 +636,138 @@
     (ansi-color-apply-on-region (point-min) (point-max)))
   :hook (compilation-filter . my-compilation-filter))
 
-(setq explicit-shell-file-name "/bin/bash")
+(setq explicit-shell-file-name "/usr/bin/bash")
 (setq explicit-bash-args '("--login" "-i"))
-(setq term-shell "/bin/bash")
-(setq shell-file-name "/bin/bash")
+(setq term-shell "/usr/bin/bash")
+(setq shell-file-name "/usr/bin/bash")
 
-(use-package denote
-  :ensure t)
- (require 'denote)
- ;; Remember to check the doc strings of those variables.
- (setq denote-directory (expand-file-name "~/Denote/"))
- (setq denote-save-buffers nil)
- (setq denote-known-keywords '("emacs" "philosophy" "politics" "economics"))
- (setq denote-infer-keywords t)
- (setq denote-sort-keywords t)
- (setq denote-file-type nil) ; Org is the default, set others here
- (setq denote-prompts '(title keywords))
- (setq denote-excluded-directories-regexp nil)
- (setq denote-excluded-keywords-regexp nil)
- (setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
- (setq denote-save-buffer t)
- ;; Pick dates, where relevant, with Org's advanced interface:
- (setq denote-date-prompt-use-org-read-date t)
+;; migerate all org roam notes to denote
+    ;; (load-file "~/.emacs.d/manual/nm-org-roam-to-denote.el")
 
-
- ;; Like the default, but upcase the entries
- (setq denote-org-front-matter
- "#+TITLE:      %s
- #+DATE:       %s
- #+FILETAGS:   %s
- #+IDENTIFIER: %s
- \n")
-
- ;; Read this manual for how to specify `denote-templates'.  We do not
- ;; include an example here to avoid potential confusion.
+    (use-package denote
+      :ensure t)
+    ;; Remember to check the doc strings of those variables.
+    (setq denote-directory (expand-file-name "~/Denote/"))
+    (setq denote-save-buffers nil)
+    (setq denote-known-keywords '("emacs" "philosophy" "politics" "economics"))
+    (setq denote-infer-keywords nil)
+    (setq denote-sort-keywords nil)
+    (setq denote-file-type nil) ; Org is the default, set others here
+    (setq denote-prompts '(title keywords))
+    (setq denote-excluded-directories-regexp nil)
+    (setq denote-excluded-keywords-regexp nil)
+    (setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
+    (setq denote-save-buffer t)
+    ;; Pick dates, where relevant, with Org's advanced interface:
+    (setq denote-date-prompt-use-org-read-date t)
 
 
- (setq denote-date-format nil) ; read doc string
+    ;; Like the default, but upcase the entries
+;; do not format this
+  (setq denote-org-front-matter
+  "#+TITLE:      %s
+#+DATE:       %s
+#+FILETAGS:   %s
+#+IDENTIFIER: %s
+\n")
+    ;; Read this manual for how to specify `denote-templates'.  We do not
+    ;; include an example here to avoid potential confusion.
 
- ;; By default, we do not show the context of links.  We just display
- ;; file names.  This provides a more informative view.
- (setq denote-backlinks-show-context t)
+    (setq denote-date-format nil) ; read doc string
 
- ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
- ;; advanced.
+    ;; By default, we do not show the context of links.  We just display
+    ;; file names.  This provides a more informative view.
+    (setq denote-backlinks-show-context t)
 
- ;; If you use Markdown or plain text files (Org renders links as buttons
- ;; right away)
- (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
+    ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
+    ;; advanced.
 
- ;; We use different ways to specify a path for demo purposes.
- ;; (setq denote-dired-directories
- ;;       (list denote-directory
- ;;             (thread-last denote-directory (expand-file-name "attachments"))
- ;;             (expand-file-name "~/Documents/books")))
+    ;; If you use Markdown or plain text files (Org renders links as buttons
+    ;; right away)
+    (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
 
- ;; Generic (great if you rename files Denote-style in lots of places):
- ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
- ;;
- ;; OR if only want it in `denote-dired-directories':
- (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
+    ;; We use different ways to specify a path for demo purposes.
+    ;; (setq denote-dired-directories
+    ;;       (list denote-directory
+    ;;             (thread-last denote-directory (expand-file-name "attachments"))
+    ;;             (expand-file-name "~/Documents/books")))
 
-
- ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
- (denote-rename-buffer-mode 1)
-
- ;; Denote DOES NOT define any key bindings.  This is for the user to
- ;; decide.  For example:
- (let ((map global-map))
-   (define-key map (kbd "C-c d n") #'denote)
-   (define-key map (kbd "C-c d c") #'denote-region) ; "contents" mnemonic
-   (define-key map (kbd "C-c d N") #'denote-type)
-   (define-key map (kbd "C-c d d") #'denote-date)
-   (define-key map (kbd "C-c d z") #'denote-signature) ; "zettelkasten" mnemonic
-   (define-key map (kbd "C-c d s") #'denote-subdirectory)
-   (define-key map (kbd "C-c d t") #'denote-template)
-   ;; If you intend to use Denote with a variety of file types, it is
-   ;; easier to bind the link-related commands to the `global-map', as
-   ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
-   ;; `markdown-mode-map', and/or `text-mode-map'.
-   (define-key map (kbd "C-c d i") #'denote-link) ; "insert" mnemonic
-   (define-key map (kbd "C-c d I") #'denote-add-links)
-   (define-key map (kbd "C-c d b") #'denote-backlinks)
-   (define-key map (kbd "C-c d f f") #'denote-find-link)
-   (define-key map (kbd "C-c d f b") #'denote-find-backlink)
-   ;; Note that `denote-rename-file' can work from any context, not just
-   ;; Dired bufffers.  That is why we bind it here to the `global-map'.
-   (define-key map (kbd "C-c d r") #'denote-rename-file)
-   (define-key map (kbd "C-c d R") #'denote-rename-file-using-front-matter))
-
- ;; Key bindings specifically for Dired.
- (let ((map dired-mode-map))
-   (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
-   (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
-   (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
-   (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
-
- (with-eval-after-load 'org-capture
-   (setq denote-org-capture-specifiers "%l\n%i\n%?")
-   (add-to-list 'org-capture-templates
-                '("n" "New note (with denote.el)" plain
-                  (file denote-last-path)
-                  #'denote-org-capture
-                  :no-save t
-                  :immediate-finish nil
-                  :kill-buffer t
-                  :jump-to-captured t)))
-
- ;; Also check the commands `denote-link-after-creating',
- ;; `denote-link-or-create'.  You may want to bind them to keys as well.
+    ;; Generic (great if you rename files Denote-style in lots of places):
+    ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
+    ;;
+    ;; OR if only want it in `denote-dired-directories':
+    (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
 
- ;; If you want to have Denote commands available via a right click
- ;; context menu, use the following and then enable
- ;; `context-menu-mode'.
- (add-hook 'context-menu-functions #'denote-context-menu)
+    ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
+    (denote-rename-buffer-mode 1)
+
+    ;; Denote DOES NOT define any key bindings.  This is for the user to
+    ;; decide.  For example:
+    (let ((map global-map))
+      (define-key map (kbd "C-c d n") #'denote)
+      (define-key map (kbd "C-c d c") #'denote-region) ; "contents" mnemonic
+      (define-key map (kbd "C-c d N") #'denote-type)
+      (define-key map (kbd "C-c d d") #'denote-date)
+      (define-key map (kbd "C-c d z") #'denote-signature) ; "zettelkasten" mnemonic
+      (define-key map (kbd "C-c d s") #'denote-subdirectory)
+      (define-key map (kbd "C-c d t") #'denote-template)
+      ;; If you intend to use Denote with a variety of file types, it is
+      ;; easier to bind the link-related commands to the `global-map', as
+      ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
+      ;; `markdown-mode-map', and/or `text-mode-map'.
+      (define-key map (kbd "C-c d i") 'denote-link-or-create) ; "insert" mnemonic
+      (define-key map (kbd "C-c d I") #'denote-add-links)
+      (define-key map (kbd "C-c d b") #'denote-backlinks)
+      (define-key map (kbd "C-c d f f") #'denote-find-link)
+      (define-key map (kbd "C-c d f b") #'denote-find-backlink)
+      ;; Note that `denote-rename-file' can work from any context, not just
+      ;; Dired bufffers.  That is why we bind it here to the `global-map'.
+      (define-key map (kbd "C-c d r") #'denote-rename-file)
+      (define-key map (kbd "C-c d R") #'denote-rename-file-using-front-matter))
+
+    ;; Key bindings specifically for Dired.
+    (let ((map dired-mode-map))
+      (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
+      (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
+      (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
+      (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
+
+    (with-eval-after-load 'org-capture
+      (setq denote-org-capture-specifiers "%l\n%i\n%?")
+      (add-to-list 'org-capture-templates
+                   '("n" "New note (with denote.el)" plain
+                     (file denote-last-path)
+                     #'denote-org-capture
+                     :no-save t
+                     :immediate-finish nil
+                     :kill-buffer t
+                     :jump-to-captured t)))
+
+    ;; Also check the commands `denote-link-after-creating',
+    ;; `denote-link-or-create'.  You may want to bind them to keys as well.
+
+
+    ;; If you want to have Denote commands available via a right click
+    ;; context menu, use the following and then enable
+    ;; `context-menu-mode'.
+    (add-hook 'context-menu-functions #'denote-context-menu)
+
+    (use-package denote-menu
+      :ensure t)
+
+    (global-set-key (kbd "C-c z") #'list-denotes)
+
+    (define-key denote-menu-mode-map (kbd "c") #'denote-menu-clear-filters)
+    (define-key denote-menu-mode-map (kbd "/ r") #'denote-menu-filter)
+    (define-key denote-menu-mode-map (kbd "/ k") #'denote-menu-filter-by-keyword)
+    (define-key denote-menu-mode-map (kbd "/ o") #'denote-menu-filter-out-keyword)
+    (define-key denote-menu-mode-map (kbd "e") #'denote-menu-export-to-dired)
 
 (use-package deft
   :ensure t
   :custom
-  (deft-directory "~/roam/")
+  (deft-directory "~/Denote/")
   (deft-extension '("txt" "org" "md"))
   (deft-use-filename-as-title t)
   (deft-recursive t))
@@ -1164,3 +1176,20 @@
   :ensure t
   :hook (erc-mode . emojify-mode)
   :commands emojify-mode)
+
+(setq inhibit-startup-message t)
+(menu-bar-mode -1)
+
+;; Alternatively, use this:
+;; (icomplete-vertical-mode 1)
+;; (push 'flex completion-styles)
+
+;; -------- UNNECESSARY --------
+
+(tab-bar-mode 1)
+;; Unnecessary visual improvements
+(setopt mode-line-end-spaces nil)
+(set-display-table-slot standard-display-table 'vertical-border (make-glyph-code ?│))
+
+;; Make the infernal rodent work!
+(xterm-mouse-mode 1)

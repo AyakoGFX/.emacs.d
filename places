@@ -1,28 +1,37 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 244)
- ("/home/ayako/.emacs.d/snippets/sh-mode/+new-snippet+" . 76)
- ("/home/ayako/.dotfiles/scripts/irw.sh" . 296)
- ("/home/ayako/.emacs.d/config.org" . 26436)
- ("/home/ayako/roam/org/agenda.org" . 984)
+(("/home/ayako/.emacs.d/config.org" . 50344)
+ ("/home/ayako/Denote/20241027T224747--change-dns-in-linux__dns_emacs.org"
+  . 1048)
+ ("/home/ayako/roam/org/agenda.org" . 522)
+ ("/home/ayako/Denote/20241027T224121--index-linux__linux.org" . 145)
+ ("/home/ayako/mybook/The-Book-About-Manipulating-Woman.org" . 2424)
+ ("/home/ayako/tmp/emacs/init.el" . 191)
+ ("/home/ayako/.emacs.d/config.el" . 23495)
+ ("/home/ayako/mybook/"
+  (dired-filename
+   . "/home/ayako/mybook/The-Book-About-Manipulating-Woman.org"))
+ ("/home/ayako/Denote/"
+  (dired-filename
+   . "/home/ayako/Denote/20241027T224121--index-linux__linux.org"))
+ ("/home/ayako/.dotfiles/debian.org" . 2674)
+ ("/home/ayako/" (dired-filename . "/home/ayako/.dotfiles"))
+ ("/home/ayako/.dotfiles/"
+  (dired-filename . "/home/ayako/.dotfiles/debian.org"))
+ ("/home/ayako/.dotfiles/scripts/"
+  (dired-filename
+   . "/home/ayako/.dotfiles/scripts/install_catppuccin_grub_theme.sh"))
  ("/home/ayako/dwm/config.def.h" . 641)
- ("/home/ayako/tmp/emacs/init.el" . 25)
  ("/home/ayako/tmp/emacs/testing.txt" . 10)
  ("/home/ayako/roam/games_in_emacs.org" . 289)
- ("/home/ayako/mybook/The-Book-About-Manipulating-Woman.org" . 2309)
+ ("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 673)
  ("/home/ayako/tmp/emacs/"
   (dired-filename . "/home/ayako/tmp/emacs/init.el"))
  ("/home/ayako/roam/org/"
   (dired-filename . "/home/ayako/roam/org/movies-to-watch.org"))
  ("/home/ayako/roam/org/movies-to-watch.org" . 26)
- ("/home/ayako/" (dired-filename . "/home/ayako/pendrive-backup"))
  ("/home/ayako/pendrive-backup/" . 484)
- ("/home/ayako/.dotfiles/scripts/"
-  (dired-filename
-   . "/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh"))
- ("/home/ayako/texput.log" . 238) ("/home/ayako/mybook/" . 587)
+ ("/home/ayako/texput.log" . 238)
  ("/home/ayako/mybook/How-Do-you-NOT-Bore-a-Girl？--Charm-Yourself.mp4"
   . 417)
  ("/home/ayako/.emacs.d/.gitattributes" . 66)
- ("/home/ayako/.dotfiles/"
-  (dired-filename . "/home/ayako/.dotfiles/nvim-myown"))
  ("/home/ayako/roam/" (dired-filename . "/home/ayako")))
