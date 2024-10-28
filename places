@@ -1,7 +1,23 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 50344)
+(("/home/ayako/.emacs.d/config.org" . 7038)
  ("/home/ayako/Denote/20241027T224747--change-dns-in-linux__dns_emacs.org"
   . 1048)
+ ("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 8768)
+ ("/home/ayako/.dotfiles/zsh3/.zshrc" . 1075)
+ ("/home/ayako/.dotfiles/zsh3/.zprofile" . 700)
+ ("/home/ayako/.dotfiles/scripts/"
+  (dired-filename . "/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh"))
+ ("/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh" . 1907)
+ ("/home/ayako/.dotfiles/fish/.config/fish/conf.d/"
+  (dired-filename . "/home/ayako/.dotfiles/fish/.config/fish"))
+ ("/home/ayako/.dotfiles/fish/.config/fish/"
+  (dired-filename . "/home/ayako/.dotfiles/fish/.config"))
+ ("/home/ayako/.dotfiles/fish/.config/"
+  (dired-filename . "/home/ayako/.dotfiles/fish"))
+ ("/home/ayako/.dotfiles/fish/"
+  (dired-filename . "/home/ayako/.dotfiles"))
+ ("/home/ayako/.dotfiles/"
+  (dired-filename . "/home/ayako/.dotfiles/typescript"))
  ("/home/ayako/roam/org/agenda.org" . 522)
  ("/home/ayako/Denote/20241027T224121--index-linux__linux.org" . 145)
  ("/home/ayako/mybook/The-Book-About-Manipulating-Woman.org" . 2424)
@@ -15,11 +31,6 @@
    . "/home/ayako/Denote/20241027T224121--index-linux__linux.org"))
  ("/home/ayako/.dotfiles/debian.org" . 2674)
  ("/home/ayako/" (dired-filename . "/home/ayako/.dotfiles"))
- ("/home/ayako/.dotfiles/"
-  (dired-filename . "/home/ayako/.dotfiles/debian.org"))
- ("/home/ayako/.dotfiles/scripts/"
-  (dired-filename
-   . "/home/ayako/.dotfiles/scripts/install_catppuccin_grub_theme.sh"))
  ("/home/ayako/dwm/config.def.h" . 641)
  ("/home/ayako/tmp/emacs/testing.txt" . 10)
  ("/home/ayako/roam/games_in_emacs.org" . 289)

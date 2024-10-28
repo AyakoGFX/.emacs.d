@@ -1176,20 +1176,3 @@
   :ensure t
   :hook (erc-mode . emojify-mode)
   :commands emojify-mode)
-
-(setq inhibit-startup-message t)
-(menu-bar-mode -1)
-
-;; Alternatively, use this:
-;; (icomplete-vertical-mode 1)
-;; (push 'flex completion-styles)
-
-;; -------- UNNECESSARY --------
-
-(tab-bar-mode 1)
-;; Unnecessary visual improvements
-(setopt mode-line-end-spaces nil)
-(set-display-table-slot standard-display-table 'vertical-border (make-glyph-code ?│))
-
-;; Make the infernal rodent work!
-(xterm-mouse-mode 1)
