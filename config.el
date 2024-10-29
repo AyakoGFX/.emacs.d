@@ -419,7 +419,7 @@
 (use-package vterm
   :ensure t
   :init)
-(setq vterm-shell "/usr/bin/zsh")  ;; Adjust the path to fish if necessary
+(setq vterm-shell "/usr/bin/bash")  ;; Adjust the path to fish if necessary
  ;; (setq vterm-shell "/usr/bin/bash")
 
 (use-package multi-vterm

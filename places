@@ -1,10 +1,10 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 7038)
+(("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 170)
+ ("/home/ayako/.dotfiles/zsh3/.zprofile" . 700)
+ ("/home/ayako/.dotfiles/zsh3/.zshrc" . 1075)
  ("/home/ayako/Denote/20241027T224747--change-dns-in-linux__dns_emacs.org"
   . 1048)
- ("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 8768)
- ("/home/ayako/.dotfiles/zsh3/.zshrc" . 1075)
- ("/home/ayako/.dotfiles/zsh3/.zprofile" . 700)
+ ("/home/ayako/.emacs.d/config.org" . 7038)
  ("/home/ayako/.dotfiles/scripts/"
   (dired-filename . "/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh"))
  ("/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh" . 1907)
