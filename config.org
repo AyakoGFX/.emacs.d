@@ -820,7 +820,7 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
     (use-package denote
       :ensure t)
     ;; Remember to check the doc strings of those variables.
-    (setq denote-directory (expand-file-name "~/Denote/"))
+    (setq denote-directory (expand-file-name "~/denote/"))
     (setq denote-save-buffers nil)
     (setq denote-known-keywords '("emacs" "philosophy" "politics" "economics"))
     (setq denote-infer-keywords nil)
@@ -836,13 +836,13 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
 
 
     ;; Like the default, but upcase the entries
-;; do not format this
-  (setq denote-org-front-matter
-  "#+TITLE:      %s
-#+DATE:       %s
-#+FILETAGS:   %s
-#+IDENTIFIER: %s
-\n")
+    ;; do not format this
+    (setq denote-org-front-matter
+          "#+TITLE:      %s
+     ,#+DATE:       %s
+     ,#+FILETAGS:   %s
+     ,#+IDENTIFIER: %s
+     \n")
     ;; Read this manual for how to specify `denote-templates'.  We do not
     ;; include an example here to avoid potential confusion.
 
@@ -931,18 +931,49 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
 
     (global-set-key (kbd "C-c z") #'list-denotes)
 
-    (define-key denote-menu-mode-map (kbd "c") #'denote-menu-clear-filters)
+    (define-key denote-menu-mode-map (kbd "C") #'denote-menu-clear-filters)
     (define-key denote-menu-mode-map (kbd "/ r") #'denote-menu-filter)
-    (define-key denote-menu-mode-map (kbd "/ k") #'denote-menu-filter-by-keyword)
+    (define-key denote-menu-mode-map (kbd "K") #'denote-menu-filter-by-keyword)
     (define-key denote-menu-mode-map (kbd "/ o") #'denote-menu-filter-out-keyword)
-    (define-key denote-menu-mode-map (kbd "e") #'denote-menu-export-to-dired)
+    (define-key denote-menu-mode-map (kbd "E") #'denote-menu-export-to-dired)
+
+    ;; list all the keywords = #+FILETAGS
+    (defun my-denote-list-all-keywords ()
+      "List all unique keywords used in Denote files and show them in message buffer."
+      (interactive)
+      (let* ((files (directory-files (denote-directory) t "\\..*$"))
+             (all-keywords '()))
+        (dolist (file files)
+          (when-let ((keywords (denote-retrieve-filename-keywords file)))
+    	(setq all-keywords 
+                  (append all-keywords 
+                          ;; Split by -- to get each keyword group
+                          (mapcar (lambda (kw)
+    				;; Split each keyword group by underscore
+    				(split-string 
+    				 (replace-regexp-in-string "_" " " kw) 
+    				 " " t))
+                                  (split-string keywords "--" t))))))
+        (message "All keywords: %s" 
+                 (string-join 
+                  (delete-dups 
+                   (sort 
+    		(cl-remove-duplicates 
+                     (flatten-list all-keywords)
+                     :test #'string-equal)
+    		#'string-lessp))
+                  ", "))))
+
+  (define-key denote-menu-mode-map (kbd "L") #'my-denote-list-all-keywords)
+  (define-key global-map (kbd "C-c d l") #'my-denote-list-all-keywords)
+
 #+end_src
 ** tools i use with org-mode
 #+BEGIN_SRC emacs-lisp
   (use-package deft
     :ensure t
     :custom
-    (deft-directory "~/Denote/")
+    (deft-directory "~/denote/")
     (deft-extension '("txt" "org" "md"))
     (deft-use-filename-as-title t)
     (deft-recursive t))

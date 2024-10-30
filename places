@@ -1,12 +1,19 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 170)
+(("/home/ayako/denote/20241027T224747--change-dns-in-linux__dns_emacs.org"
+  . 129)
+ ("/home/ayako/.dotfiles/scripts/emacs-build-script.sh" . 2038)
+ ("/home/ayako/.emacs.d/config.org" . 27706)
+ ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 245)
+ ("/home/ayako/denote/20241030T182555--pi-hole__pihole_linux_dns_hellow.org"
+  . 419)
+ ("/home/ayako/dwm/wk/my.wks" . 192)
+ ("/home/ayako/dwm/config.def.h" . 7292)
+ ("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 8866)
+ ("/home/ayako/.dotfiles/scripts/"
+  (dired-filename
+   . "/home/ayako/.dotfiles/scripts/emacs-build-script.sh"))
  ("/home/ayako/.dotfiles/zsh3/.zprofile" . 700)
  ("/home/ayako/.dotfiles/zsh3/.zshrc" . 1075)
- ("/home/ayako/Denote/20241027T224747--change-dns-in-linux__dns_emacs.org"
-  . 1048)
- ("/home/ayako/.emacs.d/config.org" . 7038)
- ("/home/ayako/.dotfiles/scripts/"
-  (dired-filename . "/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh"))
  ("/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh" . 1907)
  ("/home/ayako/.dotfiles/fish/.config/fish/conf.d/"
   (dired-filename . "/home/ayako/.dotfiles/fish/.config/fish"))
@@ -19,19 +26,14 @@
  ("/home/ayako/.dotfiles/"
   (dired-filename . "/home/ayako/.dotfiles/typescript"))
  ("/home/ayako/roam/org/agenda.org" . 522)
- ("/home/ayako/Denote/20241027T224121--index-linux__linux.org" . 145)
  ("/home/ayako/mybook/The-Book-About-Manipulating-Woman.org" . 2424)
  ("/home/ayako/tmp/emacs/init.el" . 191)
  ("/home/ayako/.emacs.d/config.el" . 23495)
  ("/home/ayako/mybook/"
   (dired-filename
    . "/home/ayako/mybook/The-Book-About-Manipulating-Woman.org"))
- ("/home/ayako/Denote/"
-  (dired-filename
-   . "/home/ayako/Denote/20241027T224121--index-linux__linux.org"))
  ("/home/ayako/.dotfiles/debian.org" . 2674)
  ("/home/ayako/" (dired-filename . "/home/ayako/.dotfiles"))
- ("/home/ayako/dwm/config.def.h" . 641)
  ("/home/ayako/tmp/emacs/testing.txt" . 10)
  ("/home/ayako/roam/games_in_emacs.org" . 289)
  ("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 673)
