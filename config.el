@@ -419,7 +419,7 @@
 (use-package vterm
   :ensure t
   :init)
-(setq vterm-shell "/usr/bin/bash")  ;; Adjust the path to fish if necessary
+(setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
  ;; (setq vterm-shell "/usr/bin/bash")
 
 (use-package multi-vterm
@@ -624,7 +624,7 @@
 (use-package sh-script
   :hook
   (sh-mode . flymake-mode)
-  (sh-mode . lsp-mode))
+  (sh-mode . lsp-mode)) ;; optioinal
 
 (use-package wks-mode
   :load-path ("~/.emacs.d/manual/"))
@@ -636,10 +636,10 @@
     (ansi-color-apply-on-region (point-min) (point-max)))
   :hook (compilation-filter . my-compilation-filter))
 
-(setq explicit-shell-file-name "/usr/bin/bash")
+(setq explicit-shell-file-name "/usr/bin/fish")
 (setq explicit-bash-args '("--login" "-i"))
-(setq term-shell "/usr/bin/bash")
-(setq shell-file-name "/usr/bin/bash")
+(setq term-shell "/usr/bin/fish")
+(setq shell-file-name "/usr/bin/fish")
 
 ;; migerate all org roam notes to denote
   ;; (load-file "~/.emacs.d/manual/nm-org-roam-to-denote.el")

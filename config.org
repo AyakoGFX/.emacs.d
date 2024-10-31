@@ -543,7 +543,7 @@ do not touch it will mess up vertigo *comp* ex C-x b
   (use-package vterm
     :ensure t
     :init)
-  (setq vterm-shell "/usr/bin/bash")  ;; Adjust the path to fish if necessary
+  (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
    ;; (setq vterm-shell "/usr/bin/bash")
 
   (use-package multi-vterm
@@ -779,7 +779,7 @@ to add more lang support you just need to add to hook ex below
   (use-package sh-script
     :hook
     (sh-mode . flymake-mode)
-    (sh-mode . lsp-mode))
+    (sh-mode . lsp-mode)) ;; optioinal
 #+end_src
 ** wk-mode for whick-key for window manager
 #+BEGIN_SRC emacs-lisp
@@ -801,10 +801,10 @@ to add more lang support you just need to add to hook ex below
 
 ** use bash instead of other shells
 #+BEGIN_SRC emacs-lisp
-(setq explicit-shell-file-name "/usr/bin/bash")
-(setq explicit-bash-args '("--login" "-i"))
-(setq term-shell "/usr/bin/bash")
-(setq shell-file-name "/usr/bin/bash")
+  (setq explicit-shell-file-name "/usr/bin/fish")
+  (setq explicit-bash-args '("--login" "-i"))
+  (setq term-shell "/usr/bin/fish")
+  (setq shell-file-name "/usr/bin/fish")
 #+END_SRC
 
 * Note Taking
