@@ -4,6 +4,7 @@ places
 org-roam.db
 history
 emojis/
+elpy/
 auto-save-list/
 eln-cache/
 elpa/

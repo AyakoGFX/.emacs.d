@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(catppuccin))
+ '(custom-enabled-themes '(doom-one))
  '(custom-safe-themes
    '("7ec8fd456c0c117c99e3a3b16aaf09ed3fb91879f6601b1ea0eeaee9c6def5d9"
      "02d422e5b99f54bd4516d4157060b874d14552fe613ea7047c4a5cfa1288cf4f"
@@ -58,20 +58,17 @@
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
  '(package-selected-packages
-   '(all-the-icons-dired all-the-icons-ibuffer cape catppuccin-theme
-			 colorful-mode company consult consult-denote
-			 corfu dashboard deft denote denote-menu
-			 diff-hl dired-git-info dired-quick-sort
-			 dired-rsync diredfl doom-modeline doom-themes
-			 emojify erc-hl-nicks erc-image fancy-battery
-			 flycheck gcmh golden-ratio jinx keycast
-			 lsp-treemacs lsp-ui magit marginalia
-			 multi-vterm multiple-cursors nerd-icons-dired
-			 orderless org-download org-roam-ui
-			 perspective spaceline sudo-edit
-			 treemacs-icons-dired vertico
-			 visual-fill-column vterm vundo which-key
-			 wucuo yasnippet-snippets zoom)))
+   '(all-the-icons-ibuffer beframe catppuccin-theme colorful-mode company
+			   company-box consult corfu dashboard deft
+			   denote-menu diff-hl dired-git-info
+			   dired-quick-sort dired-rsync diredfl
+			   doom-modeline doom-themes elpy emojify
+			   envrc erc-hl-nicks erc-image gcmh
+			   golden-ratio jinx keycast lsp-ui magit
+			   marginalia move-text multi-vterm
+			   nerd-icons-dired orderless org-download
+			   org-roam-ui sudo-edit vertico
+			   visual-fill-column vundo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

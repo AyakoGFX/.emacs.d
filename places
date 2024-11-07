@@ -1,7 +1,27 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.dotfiles/scripts/emacs-build-script.sh" . 2038)
+(("/home/ayako/.emacs.d/config.org" . 27934)
+ ("/home/ayako/dwm/config.def.h" . 10819)
+ ("/home/ayako/dwm/dwmblocks/blocks.h" . 2518)
+ ("/home/ayako/dwm/dwmblocks/blocks.def.h" . 1521)
+ ("/home/ayako/roam/org/agenda.org" . 3729)
+ ("/home/ayako/Downloads/org.gimp.GIMP.flatpakref" . 13)
+ ("/home/ayako/py/" (dired-filename . "/home/ayako/py/main.py"))
+ ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 319)
+ ("/home/ayako/roam/Main-notes/xmonad.org" . 149)
+ ("/home/ayako/denote/20241105T140055--xmonad-wm__linux_wm_x11_xmonad.org"
+  . 130)
+ ("/home/ayako/dwm2/config.def.h" . 1130)
+ ("/home/ayako/tmp/test/vim.txt" . 359)
+ ("/home/ayako/denote/20241030T182555--pi-hole__pihole_linux_dns_hellow.org"
+  . 179)
+ ("/home/ayako/roam/Main-notes/dired_keybind_reference_sheet.org"
+  . 2504)
+ ("/home/ayako/roam/Index's/emacs_index.org" . 827)
+ ("/home/ayako/tmp/test/"
+  (dired-filename . "/home/ayako/tmp/test/vim.txt"))
+ ("/home/ayako/.dotfiles/scripts/emacs-build-script.sh" . 2008)
  ("/home/ayako/roam/Main-notes/touchpad.org" . 409)
- ("/home/ayako/roam/" (dired-filename . "/home/ayako/roam/.."))
+ ("/home/ayako/roam/" (dired-filename . "/home/ayako"))
  ("/home/ayako/" (dired-filename . "/home/ayako/.dotfiles"))
  ("/home/ayako/.dotfiles/scripts/add.sh" . 606)
  ("/home/ayako/.dotfiles/"
@@ -9,17 +29,11 @@
  ("/home/ayako/.dotfiles/scripts/"
   (dired-filename . "/home/ayako/.dotfiles/scripts/setup_touchpad.sh"))
  ("/home/ayako/.dotfiles/scripts/setup_touchpad.sh" . 805)
- ("/home/ayako/.emacs.d/config.org" . 26502)
- ("/home/ayako/dwm/config.def.h" . 7292)
  ("/home/ayako/dwm/setup/setup.sh" . 1734)
  ("/home/ayako/.emacs.d/"
   (dired-filename . "/home/ayako/.emacs.d/elpa"))
  ("/home/ayako/.emacs.d/elpa/"
   (dired-filename . "/home/ayako/.emacs.d/elpa/denote-3.1.0"))
- ("/home/ayako/.emacs.d/elpa/denote-3.1.0/"
-  (dired-filename
-   . "/home/ayako/.emacs.d/elpa/denote-3.1.0/denote-sort.el"))
- ("/home/ayako/.emacs.d/elpa/denote-3.1.0/denote-sort.el" . 1144)
  ("/home/ayako/dwm/wk/my.wks" . 192)
  ("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 8866)
  ("/home/ayako/.dotfiles/zsh3/.zprofile" . 700)
@@ -33,7 +47,6 @@
   (dired-filename . "/home/ayako/.dotfiles/fish"))
  ("/home/ayako/.dotfiles/fish/"
   (dired-filename . "/home/ayako/.dotfiles"))
- ("/home/ayako/roam/org/agenda.org" . 522)
  ("/home/ayako/mybook/The-Book-About-Manipulating-Woman.org" . 2424)
  ("/home/ayako/tmp/emacs/init.el" . 191)
  ("/home/ayako/.emacs.d/config.el" . 23495)
@@ -49,7 +62,6 @@
  ("/home/ayako/roam/org/"
   (dired-filename . "/home/ayako/roam/org/movies-to-watch.org"))
  ("/home/ayako/roam/org/movies-to-watch.org" . 26)
- ("/home/ayako/pendrive-backup/" . 484)
  ("/home/ayako/texput.log" . 238)
  ("/home/ayako/mybook/How-Do-you-NOT-Bore-a-Girl？--Charm-Yourself.mp4"
   . 417)

@@ -74,6 +74,52 @@
     ;;     (setq auto-save-file-name-transforms
     ;; 	    '((".*" "~/.emacs.d/.trash/" t)))
 
+;;; Move Text
+(use-package move-text
+  :ensure t)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
+
+;; (defun ora-ex-point-mark ()
+;;   (interactive)
+;;   (if rectangle-mark-mode
+;;       (exchange-point-and-mark)
+;;     (let ((mk (mark)))
+;;       (rectangle-mark-mode 1)
+;;       (goto-char mk))))
+
+;; (defhydra hydra-rectangle (:body-pre (rectangle-mark-mode 1)
+;;                            :color pink
+;;                            :post (deactivate-mark))
+;;   "
+;;   ^_k_^     _d_elete    _s_tring     |\\     ‗,,,--,,‗
+;; _h_   _l_   _o_k        _y_ank       /,`.-'`'   .‗  \-;;,‗
+;;   ^_j_^     _n_ew-copy  _r_eset     |,4-  ) )‗   .;.(  `'-'
+;;   ^^^^        _e_xchange  _u_ndo     '---''(‗/.‗)-'(‗\‗)
+;;   ^^^^        ^ ^         _p_aste
+;;   "
+;;   ("h" backward-char nil)
+;;   ("l" forward-char nil)
+;;   ("k" previous-line nil)
+;;   ("j" next-line nil)
+;;   ("e" ora-ex-point-mark nil)
+;;   ("n" copy-rectangle-as-kill nil)          ;; C-x r M-w
+;;   ("d" delete-rectangle)                     ;; C-x r d
+;;   ("r" (if (region-active-p)
+;;            (deactivate-mark)
+;;          (rectangle-mark-mode 1)) nil)
+;;   ("y" yank-rectangle)                       ;; C-x r y
+;;   ("u" undo nil)
+;;   ("s" string-rectangle)                     ;; C-x r t
+;;   ("p" kill-rectangle nil)                   ;; C-x r k
+;;   ("o" open-rectangle)                       ;; C-x r o
+;;   ("c" clear-rectangle)                      ;; C-x r c
+;;   ("N" rectangle-number-lines))              ;; C-x r N
+
+  ;; ;; (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
+
+(global-visual-line-mode t)
+
 (setq world-clock-list
       '(
 	("Australia/Melbourne" "Melbourne")
@@ -262,7 +308,7 @@
 
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
-  :ensure tq
+  :ensure t
   :custom
   ;; Configure a custom style dispatcher (see the Consult wiki)
   ;; (orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch))
@@ -318,7 +364,7 @@
 	   ([remap Info-search] . consult-info)
 	   ;; C-x bindings in `ctl-x-map'
 	   ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-	   ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+	   ;; ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
 	   ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
 	   ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
 	   ("C-x t b" . consult-buffer-other-tab)    ;; orig. switch-to-buffer-other-tab
@@ -570,56 +616,95 @@
   (global-diff-hl-mode)
   (diff-hl-dired-mode 'toggle))
 
-(use-package lsp-mode
-  :ensure t
-  :hook ((c-mode . lsp)
-         (c++-mode . lsp))
-  :commands lsp
-  :config
-  (setq lsp-prefer-flymake nil
-        lsp-idle-delay 0.0)
-  (setq lsp-headerline-breadcrumb-enable nil)
-
-  ;; Enable additional modes and integrations in hooks
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
-
-(global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
-(setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
+;; Set up hooks for the various programming modes
+(add-hook 'c-mode-hook 'lsp)
+(add-hook 'python-mode-hook 'lsp)
+(add-hook 'c++-mode-hook 'lsp)
+  ;; Disable corfu in python-mode
+(add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
+(add-hook 'c-mode-hook (lambda () (corfu-mode -1)))
+(add-hook 'c++-mode-hook (lambda () (corfu-mode -1)))
 
 
-(use-package lsp-ui
-  :ensure t
-  :config
-  (setq lsp-ui-sideline-enable t
-        lsp-ui-doc-enable t
-        lsp-ui-doc-delay 0.4
-        lsp-ui-doc-show t
-        lsp-ui-doc-show-with-cursor nil
-        lsp-ui-doc-use-childframe t
-        lsp-ui-peek-enable t
-        lsp-ui-peek-show-directory t))
+      (use-package lsp-mode
+        :ensure t
+        :commands lsp
+        :config
+        (setq lsp-prefer-flymake nil
+              lsp-idle-delay 0.0)
+        (setq lsp-headerline-breadcrumb-enable nil)
 
-;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
-(define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-(define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+        ;; Enable additional modes and integrations in hooks
+        (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+        (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
 
-(use-package company
-  :ensure t
-  :after (lsp-mode company-yasnippet)
-  :config
-  (add-hook 'lsp-mode-hook 'company-mode)
-  (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+      (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
+      (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
 
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'text-mode-hook 'yas-minor-mode))
-(yas-global-mode 1)  ; Enable yasnippet
-(use-package yasnippet-snippets
-:ensure t)
+
+      (use-package lsp-ui
+        :ensure t
+        :config
+        (setq lsp-ui-sideline-enable t
+              lsp-ui-doc-enable t
+              lsp-ui-doc-delay 0.4
+              lsp-ui-doc-show t
+              lsp-ui-doc-show-with-cursor nil
+              lsp-ui-doc-use-childframe t
+              lsp-ui-peek-enable t
+              lsp-ui-peek-show-directory t))
+
+      ;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
+      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+
+      (use-package company
+        :ensure t
+        :after (lsp-mode company-yasnippet)
+        :config
+        (add-hook 'lsp-mode-hook 'company-mode)
+        (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+
+  ;; (use-package company-box
+    ;; :ensure t
+    ;; :hook (company-mode . company-box-mode))
+
+  (use-package yasnippet
+        :ensure t
+        :config
+        (yas-reload-all)
+        (add-hook 'prog-mode-hook 'yas-minor-mode)
+        (add-hook 'text-mode-hook 'yas-minor-mode))
+      (yas-global-mode 1)  ; Enable yasnippet
+      (use-package yasnippet-snippets
+      :ensure t)
+
+;; (use-package eglot
+    ;; :ensure t
+    ;; :commands (eglot))
+
+  ;; (add-hook 'python-mode-hook 'eglot-ensure)   ;; Python
+  ;; (add-hook 'c-mode-hook 'eglot-ensure)        ;; C
+  ;; (add-hook 'c++-mode-hook 'eglot-ensure)      ;; C++
+
+  ;; (use-package company
+    ;; :ensure t
+    ;; :config
+    ;; (add-hook 'after-init-hook 'global-company-mode)) ;; TODO 
+
+  ;; (defvar eglot-prefix-map (make-sparse-keymap)
+    ;; "Keymap for Eglot commands.")
+
+  ;; Bind eglot commands to your desired prefix
+  ;; (define-key eglot-prefix-map (kbd "d") 'eglot-find-definition)      ;; C-l d for definition
+  ;; (define-key eglot-prefix-map (kbd "r") 'eglot-find-reference)       ;; C-l r for references
+  ;; (define-key eglot-prefix-map (kbd "t") 'eglot-find-type-definition) ;; C-l t for type definition
+
+  ;; Now bind the prefix key globally
+  ;; (global-set-key (kbd "C-l") eglot-prefix-map)
+
+;; Disable corfu in python-mode
+  ;; (add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
 
 (use-package sh-script
   :hook
@@ -628,6 +713,22 @@
 
 (use-package wks-mode
   :load-path ("~/.emacs.d/manual/"))
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
+;;  (use-package envrc
+;;    :ensure t
+;;    :config (envrc-global-mode 1))
+
+;; sudo nala install pipx
+;; pipx install 'python-lsp-server[all]'
+
+;; pipx install ruff
+;; pipx install pylsp
+;; pipx install pyls
 
 (use-package ansi-color
   :ensure t
@@ -641,157 +742,159 @@
 (setq term-shell "/usr/bin/fish")
 (setq shell-file-name "/usr/bin/fish")
 
-;; migerate all org roam notes to denote
-  ;; (load-file "~/.emacs.d/manual/nm-org-roam-to-denote.el")
-
-  (use-package denote
-    :ensure t)
-  ;; Remember to check the doc strings of those variables.
-  (setq denote-directory (expand-file-name "~/denote/"))
-  (setq denote-save-buffers nil)
-  (setq denote-known-keywords '("emacs" "philosophy" "politics" "economics"))
-  (setq denote-infer-keywords nil)
-  (setq denote-sort-keywords nil)
-  (setq denote-file-type nil) ; Org is the default, set others here
-  (setq denote-prompts '(title keywords))
-  (setq denote-excluded-directories-regexp nil)
-  (setq denote-excluded-keywords-regexp nil)
-  (setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
-  (setq denote-save-buffer t)
-  ;; Pick dates, where relevant, with Org's advanced interface:
-  (setq denote-date-prompt-use-org-read-date t)
-
-
-  ;; Like the default, but upcase the entries
-  ;; do not format this
+;; do not format this
   (setq denote-org-front-matter
-        "#+TITLE:      %s
-   #+DATE:       %s
-   #+FILETAGS:   %s
-   #+IDENTIFIER: %s
-   \n")
-  ;; Read this manual for how to specify `denote-templates'.  We do not
-  ;; include an example here to avoid potential confusion.
+"#+TITLE:      %s
+#+DATE:       %s
+#+FILETAGS:   %s
+#+IDENTIFIER: %s
+\n")
 
-  (setq denote-date-format nil) ; read doc string
+;; migerate all org roam notes to denote
+;; (load-file "~/.emacs.d/manual/nm-org-roam-to-denote.el")
 
-  ;; By default, we do not show the context of links.  We just display
-  ;; file names.  This provides a more informative view.
-  (setq denote-backlinks-show-context t)
+(use-package denote
+  :ensure t)
+;; Remember to check the doc strings of those variables.
+(setq denote-directory (expand-file-name "~/denote/"))
+(setq denote-known-keywords '("emacs" "philosophy" "politics" "economics"))
+(setq denote-infer-keywords t)
+(setq denote-sort-keywords t)
+(setq denote-file-type nil) ; Org is the default, set others here
+(setq denote-prompts '(title keywords))
+(setq denote-excluded-directories-regexp nil)
+(setq denote-excluded-keywords-regexp nil)
+(setq denote-rename-confirmations '(rewrite-front-matter modify-file-name))
+(setq denote-save-buffer t)
+;; Pick dates, where relevant, with Org's advanced interface:
+(setq denote-date-prompt-use-org-read-date t)
 
-  ;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
-  ;; advanced.
+;; Read this manual for how to specify `denote-templates'.  We do not
+;; include an example here to avoid potential confusion.
 
-  ;; If you use Markdown or plain text files (Org renders links as buttons
-  ;; right away)
-  (add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
+(setq denote-date-format nil) ; read doc string
 
-  ;; We use different ways to specify a path for demo purposes.
-  ;; (setq denote-dired-directories
-  ;;       (list denote-directory
-  ;;             (thread-last denote-directory (expand-file-name "attachments"))
-  ;;             (expand-file-name "~/Documents/books")))
+;; By default, we do not show the context of links.  We just display
+;; file names.  This provides a more informative view.
+(setq denote-backlinks-show-context t)
 
-  ;; Generic (great if you rename files Denote-style in lots of places):
-  ;; (add-hook 'dired-mode-hook #'denote-dired-mode)
-  ;;
-  ;; OR if only want it in `denote-dired-directories':
-  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
+;; Also see `denote-link-backlinks-display-buffer-action' which is a bit
+;; advanced.
 
+;; If you use Markdown or plain text files (Org renders links as buttons
+;; right away)
+(add-hook 'text-mode-hook #'denote-fontify-links-mode-maybe)
 
-  ;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
-  (denote-rename-buffer-mode 1)
+;; We use different ways to specify a path for demo purposes.
+;; (setq denote-dired-directories
+;;       (list denote-directory
+;;             (thread-last denote-directory (expand-file-name "attachments"))
+;;             (expand-file-name "~/Documents/books")))
 
-  ;; Denote DOES NOT define any key bindings.  This is for the user to
-  ;; decide.  For example:
-  (let ((map global-map))
-    (define-key map (kbd "C-c d n") #'denote)
-    (define-key map (kbd "C-c d c") #'denote-region) ; "contents" mnemonic
-    (define-key map (kbd "C-c d N") #'denote-type)
-    (define-key map (kbd "C-c d d") #'denote-date)
-    (define-key map (kbd "C-c d z") #'denote-signature) ; "zettelkasten" mnemonic
-    (define-key map (kbd "C-c d s") #'denote-subdirectory)
-    (define-key map (kbd "C-c d t") #'denote-template)
-    ;; If you intend to use Denote with a variety of file types, it is
-    ;; easier to bind the link-related commands to the `global-map', as
-    ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
-    ;; `markdown-mode-map', and/or `text-mode-map'.
-    (define-key map (kbd "C-c d i") 'denote-link-or-create) ; "insert" mnemonic
-    (define-key map (kbd "C-c d I") #'denote-add-links)
-    (define-key map (kbd "C-c d b") #'denote-backlinks)
-    (define-key map (kbd "C-c d f f") #'denote-find-link)
-    (define-key map (kbd "C-c d f b") #'denote-find-backlink)
-    ;; Note that `denote-rename-file' can work from any context, not just
-    ;; Dired bufffers.  That is why we bind it here to the `global-map'.
-    (define-key map (kbd "C-c d r") #'denote-rename-file)
-    (define-key map (kbd "C-c d R") #'denote-rename-file-using-front-matter))
-
-  ;; Key bindings specifically for Dired.
-  (let ((map dired-mode-map))
-    (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
-    (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
-    (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
-    (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
-
-  (with-eval-after-load 'org-capture
-    (setq denote-org-capture-specifiers "%l\n%i\n%?")
-    (add-to-list 'org-capture-templates
-                 '("n" "New note (with denote.el)" plain
-                   (file denote-last-path)
-                   #'denote-org-capture
-                   :no-save t
-                   :immediate-finish nil
-                   :kill-buffer t
-                   :jump-to-captured t)))
-
-  ;; Also check the commands `denote-link-after-creating',
-  ;; `denote-link-or-create'.  You may want to bind them to keys as well.
+;; Generic (great if you rename files Denote-style in lots of places):
+;; (add-hook 'dired-mode-hook #'denote-dired-mode)
+;;
+;; OR if only want it in `denote-dired-directories':
+(add-hook 'dired-mode-hook #'denote-dired-mode-in-directories)
 
 
-  ;; If you want to have Denote commands available via a right click
-  ;; context menu, use the following and then enable
-  ;; `context-menu-mode'.
-  (add-hook 'context-menu-functions #'denote-context-menu)
+;; Automatically rename Denote buffers using the `denote-rename-buffer-format'.
+(denote-rename-buffer-mode 1)
 
-  (use-package denote-menu
-    :ensure t)
+;; Denote DOES NOT define any key bindings.  This is for the user to
+;; decide.  For example:
+(let ((map global-map))
+  (define-key map (kbd "C-c d n") #'denote)
+  (define-key map (kbd "C-c d c") #'denote-region) ; "contents" mnemonic
+  (define-key map (kbd "C-c d N") #'denote-type)
+  (define-key map (kbd "C-c d d") #'denote-date)
+  (define-key map (kbd "C-c d z") #'denote-signature) ; "zettelkasten" mnemonic
+  (define-key map (kbd "C-c d s") #'denote-subdirectory)
+  (define-key map (kbd "C-c d t") #'denote-template)
+  ;; If you intend to use Denote with a variety of file types, it is
+  ;; easier to bind the link-related commands to the `global-map', as
+  ;; shown here.  Otherwise follow the same pattern for `org-mode-map',
+  ;; `markdown-mode-map', and/or `text-mode-map'.
+  (define-key map (kbd "C-c d i") 'denote-link-or-create) ; "insert" mnemonic
+  (define-key map (kbd "C-c d I") #'denote-add-links)
+  (define-key map (kbd "C-c d b") #'denote-backlinks)
+  (define-key map (kbd "C-c d f f") #'denote-find-link)
+  (define-key map (kbd "C-c d f b") #'denote-find-backlink)
+  ;; Note that `denote-rename-file' can work from any context, not just
+  ;; Dired bufffers.  That is why we bind it here to the `global-map'.
+  (define-key map (kbd "C-c d r") #'denote-rename-file)
+  (define-key map (kbd "C-c d R") #'denote-rename-file-using-front-matter))
 
-  (global-set-key (kbd "C-c z") #'list-denotes)
+;; Key bindings specifically for Dired.
+(let ((map dired-mode-map))
+  (define-key map (kbd "C-c C-d C-i") #'denote-link-dired-marked-notes)
+  (define-key map (kbd "C-c C-d C-r") #'denote-dired-rename-files)
+  (define-key map (kbd "C-c C-d C-k") #'denote-dired-rename-marked-files-with-keywords)
+  (define-key map (kbd "C-c C-d C-R") #'denote-dired-rename-marked-files-using-front-matter))
 
-  (define-key denote-menu-mode-map (kbd "C") #'denote-menu-clear-filters)
-  (define-key denote-menu-mode-map (kbd "/ r") #'denote-menu-filter)
-  (define-key denote-menu-mode-map (kbd "K") #'denote-menu-filter-by-keyword)
-  (define-key denote-menu-mode-map (kbd "/ o") #'denote-menu-filter-out-keyword)
-  (define-key denote-menu-mode-map (kbd "E") #'denote-menu-export-to-dired)
+(with-eval-after-load 'org-capture
+  (setq denote-org-capture-specifiers "%l\n%i\n%?")
+  (add-to-list 'org-capture-templates
+               '("n" "New note (with denote.el)" plain
+                 (file denote-last-path)
+                 #'denote-org-capture
+                 :no-save t
+                 :immediate-finish nil
+                 :kill-buffer t
+                 :jump-to-captured t)))
 
-  ;; list all the keywords = #+FILETAGS
-  (defun my-denote-list-all-keywords ()
-    "List all unique keywords used in Denote files and show them in message buffer."
-    (interactive)
-    (let* ((files (directory-files (denote-directory) t "\\..*$"))
-           (all-keywords '()))
-      (dolist (file files)
-        (when-let ((keywords (denote-retrieve-filename-keywords file)))
-  	(setq all-keywords 
-                (append all-keywords 
-                        ;; Split by -- to get each keyword group
-                        (mapcar (lambda (kw)
-  				;; Split each keyword group by underscore
-  				(split-string 
-  				 (replace-regexp-in-string "_" " " kw) 
-  				 " " t))
-                                (split-string keywords "--" t))))))
-      (message "All keywords: %s" 
-               (string-join 
-                (delete-dups 
-                 (sort 
-  		(cl-remove-duplicates 
-                   (flatten-list all-keywords)
-                   :test #'string-equal)
-  		#'string-lessp))
-                ", "))))
+;; Also check the commands `denote-link-after-creating',
+;; `denote-link-or-create'.  You may want to bind them to keys as well.
 
-(define-key denote-menu-mode-map (kbd "L") #'my-denote-list-all-keywords)
+
+;; If you want to have Denote commands available via a right click
+;; context menu, use the following and then enable
+;; `context-menu-mode'.
+(add-hook 'context-menu-functions #'denote-context-menu)
+
+(use-package denote-menu
+  :ensure t)
+(setq denote-menu-title-column-width 60) ;; <-- default is 85
+(setq denote-menu-date-column-width 17)         ; Set to 17
+(setq denote-menu-signature-column-width 10)    ; Set to 10
+(setq denote-menu-keywords-column-width 30)      ; Set to 30
+
+(global-set-key (kbd "C-c z") #'list-denotes)
+
+(define-key denote-menu-mode-map (kbd "c") #'denote-menu-clear-filters)
+(define-key denote-menu-mode-map (kbd "f") #'denote-menu-filter)
+(define-key denote-menu-mode-map (kbd "k") #'denote-menu-filter-by-keyword)
+(define-key denote-menu-mode-map (kbd "o") #'denote-menu-filter-out-keyword)
+(define-key denote-menu-mode-map (kbd "e") #'denote-menu-export-to-dired)
+
+;; list all the keywords = #+FILETAGS
+(defun my-denote-list-all-keywords ()
+  "List all unique keywords used in Denote files and show them in message buffer."
+  (interactive)
+  (let* ((files (directory-files (denote-directory) t "\\..*$"))
+         (all-keywords '()))
+    (dolist (file files)
+      (when-let ((keywords (denote-retrieve-filename-keywords file)))
+      	(setq all-keywords 
+              (append all-keywords 
+                      ;; Split by -- to get each keyword group
+                      (mapcar (lambda (kw)
+      				;; Split each keyword group by underscore
+      				(split-string 
+      				 (replace-regexp-in-string "_" " " kw) 
+      				 " " t))
+                              (split-string keywords "--" t))))))
+    (message "All keywords: %s" 
+             (string-join 
+              (delete-dups 
+               (sort 
+      		(cl-remove-duplicates 
+                 (flatten-list all-keywords)
+                 :test #'string-equal)
+      		#'string-lessp))
+              ", "))))
+
+(define-key denote-menu-mode-map (kbd "l") #'my-denote-list-all-keywords)
 (define-key global-map (kbd "C-c d l") #'my-denote-list-all-keywords)
 
 (use-package deft
@@ -854,6 +957,13 @@
 		(lambda ()
 		  (interactive)
 		  (find-file (car org-agenda-files))))
+
+;; (use-package mixed-pitch
+;;   :ensure t
+;;   :hook
+;;   ;; If you want it in all text modes:
+;;   (text-mode . mixed-pitch-mode)
+;;   (org-mode . mixed-pitch-mode))
 
 (use-package org-download
 :ensure t
@@ -1101,57 +1211,90 @@
 ;;     (setq consult-buffer-sources '()))  ;; Initialize if not defined
 ;;   (add-to-list 'consult-buffer-sources consult--source-perspective))
 
-(use-package tab-bar
-  :ensure t
-  :init
-  (setq tab-bar-height 30
-        ;; tab-bar-new-tab-choice "*dashboard*"
-        tab-bar-show 1
-        ;; tab-bar-close-button-show nil
-        tab-bar-select-tab-modifiers '(meta) ;; set to alt + 1-9
-        tab-bar-tab-hints t)
-  :config
-  (tab-bar-mode 1)  ; Activate tab bar mode
-  (run-at-time "1 sec" nil
-               (lambda ()
-		 (set-face-attribute 'tab-bar nil :font "Monospace-12")))) ;; set font size for tab-bar-mode
+;; (use-package tab-bar
+;;   :ensure t
+;;   :init
+;;   (setq tab-bar-height 30
+;;         ;; tab-bar-new-tab-choice "*dashboard*"
+;;         tab-bar-show 1
+;;         ;; tab-bar-close-button-show nil
+;;         tab-bar-select-tab-modifiers '(meta) ;; set to alt + 1-9
+;;         tab-bar-tab-hints t)
+;;   :config
+;;   (tab-bar-mode 1)  ; Activate tab bar mode
+;;   (run-at-time "1 sec" nil
+;;                (lambda ()
+;; 		 (set-face-attribute 'tab-bar nil :font "Monospace-12")))) ;; set font size for tab-bar-mode
 
-(use-package tabspaces
-  :ensure t
-  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
-  :commands (tabspaces-switch-or-create-workspace
-             tabspaces-open-or-create-project-and-workspace)
-  :custom
-  (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "Default")
-  (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*"))
-  (tabspaces-initialize-project-with-todo t)
-  (tabspaces-todo-file-name "project-todo.org")
-  ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t)
-  (tab-bar-new-tab-choice "*scratch*"))
+;; (use-package tabspaces
+;;   :ensure t
+;;   :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup. 
+;;   :commands (tabspaces-switch-or-create-workspace
+;;              tabspaces-open-or-create-project-and-workspace)
+;;   :custom
+;;   (tabspaces-use-filtered-buffers-as-default t)
+;;   (tabspaces-default-tab "Default")
+;;   (tabspaces-remove-to-default t)
+;;   (tabspaces-include-buffers '("*scratch*"))
+;;   (tabspaces-initialize-project-with-todo t)
+;;   (tabspaces-todo-file-name "project-todo.org")
+;;   ;; sessions
+;;   (tabspaces-session t)
+;;   (tabspaces-session-auto-restore t)
+;;   (tab-bar-new-tab-choice "*scratch*"))
 
-;; Filter Buffers for Consult-Buffer
-(with-eval-after-load 'consult
-  ;; hide full buffer list (still available with "b" prefix)
-  (consult-customize consult--source-buffer :hidden t :default nil)
-  ;; set consult-workspace buffer list
-  (defvar consult--source-workspace
-    (list :name     "Workspace Buffers"
-          :narrow   ?w
-          :history  'buffer-name-history
-          :category 'buffer
-          :state    #'consult--buffer-state
-          :default  t
-          :items    (lambda () (consult--buffer-query
-				:predicate #'tabspaces--local-buffer-p
-				:sort 'visibility
-				:as #'buffer-name)))
+;; ;; Filter Buffers for Consult-Buffer
+;; (with-eval-after-load 'consult
+;;   ;; hide full buffer list (still available with "b" prefix)
+;;   (consult-customize consult--source-buffer :hidden t :default nil)
+;;   ;; set consult-workspace buffer list
+;;   (defvar consult--source-workspace
+;;     (list :name     "Workspace Buffers"
+;;           :narrow   ?w
+;;           :history  'buffer-name-history
+;;           :category 'buffer
+;;           :state    #'consult--buffer-state
+;;           :default  t
+;;           :items    (lambda () (consult--buffer-query
+;; 				:predicate #'tabspaces--local-buffer-p
+;; 				:sort 'visibility
+;; 				:as #'buffer-name)))
 
-    "Set workspace buffer list for consult-buffer.")
-  (add-to-list 'consult-buffer-sources 'consult--source-workspace))
+;;     "Set workspace buffer list for consult-buffer.")
+;;   (add-to-list 'consult-buffer-sources 'consult--source-workspace))
+
+(use-package beframe
+    :ensure t)
+
+  (setq beframe-global-buffers '("*scratch*" "*Messages*" "*Backtrace*"))
+  (beframe-mode 1)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (defvar consult-buffer-sources)
+;; (declare-function consult--buffer-state "consult")
+
+;; (with-eval-after-load 'consult
+;;   (defface beframe-buffer
+;;     '((t :inherit font-lock-string-face))
+;;     "Face for `consult' framed buffers.")
+
+;;   (defun my-beframe-buffer-names-sorted (&optional frame)
+;;     "Return the list of buffers from `beframe-buffer-names' sorted by visibility.
+;; With optional argument FRAME, return the list of buffers of FRAME."
+;;     (beframe-buffer-names frame :sort #'beframe-buffer-sort-visibility))
+
+;;   (defvar beframe-consult-source
+;;     `( :name     "Frame-specific buffers (current frame)"
+;;        :narrow   ?F
+;;        :category buffer
+;;        :face     beframe-buffer
+;;        :history  beframe-history
+;;        :items    ,#'my-beframe-buffer-names-sorted
+;;        :action   ,#'switch-to-buffer
+;;        :state    ,#'consult--buffer-state))
+
+;;   (add-to-list 'consult-buffer-sources 'beframe-consult-source))
 
 ;; (use-package keycast
   ;;   :ensure t)

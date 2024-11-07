@@ -2,7 +2,8 @@
 (setq package-enable-at-startup nil)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			("nongnu" . "https://elpa.nongnu.org/nongnu/")
+			 ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+			 ("elpa-devel" . "https://elpa.gnu.org/devel/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 ;; elpa devel https://elpa.gnu.org/devel/
 (package-initialize)
@@ -19,3 +20,4 @@
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
+
