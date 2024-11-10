@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/manual/")
+
 (use-package doom-themes
     :if window-system
     :ensure t
@@ -191,64 +193,88 @@
 (local-set-key (kbd "C-c w") #'my-line-save)
 
 ;; (use-package dired
-;;   :ensure nil
-;;   :config
-;;   ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
-;;   (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
+  ;;   :ensure nil
+  ;;   :config
+  ;;   ;; (setq insert-directory-program "exa")  ;; or "exa" if you prefer that
+  ;;   (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
 
 
-(use-package all-the-icons
-  :ensure t)
-;; Directory operations
-(use-package dired
-  :ensure nil
-  :bind (:map dired-mode-map
-              ("C-c C-p" . wdired-change-to-wdired-mode))
+  (use-package all-the-icons
+    :ensure t)
+  ;; Directory operations
+  (use-package dired
+    :ensure nil
+    :bind (:map dired-mode-map
+                ("C-c C-p" . wdired-change-to-wdired-mode))
+    :config
+    ;; Guess a default target directory
+    (setq dired-dwim-target t)
+
+    ;; Always delete and copy recursively
+    (setq dired-recursive-deletes 'always
+          dired-recursive-copies 'always)
+
+    ;; Show directory first
+    (setq dired-listing-switches "-alh --group-directories-first"))
+
+    ;; Quick sort dired buffers via hydra
+    (use-package dired-quick-sort
+      :ensure t
+      :bind (:map dired-mode-map
+    		("S" . hydra-dired-quick-sort/body)))
+
+    ;; Show git info in dired
+    (use-package dired-git-info
+      :ensure t
+      :bind (:map dired-mode-map
+    		(")" . dired-git-info-mode)))
+
+    ;; Allow rsync from dired buffers
+    (use-package dired-rsync
+      :ensure t
+      :bind (:map dired-mode-map
+    		("C-c C-r" . dired-rsync)))
+
+    ;; Colorful dired
+    (use-package diredfl
+      :ensure t
+      :hook (dired-mode . diredfl-mode))
+
+    (use-package nerd-icons-dired
+      :ensure t
+      :diminish
+      :if (featurep 'all-the-icons)
+      :custom-face
+      (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
+      :hook (dired-mode . nerd-icons-dired-mode))
+
+
+(use-package dired-aux
+  :demand t)
+
+(use-package dired-x
+  :demand t
   :config
-  ;; Guess a default target directory
-  (setq dired-dwim-target t)
+  (let ((cmd (cond ((eq system-type 'darwin) "open")   ;; macOS
+                   ((eq system-type 'gnu/linux) "xdg-open")   ;; Linux
+                   ((eq system-type 'windows-nt) "start")   ;; Windows
+                   (t ""))))  ;; Default to empty for unknown OS
+    (setq dired-guess-shell-alist-user
+          `(("\\.pdf\\'" ,cmd)
+            ("\\.docx\\'" ,cmd)
+            ("\\.\\(?:djvu\\|eps\\)\\'" ,cmd)
+            ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" ,cmd)
+            ("\\.\\(?:xcf\\)\\'" ,cmd)
+            ("\\.csv\\'" ,cmd)
+            ("\\.tex\\'" ,cmd)
+            ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
+            ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
+            ("\\.html?\\'" ,cmd)
+            ("\\.md\\'" ,cmd)))))
 
-  ;; Always delete and copy recursively
-  (setq dired-recursive-deletes 'always
-        dired-recursive-copies 'always)
-
-  ;; Show directory first
-  (setq dired-listing-switches "-alh --group-directories-first"))
-
-  ;; Quick sort dired buffers via hydra
-  (use-package dired-quick-sort
-    :ensure t
-    :bind (:map dired-mode-map
-  		("S" . hydra-dired-quick-sort/body)))
-
-  ;; Show git info in dired
-  (use-package dired-git-info
-    :ensure t
-    :bind (:map dired-mode-map
-  		(")" . dired-git-info-mode)))
-
-  ;; Allow rsync from dired buffers
-  (use-package dired-rsync
-    :ensure t
-    :bind (:map dired-mode-map
-  		("C-c C-r" . dired-rsync)))
-
-  ;; Colorful dired
-  (use-package diredfl
-    :ensure t
-    :hook (dired-mode . diredfl-mode))
-
-  (use-package nerd-icons-dired
-    :ensure t
-    :diminish
-    :if (featurep 'all-the-icons)
-    :custom-face
-    (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
-    :hook (dired-mode . nerd-icons-dired-mode))
-
-  ;; `find-dired' alternative using `fd'
-  (when (executable-find "fd")
-    (use-package fd-dired))
+    ;; `find-dired' alternative using `fd'
+    (when (executable-find "fd")
+      (use-package fd-dired))
 
 ;; Enable vertico
  (use-package compat
@@ -520,79 +546,81 @@
 (global-set-key (kbd "C-c v")         'set-rectangular-region-anchor)
 
 ;; Bind `previous-buffer` globally
-;; Bind `next-buffer` globally
-(global-set-key [mouse-9] #'next-buffer)
-(global-set-key [mouse-8] #'previous-buffer)
-(global-set-key (kbd "M-.") 'next-buffer)
-(global-set-key (kbd "M-,") 'previous-buffer)
+    ;; Bind `next-buffer` globally
+    (global-set-key [mouse-9] #'next-buffer)
+    (global-set-key [mouse-8] #'previous-buffer)
+  ;; (global-set-key (kbd "M-.") 'next-buffer)
+  ;; (global-set-key (kbd "M-,") 'previous-buffer)-
 
+(global-set-key (kbd "M-1") 'previous-buffer)
+(global-set-key (kbd "M-2") 'next-buffer)
 
-;; remap redo from C-M-_ to  C-x U 
-(global-set-key (kbd "C-x U") 'undo-redo)
+    ;; remap redo from C-M-_ to  C-x U 
+    (global-set-key (kbd "C-x U") 'undo-redo)
 
-;; Visiting the configuration
-(defun config-visit ()
-  (interactive)
-  (find-file "~/.emacs.d/config.org"))
-(global-set-key (kbd "C-c e") 'config-visit)
+    ;; Visiting the configuration
+    (defun config-visit ()
+      (interactive)
+      (find-file "~/.emacs.d/config.org"))
+    (global-set-key (kbd "C-c e") 'config-visit)
 
-;; Toggle maximize buffer
-(defun toggle-maximize-buffer () "Maximize buffer"
-       (interactive)
-       (if (= 1 (length (window-list)))
-  	   (jump-to-register '_)
-  	 (progn
-  	   (set-register '_ (list (current-window-configuration)))
-  	   (delete-other-windows))))
-(global-set-key [(super shift return)] 'toggle-maximize-buffer) 
+    ;; Toggle maximize buffer
+    (defun toggle-maximize-buffer () "Maximize buffer"
+           (interactive)
+           (if (= 1 (length (window-list)))
+      	   (jump-to-register '_)
+      	 (progn
+      	   (set-register '_ (list (current-window-configuration)))
+      	   (delete-other-windows))))
+    (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
 
-;;Always murder current buffer
-(defun kill-curr-buffer ()
-  (interactive)
-  (kill-buffer (current-buffer)))
-(global-set-key (kbd "C-x k") 'kill-curr-buffer)
+    ;;Always murder current buffer
+    (defun kill-curr-buffer ()
+      (interactive)
+      (kill-buffer (current-buffer)))
+    (global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
-;;  Kill whole word
-(defun kill-whole-word ()
-  (interactive)
-  (backward-word)
-  (kill-word 1))
-(global-set-key (kbd "C-c w w") 'kill-whole-word)
+    ;;  Kill whole word
+    (defun kill-whole-word ()
+      (interactive)
+      (backward-word)
+      (kill-word 1))
+    (global-set-key (kbd "C-c w w") 'kill-whole-word)
 
-;;  Copy whole line
-(defun copy-whole-line ()
-  (interactive)
-  (save-excursion
-    (kill-new
-     (buffer-substring
-      (point-at-bol)
-      (point-at-eol)))))
-(global-set-key (kbd "C-c w l") 'copy-whole-line)
-;;Kill all buffers
-(defun kill-all-buffers ()
-  (interactive)
-  (mapc 'kill-buffer (buffer-list)))
-(global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
+    ;;  Copy whole line
+    (defun copy-whole-line ()
+      (interactive)
+      (save-excursion
+        (kill-new
+         (buffer-substring
+          (point-at-bol)
+          (point-at-eol)))))
+    (global-set-key (kbd "C-c w l") 'copy-whole-line)
+    ;;Kill all buffers
+    (defun kill-all-buffers ()
+      (interactive)
+      (mapc 'kill-buffer (buffer-list)))
+    (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
 
-;; comment and un comment
-;; Comment and uncomment region with C-c c and C-c u
-(global-set-key (kbd "C-c c") 'comment-region)
-(global-set-key (kbd "C-c u") 'uncomment-region)
+    ;; comment and un comment
+    ;; Comment and uncomment region with C-c c and C-c u
+    (global-set-key (kbd "C-c c") 'comment-region)
+    (global-set-key (kbd "C-c u") 'uncomment-region)
 
-;; Optional: Use C-; to comment/uncomment
-(global-set-key (kbd "C-;") 'comment-line)
-;; fixed backward word del
+    ;; Optional: Use C-; to comment/uncomment
+    (global-set-key (kbd "C-;") 'comment-line)
+    ;; fixed backward word del
 
-(defun my/backward-kill-spaces-or-char-or-word ()
-  (interactive)
-  (cond
-   ((looking-back (rx (char word)) 1)
-    (backward-kill-word 1))
-   ((looking-back (rx (char blank)) 1)
-    (delete-horizontal-space t))
-   (t
-    (backward-delete-char 1))))
-(global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
+    (defun my/backward-kill-spaces-or-char-or-word ()
+      (interactive)
+      (cond
+       ((looking-back (rx (char word)) 1)
+        (backward-kill-word 1))
+       ((looking-back (rx (char blank)) 1)
+        (delete-horizontal-space t))
+       (t
+        (backward-delete-char 1))))
+    (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 (use-package magit
   :ensure t
@@ -617,93 +645,99 @@
   (diff-hl-dired-mode 'toggle))
 
 ;; Set up hooks for the various programming modes
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'python-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
-  ;; Disable corfu in python-mode
-(add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
-(add-hook 'c-mode-hook (lambda () (corfu-mode -1)))
-(add-hook 'c++-mode-hook (lambda () (corfu-mode -1)))
+;;  (add-hook 'c-mode-hook 'lsp-deferred)
+;;  (add-hook 'python-mode-hook 'lsp-deferred)
+;;  (add-hook 'c++-mode-hook 'lsp-deferred)
+;;    ;; Disable corfu 
+  (add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
+  (add-hook 'c-mode-hook (lambda () (corfu-mode -1)))
+  (add-hook 'c++-mode-hook (lambda () (corfu-mode -1)))
+;;
+;;        (use-package lsp-mode
+;;          :ensure t
+;;          :commands lsp
+;;          :config
+;;          (setq lsp-prefer-flymake nil
+;;                lsp-idle-delay 0.0)
+;;          (setq lsp-headerline-breadcrumb-enable nil)
+;;
+;;          ;; Enable additional modes and integrations in hooks
+;;          (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;          (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
+;;
+;;        (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
+;;        (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
+;;
+;;
+;;        ;; (use-package lsp-ui
+;;          ;; :ensure t
+;;          ;; :config
+;;          ;; (setq lsp-ui-sideline-enable t
+;;                ;; lsp-ui-doc-enable t
+;;                ;; lsp-ui-doc-delay 0.4
+;;                ;; lsp-ui-doc-show t
+;;                ;; lsp-ui-doc-show-with-cursor nil
+;;                ;; lsp-ui-doc-use-childframe t
+;;                ;; lsp-ui-peek-enable t
+;;                ;; lsp-ui-peek-show-directory t))
+;;
+;;        ;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
+;;        ;; (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+;;        ;; (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+;;
+;;        (use-package company
+;;          :ensure t
+;;          :after (lsp-mode company-yasnippet)
+;;          :config
+;;  	(add-hook 'after-init-hook 'global-company-mode)
+;;          (add-hook 'lsp-mode-hook 'company-mode)
+;;          (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+;;
+;;    ;; (use-package company-box
+;;      ;; :ensure t
+;;      ;; :hook (company-mode . company-box-mode))
+;;
+;;    (use-package yasnippet
+;;          :ensure t
+;;          :config
+;;          (yas-reload-all)
+;;          (add-hook 'prog-mode-hook 'yas-minor-mode)
+;;          (add-hook 'text-mode-hook 'yas-minor-mode))
+;;        (yas-global-mode 1)  ; Enable yasnippet
+;;        (use-package yasnippet-snippets
+;;        :ensure t)
 
+(use-package eglot
+    :ensure t
+    :commands (eglot))
 
-      (use-package lsp-mode
-        :ensure t
-        :commands lsp
-        :config
-        (setq lsp-prefer-flymake nil
-              lsp-idle-delay 0.0)
-        (setq lsp-headerline-breadcrumb-enable nil)
+;;  (add-hook 'python-mode-hook 'eglot-ensure)   ;; Python
+;;  (add-hook 'c-mode-hook 'eglot-ensure)        ;; C
+  (add-hook 'c++-mode-hook 'eglot-ensure)      ;; C++
 
-        ;; Enable additional modes and integrations in hooks
-        (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-        (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
+  (use-package company
+    :ensure t
+    :config
+    (add-hook 'eglot-managed-mode-hook 'company-mode)
+    (add-hook 'after-init-hook 'global-company-mode)) ;; TODO 
 
-      (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
-      (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
-
-
-      (use-package lsp-ui
-        :ensure t
-        :config
-        (setq lsp-ui-sideline-enable t
-              lsp-ui-doc-enable t
-              lsp-ui-doc-delay 0.4
-              lsp-ui-doc-show t
-              lsp-ui-doc-show-with-cursor nil
-              lsp-ui-doc-use-childframe t
-              lsp-ui-peek-enable t
-              lsp-ui-peek-show-directory t))
-
-      ;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
-      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-
-      (use-package company
-        :ensure t
-        :after (lsp-mode company-yasnippet)
-        :config
-        (add-hook 'lsp-mode-hook 'company-mode)
-        (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
-
-  ;; (use-package company-box
-    ;; :ensure t
-    ;; :hook (company-mode . company-box-mode))
-
-  (use-package yasnippet
-        :ensure t
-        :config
-        (yas-reload-all)
-        (add-hook 'prog-mode-hook 'yas-minor-mode)
-        (add-hook 'text-mode-hook 'yas-minor-mode))
-      (yas-global-mode 1)  ; Enable yasnippet
-      (use-package yasnippet-snippets
-      :ensure t)
-
-;; (use-package eglot
-    ;; :ensure t
-    ;; :commands (eglot))
-
-  ;; (add-hook 'python-mode-hook 'eglot-ensure)   ;; Python
-  ;; (add-hook 'c-mode-hook 'eglot-ensure)        ;; C
-  ;; (add-hook 'c++-mode-hook 'eglot-ensure)      ;; C++
-
-  ;; (use-package company
-    ;; :ensure t
-    ;; :config
-    ;; (add-hook 'after-init-hook 'global-company-mode)) ;; TODO 
-
-  ;; (defvar eglot-prefix-map (make-sparse-keymap)
-    ;; "Keymap for Eglot commands.")
+  (defvar eglot-prefix-map (make-sparse-keymap)
+    "Keymap for Eglot commands.")
 
   ;; Bind eglot commands to your desired prefix
-  ;; (define-key eglot-prefix-map (kbd "d") 'eglot-find-definition)      ;; C-l d for definition
-  ;; (define-key eglot-prefix-map (kbd "r") 'eglot-find-reference)       ;; C-l r for references
-  ;; (define-key eglot-prefix-map (kbd "t") 'eglot-find-type-definition) ;; C-l t for type definition
+  (define-key eglot-prefix-map (kbd "d") 'eglot-find-definition)      ;; C-l d for definition
+  (define-key eglot-prefix-map (kbd "r") 'eglot-find-reference)       ;; C-l r for references
+  (define-key eglot-prefix-map (kbd "t") 'eglot-find-type-definition) ;; C-l t for type definition
+  (define-key eglot-prefix-map (kbd "d") 'flymake-show-buffer-diagnostics) ;; C-l t for type definition
+
 
   ;; Now bind the prefix key globally
-  ;; (global-set-key (kbd "C-l") eglot-prefix-map)
+  (global-set-key (kbd "C-l") eglot-prefix-map)
 
-;; Disable corfu in python-mode
+  ;; (fringe-mode 4)
+
+
+  ;; Disable corfu in python-mode
   ;; (add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
 
 (use-package sh-script
@@ -715,20 +749,20 @@
   :load-path ("~/.emacs.d/manual/"))
 
 (use-package elpy
-  :ensure t
-  :init
-  (elpy-enable))
+   :ensure t
+   :init
+   (elpy-enable))
 
-;;  (use-package envrc
-;;    :ensure t
-;;    :config (envrc-global-mode 1))
+(use-package envrc
+    :ensure t
+    :config (envrc-global-mode 1))
 
-;; sudo nala install pipx
-;; pipx install 'python-lsp-server[all]'
+   ;; sudo nala install pipx
+   ;; pipx install 'python-lsp-server[all]'
 
-;; pipx install ruff
-;; pipx install pylsp
-;; pipx install pyls
+   ;; pipx install ruff
+   ;; pipx install pylsp
+   ;; pipx install pyls
 
 (use-package ansi-color
   :ensure t
@@ -1121,25 +1155,31 @@
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 (use-package jinx  
-    :ensure t
-    :hook (emacs-startup . global-jinx-mode)
-    ;; :hook ((LaTeX-mode . jinx-mode)  
-	     ;; (latex-mode . jinx-mode)  
-	     ;; (markdown-mode . jinx-mode)  
-	     ;; (org-mode . jinx-mode)
-	     ;; (text-mode . jinx-mode)
-	     ;; )  
-    ;; :bind ([remap ispell-word] . jinx-correct)  
-   )
-;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
-  ;; Jinx keybindings
-(global-set-key (kbd "C-c s s") 'jinx-correct)
-(global-set-key (kbd "C-c s n") 'jinx-next)
-(global-set-key (kbd "C-c s p") 'jinx-previous)
-(global-set-key (kbd "C-c s l") 'jinx-languages)
-(global-set-key (kbd "C-c s a") 'jinx-correct-all)
-(global-set-key (kbd "C-c s w") 'jinx-correct-word)
-(global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+      :ensure t
+      :hook (emacs-startup . global-jinx-mode)
+      ;; :hook ((LaTeX-mode . jinx-mode)  
+  	     ;; (latex-mode . jinx-mode)  
+  	     ;; (markdown-mode . jinx-mode)  
+  	     ;; (org-mode . jinx-mode)
+  	     ;; (text-mode . jinx-mode)
+  	     ;; )  
+      ;; :bind ([remap ispell-word] . jinx-correct)  
+     )
+  ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
+    ;; Jinx keybindings
+  (global-set-key (kbd "C-c s s") 'jinx-correct)
+  (global-set-key (kbd "C-c s n") 'jinx-next)
+  (global-set-key (kbd "C-c s p") 'jinx-previous)
+  (global-set-key (kbd "C-c s l") 'jinx-languages)
+  (global-set-key (kbd "C-c s a") 'jinx-correct-all)
+  (global-set-key (kbd "C-c s w") 'jinx-correct-word)
+  (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+
+(use-package company-spell
+  :config (push 'company-spell company-backends)
+  :ensure t)
+;;  sudo nala install hunspell-en-us hunspell
+(setf company-spell-command "hunspell")
 
 (use-package visual-fill-column
   :ensure t

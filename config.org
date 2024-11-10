@@ -7,8 +7,14 @@ https://github.com/Bugswriter/.emacs.d/blob/master/config.org
 https://github.com/Bugswriter/BugsWritersEmacs
 https://github.com/doomemacs/doomemacs
 https://gitlab.com/Clsmith1/dotfiles
+
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/manual/")
+#+end_src
+
 * Appearance
 ** Theme
+this is alagappan 
 to set =Theme= you can set via =M-x customize-themes= and 
 set and save so the theme will load properly in =emacsclient=
 #+BEGIN_SRC emacs-lisp
@@ -171,7 +177,6 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
   ;;   ("N" rectangle-number-lines))              ;; C-x r N
 
     ;; ;; (global-set-key (kbd "C-x SPC") 'hydra-rectangle/body)
-
 #+end_src
 
 *** word wrap
@@ -346,6 +351,30 @@ The place this is most useful is when you’re using Emacs’ excellent Dired pa
       :custom-face
       (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
       :hook (dired-mode . nerd-icons-dired-mode))
+
+
+(use-package dired-aux
+  :demand t)
+
+(use-package dired-x
+  :demand t
+  :config
+  (let ((cmd (cond ((eq system-type 'darwin) "open")   ;; macOS
+                   ((eq system-type 'gnu/linux) "xdg-open")   ;; Linux
+                   ((eq system-type 'windows-nt) "start")   ;; Windows
+                   (t ""))))  ;; Default to empty for unknown OS
+    (setq dired-guess-shell-alist-user
+          `(("\\.pdf\\'" ,cmd)
+            ("\\.docx\\'" ,cmd)
+            ("\\.\\(?:djvu\\|eps\\)\\'" ,cmd)
+            ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" ,cmd)
+            ("\\.\\(?:xcf\\)\\'" ,cmd)
+            ("\\.csv\\'" ,cmd)
+            ("\\.tex\\'" ,cmd)
+            ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
+            ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
+            ("\\.html?\\'" ,cmd)
+            ("\\.md\\'" ,cmd)))))
 
     ;; `find-dired' alternative using `fd'
     (when (executable-find "fd")
@@ -585,6 +614,7 @@ do not touch it will mess up vertigo *comp* ex C-x b
     (which-key-mode))
 #+END_SRC
 
+
 ** VTerm
 | Command                      | Description                                     |
 |------------------------------+-------------------------------------------------|
@@ -663,80 +693,82 @@ do not touch it will mess up vertigo *comp* ex C-x b
 #+END_SRC
 * key-map
 #+BEGIN_SRC emacs-lisp
-  ;; Bind `previous-buffer` globally
-  ;; Bind `next-buffer` globally
-  (global-set-key [mouse-9] #'next-buffer)
-  (global-set-key [mouse-8] #'previous-buffer)
-  (global-set-key (kbd "M-.") 'next-buffer)
-  (global-set-key (kbd "M-,") 'previous-buffer)
+      ;; Bind `previous-buffer` globally
+      ;; Bind `next-buffer` globally
+      (global-set-key [mouse-9] #'next-buffer)
+      (global-set-key [mouse-8] #'previous-buffer)
+    ;; (global-set-key (kbd "M-.") 'next-buffer)
+    ;; (global-set-key (kbd "M-,") 'previous-buffer)-
 
+  (global-set-key (kbd "M-1") 'previous-buffer)
+  (global-set-key (kbd "M-2") 'next-buffer)
 
-  ;; remap redo from C-M-_ to  C-x U 
-  (global-set-key (kbd "C-x U") 'undo-redo)
+      ;; remap redo from C-M-_ to  C-x U 
+      (global-set-key (kbd "C-x U") 'undo-redo)
 
-  ;; Visiting the configuration
-  (defun config-visit ()
-    (interactive)
-    (find-file "~/.emacs.d/config.org"))
-  (global-set-key (kbd "C-c e") 'config-visit)
+      ;; Visiting the configuration
+      (defun config-visit ()
+        (interactive)
+        (find-file "~/.emacs.d/config.org"))
+      (global-set-key (kbd "C-c e") 'config-visit)
 
-  ;; Toggle maximize buffer
-  (defun toggle-maximize-buffer () "Maximize buffer"
-         (interactive)
-         (if (= 1 (length (window-list)))
-    	   (jump-to-register '_)
-    	 (progn
-    	   (set-register '_ (list (current-window-configuration)))
-    	   (delete-other-windows))))
-  (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
+      ;; Toggle maximize buffer
+      (defun toggle-maximize-buffer () "Maximize buffer"
+             (interactive)
+             (if (= 1 (length (window-list)))
+        	   (jump-to-register '_)
+        	 (progn
+        	   (set-register '_ (list (current-window-configuration)))
+        	   (delete-other-windows))))
+      (global-set-key [(super shift return)] 'toggle-maximize-buffer) 
 
-  ;;Always murder current buffer
-  (defun kill-curr-buffer ()
-    (interactive)
-    (kill-buffer (current-buffer)))
-  (global-set-key (kbd "C-x k") 'kill-curr-buffer)
+      ;;Always murder current buffer
+      (defun kill-curr-buffer ()
+        (interactive)
+        (kill-buffer (current-buffer)))
+      (global-set-key (kbd "C-x k") 'kill-curr-buffer)
 
-  ;;  Kill whole word
-  (defun kill-whole-word ()
-    (interactive)
-    (backward-word)
-    (kill-word 1))
-  (global-set-key (kbd "C-c w w") 'kill-whole-word)
+      ;;  Kill whole word
+      (defun kill-whole-word ()
+        (interactive)
+        (backward-word)
+        (kill-word 1))
+      (global-set-key (kbd "C-c w w") 'kill-whole-word)
 
-  ;;  Copy whole line
-  (defun copy-whole-line ()
-    (interactive)
-    (save-excursion
-      (kill-new
-       (buffer-substring
-        (point-at-bol)
-        (point-at-eol)))))
-  (global-set-key (kbd "C-c w l") 'copy-whole-line)
-  ;;Kill all buffers
-  (defun kill-all-buffers ()
-    (interactive)
-    (mapc 'kill-buffer (buffer-list)))
-  (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
+      ;;  Copy whole line
+      (defun copy-whole-line ()
+        (interactive)
+        (save-excursion
+          (kill-new
+           (buffer-substring
+            (point-at-bol)
+            (point-at-eol)))))
+      (global-set-key (kbd "C-c w l") 'copy-whole-line)
+      ;;Kill all buffers
+      (defun kill-all-buffers ()
+        (interactive)
+        (mapc 'kill-buffer (buffer-list)))
+      (global-set-key (kbd "C-M-s-k") 'kill-all-buffers)
 
-  ;; comment and un comment
-  ;; Comment and uncomment region with C-c c and C-c u
-  (global-set-key (kbd "C-c c") 'comment-region)
-  (global-set-key (kbd "C-c u") 'uncomment-region)
+      ;; comment and un comment
+      ;; Comment and uncomment region with C-c c and C-c u
+      (global-set-key (kbd "C-c c") 'comment-region)
+      (global-set-key (kbd "C-c u") 'uncomment-region)
 
-  ;; Optional: Use C-; to comment/uncomment
-  (global-set-key (kbd "C-;") 'comment-line)
-  ;; fixed backward word del
+      ;; Optional: Use C-; to comment/uncomment
+      (global-set-key (kbd "C-;") 'comment-line)
+      ;; fixed backward word del
 
-  (defun my/backward-kill-spaces-or-char-or-word ()
-    (interactive)
-    (cond
-     ((looking-back (rx (char word)) 1)
-      (backward-kill-word 1))
-     ((looking-back (rx (char blank)) 1)
-      (delete-horizontal-space t))
-     (t
-      (backward-delete-char 1))))
-  (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
+      (defun my/backward-kill-spaces-or-char-or-word ()
+        (interactive)
+        (cond
+         ((looking-back (rx (char word)) 1)
+          (backward-kill-word 1))
+         ((looking-back (rx (char blank)) 1)
+          (delete-horizontal-space t))
+         (t
+          (backward-delete-char 1))))
+      (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 #+END_SRC
 
@@ -779,96 +811,102 @@ to add more lang support you just need to add to hook ex below
 =dont forget to install the lang locally and install emacs package for the lang=
 #+begin_src emacs-lisp
   ;; Set up hooks for the various programming modes
-  (add-hook 'c-mode-hook 'lsp)
-  (add-hook 'python-mode-hook 'lsp)
-  (add-hook 'c++-mode-hook 'lsp)
-    ;; Disable corfu in python-mode
+;;  (add-hook 'c-mode-hook 'lsp-deferred)
+;;  (add-hook 'python-mode-hook 'lsp-deferred)
+;;  (add-hook 'c++-mode-hook 'lsp-deferred)
+;;    ;; Disable corfu 
   (add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
   (add-hook 'c-mode-hook (lambda () (corfu-mode -1)))
   (add-hook 'c++-mode-hook (lambda () (corfu-mode -1)))
-
-
-        (use-package lsp-mode
-          :ensure t
-          :commands lsp
-          :config
-          (setq lsp-prefer-flymake nil
-                lsp-idle-delay 0.0)
-          (setq lsp-headerline-breadcrumb-enable nil)
-
-          ;; Enable additional modes and integrations in hooks
-          (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-          (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
-
-        (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
-        (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
-
-
-        (use-package lsp-ui
-          :ensure t
-          :config
-          (setq lsp-ui-sideline-enable t
-                lsp-ui-doc-enable t
-                lsp-ui-doc-delay 0.4
-                lsp-ui-doc-show t
-                lsp-ui-doc-show-with-cursor nil
-                lsp-ui-doc-use-childframe t
-                lsp-ui-peek-enable t
-                lsp-ui-peek-show-directory t))
-
-        ;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
-        (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-        (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-
-        (use-package company
-          :ensure t
-          :after (lsp-mode company-yasnippet)
-          :config
-          (add-hook 'lsp-mode-hook 'company-mode)
-          (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
-
-    ;; (use-package company-box
-      ;; :ensure t
-      ;; :hook (company-mode . company-box-mode))
-
-    (use-package yasnippet
-          :ensure t
-          :config
-          (yas-reload-all)
-          (add-hook 'prog-mode-hook 'yas-minor-mode)
-          (add-hook 'text-mode-hook 'yas-minor-mode))
-        (yas-global-mode 1)  ; Enable yasnippet
-        (use-package yasnippet-snippets
-        :ensure t)
+;;
+;;        (use-package lsp-mode
+;;          :ensure t
+;;          :commands lsp
+;;          :config
+;;          (setq lsp-prefer-flymake nil
+;;                lsp-idle-delay 0.0)
+;;          (setq lsp-headerline-breadcrumb-enable nil)
+;;
+;;          ;; Enable additional modes and integrations in hooks
+;;          (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;          (add-hook 'lsp-mode-hook 'lsp-enable-which-key-integration))
+;;
+;;        (global-unset-key (kbd "C-l"))  ; Unbind C-l in global map
+;;        (setq lsp-keymap-prefix "C-l")   ; Set custom keymap prefix
+;;
+;;
+;;        ;; (use-package lsp-ui
+;;          ;; :ensure t
+;;          ;; :config
+;;          ;; (setq lsp-ui-sideline-enable t
+;;                ;; lsp-ui-doc-enable t
+;;                ;; lsp-ui-doc-delay 0.4
+;;                ;; lsp-ui-doc-show t
+;;                ;; lsp-ui-doc-show-with-cursor nil
+;;                ;; lsp-ui-doc-use-childframe t
+;;                ;; lsp-ui-peek-enable t
+;;                ;; lsp-ui-peek-show-directory t))
+;;
+;;        ;; You may remap xref-find-{definitions,references} (bound to M-. M-? by default):
+;;        ;; (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+;;        ;; (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+;;
+;;        (use-package company
+;;          :ensure t
+;;          :after (lsp-mode company-yasnippet)
+;;          :config
+;;  	(add-hook 'after-init-hook 'global-company-mode)
+;;          (add-hook 'lsp-mode-hook 'company-mode)
+;;          (setq company-backends '((company-capf company-yasnippet))))  ; Add yasnippet to company backends
+;;
+;;    ;; (use-package company-box
+;;      ;; :ensure t
+;;      ;; :hook (company-mode . company-box-mode))
+;;
+;;    (use-package yasnippet
+;;          :ensure t
+;;          :config
+;;          (yas-reload-all)
+;;          (add-hook 'prog-mode-hook 'yas-minor-mode)
+;;          (add-hook 'text-mode-hook 'yas-minor-mode))
+;;        (yas-global-mode 1)  ; Enable yasnippet
+;;        (use-package yasnippet-snippets
+;;        :ensure t)
 #+end_src
 * eglot 
 #+begin_src emacs-lisp
-    ;; (use-package eglot
-      ;; :ensure t
-      ;; :commands (eglot))
+  (use-package eglot
+    :ensure t
+    :commands (eglot))
 
-    ;; (add-hook 'python-mode-hook 'eglot-ensure)   ;; Python
-    ;; (add-hook 'c-mode-hook 'eglot-ensure)        ;; C
-    ;; (add-hook 'c++-mode-hook 'eglot-ensure)      ;; C++
+;;  (add-hook 'python-mode-hook 'eglot-ensure)   ;; Python
+;;  (add-hook 'c-mode-hook 'eglot-ensure)        ;; C
+  (add-hook 'c++-mode-hook 'eglot-ensure)      ;; C++
 
-    ;; (use-package company
-      ;; :ensure t
-      ;; :config
-      ;; (add-hook 'after-init-hook 'global-company-mode)) ;; TODO 
+  (use-package company
+    :ensure t
+    :config
+    (add-hook 'eglot-managed-mode-hook 'company-mode)
+    (add-hook 'after-init-hook 'global-company-mode)) ;; TODO 
 
-    ;; (defvar eglot-prefix-map (make-sparse-keymap)
-      ;; "Keymap for Eglot commands.")
+  (defvar eglot-prefix-map (make-sparse-keymap)
+    "Keymap for Eglot commands.")
 
-    ;; Bind eglot commands to your desired prefix
-    ;; (define-key eglot-prefix-map (kbd "d") 'eglot-find-definition)      ;; C-l d for definition
-    ;; (define-key eglot-prefix-map (kbd "r") 'eglot-find-reference)       ;; C-l r for references
-    ;; (define-key eglot-prefix-map (kbd "t") 'eglot-find-type-definition) ;; C-l t for type definition
+  ;; Bind eglot commands to your desired prefix
+  (define-key eglot-prefix-map (kbd "d") 'eglot-find-definition)      ;; C-l d for definition
+  (define-key eglot-prefix-map (kbd "r") 'eglot-find-reference)       ;; C-l r for references
+  (define-key eglot-prefix-map (kbd "t") 'eglot-find-type-definition) ;; C-l t for type definition
+  (define-key eglot-prefix-map (kbd "d") 'flymake-show-buffer-diagnostics) ;; C-l t for type definition
 
-    ;; Now bind the prefix key globally
-    ;; (global-set-key (kbd "C-l") eglot-prefix-map)
+
+  ;; Now bind the prefix key globally
+  (global-set-key (kbd "C-l") eglot-prefix-map)
+
+  ;; (fringe-mode 4)
+
 
   ;; Disable corfu in python-mode
-    ;; (add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
+  ;; (add-hook 'python-mode-hook (lambda () (corfu-mode -1)))
 #+end_src
 ** lsp for shell scripting 
 #+begin_src emacs-lisp
@@ -891,21 +929,21 @@ to add more lang support you just need to add to hook ex below
 **** app to install
 =$ sudo nala install direnv=
 #+begin_src emacs-lisp
-  (use-package elpy
+ (use-package elpy
+   :ensure t
+   :init
+   (elpy-enable))
+
+(use-package envrc
     :ensure t
-    :init
-    (elpy-enable))
+    :config (envrc-global-mode 1))
 
-  ;;  (use-package envrc
-  ;;    :ensure t
-  ;;    :config (envrc-global-mode 1))
+   ;; sudo nala install pipx
+   ;; pipx install 'python-lsp-server[all]'
 
-  ;; sudo nala install pipx
-  ;; pipx install 'python-lsp-server[all]'
-
-  ;; pipx install ruff
-  ;; pipx install pylsp
-  ;; pipx install pyls
+   ;; pipx install ruff
+   ;; pipx install pylsp
+   ;; pipx install pyls
 #+end_src
 #+BEGIN_SRC 
 Installing the LSP server and related tools for each project
@@ -1349,7 +1387,7 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 #+end_src
-* Emacs for writers 
+* Emacs for writers  
 ** spellcheck with jinx aka just-in-time
 - Debian, Ubuntu: =libenchant-2-dev=, =pkgconf=
 - Arch, Gentoo: =enchant=, =pkgconf=
@@ -1359,26 +1397,32 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
 - OpenSUSE: =emacs-jinx= or =enchant=, =pkgconf=
 - FreeBSD, OpenBSD, Mac: =enchant2=, =pkgconf=
 #+begin_src emacs-lisp
-    (use-package jinx  
-      :ensure t
-      :hook (emacs-startup . global-jinx-mode)
-      ;; :hook ((LaTeX-mode . jinx-mode)  
-	     ;; (latex-mode . jinx-mode)  
-	     ;; (markdown-mode . jinx-mode)  
-	     ;; (org-mode . jinx-mode)
-	     ;; (text-mode . jinx-mode)
-	     ;; )  
-      ;; :bind ([remap ispell-word] . jinx-correct)  
-     )
-  ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
-    ;; Jinx keybindings
-  (global-set-key (kbd "C-c s s") 'jinx-correct)
-  (global-set-key (kbd "C-c s n") 'jinx-next)
-  (global-set-key (kbd "C-c s p") 'jinx-previous)
-  (global-set-key (kbd "C-c s l") 'jinx-languages)
-  (global-set-key (kbd "C-c s a") 'jinx-correct-all)
-  (global-set-key (kbd "C-c s w") 'jinx-correct-word)
-  (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+      (use-package jinx  
+        :ensure t
+        :hook (emacs-startup . global-jinx-mode)
+        ;; :hook ((LaTeX-mode . jinx-mode)  
+    	     ;; (latex-mode . jinx-mode)  
+    	     ;; (markdown-mode . jinx-mode)  
+    	     ;; (org-mode . jinx-mode)
+    	     ;; (text-mode . jinx-mode)
+    	     ;; )  
+        ;; :bind ([remap ispell-word] . jinx-correct)  
+       )
+    ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
+      ;; Jinx keybindings
+    (global-set-key (kbd "C-c s s") 'jinx-correct)
+    (global-set-key (kbd "C-c s n") 'jinx-next)
+    (global-set-key (kbd "C-c s p") 'jinx-previous)
+    (global-set-key (kbd "C-c s l") 'jinx-languages)
+    (global-set-key (kbd "C-c s a") 'jinx-correct-all)
+    (global-set-key (kbd "C-c s w") 'jinx-correct-word)
+    (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+
+  (use-package company-spell
+    :config (push 'company-spell company-backends)
+    :ensure t)
+  ;;  sudo nala install hunspell-en-us hunspell
+  (setf company-spell-command "hunspell")
 #+end_src
 ** visual-fill-column
 #+begin_src emacs-lisp

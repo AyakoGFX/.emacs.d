@@ -59,15 +59,16 @@
 	     ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
  '(package-selected-packages
    '(all-the-icons-ibuffer beframe catppuccin-theme colorful-mode company
-			   company-box consult corfu dashboard deft
-			   denote-menu diff-hl dired-git-info
-			   dired-quick-sort dired-rsync diredfl
-			   doom-modeline doom-themes elpy emojify
-			   envrc erc-hl-nicks erc-image gcmh
-			   golden-ratio jinx keycast lsp-ui magit
-			   marginalia move-text multi-vterm
-			   nerd-icons-dired orderless org-download
-			   org-roam-ui sudo-edit vertico
+			   company-box company-jinx company-spell
+			   consult corfu dashboard deft denote-menu
+			   diff-hl dired-aux dired-git-info
+			   dired-quick-sort dired-rsync dired-x
+			   diredfl doom-modeline doom-themes elpy
+			   emojify envrc erc-hl-nicks erc-image
+			   flycheck gcmh golden-ratio jinx keycast
+			   lsp-ui magit marginalia move-text
+			   multi-vterm nerd-icons-dired orderless
+			   org-download org-roam-ui sudo-edit vertico
 			   visual-fill-column vundo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

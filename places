@@ -1,12 +1,22 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 27934)
- ("/home/ayako/dwm/config.def.h" . 10819)
- ("/home/ayako/dwm/dwmblocks/blocks.h" . 2518)
- ("/home/ayako/dwm/dwmblocks/blocks.def.h" . 1521)
+(("/home/ayako/.emacs.d/config.org" . 29768)
+ ("/home/ayako/denote/20241109T193727--change-themes-in-linux__linux_themes.org"
+  . 389)
+ ("/home/ayako/c/main.c" . 18) ("/usr/include/stdio.h" . 28665)
+ ("/home/ayako/dwm/config.def.h" . 257)
  ("/home/ayako/roam/org/agenda.org" . 3729)
+ ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 361)
+ ("/home/ayako/roam/Main-notes/change_themes_in_linux.org" . 766)
+ ("/home/ayako/denote/20241108T194349--i-moved-to-debian__debian_linux.org"
+  . 279)
+ ("/home/ayako/dwm/slstatus/config.def.h" . 4320)
+ ("/home/ayako/dwm/slstatus/components/"
+  (dired-filename . "/home/ayako/dwm/slstatus/components/ram.c"))
+ ("/home/ayako/dwm/slstatus/components/ram.c" . 3364)
+ ("/home/ayako/dwm/slstatus/util.h" . 433)
+ ("/home/ayako/dwm/slstatus/util.c" . 1483)
  ("/home/ayako/Downloads/org.gimp.GIMP.flatpakref" . 13)
  ("/home/ayako/py/" (dired-filename . "/home/ayako/py/main.py"))
- ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 319)
  ("/home/ayako/roam/Main-notes/xmonad.org" . 149)
  ("/home/ayako/denote/20241105T140055--xmonad-wm__linux_wm_x11_xmonad.org"
   . 130)
