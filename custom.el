@@ -4,9 +4,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cua-mode nil)
- '(custom-enabled-themes '(doom-one))
+ '(custom-enabled-themes '(catppuccin))
  '(custom-safe-themes
-   '("7ec8fd456c0c117c99e3a3b16aaf09ed3fb91879f6601b1ea0eeaee9c6def5d9"
+   '("24b6ade0e3cabdfee9fa487961b089d059e048d77fe13137ea4788c1b62bd99d"
+     "7ec8fd456c0c117c99e3a3b16aaf09ed3fb91879f6601b1ea0eeaee9c6def5d9"
      "02d422e5b99f54bd4516d4157060b874d14552fe613ea7047c4a5cfa1288cf4f"
      "c8b3d9364302b16318e0f231981e94cbe4806cb5cde5732c3e5c3e05e1472434"
      "8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a"
@@ -64,11 +65,12 @@
 			   diff-hl dired-aux dired-git-info
 			   dired-quick-sort dired-rsync dired-x
 			   diredfl doom-modeline doom-themes elpy
-			   emojify envrc erc-hl-nicks erc-image
-			   flycheck gcmh golden-ratio jinx keycast
-			   lsp-ui magit marginalia move-text
-			   multi-vterm nerd-icons-dired orderless
-			   org-download org-roam-ui sudo-edit vertico
+			   embark embark-consult emojify envrc
+			   erc-hl-nicks erc-image flycheck gcmh
+			   golden-ratio jinx keycast lsp-ui magit
+			   marginalia move-text multi-vterm
+			   nerd-icons-dired orderless org-download
+			   org-roam-ui sudo-edit vertico
 			   visual-fill-column vundo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
