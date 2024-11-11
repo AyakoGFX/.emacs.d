@@ -1,1 +1,1 @@
-#s(lsp-session ("/home/ayako/py" "/home/ayako/dwm2" "/home/ayako/tmp" "/etc/wpa_supplicant" "/home/ayako/.dotfiles/scripts" "/home/ayako/dwm" "/home/ayako/tmp/c" "/home/ayako/c-pro") nil #s(hash-table test equal) #s(hash-table test equal) #s(hash-table test equal))
+#s(lsp-session ("/home/ayako/c" "/home/ayako/py" "/home/ayako/dwm2" "/home/ayako/tmp" "/etc/wpa_supplicant" "/home/ayako/.dotfiles/scripts" "/home/ayako/dwm" "/home/ayako/tmp/c" "/home/ayako/c-pro") nil #s(hash-table test equal) #s(hash-table test equal) #s(hash-table test equal))

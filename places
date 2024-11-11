@@ -1,9 +1,9 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 1532)
+(("/home/ayako/c/main.c" . 71)
+ ("/home/ayako/.emacs.d/config.org" . 1532)
  ("/home/ayako/denote/20241109T193727--change-themes-in-linux__linux_themes.org"
   . 389)
- ("/home/ayako/c/main.c" . 18) ("/usr/include/stdio.h" . 28665)
- ("/home/ayako/dwm/config.def.h" . 257)
+ ("/usr/include/stdio.h" . 28665)
  ("/home/ayako/roam/org/agenda.org" . 3729)
  ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 361)
  ("/home/ayako/roam/Main-notes/change_themes_in_linux.org" . 766)
