@@ -236,9 +236,9 @@
     		("C-c C-r" . dired-rsync)))
 
     ;; Colorful dired
-    (use-package diredfl
-      :ensure t
-      :hook (dired-mode . diredfl-mode))
+;;    (use-package diredfl
+;;      :ensure t
+;;      :hook (dired-mode . diredfl-mode))
 
     (use-package nerd-icons-dired
       :ensure t

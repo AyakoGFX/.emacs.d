@@ -340,9 +340,9 @@ The place this is most useful is when you’re using Emacs’ excellent Dired pa
     		("C-c C-r" . dired-rsync)))
 
     ;; Colorful dired
-    (use-package diredfl
-      :ensure t
-      :hook (dired-mode . diredfl-mode))
+;;    (use-package diredfl
+;;      :ensure t
+;;      :hook (dired-mode . diredfl-mode))
 
     (use-package nerd-icons-dired
       :ensure t

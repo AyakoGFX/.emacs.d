@@ -1,6 +1,8 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/c/main.c" . 71)
- ("/home/ayako/.emacs.d/config.org" . 1532)
+(("/home/ayako/roam/Main-notes/mono_audio_on_linux.org" . 930)
+ ("/home/ayako/" (dired-filename . "/home/ayako/dwm"))
+ ("/home/ayako/.emacs.d/config.org" . 62056)
+ ("/home/ayako/c/main.c" . 71)
  ("/home/ayako/denote/20241109T193727--change-themes-in-linux__linux_themes.org"
   . 389)
  ("/usr/include/stdio.h" . 28665)
@@ -32,7 +34,6 @@
  ("/home/ayako/.dotfiles/scripts/emacs-build-script.sh" . 2008)
  ("/home/ayako/roam/Main-notes/touchpad.org" . 409)
  ("/home/ayako/roam/" (dired-filename . "/home/ayako"))
- ("/home/ayako/" (dired-filename . "/home/ayako/.dotfiles"))
  ("/home/ayako/.dotfiles/scripts/add.sh" . 606)
  ("/home/ayako/.dotfiles/"
   (dired-filename . "/home/ayako/.dotfiles/scripts"))
