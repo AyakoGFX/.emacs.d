@@ -1,5 +1,12 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/roam/Main-notes/mono_audio_on_linux.org" . 930)
+(("/home/ayako/denote/20241114T005319--foss-apps-i-love-on-linux-by-linuxnext-yt__apps_foss_linux.org"
+  . 160)
+ ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 531)
+ ("/home/ayako/denote/20241114T030546--kde-plasma-save-config__kde.org"
+  . 415)
+ ("/home/ayako/roam/Main-notes/sessioncheck.org" . 166)
+ ("/sudo:root@localhost:/etc/environment" . 54)
+ ("/home/ayako/roam/Main-notes/mono_audio_on_linux.org" . 930)
  ("/home/ayako/" (dired-filename . "/home/ayako/dwm"))
  ("/home/ayako/.emacs.d/config.org" . 62056)
  ("/home/ayako/c/main.c" . 71)
@@ -7,7 +14,6 @@
   . 389)
  ("/usr/include/stdio.h" . 28665)
  ("/home/ayako/roam/org/agenda.org" . 3729)
- ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 361)
  ("/home/ayako/roam/Main-notes/change_themes_in_linux.org" . 766)
  ("/home/ayako/denote/20241108T194349--i-moved-to-debian__debian_linux.org"
   . 279)

@@ -1,12 +1,12 @@
-;; -*- lisp-data -*- <24/11/08 21:01:11 ~/.emacs.d/tramp>
+;; -*- lisp-data -*- <24/11/14 14:48:43 ~/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
 (((tramp-file-name "cache" nil nil nil nil nil nil)
   ("tramp-version" "2.8.0-pre"))
  ((tramp-file-name "sudo" "root" nil "localhost" nil nil nil)
-  ("null-device" "/dev/null") ("readlink" "\\readlink")
-  ("uname" "Linux 6.1.0-26-amd64") ("locale" "LC_ALL=en_US.utf8")
+  ("readlink" "\\readlink") ("null-device" "/dev/null")
+  ("uname" "Linux 6.1.0-27-amd64") ("locale" "LC_ALL=en_US.utf8")
   ("test" "test") ("file-exists" "test -e")
   ("remote-path"
    ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin"
@@ -18,6 +18,4 @@
   ("gid-string" "root") ("groups-integer" (0))
   ("groups-string" ("root")) ("perl-file-spec" t)
   ("perl-cwd-realpath" t) ("perl" "\\perl") ("bzr" nil)
-  ("git" "\\git") ("hg" nil))
- ((tramp-file-name "ssh" "user" nil "host" nil nil nil) nil)
- ((tramp-file-name "sudo" "root" nil "Debian-12" nil nil nil) nil))
+  ("git" "\\git") ("hg" nil)))
