@@ -41,7 +41,7 @@ set and save so the theme will load properly in =emacsclient=
 ** Font
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
-               '(font . "JetBrainsMono Nerd Font-19"))
+               '(font . "JetBrainsMono Nerd Font-21"))
 #+END_SRC
 ** colorful-mode
 #+begin_src emacs-lisp
@@ -1435,6 +1435,8 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
 - Void, Fedora: =enchant2-devel=, =pkgconf=
 - OpenSUSE: =emacs-jinx= or =enchant=, =pkgconf=
 - FreeBSD, OpenBSD, Mac: =enchant2=, =pkgconf=
+- Fedora
+ sudo dnf install -y enchant2 enchant2-devel
 #+begin_src emacs-lisp
       (use-package jinx  
         :ensure t
