@@ -1,37 +1,25 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 1165)
- ("/home/ayako/.dotfiles/gnome-workspace-1-9.sh" . 5803)
+(("/home/ayako/.emacs.d/config.org" . 1162)
+ ("/home/ayako/.config/hypr/"
+  (dired-filename . "/home/ayako/.config/hypr/hyprland.conf"))
+ ("/home/ayako/.config/hypr/hyprland.conf" . 7544)
+ ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 3316)
+ ("/home/ayako/.config/environment.d/"
+  (dired-filename . "/home/ayako/.config/environment.d/99-env.conf"))
+ ("/home/ayako/denote/20241109T193727--change-themes-in-linux__linux_themes.org" . 984)
+ ("/home/ayako/.config/environment.d/99-env.conf" . 27)
+ ("/home/ayako/denote/"
+  (dired-filename . "/home/ayako/denote/.git"))
+ ("/home/ayako/denote/20241115T233533--emacs__emacs.org" . 173)
  ("/home/ayako/denote/20241114T005319--foss-apps-i-love-on-linux-by-linuxnext-yt__apps_foss_linux.org" . 528)
  ("/home/ayako/denote/20241112T030639--nix-package-manager__linux_nix_packagemanager.org" . 762)
- ("/home/ayako/roam/Main-notes/nixos.org" . 224)
  ("/sudo:root@localhost:/etc/environment" . 54)
  ("/home/ayako/"
   (dired-filename . "/home/ayako/dwm"))
  ("/usr/include/stdio.h" . 28665)
- ("/home/ayako/.dotfiles/scripts/emacs-build-script.sh" . 2008)
- ("/home/ayako/.dotfiles/scripts/add.sh" . 606)
- ("/home/ayako/.dotfiles/"
-  (dired-filename . "/home/ayako/.dotfiles/scripts"))
- ("/home/ayako/.dotfiles/scripts/"
-  (dired-filename . "/home/ayako/.dotfiles/scripts/setup_touchpad.sh"))
- ("/home/ayako/.dotfiles/scripts/setup_touchpad.sh" . 805)
  ("/home/ayako/.emacs.d/"
   (dired-filename . "/home/ayako/.emacs.d/elpa"))
  ("/home/ayako/.emacs.d/elpa/"
   (dired-filename . "/home/ayako/.emacs.d/elpa/denote-3.1.0"))
- ("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 8866)
- ("/home/ayako/.dotfiles/zsh3/.zprofile" . 700)
- ("/home/ayako/.dotfiles/zsh3/.zshrc" . 1075)
- ("/home/ayako/.dotfiles/scripts/Link_Nix_Apps.sh" . 1907)
- ("/home/ayako/.dotfiles/fish/.config/fish/conf.d/"
-  (dired-filename . "/home/ayako/.dotfiles/fish/.config/fish"))
- ("/home/ayako/.dotfiles/fish/.config/fish/"
-  (dired-filename . "/home/ayako/.dotfiles/fish/.config"))
- ("/home/ayako/.dotfiles/fish/.config/"
-  (dired-filename . "/home/ayako/.dotfiles/fish"))
- ("/home/ayako/.dotfiles/fish/"
-  (dired-filename . "/home/ayako/.dotfiles"))
  ("/home/ayako/.emacs.d/config.el" . 23495)
- ("/home/ayako/.dotfiles/debian.org" . 2674)
- ("/home/ayako/.dotfiles/scripts/debian+arch-font-setup.sh" . 673)
  ("/home/ayako/.emacs.d/.gitattributes" . 66))

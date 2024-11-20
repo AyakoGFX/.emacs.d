@@ -41,7 +41,7 @@ set and save so the theme will load properly in =emacsclient=
 ** Font
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist
-               '(font . "JetBrainsMono Nerd Font-21"))
+               '(font . "JetBrainsMono Nerd Font-20"))
 #+END_SRC
 ** colorful-mode
 #+begin_src emacs-lisp
@@ -1426,6 +1426,7 @@ https://gist.github.com/ashton314/f74060b00884ac9491b6944dac7bf8de
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 #+end_src
+
 * Emacs for writers  
 ** spellcheck with jinx aka just-in-time
 - Debian, Ubuntu: =libenchant-2-dev=, =pkgconf=
@@ -1668,42 +1669,44 @@ https://www.youtube.com/live/Qci8t_jpVGA?si=70UTtOhw761VUBqJ
 https://systemcrafters.net/chatting-with-emacs/irc-basics-with-erc/
 https://systemcrafters.net/live-streams/june-04-2021/
 #+begin_src emacs-lisp
-  (setq erc-server "irc.libera.chat"
-        erc-nick "zherka"    ; Change this!
-        erc-user-full-name "Emacs User"  ; And this!
-        erc-track-shorten-start 8
-        erc-autojoin-channels-alist '(("irc.libera.chat" "#systemcrafters" "#emacs"))
-        erc-kill-buffer-on-part t
-        erc-auto-query 'bury)
+  (use-package erc
+    :ensure t)
+    (setq erc-server "irc.libera.chat"
+	  erc-nick "zherka"    ; Change this!
+	  erc-user-full-name "Emacs User"  ; And this!
+	  erc-track-shorten-start 8
+	  erc-autojoin-channels-alist '(("irc.libera.chat" "#systemcrafters" "#emacs"))
+	  erc-kill-buffer-on-part t
+	  erc-auto-query 'bury)
 
-  (setq erc-fill-column 120
-        erc-fill-function 'erc-fill-static
-        erc-fill-static-center 20)
+    (setq erc-fill-column 120
+	  erc-fill-function 'erc-fill-static
+	  erc-fill-static-center 20)
 
-  ;; Uniquely colorizing nicknames in chat
-  (use-package erc-hl-nicks
-    :ensure t
-    :after erc
-    :config
-    (add-to-list 'erc-modules 'hl-nicks))
-  ;; You might need to run M-: (erc-update-modules) after running this in an existing Emacs session!
-
-
-  ;; Displaying inline images
-  (use-package erc-image
-    :ensure t
-    :after erc
-    :config
-    (setq erc-image-inline-rescale 300)
-    (add-to-list 'erc-modules 'image))
+    ;; Uniquely colorizing nicknames in chat
+    (use-package erc-hl-nicks
+      :ensure t
+      :after erc
+      :config
+      (add-to-list 'erc-modules 'hl-nicks))
+    ;; You might need to run M-: (erc-update-modules) after running this in an existing Emacs session!
 
 
-  ;; Displaying emojis in messages
-  ;; Use emojify-mode:
-  (use-package emojify
-    :ensure t
-    :hook (erc-mode . emojify-mode)
-    :commands emojify-mode)
+    ;; Displaying inline images
+    (use-package erc-image
+      :ensure t
+      :after erc
+      :config
+      (setq erc-image-inline-rescale 300)
+      (add-to-list 'erc-modules 'image))
+
+
+    ;; Displaying emojis in messages
+    ;; Use emojify-mode:
+    (use-package emojify
+      :ensure t
+      :hook (erc-mode . emojify-mode)
+      :commands emojify-mode)
 
 #+end_src
 
