@@ -524,15 +524,17 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package vterm
-  :ensure t
-  :init)
-(setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
- ;; (setq vterm-shell "/usr/bin/bash")
+       :ensure t
+       :init)
+;;  (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
+  (setq vterm-shell "/run/current-system/sw/bin/fish") ;; for nixos
 
-(use-package multi-vterm
-  :ensure t
-  :init
-  (global-set-key (kbd "<M-return>") 'multi-vterm))
+      ;; (setq vterm-shell "/usr/bin/bash")
+
+     (use-package multi-vterm
+       :ensure t
+       :init
+       (global-set-key (kbd "<M-return>") 'multi-vterm))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-expert t)
@@ -799,6 +801,9 @@
    ;; pipx install pylsp
    ;; pipx install pyls
 
+(use-package nix-mode
+  :ensure t)
+
 (use-package ansi-color
   :ensure t
   :init
@@ -806,10 +811,10 @@
     (ansi-color-apply-on-region (point-min) (point-max)))
   :hook (compilation-filter . my-compilation-filter))
 
-(setq explicit-shell-file-name "/usr/bin/fish")
+(setq explicit-shell-file-name "/run/current-system/sw/bin/fish")
 (setq explicit-bash-args '("--login" "-i"))
-(setq term-shell "/usr/bin/fish")
-(setq shell-file-name "/usr/bin/fish")
+(setq term-shell "/run/current-system/sw/bin/fish")
+(setq shell-file-name "/run/current-system/sw/bin/fish")
 
 ;; do not format this
   (setq denote-org-front-matter
@@ -1189,32 +1194,32 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
-(use-package jinx  
-      :ensure t
-      :hook (emacs-startup . global-jinx-mode)
-      ;; :hook ((LaTeX-mode . jinx-mode)  
-    	   ;; (latex-mode . jinx-mode)  
-    	   ;; (markdown-mode . jinx-mode)  
-    	   ;; (org-mode . jinx-mode)
-    	   ;; (text-mode . jinx-mode)
-    	   ;; )  
-      ;; :bind ([remap ispell-word] . jinx-correct)  
-     )
-  ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
-    ;; Jinx keybindings
-  (global-set-key (kbd "C-c s s") 'jinx-correct)
-  (global-set-key (kbd "C-c s n") 'jinx-next)
-  (global-set-key (kbd "C-c s p") 'jinx-previous)
-  (global-set-key (kbd "C-c s l") 'jinx-languages)
-  (global-set-key (kbd "C-c s a") 'jinx-correct-all)
-  (global-set-key (kbd "C-c s w") 'jinx-correct-word)
-  (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+;;      (use-package jinx  
+;;        :ensure t
+;;        :hook (emacs-startup . global-jinx-mode)
+;;        ;; :hook ((LaTeX-mode . jinx-mode)  
+;;    	     ;; (latex-mode . jinx-mode)  
+;;    	     ;; (markdown-mode . jinx-mode)  
+;;    	     ;; (org-mode . jinx-mode)
+;;    	     ;; (text-mode . jinx-mode)
+;;    	     ;; )  
+;;        ;; :bind ([remap ispell-word] . jinx-correct)  
+;;       )
+;;    ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
+;;      ;; Jinx keybindings
+;;    (global-set-key (kbd "C-c s s") 'jinx-correct)
+;;    (global-set-key (kbd "C-c s n") 'jinx-next)
+;;    (global-set-key (kbd "C-c s p") 'jinx-previous)
+;;    (global-set-key (kbd "C-c s l") 'jinx-languages)
+;;    (global-set-key (kbd "C-c s a") 'jinx-correct-all)
+;;    (global-set-key (kbd "C-c s w") 'jinx-correct-word)
+;;    (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
 
-(use-package company-spell
-  :config (push 'company-spell company-backends)
-  :ensure t)
-;;  sudo nala install hunspell-en-us hunspell
-(setf company-spell-command "hunspell")
+  (use-package company-spell
+    :config (push 'company-spell company-backends)
+    :ensure t)
+  ;;  sudo nala install hunspell-en-us hunspell
+  (setf company-spell-command "hunspell")
 
 (use-package visual-fill-column
   :ensure t
@@ -1426,3 +1431,8 @@
     :ensure t
     :hook (erc-mode . emojify-mode)
     :commands emojify-mode)
+
+(require 'tramp-sh)
+(setq tramp-remote-path
+      (append tramp-remote-path
+  	      '(tramp-own-remote-path)))

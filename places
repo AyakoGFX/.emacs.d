@@ -1,13 +1,10 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/.emacs.d/config.org" . 1162)
- ("/home/ayako/.config/hypr/"
-  (dired-filename . "/home/ayako/.config/hypr/hyprland.conf"))
- ("/home/ayako/.config/hypr/hyprland.conf" . 7544)
+(("/home/ayako/nixos/configuration.nix" . 3604)
+ ("/home/ayako/nixos/hardware-configuration.nix" . 1481)
+ ("/home/ayako/.emacs.d/config.org" . 62514)
+ ("/home/ayako/.emacs.d/elpa/jinx-20241119.1644/jinx-mod.c" . 741)
  ("/home/ayako/denote/20241027T224121--index-linux__linux.org" . 3316)
- ("/home/ayako/.config/environment.d/"
-  (dired-filename . "/home/ayako/.config/environment.d/99-env.conf"))
  ("/home/ayako/denote/20241109T193727--change-themes-in-linux__linux_themes.org" . 984)
- ("/home/ayako/.config/environment.d/99-env.conf" . 27)
  ("/home/ayako/denote/"
   (dired-filename . "/home/ayako/denote/.git"))
  ("/home/ayako/denote/20241115T233533--emacs__emacs.org" . 173)
@@ -16,7 +13,6 @@
  ("/sudo:root@localhost:/etc/environment" . 54)
  ("/home/ayako/"
   (dired-filename . "/home/ayako/dwm"))
- ("/usr/include/stdio.h" . 28665)
  ("/home/ayako/.emacs.d/"
   (dired-filename . "/home/ayako/.emacs.d/elpa"))
  ("/home/ayako/.emacs.d/elpa/"
