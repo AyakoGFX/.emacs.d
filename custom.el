@@ -12,7 +12,7 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus ol-info ol-irc ol-mhe org-mouse ol-rmail org-tempo ol-w3m))
  '(package-selected-packages
-   '(nix-mode all-the-icons-ibuffer beframe catppuccin-theme colorful-mode company company-box company-jinx company-spell consult corfu dashboard deft denote-menu diff-hl dired-aux dired-git-info dired-quick-sort dired-rsync dired-x diredfl doom-modeline doom-themes elpy embark embark-consult emojify envrc erc-hl-nicks erc-image flycheck gcmh golden-ratio jinx keycast lsp-ui magit marginalia move-text multi-vterm nerd-icons-dired orderless org-download org-roam-ui sudo-edit vertico visual-fill-column vundo yasnippet-snippets)))
+   '(lua-mode nix-mode all-the-icons-ibuffer beframe catppuccin-theme colorful-mode company company-box company-jinx company-spell consult corfu dashboard deft denote-menu diff-hl dired-aux dired-git-info dired-quick-sort dired-rsync dired-x diredfl doom-modeline doom-themes elpy embark embark-consult emojify envrc erc-hl-nicks erc-image flycheck gcmh golden-ratio jinx keycast lsp-ui magit marginalia move-text multi-vterm nerd-icons-dired orderless org-download org-roam-ui sudo-edit vertico visual-fill-column vundo yasnippet-snippets)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

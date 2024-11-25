@@ -1,5 +1,5 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("/home/ayako/nixos/configuration.nix" . 3604)
+(("/home/ayako/nixos/configuration.nix" . 6176)
  ("/home/ayako/nixos/hardware-configuration.nix" . 1481)
  ("/home/ayako/.emacs.d/config.org" . 62514)
  ("/home/ayako/.emacs.d/elpa/jinx-20241119.1644/jinx-mod.c" . 741)

@@ -1007,6 +1007,11 @@ pip install python-lsp-server pylsp-mypy flake8
 #+end_src
 
 
+****   lua-mode
+#+begin_src emacs-lisp
+  (use-package lua-mode
+    :ensure t)
+#+end_src
 **** nix mode
 #+begin_src emacs-lisp
   (use-package nix-mode
