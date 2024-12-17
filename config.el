@@ -572,15 +572,15 @@
 
 (global-set-key (kbd "C-x u") 'vundo)
 
-;; (use-package multiple-cursors
-;;   :ensure t)
-;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-;; (global-set-key (kbd "C->")         'mc/mark-next-like-this)
-;; (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
-;; (global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
-;; (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
-;; (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
-(global-set-key (kbd "C-c v")         'set-rectangular-region-anchor)
+(use-package multiple-cursors
+       :ensure t)
+(global-unset-key (kbd "M-<down-mouse-1>"))
+(global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; Bind `previous-buffer` globally
     ;; Bind `next-buffer` globally
@@ -801,8 +801,28 @@
    ;; pipx install pylsp
    ;; pipx install pyls
 
+(use-package lua-mode
+  :ensure t)
+
+;; (use-package lsp-nix
+      ;; :ensure lsp-mode
+      ;; :after (lsp-mode)
+      ;; :demand t
+      ;; :custom
+      ;; (lsp-nix-nil-formatter ["nixfmt"]))
+
+    ;; (use-package nix-mode
+      ;; :hook (nix-mode . lsp-deferred)
+      ;; :ensure t)
+;; for eglot
 (use-package nix-mode
   :ensure t)
+(use-package eglot
+  :config
+  ;; Ensure `nil` is in your PATH.
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
+  :hook
+  (nix-mode . eglot-ensure))
 
 (use-package ansi-color
   :ensure t
@@ -1194,9 +1214,9 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
-;;      (use-package jinx  
-;;        :ensure t
-;;        :hook (emacs-startup . global-jinx-mode)
+(use-package jinx  
+        :ensure t
+        :hook (emacs-startup . global-jinx-mode)
 ;;        ;; :hook ((LaTeX-mode . jinx-mode)  
 ;;    	     ;; (latex-mode . jinx-mode)  
 ;;    	     ;; (markdown-mode . jinx-mode)  
@@ -1204,16 +1224,16 @@
 ;;    	     ;; (text-mode . jinx-mode)
 ;;    	     ;; )  
 ;;        ;; :bind ([remap ispell-word] . jinx-correct)  
-;;       )
+       )
 ;;    ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
 ;;      ;; Jinx keybindings
-;;    (global-set-key (kbd "C-c s s") 'jinx-correct)
-;;    (global-set-key (kbd "C-c s n") 'jinx-next)
-;;    (global-set-key (kbd "C-c s p") 'jinx-previous)
-;;    (global-set-key (kbd "C-c s l") 'jinx-languages)
-;;    (global-set-key (kbd "C-c s a") 'jinx-correct-all)
-;;    (global-set-key (kbd "C-c s w") 'jinx-correct-word)
-;;    (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+    (global-set-key (kbd "C-c s s") 'jinx-correct)
+    (global-set-key (kbd "C-c s n") 'jinx-next)
+    (global-set-key (kbd "C-c s p") 'jinx-previous)
+    (global-set-key (kbd "C-c s l") 'jinx-languages)
+    (global-set-key (kbd "C-c s a") 'jinx-correct-all)
+    (global-set-key (kbd "C-c s w") 'jinx-correct-word)
+    (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
 
   (use-package company-spell
     :config (push 'company-spell company-backends)
@@ -1436,3 +1456,6 @@
 (setq tramp-remote-path
       (append tramp-remote-path
   	      '(tramp-own-remote-path)))
+
+(setq ispell-program-name "aspell"
+         ispell-extra-args '("--sug-mode=ultra" "--run-together"))

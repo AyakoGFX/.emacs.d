@@ -3,6 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	beginning-of-visual-line
+	corfu-previous
+	end-of-visual-line
+	forward-sexp
+	org-return-and-maybe-indent
 	vundo
 	))
 
@@ -10,4 +15,5 @@
       '(
 	my/backward-kill-spaces-or-char-or-word
 	org-self-insert-command
+	save-buffers-kill-terminal
 	))
