@@ -1,0 +1,9 @@
+((:container
+  ((elisp org-element--headline-cache)
+   (elisp org-element--cache))
+  :persist-file "6b/15a94b-e0d1-41de-bbda-059e9e913ef5" :associated
+  (:hash "d8a8a2bf6f92a81f12f1db3ba800542c" :file "c:/Users/ayako/AppData/Roaming/.emacs.d/config.org" :inode 8725724278177997)
+  :expiry 30 :last-access 1735416279.357706 :last-access-hr "2024-12-29T01:34:39+0530")
+ (:container
+  ((index "3.1"))
+  :persist-file "29/d661de-5856-4dd9-bbe6-68466d664039" :associated nil :expiry never :last-access 1735833142.314501 :last-access-hr "2025-01-02T21:22:22+0530"))

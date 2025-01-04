@@ -40,8 +40,10 @@ set and save so the theme will load properly in =emacsclient=
 
 ** Font
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'default-frame-alist
-               '(font . "JetBrainsMono Nerd Font-20"))
+  ;; (add-to-list 'default-frame-alist
+  ;; 	     '(font . "JetBrainsMono Nerd Font-50"))
+  (set-face-attribute 'default nil :font "Courier New" :height 160) ;; fow windows
+
 #+END_SRC
 ** colorful-mode
 #+begin_src emacs-lisp
@@ -664,18 +666,18 @@ do not touch it will mess up vertigo *comp* ex C-x b
 | =multi-vterm-project=          | Create/toggle terminal based on current project |
 
 #+BEGIN_SRC emacs-lisp
-     (use-package vterm
-       :ensure t
-       :init)
-;;  (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
-  (setq vterm-shell "/run/current-system/sw/bin/fish") ;; for nixos
+       ;; (use-package vterm
+	 ;; :ensure t
+	 ;; :init)
+  ;;  (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
+    ;; (setq vterm-shell "/run/current-system/sw/bin/fish") ;; for nixos
 
-      ;; (setq vterm-shell "/usr/bin/bash")
+	;; (setq vterm-shell "/usr/bin/bash")
 
-     (use-package multi-vterm
-       :ensure t
-       :init
-       (global-set-key (kbd "<M-return>") 'multi-vterm))
+       ;; (use-package multi-vterm
+	 ;; :ensure t
+	 ;; :init
+	 ;; (global-set-key (kbd "<M-return>") 'multi-vterm))
 #+END_SRC
 
 ** ibuffer
@@ -1049,10 +1051,10 @@ pip install python-lsp-server pylsp-mypy flake8
 ** use bash instead of other shells
 /run/current-system/sw/bin/fish
 #+BEGIN_SRC emacs-lisp
-  (setq explicit-shell-file-name "/run/current-system/sw/bin/fish")
-  (setq explicit-bash-args '("--login" "-i"))
-  (setq term-shell "/run/current-system/sw/bin/fish")
-  (setq shell-file-name "/run/current-system/sw/bin/fish")
+;;(setq explicit-shell-file-name "/run/current-system/sw/bin/fish")
+;;(setq explicit-bash-args '("--login" "-i"))
+;;(setq term-shell "/run/current-system/sw/bin/fish")
+;;(setq shell-file-name "/run/current-system/sw/bin/fish")
 #+END_SRC
 
 * Note Taking
@@ -1492,33 +1494,34 @@ SUBDIR is chosen interactively relative to `denote-directory'."
 - Fedora
  sudo dnf install -y enchant2 enchant2-devel
 #+begin_src emacs-lisp
-      (use-package jinx  
-        :ensure t
-        :hook (emacs-startup . global-jinx-mode)
-;;        ;; :hook ((LaTeX-mode . jinx-mode)  
-;;    	     ;; (latex-mode . jinx-mode)  
-;;    	     ;; (markdown-mode . jinx-mode)  
-;;    	     ;; (org-mode . jinx-mode)
-;;    	     ;; (text-mode . jinx-mode)
-;;    	     ;; )  
-;;        ;; :bind ([remap ispell-word] . jinx-correct)  
-       )
-;;    ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
-;;      ;; Jinx keybindings
-    (global-set-key (kbd "C-c s s") 'jinx-correct)
-    (global-set-key (kbd "C-c s n") 'jinx-next)
-    (global-set-key (kbd "C-c s p") 'jinx-previous)
-    (global-set-key (kbd "C-c s l") 'jinx-languages)
-    (global-set-key (kbd "C-c s a") 'jinx-correct-all)
-    (global-set-key (kbd "C-c s w") 'jinx-correct-word)
-    (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
+	(use-package jinx  
+	  :ensure t
+	  :hook (emacs-startup . global-jinx-mode)
+  ;;        ;; :hook ((LaTeX-mode . jinx-mode)  
+  ;;    	     ;; (latex-mode . jinx-mode)  
+  ;;    	     ;; (markdown-mode . jinx-mode)  
+  ;;    	     ;; (org-mode . jinx-mode)
+  ;;    	     ;; (text-mode . jinx-mode)
+  ;;    	     ;; )  
+  ;;        ;; :bind ([remap ispell-word] . jinx-correct)  
+	 )
+  ;;    ;; (add-hook 'emacs-startup-hook #'global-jinx-mode)
+  ;;      ;; Jinx keybindings
+      (global-set-key (kbd "C-c s s") 'jinx-correct)
+      (global-set-key (kbd "C-c s n") 'jinx-next)
+      (global-set-key (kbd "C-c s p") 'jinx-previous)
+      (global-set-key (kbd "C-c s l") 'jinx-languages)
+      (global-set-key (kbd "C-c s a") 'jinx-correct-all)
+      (global-set-key (kbd "C-c s w") 'jinx-correct-word)
+      (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
 
-  (use-package company-spell
-    :config (push 'company-spell company-backends)
-    :ensure t)
-  ;;  sudo nala install hunspell-en-us hunspell
-  (setf company-spell-command "hunspell")
+    ;; (use-package company-spell
+      ;; :config (push 'company-spell company-backends)
+      ;; :ensure t)
+    ;;  sudo nala install hunspell-en-us hunspell
+    ;; (setf company-spell-command "hunspell")
 #+end_src
+
 ** visual-fill-column
 #+begin_src emacs-lisp
   (use-package visual-fill-column

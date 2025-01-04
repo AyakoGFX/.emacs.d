@@ -18,8 +18,9 @@
 ;; Load theme
 ;; (load-theme 'doom-one t)
 
-(add-to-list 'default-frame-alist
-             '(font . "JetBrainsMono Nerd Font-20"))
+;; (add-to-list 'default-frame-alist
+;; 	     '(font . "JetBrainsMono Nerd Font-50"))
+(set-face-attribute 'default nil :font "Courier New" :height 160) ;; fow windows
 
 (use-package colorful-mode
   :ensure t
@@ -523,18 +524,18 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package vterm
-       :ensure t
-       :init)
+;; (use-package vterm
+       ;; :ensure t
+       ;; :init)
 ;;  (setq vterm-shell "/usr/bin/fish")  ;; Adjust the path to fish if necessary
-  (setq vterm-shell "/run/current-system/sw/bin/fish") ;; for nixos
+  ;; (setq vterm-shell "/run/current-system/sw/bin/fish") ;; for nixos
 
       ;; (setq vterm-shell "/usr/bin/bash")
 
-     (use-package multi-vterm
-       :ensure t
-       :init
-       (global-set-key (kbd "<M-return>") 'multi-vterm))
+     ;; (use-package multi-vterm
+       ;; :ensure t
+       ;; :init
+       ;; (global-set-key (kbd "<M-return>") 'multi-vterm))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (setq ibuffer-expert t)
@@ -831,10 +832,10 @@
     (ansi-color-apply-on-region (point-min) (point-max)))
   :hook (compilation-filter . my-compilation-filter))
 
-(setq explicit-shell-file-name "/run/current-system/sw/bin/fish")
-(setq explicit-bash-args '("--login" "-i"))
-(setq term-shell "/run/current-system/sw/bin/fish")
-(setq shell-file-name "/run/current-system/sw/bin/fish")
+;;(setq explicit-shell-file-name "/run/current-system/sw/bin/fish")
+;;(setq explicit-bash-args '("--login" "-i"))
+;;(setq term-shell "/run/current-system/sw/bin/fish")
+;;(setq shell-file-name "/run/current-system/sw/bin/fish")
 
 ;; do not format this
   (setq denote-org-front-matter

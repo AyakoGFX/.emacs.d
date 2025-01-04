@@ -3,6 +3,7 @@ tabsession.el
 places
 org-roam.db
 history
+org-persist/
 emojis/
 elpy/
 auto-save-list/
