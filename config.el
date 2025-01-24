@@ -200,20 +200,20 @@
   ;;   (setq dired-listing-switches "--color=auto -alh")) ;; Adjust flags as needed
 
 
-  (use-package all-the-icons
-    :ensure t)
+  ;; (use-package all-the-icons
+    ;; :ensure t)
   ;; Directory operations
   (use-package dired
     :ensure nil
     :bind (:map dired-mode-map
-                ("C-c C-p" . wdired-change-to-wdired-mode))
+		("C-c C-p" . wdired-change-to-wdired-mode))
     :config
     ;; Guess a default target directory
     (setq dired-dwim-target t)
 
     ;; Always delete and copy recursively
     (setq dired-recursive-deletes 'always
-          dired-recursive-copies 'always)
+	  dired-recursive-copies 'always)
 
     ;; Show directory first
     (setq dired-listing-switches "-alh --group-directories-first"))
@@ -222,33 +222,35 @@
     (use-package dired-quick-sort
       :ensure t
       :bind (:map dired-mode-map
-    		("S" . hydra-dired-quick-sort/body)))
+		("S" . hydra-dired-quick-sort/body)))
 
     ;; Show git info in dired
     (use-package dired-git-info
       :ensure t
       :bind (:map dired-mode-map
-    		(")" . dired-git-info-mode)))
+		(")" . dired-git-info-mode)))
 
     ;; Allow rsync from dired buffers
     (use-package dired-rsync
       :ensure t
       :bind (:map dired-mode-map
-    		("C-c C-r" . dired-rsync)))
+		("C-c C-r" . dired-rsync)))
 
     ;; Colorful dired
 ;;    (use-package diredfl
 ;;      :ensure t
 ;;      :hook (dired-mode . diredfl-mode))
 
-    (use-package nerd-icons-dired
-      :ensure t
-      :diminish
-      :if (featurep 'all-the-icons)
-      :custom-face
-      (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
-      :hook (dired-mode . nerd-icons-dired-mode))
+    ;; (use-package nerd-icons-dired
+      ;; :ensure t
+      ;; :diminish
+      ;; :if (featurep 'all-the-icons)
+      ;; :custom-face
+      ;; (nerd-icons-dired-dir-face ((t (:inherit nerd-icons-dsilver :foreground unspecified))))
+      ;; :hook (dired-mode . nerd-icons-dired-mode))
 
+(with-eval-after-load 'dired
+(define-key dired-mode-map (kbd "C-c C-n") 'dired-create-empty-file))
 
 (use-package dired-aux
   :demand t)
@@ -257,21 +259,21 @@
   :demand t
   :config
   (let ((cmd (cond ((eq system-type 'darwin) "open")   ;; macOS
-                   ((eq system-type 'gnu/linux) "xdg-open")   ;; Linux
-                   ((eq system-type 'windows-nt) "start")   ;; Windows
-                   (t ""))))  ;; Default to empty for unknown OS
+		   ((eq system-type 'gnu/linux) "xdg-open")   ;; Linux
+		   ((eq system-type 'windows-nt) "start")   ;; Windows
+		   (t ""))))  ;; Default to empty for unknown OS
     (setq dired-guess-shell-alist-user
-          `(("\\.pdf\\'" ,cmd)
-            ("\\.docx\\'" ,cmd)
-            ("\\.\\(?:djvu\\|eps\\)\\'" ,cmd)
-            ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" ,cmd)
-            ("\\.\\(?:xcf\\)\\'" ,cmd)
-            ("\\.csv\\'" ,cmd)
-            ("\\.tex\\'" ,cmd)
-            ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
-            ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
-            ("\\.html?\\'" ,cmd)
-            ("\\.md\\'" ,cmd)))))
+	  `(("\\.pdf\\'" ,cmd)
+	    ("\\.docx\\'" ,cmd)
+	    ("\\.\\(?:djvu\\|eps\\)\\'" ,cmd)
+	    ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" ,cmd)
+	    ("\\.\\(?:xcf\\)\\'" ,cmd)
+	    ("\\.csv\\'" ,cmd)
+	    ("\\.tex\\'" ,cmd)
+	    ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|rm\\|rmvb\\|ogv\\)\\(?:\\.part\\)?\\'" ,cmd)
+	    ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
+	    ("\\.html?\\'" ,cmd)
+	    ("\\.md\\'" ,cmd)))))
 
     ;; `find-dired' alternative using `fd'
     (when (executable-find "fd")
@@ -1232,8 +1234,8 @@ SUBDIR is chosen interactively relative to `denote-directory'."
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 (use-package jinx  
-        :ensure t
-        :hook (emacs-startup . global-jinx-mode)
+	:ensure t
+	:hook (emacs-startup . global-jinx-mode)
 ;;        ;; :hook ((LaTeX-mode . jinx-mode)  
 ;;    	     ;; (latex-mode . jinx-mode)  
 ;;    	     ;; (markdown-mode . jinx-mode)  
@@ -1252,11 +1254,11 @@ SUBDIR is chosen interactively relative to `denote-directory'."
     (global-set-key (kbd "C-c s w") 'jinx-correct-word)
     (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
 
-  (use-package company-spell
-    :config (push 'company-spell company-backends)
-    :ensure t)
+  ;; (use-package company-spell
+    ;; :config (push 'company-spell company-backends)
+    ;; :ensure t)
   ;;  sudo nala install hunspell-en-us hunspell
-  (setf company-spell-command "hunspell")
+  ;; (setf company-spell-command "hunspell")
 
 (use-package visual-fill-column
   :ensure t

@@ -1,3 +1,21 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("c:/Users/ayako/AppData/Roaming/.emacs.d/config.org" . 1247)
+(("c:/Program Files/Emacs/emacs-29.4/"
+  (dired-filename . "c:/Program Files/Emacs/emacs-29.4/libexec"))
+ ("c:/Program Files/Emacs/emacs-29.4/include/"
+  (dired-filename . "c:/Program Files/Emacs/emacs-29.4/include/emacs-module.h"))
+ ("c:/Users/ayako/AppData/Roaming/denote/Apologetics/"
+  (dired-filename . "c:/Users/ayako/AppData/Roaming/denote/Apologetics/.."))
+ ("c:/Users/ayako/AppData/Roaming/denote/"
+  (dired-filename . "c:/Users/ayako/AppData/Roaming/denote/Political"))
+ ("c:/Users/ayako/AppData/Roaming/denote/Political/" . 207)
+ ("c:/Users/ayako/AppData/Roaming/denote/20241027T224121--index-linux__linux.org" . 420)
+ ("c:/Users/ayako/AppData/Roaming/denote/20241109T193727--change-themes-in-linux__linux_themes.org" . 103)
+ ("c:/Users/ayako/AppData/Roaming/denote/Apologetics/20241217T194107--testsvcrds__sinf.org" . 115)
+ ("c:/Users/ayako/AppData/Roaming/.emacs.d/"
+  (dired-filename . "c:/Users/ayako/AppData/Roaming/.emacs.d/.lsp-session-v1"))
+ ("c:/Program Files/Emacs/"
+  (dired-filename . "c:/Program Files/Emacs/.."))
+ ("c:/Program Files/"
+  (dired-filename . "c:/Program Files/Windows Defender Advanced Threat Protection"))
+ ("c:/Users/ayako/AppData/Roaming/.emacs.d/config.org" . 10941)
  ("/sudo:root@localhost:/etc/environment" . 54))
