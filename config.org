@@ -40,9 +40,9 @@ set and save so the theme will load properly in =emacsclient=
 
 ** Font
 #+BEGIN_SRC emacs-lisp
-  ;; (add-to-list 'default-frame-alist
-  ;; 	     '(font . "JetBrainsMono Nerd Font-50"))
-  (set-face-attribute 'default nil :font "Courier New" :height 160) ;; fow windows
+  (add-to-list 'default-frame-alist
+	       '(font . "JetBrainsMono Nerd Font-20"))
+  ;; (set-face-attribute 'default nil :font "Courier New" :height 160) ;; fow windows
 
 #+END_SRC
 ** colorful-mode
@@ -226,10 +226,10 @@ I don't use either, you might want to turn those from =nil= to =t= if you do.
       (global-display-line-numbers-mode 1)
 
   ;; of in mode only
-  (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+  ;; (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
 
-        ;; off
-        ;; (setq display-line-numbers-type nil)
+	;; off
+	;; (setq display-line-numbers-type nil)
 #+END_SRC
 *** sudo edit
 #+begin_src emacs-lisp

@@ -1,3 +1,7 @@
 ;;; -*- coding: utf-8; mode: lisp-data -*-
-(("c:/Users/ayako/AppData/Roaming/.emacs.d/config.org" . 1247)
+(("/home/ayako/python/shell.nix" . 311)
+ ("/home/ayako/.dotfiles/fish/.config/fish/config.fish" . 4326)
+ ("/home/ayako/bash/X-Downloade.sh" . 20)
+ ("/home/ayako/bash/X-Linkes.txt" . 1834)
+ ("/home/ayako/.emacs.d/config.org" . 1158)
  ("/sudo:root@localhost:/etc/environment" . 54))

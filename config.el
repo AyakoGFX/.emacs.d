@@ -18,9 +18,9 @@
 ;; Load theme
 ;; (load-theme 'doom-one t)
 
-;; (add-to-list 'default-frame-alist
-;; 	     '(font . "JetBrainsMono Nerd Font-50"))
-(set-face-attribute 'default nil :font "Courier New" :height 160) ;; fow windows
+(add-to-list 'default-frame-alist
+	     '(font . "JetBrainsMono Nerd Font-20"))
+;; (set-face-attribute 'default nil :font "Courier New" :height 160) ;; fow windows
 
 (use-package colorful-mode
   :ensure t
@@ -153,7 +153,7 @@
     (global-display-line-numbers-mode 1)
 
 ;; of in mode only
-(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+;; (add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
 
       ;; off
       ;; (setq display-line-numbers-type nil)
@@ -1232,8 +1232,8 @@ SUBDIR is chosen interactively relative to `denote-directory'."
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 (use-package jinx  
-        :ensure t
-        :hook (emacs-startup . global-jinx-mode)
+	:ensure t
+	:hook (emacs-startup . global-jinx-mode)
 ;;        ;; :hook ((LaTeX-mode . jinx-mode)  
 ;;    	     ;; (latex-mode . jinx-mode)  
 ;;    	     ;; (markdown-mode . jinx-mode)  
@@ -1252,11 +1252,11 @@ SUBDIR is chosen interactively relative to `denote-directory'."
     (global-set-key (kbd "C-c s w") 'jinx-correct-word)
     (global-set-key (kbd "C-c s N") 'jinx-correct-nearest)
 
-  (use-package company-spell
-    :config (push 'company-spell company-backends)
-    :ensure t)
+  ;; (use-package company-spell
+    ;; :config (push 'company-spell company-backends)
+    ;; :ensure t)
   ;;  sudo nala install hunspell-en-us hunspell
-  (setf company-spell-command "hunspell")
+  ;; (setf company-spell-command "hunspell")
 
 (use-package visual-fill-column
   :ensure t
