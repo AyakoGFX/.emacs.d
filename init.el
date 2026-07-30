@@ -1,0 +1,167 @@
+;; Example Elpaca configuration -*- lexical-binding: t; -*-
+(defvar elpaca-installer-version 0.12)
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(defvar elpaca-sources-directory (expand-file-name "sources/" elpaca-directory))
+(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+                              :ref nil :depth 1 :inherit ignore
+                              :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+                              :build (:not elpaca-activate)))
+
+(let* ((repo  (expand-file-name "elpaca/" elpaca-sources-directory))
+       (build (expand-file-name "elpaca/" elpaca-builds-directory))
+       (order (cdr elpaca-order))
+       (default-directory repo))
+  (add-to-list 'load-path (if (file-exists-p build) build repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (when (<= emacs-major-version 28) (require 'subr-x))
+    (condition-case-unless-debug err
+        (if-let* ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+                  ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
+                                                  ,@(when-let* ((depth (plist-get order :depth)))
+                                                      (list (format "--depth=%d" depth) "--no-single-branch"))
+                                                  ,(plist-get order :repo) ,repo))))
+                  ((zerop (call-process "git" nil buffer t "checkout"
+                                        (or (plist-get order :ref) "--"))))
+                  (emacs (concat invocation-directory invocation-name))
+                  ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                        "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+                  ((require 'elpaca))
+                  ((elpaca-generate-autoloads "elpaca" repo)))
+            (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+          (error "%s" (with-current-buffer buffer (buffer-string))))
+      ((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (let ((load-source-file-function nil)) (load "./elpaca-autoloads"))))
+
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca `(,@elpaca-order))
+
+(elpaca elpaca-use-package
+  (elpaca-use-package-mode))
+
+;;; START
+;; custom file
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file t)
+
+;; font
+(if (eq window-system 'w32)
+    (add-to-list 'default-frame-alist
+                 '(font . "JetBrainsMono NF-14"))
+  (add-to-list 'default-frame-alist
+               '(font . "JetBrainsMono Nerd Font-20")))
+
+;;; fixes
+(set-face-attribute 'mode-line nil :height 0.5) ;; Set active mode-line font size (e.g., 0.9x the default font size)
+(set-face-attribute 'mode-line-inactive nil :height 0.5) ;; Set inactive mode-line font size to match
+
+;; Normalize inactive and current line numbers to match standard buffer text sizing
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (set-face-attribute 'line-number nil :inherit 'default)
+            (set-face-attribute 'line-number-current-line nil :inherit 'default)))
+
+(setq-default cursor-type 'bar) ;; Options: 'box, 'bar, 'hollow, 'hbar
+
+(use-package emacs
+  :custom
+  ;; --- UI & Window Elements ---
+  (menu-bar-mode nil)
+  (scroll-bar-mode nil)
+  (tool-bar-mode nil)
+  (horizontal-scroll-bar-mode nil)
+  (inhibit-startup-message t)
+  (blink-cursor-mode t)
+  (context-menu-mode t)
+  (use-dialog-box nil)
+  (initial-scratch-message ";; HI BRO")
+  (display-time-mode 1)
+  (display-time-format "| (%d/%m/%y) | (%I:%M %p) | (%H:%M)")
+  (repeat-mode 1)
+  (global-completion-preview-mode t)
+  (global-display-fill-column-indicator-mode t)
+
+  ;; --- Behavior & Editing ---
+  (delete-selection-mode t)                   ;; Select text and delete it by typing
+  (electric-indent-mode nil)                  ;; Turn off default automatic indentation on Return
+  (electric-pair-mode nil)                    ;; Automatic parens pairing
+  (save-place-mode t)                         ;; Remember cursor position in files
+  (use-short-answers t)                       ;; Use y/n instead of yes/no
+  (ibuffer-expert t)                          ;; Disable ibuffer confirmation prompts
+
+  ;; --- File Handling & Reversion ---
+  (global-auto-revert-mode t)                 ;; Automatically reload file if changed on disk
+  (global-auto-revert-non-file-buffers t)     ;; Auto-revert dired and other buffers too
+  (make-backup-files nil)                     ;; Stop creating ~ backup files
+  (auto-save-default nil)                     ;; Stop creating # auto save files
+  (create-lockfiles nil)                      ;; Stop creating .# lockfiles
+  (delete-by-moving-to-trash t)               ;; Move deleted files to system trash
+
+  ;; --- Line & Column Views ---
+  (global-visual-line-mode t)                 ;; Enable line wrapping
+  (global-display-line-numbers-mode t)        ;; Display line numbers
+  (global-hl-line-mode t)                     ;; Highlight current line
+  (column-number-mode t)                      ;; Show column number in mode line
+
+  ;; --- Warnings & Errors ---
+  (native-comp-async-report-warnings-errors 'silent)
+  (warning-minimum-level :error)
+  (ring-bell-function 'ignore)
+
+  ;; --- Scrolling Settings ---
+  (scroll-margin 0)
+  (scroll-conservatively 100000)
+  (scroll-preserve-screen-position 1)
+  (pixel-scroll-precision-mode t)
+  (mouse-wheel-progressive-speed t)
+
+  ;; --- Indentation & Spacing ---
+  (indent-tabs-mode nil)
+  (tab-width 4)
+  (enable-recursive-minibuffers t)
+  (sgml-basic-offset 4)
+  (whitespace-style '(face tabs tab-mark trailing))
+
+  (x-select-enable-clipboard t)
+  (save-interprogram-paste-before-kill t)
+  (yank-pop-change-selection t)
+
+  :hook
+  (prog-mode . hs-minor-mode)                 ;; Enable folding hide/show globally
+  (prog-mode . whitespace-mode)               ;; Visualize tabs and trailing whitespace
+
+  :config
+  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
+  (load custom-file 'noerror 'nomessage)
+
+  :bind
+  (([escape] . keyboard-escape-quit)
+   ;; Zooming In/Out
+   ("<C-wheel-up>" . text-scale-increase)
+   ("<C-wheel-down>" . text-scale-decrease)))
+
+;;; load Lisp
+(add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
+
+(require 'time-shift)
+(require 'org-link-desc)
+
+;;; Import Modules
+(load (expand-file-name "modules/mini-buffer-completion.el" user-emacs-directory))
+(load (expand-file-name "modules/consult.el" user-emacs-directory))
+(load (expand-file-name "modules/dashboard.el" user-emacs-directory))
+(load (expand-file-name "modules/display-buffer.el" user-emacs-directory))
+(load (expand-file-name "modules/magit.el" user-emacs-directory))
+(load (expand-file-name "modules/dired.el" user-emacs-directory))
+(load (expand-file-name "modules/note.el" user-emacs-directory))
+(load (expand-file-name "modules/org.el" user-emacs-directory))
+(load (expand-file-name "modules/project.el" user-emacs-directory))
+(load (expand-file-name "modules/flyspell.el" user-emacs-directory))
+(load (expand-file-name "modules/tools.el" user-emacs-directory))
+(load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory))
+(load (expand-file-name "modules/my-defun.el" user-emacs-directory))
+(load (expand-file-name "modules/bindings.el" user-emacs-directory))
