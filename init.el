@@ -1,4 +1,4 @@
-;; Example Elpaca configuration -*- lexical-binding: t; -*-
+;; -*- lexical-binding: t; -*-
 (defvar elpaca-installer-version 0.12)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
@@ -43,10 +43,9 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
+(elpaca-wait)
+
 ;;; START
-;; custom file
-(setq custom-file (locate-user-emacs-file "custom.el"))
-(load custom-file t)
 
 ;; font
 (if (eq window-system 'w32)
@@ -68,6 +67,7 @@
 (setq-default cursor-type 'bar) ;; Options: 'box, 'bar, 'hollow, 'hbar
 
 (use-package emacs
+  :ensure nil
   :custom
   ;; --- UI & Window Elements ---
   (menu-bar-mode nil)
@@ -79,8 +79,6 @@
   (context-menu-mode t)
   (use-dialog-box nil)
   (initial-scratch-message ";; HI BRO")
-  (display-time-mode 1)
-  (display-time-format "| (%d/%m/%y) | (%I:%M %p) | (%H:%M)")
   (repeat-mode 1)
   (global-completion-preview-mode t)
   (global-display-fill-column-indicator-mode t)
@@ -134,10 +132,6 @@
   (prog-mode . hs-minor-mode)                 ;; Enable folding hide/show globally
   (prog-mode . whitespace-mode)               ;; Visualize tabs and trailing whitespace
 
-  :config
-  (setq custom-file (locate-user-emacs-file "custom-vars.el"))
-  (load custom-file 'noerror 'nomessage)
-
   :bind
   (([escape] . keyboard-escape-quit)
    ;; Zooming In/Out
@@ -165,6 +159,13 @@
 (load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory))
 (load (expand-file-name "modules/my-defun.el" user-emacs-directory))
 (load (expand-file-name "modules/bindings.el" user-emacs-directory))
+(load (expand-file-name "modules/modeline.el" user-emacs-directory))
+(load (expand-file-name "modules/themes.el" user-emacs-directory))
 (load (expand-file-name "modules/testing.el" user-emacs-directory))
 
 
+;;; Load custom.el
+;; Since Elpaca is asynchronous, loading custom.el early will fail if custom
+;; settings reference themes or variables from packages that aren't ready yet.
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
