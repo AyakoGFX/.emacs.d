@@ -11,4 +11,5 @@
 (add-hook 'prog-mode-hook #'flyspell-prog-mode)
 
 (with-eval-after-load 'flyspell
-  (define-key flyspell-mode-map (kbd "C-;") nil))
+  (define-key flyspell-mode-map (kbd "C-;") nil)
+  (define-key flyspell-mode-map (kbd "C-M-i") nil))

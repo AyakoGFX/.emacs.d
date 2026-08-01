@@ -1,0 +1,59 @@
+#+TITLE: Astrology Notes: Natal Chart & Aspects
+#+SUBTITLE: Personal Study Notes
+#+AUTHOR: James Stoup
+#+DATE: <2026-08-01 Sat>
+#+LATEX_CLASS: org-plain-latex
+#+LATEX_CLASS_OPTIONS: [11pt]
+
+# Document Styling (Google Docs Style Arial/Helvetica + Spacing)
+#+LATEX_HEADER: \usepackage[scaled=0.92]{helvet}
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \usepackage{setspace}
+#+LATEX_HEADER: \setstretch{1.15}
+#+LATEX_HEADER: \usepackage{parskip}
+
+# Callout Boxes & Formatting
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage{colortbl}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage[font=small,labelfont=bf]{caption}
+
+# Custom Box Definitions
+#+LATEX_HEADER: \newtcolorbox{aspectbox}[1]{colback=purple!5!white,colframe=purple!75!black,title=#1,fonttitle=\bfseries}
+#+LATEX_HEADER: \newtcolorbox{transitbox}[1]{colback=amber!5!white,colframe=amber!85!black,title=#1,fonttitle=\bfseries}
+
+* Planetary Correspondences
+
+| Planet  | Ruler Of       | Element     | Key Themes                       |
+|---------+----------------+-------------+----------------------------------|
+| Sun     | Leo            | Fire        | Core Self, Vitality, Ego         |
+| Moon    | Cancer         | Water       | Emotions, Instinct, Subconscious |
+| Mercury | Gemini / Virgo | Air / Earth | Communication, Intellect, Logic  |
+| Venus   | Taurus / Libra | Earth / Air | Relationships, Beauty, Values    |
+| Mars    | Aries          | Fire        | Action, Drive, Passion           |
+
+#+LATEX: \pagebreak
+
+* Houses & Placements
+
+** 1st House — The Ascendant (Rising)
+Rules identity, physical appearance, and outer personality.
+
+** 10th House — Midheaven (MC)
+Rules career, public reputation, and long-term ambition.
+
+# Callout box for key planetary aspects
+#+begin_export latex
+\begin{aspectbox}{Important Aspect: Sun Square Mars}
+Creates high energy and drive, but can manifest as internal friction or impulsiveness if unchanneled. Needs physical outlets.
+\end{aspectbox}
+#+end_export
+
+* Natal Chart Wheel
+
+#+CAPTION: Placidus House System Chart
+#+ATTR_LATEX: :width 0.55\linewidth :float nil
+[[file:~/Github/jothidam/charts/1.with-bg/ucham.png]]
+
+

@@ -1,6 +1,25 @@
 ;; -*- lexical-binding: t; -*-
 
 ;; ##############################################################
+(defun toggle-maximize-buffer ()
+  "Maximize buffer."
+  (interactive)
+  (save-excursion
+    (if (and (= 1 (length (cl-remove-if
+                           (lambda (w)
+                             (or (and (fboundp 'treemacs-is-treemacs-window?)
+                                      (treemacs-is-treemacs-window? w))
+                                 (and (bound-and-true-p neo-global--window)
+                                      (eq neo-global--window w))))
+                           (window-list))))
+             (assoc ?_ register-alist))
+        (jump-to-register ?_)
+      (window-configuration-to-register ?_)
+      (delete-other-windows))))
+
+(global-set-key (kbd "C-c m") 'toggle-maximize-buffer)
+
+;; ##############################################################
 
 (defun my/copy-file-name ()
   "Copy the current buffer file name (no path) to clipboard."

@@ -9,6 +9,7 @@ history
 projects
 .project
 project-window-list
+.org-id-locations
 auto-save-list/
 elpaca/
 eln-cache/

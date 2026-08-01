@@ -1,0 +1,38 @@
+#+TITLE: My Clean Notes
+#+SUBTITLE: Google Docs Style
+#+AUTHOR: James Stoup
+#+DATE: <2026-08-01 Sat>
+#+LATEX_CLASS: org-plain-latex
+#+LATEX_CLASS_OPTIONS: [11pt]
+
+# 1. Clean Hyperref metadata handling (prevents title page text dump)
+#+OPTIONS: title:t toc:t tex:t
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+# 2. Typography: Arial/Helvetica + Google Docs 1-inch Margins
+#+LATEX_HEADER: \usepackage[scaled=0.92]{helvet}
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
+#+LATEX_HEADER: \usepackage[scaled=0.88]{beramono}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+
+# 3. Essential Packages for Images and Code Blocks
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage[font=small,labelfont=bf]{caption}
+
+#+LATEX: \pagebreak
+
+* Key Concepts
+This body text renders in Helvetica/Arial at 11pt just like Google Docs.
+
+#+CAPTION: Linux Environment Diagram
+#+ATTR_LATEX: :width 0.3\linewidth :float nil
+[[file:/home/xshwa/Pictures/Linux.png]]
+
+* Code Snippets
+#+begin_src python
+def main():
+    print("Exporting with Google Docs font styling!")
+#+end_src
+

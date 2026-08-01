@@ -165,3 +165,6 @@
 (load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory))
 (load (expand-file-name "modules/my-defun.el" user-emacs-directory))
 (load (expand-file-name "modules/bindings.el" user-emacs-directory))
+(load (expand-file-name "modules/testing.el" user-emacs-directory))
+
+

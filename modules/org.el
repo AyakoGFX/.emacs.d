@@ -1,4 +1,7 @@
 ;; -*- lexical-binding: t; -*-
+;; engrave-faces.el : Syntax-highlighted exports (HTML/LaTeX) that match your Emacs theme.
+;; ob-async.el : Runs long-executing code blocks asynchronously so Emacs doesn't freeze.
+
 ;; Hide Org emphasis markers for cleaner display
 (setq org-hide-emphasis-markers t)
 
@@ -36,15 +39,7 @@
 (use-package org-tempo
   :ensure nil
   :config
-  (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
-  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
-  (add-to-list 'org-structure-template-alist '("li" . "src lisp"))
-  (add-to-list 'org-structure-template-alist '("sc" . "src scheme"))
-  (add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
-  (add-to-list 'org-structure-template-alist '("py" . "src python"))
-  (add-to-list 'org-structure-template-alist '("go" . "src go"))
-  (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
-  (add-to-list 'org-structure-template-alist '("json" . "src json")))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp")))
 
 
 (use-package org-appear
@@ -69,7 +64,7 @@
         ("t" "Todo" entry (file "~/denote/org-capture/TODO.org")
          "\n* TODO [%<%Y-%m-%d %I:%M:%S %p>]\n %?\n")))
 
-(global-set-key (kbd "C-c c") 'org-capture)
+;; (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; %U Inactive timestamp
 ;; %^ {Name} Prompt for something

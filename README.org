@@ -1,3 +1,68 @@
 * TODO 
- - [ ] Sleep 
+ - [ ] add themes
+
+* [[https://orgmode.org][Org-Mode]] 
+ - [[https://orgmode.org/guide/index.html][Compact Guide]] 
+ - [[https://orgmode.org/manual/index.html][Org Manual]] 
+ - [[https://orgmode.org/worg/orgcard.html][Org-Mode Reference Card]]
+ - [[https://orgmode.org/tools.html][Org-Tools]]
+** REDDIT POST ABOUT Org-Mode
+ - [[https://www.reddit.com/r/emacs/comments/1vbtels/i_made_an_org_mode_advanced_concepts_tutorial/][I made an Org Mode Advanced Concepts Tutorial]] 
+
+
+* latex
+ - install all the latex pkgs
+   #+begin_src sh
+     sudo pacman -S texlive
+   #+end_src
+
+** Configure Emacs for LaTeX
+Next we need to tell Emacs how to handle LaTeX.
+#+begin_src emacs-lisp
+;; Force Org-mode to export with XeLaTeX
+(setq org-latex-compiler "xelatex")
+
+;; Set XeLaTeX as the build process (runs twice to resolve TOC and references)
+(setq org-latex-pdf-process
+      '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq org-latex-listings 't)
+
+(require 'ox-latex)
+
+;; Custom Class Definition
+(add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+               [NO-DEFAULT-PACKAGES]
+               [PACKAGES]
+               [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(put 'upcase-region 'disabled nil)
+#+end_src
+
+ - Initial Org Doc Setup
+   #+begin_src org
+     ,#+TITLE: My Sexy PDF
+     ,#+SUBTITLE: Version 1.0
+     ,#+AUTHOR: James Stoup
+     ,#+CREATION_DATE: <2025-01-01 Wed>
+     ,#+OPTIONS: toc:3 H:5
+     ,#+SETUPFILE: ~/.emacs.d/
+   #+end_src
+
+ - Alternatively Use just install what u want
+   #+begin_src sh
+          sudo pacman -S tectonic
+   #+end_src
+
+   #+begin_src emacs-lisp
+     (setq org-latex-pdf-process '("tectonic -X compile %f"))
+   #+end_src
 
