@@ -16,25 +16,27 @@
   (popper-echo-mode +1))
 
 
-;; --- my popup Dfuns
+;; --- my popup
+(defun my/toggle-buffer (buffer-name command)
+  "Toggle display of BUFFER-NAME. If it doesn't exist, run COMMAND."
+  (let ((buf (get-buffer buffer-name)))
+    (cond
+     ((and buf (eq (current-buffer) buf))
+      (quit-window))
+     (buf
+      (pop-to-buffer buf))
+     (t
+      (funcall command)))))
 
 (defun my/toggle-shell ()
-  ;; "Toggle the `shell' buffer."
+  "Toggle the `shell' buffer."
   (interactive)
-  (if (get-buffer "*shell*")
-      (if (equal (current-buffer) (get-buffer "*shell*"))
-          (bury-buffer)
-        (pop-to-buffer "*shell*"))
-    (shell)))
+  (my/toggle-buffer "*shell*" #'shell))
 
 (defun my/toggle-eshell ()
   "Toggle the `eshell' buffer."
   (interactive)
-  (if (get-buffer "*eshell*")
-      (if (equal (current-buffer) (get-buffer "*eshell*"))
-          (bury-buffer)
-        (pop-to-buffer "*eshell*"))
-    (eshell)))
+  (my/toggle-buffer "*eshell*" #'eshell))
 
 (global-set-key (kbd "<f1>") #'my/toggle-shell)
 (global-set-key (kbd "<C-f1>") #'my/toggle-eshell)
