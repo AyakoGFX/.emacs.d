@@ -1,0 +1,35 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ 'nil
+)
+(setq url-cookie-secure-storage
+ '(("youtube.com"
+  [url-cookie "__Secure-ROLLOUT_TOKEN"
+              "COj_xbDe1ZeLmQEQqtfsz_aBlgMY_cep_v2BlgM%3D"
+              "Fri, 29-Jan-2027 12:51:02 GMT" "/" "youtube.com" t])
+ (".github.com"
+  [url-cookie "_octo" "GH1.1.438407254.1785673837"
+              "Mon, 02 Aug 2027 12:30:37 GMT" "/" ".github.com" t]
+  [url-cookie "logged_in" "no" "Mon, 02 Aug 2027 12:30:37 GMT" "/"
+              ".github.com" t])
+ (".youtube.com"
+  [url-cookie "__Secure-YNID"
+              "20.YT=jfmwnWKkVfTVdV14BmEz98JfU0pwjSfi_PhurHtbXPT5HFWWFnAYDmOyyXqzx1vwAhQqf_nwmlD_QmsdO1vWM5seWvDDU56dLyg721fquuzPFbJ5lvgaRY9l9yyj1Tsw7ffRKRoiznLZ1N2ayC_cPqvZK4MGi61s36rgG9AQRQsI2LEoehDZJGXb-9GyMI26GsS85prD6SIbJzGBbfXILySmoGsfxR7t7Hh8tL3bAtWkybCqIQlugfRBAAcHIw9NbSbad93cSzVlKspHpicgkuNpxvk5VSbUsMRNSt-ijhoAnKofk9oLf5KqokMX9ZOP3CxKwvn30udusKggASK2lA"
+              "Fri, 29-Jan-2027 12:18:06 GMT" "/" ".youtube.com" t]
+  [url-cookie "GPS" "1" "Sun, 02-Aug-2026 13:21:02 GMT" "/"
+              ".youtube.com" t]
+  [url-cookie "VISITOR_INFO1_LIVE" "0eIRe-UD3OE"
+              "Fri, 29-Jan-2027 12:51:02 GMT" "/" ".youtube.com" t]
+  [url-cookie "VISITOR_PRIVACY_METADATA" "CgJJThIEGgAgJg%3D%3D"
+              "Fri, 29-Jan-2027 12:51:02 GMT" "/" ".youtube.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; coding: utf-8-emacs-unix
+;; End:
+
+;;; cookies ends here

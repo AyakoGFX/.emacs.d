@@ -22,3 +22,5 @@ eln-cache/
 elpa/
 .cache/
 transient/
+eshell/history
+eshell/lastdir

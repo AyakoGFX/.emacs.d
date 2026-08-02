@@ -38,3 +38,6 @@
   (project-x-mode 1)
   (project-x-tabs-mode 1))
 
+;; (set-face-attribute 'tab-bar nil
+;; :font "JetBrainsMono Nerd Font"
+;; :height 200)

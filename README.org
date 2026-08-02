@@ -1,22 +1,51 @@
-* TODO 
- - [ ] add themes
+* TODO
+ - [X] add themes
+ - [ ] Emacs Ibuffer in Project Context
+ - [ ] Emacs Org Indent
+ - [X] add css file to this repo
 
-* [[https://orgmode.org][Org-Mode]] 
+* Dired
+ - [[https://xenodium.com/showhide-emacs-dired-details-in-style][Show/hide Emacs dired details in style]]
+ - [[https://xenodium.com/hide-another-detail][Hide another detail]]
+ - [[https://xenodium.com/interactive-ordering-of-dired-items][Interactive ordering of dired items]]
+ - [[https://xenodium.com/emacs-git-rename-courtesy-of-dired][Emacs: git rename, courtesy of dired]]
+ - [[https://xenodium.com/joining-images-from-the-comfort-of-dired][Stitching images from the comfort of dired]]
+
+
+
+* [[https://orgmode.org][Org-Mode]] Links
  - [[https://orgmode.org/guide/index.html][Compact Guide]] 
  - [[https://orgmode.org/manual/index.html][Org Manual]] 
  - [[https://orgmode.org/worg/orgcard.html][Org-Mode Reference Card]]
  - [[https://orgmode.org/tools.html][Org-Tools]]
+ - [[https://youtu.be/e9Ucb1JHUfQ?si=huzUXbk_3Uc90QL4][Emacs: Org mode basics - YouTube]]
+ - [[https://youtu.be/4rGUdVHwb3I?si=wP7C49uGChCDxOpn][Emacs | Make Your Own Glorious Texinfo Book From Org Mode  - YouTube]]
+
 ** REDDIT POST ABOUT Org-Mode
  - [[https://www.reddit.com/r/emacs/comments/1vbtels/i_made_an_org_mode_advanced_concepts_tutorial/][I made an Org Mode Advanced Concepts Tutorial]] 
 
+** org-mode-ox-odt
+ - [[https://kjambunathan.github.io/org-mode-ox-odt/index.html][Top (OpenDocument Text Exporter for Emacs&rsquo; Org Mode)]]
+ - [[https://github.com/kjambunathan/org-mode-ox-odt.git][GitHub - kjambunathan/org-mode-ox-odt: The Authoritative fork of Org mode's ODT exporter · GitHub]]
 
-* latex
- - install all the latex pkgs
+Elpaca
+ #+begin_src emacs-lisp
+(elpaca (ox-odt :host github
+                :repo "kjambunathan/org-mode-ox-odt"
+                :files ("lisp/ox-odt.el"
+                        "lisp/ox-ods.el"
+                        "lisp/odt.el"
+                        "etc"
+                        "docs"
+                        "contrib/odt/LibreOffice")))
+ #+end_src
+
+* Configure Emacs for LaTeX
+Install all the latex pkgs
    #+begin_src sh
      sudo pacman -S texlive
    #+end_src
 
-** Configure Emacs for LaTeX
 Next we need to tell Emacs how to handle LaTeX.
 #+begin_src emacs-lisp
 ;; Force Org-mode to export with XeLaTeX
