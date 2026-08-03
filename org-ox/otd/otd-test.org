@@ -1,0 +1,32 @@
+#+TITLE: Zodiac Charts & Notes
+#+OPTIONS: 
+
+* 2x2 Image Grid Layout
+Place images inside an Org table to keep them perfectly aligned in a 2x2 grid upon ODT export.
+
+#+ATTR_ODT: :width 2cm
+| [[file:img/book.png]] | [[file:img/book.png]] |
+| [[file:img/book.png]] | [[file:img/book.png]] |
+
+
+* Floating Image with Wrapped Text
+
+#+ATTR_ODT: :width 10 :height 10
+[[file:img/book.png]]
+
+*Waxing Moon* (Shukla Paksha):
+- The Moon is moving away from the Sun, heading towards 180°.
+- Vedic term: Shukla Paksha
+
+*Waning Moon* (Krishna Paksha):
+- The Moon has passed the opposite point (Full Moon) and is heading back.
+- Vedic term: Krishna Paksha
+
+#+ODT: <text:p text:style-name="Clear"/>
+
+* Key Summary Table
+
+| Moon Phase | Sanskrit Name | Direction |
+|------------+---------------+-----------|
+| Waxing     | Shukla Paksha | Away      |
+| Waning     | Krishna       | Towards   |

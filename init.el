@@ -54,6 +54,7 @@
   (add-to-list 'default-frame-alist
                '(font . "JetBrainsMono Nerd Font-20")))
 
+(set-default-coding-systems 'utf-8)
 ;;; fixes
 (set-face-attribute 'mode-line nil :height 0.5) ;; Set active mode-line font size (e.g., 0.9x the default font size)
 (set-face-attribute 'mode-line-inactive nil :height 0.5) ;; Set inactive mode-line font size to match

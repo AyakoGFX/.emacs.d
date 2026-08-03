@@ -1,0 +1,297 @@
+/* ==========================================================================
+   doom-homage-white.css
+   Generated from Emacs doom-homage-white-theme.el
+   ========================================================================== */
+
+:root {
+  /* Core Backgrounds & Foregrounds */
+  --bg: #fafafa;            /* Default Medium Background */
+  --bg-hard: #fafafa;       /* Hard Variant Background */
+  --bg-soft: #f0f0f0;       /* Soft Variant Background */
+  --bg-alt: #f0f0f0;        /* Alternate Background */
+  --fg: #383a42;            /* Default Text / Base5 */
+  --fg-alt: #c6c7c7;
+
+  /* Base Shades */
+  --base0: #f0f0f0;
+  --base1: #e7e7e7;         /* Code background / Highlighting */
+  --base2: #dfdfdf;         /* Borders / Table borders */
+  --base3: #c6c7c7;         /* Selections */
+  --base4: #9ca0a4;         /* Comments / Muted text */
+  --base5: #383a42;         /* Dark subtle text */
+  --base6: #202328;
+  --base7: #1c1f24;
+  --base8: #1b2229;
+
+  /* Accent Colors */
+  --grey: #383a42;
+  --red: #e45649;           /* Keywords / Level 4 Headings */
+  --orange: #8a3b3c;        /* Builtins / Title / Warning */
+  --green: #556b2f;         /* Strings / Level 5 Headings */
+  --teal: #4db5bd;
+  --yellow: #986801;        /* Functions / Level 2 Headings */
+  --yellow-alt: #fafadd;
+  --blue: #014980;          /* Variables / Operators / Level 1 Headings */
+  --dark-blue: #030f64;
+  --magenta: #a626a4;
+  --violet: #b751b6;        /* Constants / Types / Level 3 Headings */
+  --cyan: #0184bc;          /* Methods / Level 6 Headings */
+  --dark-cyan: #005478;
+
+  /* Faded Variants */
+  --faded-red: #e45649;
+  --faded-green: #556b2f;
+  --faded-yellow: #986801;
+  --faded-blue: #014980;
+  --faded-orange: #8a3b3c;
+  --faded-aqua: #0184bc;    /* Org Links */
+  --light3: #9ca0a4;
+  --light4: #9ca0a4;
+}
+
+/* ==========================================================================
+   Base Layout & Document Setup
+   ========================================================================== */
+
+html {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ==========================================================================
+   Headings (Mapped from org-level-1 through org-level-8)
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  color: var(--fg);
+}
+
+/* Document Title (org-document-title) */
+.title, h1.title {
+  color: var(--fg);
+  font-size: 2.25em;
+  border-bottom: 2px solid var(--base2);
+  padding-bottom: 0.3em;
+}
+
+/* Level 1 (org-level-1) */
+h1 {
+  color: var(--fg);
+  font-size: 1.85em;
+  border-bottom: 1px solid var(--base2);
+  padding-bottom: 0.2em;
+}
+
+/* Level 2 (org-level-2) */
+h2 {
+  color: var(--fg);
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--base2);
+  padding-bottom: 0.15em;
+}
+
+/* Level 3 (org-level-3) */
+h3 {
+  color: var(--fg);
+  font-size: 1.3em;
+}
+
+/* Level 4 (org-level-4) */
+h4 {
+  color: var(--fg);
+  font-size: 1.15em;
+}
+
+/* Level 5 (org-level-5) */
+h5 {
+  color: var(--fg);
+  font-size: 1.0em;
+}
+
+/* Level 6 (org-level-6) */
+h6 {
+  color: var(--fg);
+  font-size: 0.9em;
+}
+
+/* ==========================================================================
+   Links & Interactivity (org-link)
+   ========================================================================== */
+
+a {
+  color: var(--blue);
+  text-decoration: underline;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--cyan);
+}
+
+/* ==========================================================================
+   Code Blocks & Syntax Highlighting (org-block, font-lock faces)
+   ========================================================================== */
+
+/* Inline Code */
+code {
+  background-color: var(--base1);
+  color: var(--orange);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+/* Code Blocks (org-block) */
+pre, pre.src {
+  background-color: var(--base1);
+  color: var(--fg);
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--base2);
+  overflow-x: auto;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Syntax Highlighting Mapping */
+.org-keyword, .keyword             { color: var(--fg); font-weight: bold; }
+.org-builtin, .builtin             { color: var(--fg); font-weight: bold; }
+.org-string, .string               { color: var(--orange); }
+.org-function-name, .function      { color: var(--blue); font-weight: bold; }
+.org-variable-name, .variable      { color: var(--fg); }
+.org-type, .type                   { color: var(--fg); font-weight: bold; }
+.org-constant, .constant           { color: var(--fg); }
+.org-comment, .comment             { color: var(--green); font-style: italic; }
+.org-doc, .doc                     { color: var(--green); font-style: italic; }
+.org-number, .number               { color: var(--orange); }
+.org-operator, .operator           { color: var(--fg); }
+
+/* ==========================================================================
+   Blockquotes & Captions
+   ========================================================================== */
+
+blockquote {
+  margin: 1.5em 0;
+  padding: 12px 20px;
+  background-color: var(--base1);
+  border-left: 4px solid var(--blue);
+  color: var(--fg);
+  border-radius: 0 4px 4px 0;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Tables (org-table)
+   ========================================================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2em 0;
+  color: var(--fg); /* org-table face color */
+}
+
+th, td {
+  padding: 10px 14px;
+  border: 1px solid var(--base2);
+  text-align: left;
+}
+
+th {
+  background-color: var(--base1);
+  color: var(--fg);
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background-color: var(--bg-alt);
+}
+
+/* ==========================================================================
+   Media & Images
+   ========================================================================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+figcaption, .caption {
+  color: var(--base4);
+  font-size: 0.88em;
+  text-align: center;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Org Mode UI Elements (TODO, DONE, Tags, Dates)
+   ========================================================================== */
+
+.todo, .org-todo {
+  color: var(--red);
+  font-weight: bold;
+}
+
+.done, .org-done {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.tag, .org-tag {
+  color: var(--fg);
+  font-weight: bold;
+  background-color: var(--yellow-alt);
+  border: 1px solid var(--base5);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8em;
+}
+
+.timestamp, .org-date {
+  color: var(--fg);
+  background-color: var(--base1);
+  border: 1px solid var(--base5);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: var(--base2);
+  margin: 2.5em 0;
+}

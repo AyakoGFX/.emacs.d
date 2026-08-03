@@ -1,0 +1,69 @@
+#+TITLE: This Is The Title Of This Doc
+#+DESCRIPTION: The Description Of This Doc
+#+SUBTITLE: Subtitle Of This Doc
+
+* Heading 
+By default, the ODT export backend exports a table with top and bottom frames and with ruled lines separating row and column groups (see Column Groups). All tables are typeset to occupy the same width. The ODT export backend honors any table alignments and relative widths for columns (see Column Width and Alignment). 
+** Heading 
+
+By default, the ODT export backend exports a table with top and bottom frames and with ruled lines separating row and column groups (see Column Groups). All tables are typeset to occupy the same width. The ODT export backend honors any table alignments and relative widths for columns (see Column Width and Alignment). 
+*** Heading 
+
+By default, the ODT export backend exports a table with top and bottom frames and with ruled lines separating row and column groups (see Column Groups). All tables are typeset to occupy the same width. The ODT export backend honors any table alignments and relative widths for columns (see Column Width and Alignment). 
+**** Heading 
+
+By default, the ODT export backend exports a table with top and bottom frames and with ruled lines separating row and column groups (see Column Groups). All tables are typeset to occupy the same width. The ODT export backend honors any table alignments and relative widths for columns (see Column Width and Alignment). 
+***** Heading 
+
+#+ODT: <text:p text:style-name="PageBreak"/>
+
++ list
+  - element
+  - element
+  - element
+  - element
+
++ list number
+  1. element
+  2. element
+  3. element
+  4. element
+  5. element
+
+backend exports a table with top and bottom frames and with ruled lines separating row
+#+ODT: <text:p text:style-name="PageBreak"/>
+*bold*
+/italic/
+_underlined_
++strikethrough+
+=verbatim=
+~code~
+#+ODT: <text:p text:style-name="PageBreak"/>
+| row1 | row2 | row3 |
+|------+------+------|
+|    1 |    4 |    2 |
+|    4 |    4 |    4 |
+|    5 |    5 |    5 |
+|    4 |    4 |    4 |
+
+#+ODT: <text:p text:style-name="PageBreak"/>
+
+* plain img
+[[file:2.png]]
+#+ODT: <text:p text:style-name="PageBreak"/>
+
+* img with #+ATTR_ODT: :width 3 :height 3
+#+ATTR_ODT: :width 3 :height 3
+[[file:2.png]]
+#+ODT: <text:p text:style-name="PageBreak"/>
+
+* img with #+ATTR_ODT: :scale 0.3
+#+ATTR_ODT: :scale 0.3
+[[file:1.jpg]]
+#+ODT: <text:p text:style-name="PageBreak"/>
+
+* Anchoring of images with #+ATTR_ODT: :anchor page
+The ODT export backend can anchor images to ‘as-char’, ‘paragraph’, or ‘page’. Set the preferred anchor using the ‘:anchor’ property of the ‘ATTR_ODT’ line. 
+#+ATTR_ODT: :anchor page
+[[file:1.jpg]]
+

@@ -2,6 +2,15 @@
 ;; engrave-faces.el : Syntax-highlighted exports (HTML/LaTeX) that match your Emacs theme.
 ;; ob-async.el : Runs long-executing code blocks asynchronously so Emacs doesn't freeze.
 
+(elpaca (ox-odt :host github
+                :repo "kjambunathan/org-mode-ox-odt"
+                :files ("lisp/ox-odt.el"
+                        "lisp/ox-ods.el"
+                        "lisp/odt.el"
+                        "etc"
+                        "docs"
+                        "contrib/odt/LibreOffice")))
+
 ;; Hide Org emphasis markers for cleaner display
 (setq org-hide-emphasis-markers t)
 

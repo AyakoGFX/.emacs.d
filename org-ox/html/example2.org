@@ -1,0 +1,64 @@
+#+TITLE: Zodiac Notes
+#+AUTHOR: kishore
+#+OPTIONS: toc:nil num:nil html-postamble:nil
+
+# Base Modern Stylesheet (Online CDN)
+# #+HTML_HEAD: <link rel="stylesheet" href="https://latex.vercel.app/style.css">
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="doom-homage-white-theme.css" />
+# Layout Tweaks & Chrome Print Settings
+#+HTML_HEAD: <style>
+#+HTML_HEAD:   /* Retain colors and backgrounds in Chrome Print */
+#+HTML_HEAD:   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+#+HTML_HEAD:   body { max-width: 900px; }
+#+HTML_HEAD:   
+#+HTML_HEAD:   /* 2x2 Grid for Charts */
+#+HTML_HEAD:   .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 1.5rem 0; page-break-inside: avoid; }
+#+HTML_HEAD:   .grid-2x2 img { width: 100%; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin: 0; }
+#+HTML_HEAD:   
+#+HTML_HEAD:   /* Floating Image for Text Wrapping */
+#+HTML_HEAD:   .float-right { float: right; width: 42%; margin-left: 20px; margin-bottom: 15px; }
+#+HTML_HEAD:   .clear { clear: both; }
+#+HTML_HEAD:   
+#+HTML_HEAD:   /* Text Colors */
+#+HTML_HEAD:   .green { color: #52b788; font-weight: 600; }
+#+HTML_HEAD:   .red { color: #e63946; font-weight: 600; }
+#+HTML_HEAD:   .gold { color: #d4af37; font-weight: 600; }
+#+HTML_HEAD:   
+#+HTML_HEAD:   /* Chrome Print Page Break Rules */
+#+HTML_HEAD:   @media print {
+#+HTML_HEAD:     body { max-width: 100%; margin: 0; padding: 10px; }
+#+HTML_HEAD:     .grid-2x2, blockquote, img { page-break-inside: avoid; }
+#+HTML_HEAD:   }
+#+HTML_HEAD: </style>
+
+# Macros for easy color highlighting inside Org
+#+MACRO: green @@html:<span class="green">$1</span>@@
+#+MACRO: red @@html:<span class="red">$1</span>@@
+#+MACRO: gold @@html:<span class="gold">$1</span>@@
+
+
+* My Zodiac Charts
+#+ATTR_HTML: :class grid-2x2
+#+BEGIN_div
+[[file:img/book.png]]
+[[file:img/book.png]]
+[[file:img/book.png]]
+[[file:img/book.png]]
+#+END_div
+
+* MOON The Most Important
+#+ATTR_HTML: :class float-right
+[[file:img/book.png]]
+
+{{{green(Waxing Moon)}}} (Shukla Paksha):
+- The Moon is moving away from the Sun, heading towards 180°.
+
+{{{red(Waning Moon)}}} (Krishna Paksha):
+- The Moon has passed the opposite point (Full Moon).
+
+#+HTML: <div class="clear"></div>
+
+
+
+
+

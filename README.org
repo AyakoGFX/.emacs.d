@@ -1,7 +1,8 @@
 * TODO
- - [X] add themes
  - [ ] Emacs Ibuffer in Project Context
  - [ ] Emacs Org Indent
+ - [ ] 
+ - [X] add themes
  - [X] add css file to this repo
 
 * Dired
@@ -27,6 +28,10 @@
 ** org-mode-ox-odt
  - [[https://kjambunathan.github.io/org-mode-ox-odt/index.html][Top (OpenDocument Text Exporter for Emacs&rsquo; Org Mode)]]
  - [[https://github.com/kjambunathan/org-mode-ox-odt.git][GitHub - kjambunathan/org-mode-ox-odt: The Authoritative fork of Org mode's ODT exporter · GitHub]]
+ - [[https://emacsnotes.wordpress.com/2020/06/21/create-a-stylesheet-for-your-opendocument-files-and-inline-the-xml-definitions-right-in-your-org-file-think-html_head-or-html_head_extra-but-for-odt-docx-files/][Create a stylesheet for your OpenDocument files, and inline the XML definitions right in your Org file Emacs Notes]]
+ - [[https://opensource.com/article/22/8/odt-files][How ODT files are structured | Opensource.com]]
+ - [[https://youtu.be/2cACd5i4iU4?si=tTzdINsu3wD94-sj][Emacs Org mode as a word processor: Emacs Writing Studio - YouTube]]
+ - =learn more M-x info-display-manual org RET=
 
 Elpaca
  #+begin_src emacs-lisp

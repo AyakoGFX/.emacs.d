@@ -1,0 +1,31 @@
+#+TITLE: my notes on James Brahas book
+#+AUTHOR: kishore
+#+OPTIONS: html-inline-images:t
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="doom-gruvbox-light.css" />
+
+* NOTES ON James Brahâs 
+Ancient Hindu Astrology For the Modern Western Astrologer Revised and Expanded 2020 Edition (James Braha)
+[[file:img/book.png]]
+*** The technique that author used that did not work for him are
+ 1. Vargottama
+ 2. Neechabhanga Rajayoga
+
+
+|-------------+-------|
+| The Planets | glyph |
+|-------------+-------|
+| Sun         | ☉     |
+| Moon        |       |
+| Mercury     |       |
+| Venus       |       |
+| Mars        |       |
+| Jupiter     |       |
+| Saturn      |       |
+| Rahu        |       |
+| Ketu        |       |
+
+
+
+
+
+

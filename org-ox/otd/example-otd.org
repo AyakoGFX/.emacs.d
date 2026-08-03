@@ -1,0 +1,150 @@
+#+TITLE: Comprehensive Org Mode ODT Export Reference
+#+SUBTITLE: A Complete Test & Feature Demonstration Document
+#+AUTHOR: Your Name
+#+DESCRIPTION: Master reference template demonstrating all Org-mode to ODT export features.
+#+KEYWORDS: emacs org-mode odt libreoffice export-reference
+#+OPTIONS: toc:t num:t tex:t
+
+# Pointer to a custom LibreOffice template (Uncomment and adjust path to use)
+# #+ODT_STYLES_FILE: "/path/to/custom-template.ott"
+
+* Document Structure & Headlines
+By default, the ODT export backend generates styled headings mapped to LibreOffice styles like ~OrgHeading1~, ~OrgHeading2~, etc.
+
+** Level 2 Heading
+This section demonstrates nested heading structures.
+
+*** Level 3 Heading
+Paragraph text goes here to test typography and line-spacing rules.
+
+#+BEGIN_EXPORT odt
+<text:p text:style-name="Standard" fo:break-before="page"/>
+#+END_EXPORT
+
+**** Level 4 Heading
+Testing deeper levels of indentation.
+
+***** Level 5 Heading
+Deeply nested heading level.
+
+* Typography & Text Formatting
+Demonstration of standard Org-mode text markup and inline ODT XML tags.
+
+#+BEGIN_EXPORT odt
+<text:p text:style-name="Standard" fo:break-before="page"/>
+#+END_EXPORT
+
+** Basic Text Markup
+- *Bold text*
+- /Italic text/
+- _Underlined text_
+- +Strikethrough text+
+- =Verbatim text=
+- ~Code inline~
+
+** Inline Raw ODT XML Formatting
+You can embed raw OpenDocument XML directly into text for custom inline styling:
+
+- @@odt:<text:span text:style-name="Highlight">This text uses an inline raw ODT highlight tag.</text:span>@@
+- Regular text after the inline tag.
+
+# Standard Page Break via ODT snippet
+#+ODT: <text:p text:style-name="Page_20_Break"/>
+
+* Lists & Enumeration
+** Unordered List
+- Top-level item 1
+- Top-level item 2
+  - Nested sub-element A
+  - Nested sub-element B
+- Top-level item 3
+
+** Ordered List
+1. First step
+2. Second step
+   1. Sub-step A
+   2. Sub-step B
+3. Third step
+
+** Description List
+- Term 1 :: Definition for term 1.
+- Term 2 :: Definition for term 2.
+
+#+ODT: <text:p text:style-name="Page_20_Break"/>
+
+* Tables
+Demonstration of standard tables, custom widths, ratios, and captioned tables.
+
+** Basic Table
+| Category      | Value A | Value B | Total |
+|---------------+---------+---------+-------|
+| North America |      12 |      24 |    36 |
+| Europe        |      15 |      30 |    45 |
+| Asia-Pacific  |      20 |      40 |    60 |
+
+** Table with Relative Width & Column Ratios
+This table takes up 70% of the page width, with column width ratios set to 12:6:6:6.
+
+#+CAPTION: Regional Summary Table with Custom Width Ratios
+#+NAME: tab:regional-summary
+#+ATTR_ODT: :rel-width 70
+| Region        |   Q1 |   Q2 |   Q3 |
+|---------------+------+------+------|
+| /             |    < |      |      |
+| <l12>         | <r6> | <r6> | <r6> |
+| Alpha         |  100 |  150 |  200 |
+| Beta          |  300 |  350 |  400 |
+
+#+ODT: <text:p text:style-name="Page_20_Break"/>
+
+* Images & Captions
+Images can be resized, scaled, captioned, or anchored to pages/paragraphs.
+
+** Plain Image
+[[file:2.png]]
+
+** Image with Fixed Dimensions (in cm)
+#+CAPTION: Image set to 3cm x 3cm dimensions
+#+NAME: fig:fixed-dim-img
+#+ATTR_ODT: :width 3 :height 3
+[[file:2.png]]
+
+** Scaled Image with Caption
+#+CAPTION: Image scaled down to 30% of its native size
+#+NAME: fig:scaled-img
+#+ATTR_ODT: :scale 0.3
+[[file:1.jpg]]
+
+** Clickable Image Link
+An image that acts as a hyperlink when clicked:
+[[https://orgmode.org][./1.jpg]]
+
+** Page-Anchored Image
+Images can be anchored to ~as-char~, ~paragraph~, or ~page~.
+#+ATTR_ODT: :anchor page
+[[file:1.jpg]]
+
+#+ODT: <text:p text:style-name="Page_20_Break"/>
+
+* Code Blocks & Literal Examples
+Code blocks use Emacs fontification (`htmlfontify.el`) to export styled syntax.
+
+#+CAPTION: Python Hello World Example
+#+BEGIN_SRC python
+def main():
+    print("Hello from Org-mode ODT Export!")
+
+if __name__ == "__main__":
+    main()
+#+END_SRC
+
+#+ODT: <text:p text:style-name="Page_20_Break"/>
+
+* Advanced ODT Custom Blocks
+Raw OpenDocument XML blocks can be inserted for exact page and layout manipulation.
+
+#+BEGIN_EXPORT odt
+<text:p text:style-name="Text_20_body_20_bold">
+This block contains raw ODT XML that creates a custom bold paragraph without using standard Org syntax.
+</text:p>
+#+END_EXPORT

@@ -16,6 +16,7 @@
         org-beginning-of-line
         org-delete-char
         org-end-of-line
+        org-force-self-insert
         org-self-insert-command
         surround-insert
         suspend-frame
