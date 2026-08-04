@@ -18,6 +18,8 @@
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        pixel-scroll-precision
+        read-only-mode
         surround-insert
         suspend-frame
         text-scale-adjust
@@ -26,4 +28,5 @@
 
 (setq mc/cmds-to-run-once
       '(
+        undefined
         ))

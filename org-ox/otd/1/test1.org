@@ -1,0 +1,59 @@
+#+TITLE: notes on brain braha
+#+AUTHOR: kishore
+#+DATE: <2026-08-04 Tue>
+#+OPTIONS: toc:t num:nil H:9 
+#+odt_styles_file: ./template.ott
+#+odt_preferred_output_format: pdf
+#+odt_extra_images: 
+#+odt_extra_styles: <style:style style:name="PageBreak" style:family="paragraph" style:parent-style-name="Standard"><style:paragraph-properties fo:break-before="page"/></style:style>
+#+odt_extra_automatic_styles:
+#+odt_master_styles:
+#+odt_content_template_file:
+#+odt_automatic_styles:
+
+* hello this is the teasing
+If you don't specifically need strict Arial compatibility, Open Sans is generally considered visually superior and much easier to read for long paragraphs and UI elements.
+
+#+ODT: <text:p text:style-name="PageBreak"/>
+** If you don't 
+If you don't specifically need strict Arial compatibility, Open Sans is generally considered visually superior and much easier to read for long paragraphs and UI elements.
+
+*** If you don't 
+=If you don't= ~specifically need strict~ +Arial compatibility,+ /Open Sans is generally/ _considered visually_ superior and much easier to read for long paragraphs and UI elements.
+
+#+ODT: <text:p text:style-name="PageBreak"/>
+
+#+begin_src emacs-lisp
+(defun toggle-maximize-buffer ()
+  "Maximize buffer."
+  (interactive)
+  (save-excursion
+    (if (and (= 1 (length (cl-remove-if
+                           (lambda (w)
+                             (or (and (fboundp 'treemacs-is-treemacs-window?)
+                                      (treemacs-is-treemacs-window? w))
+                                 (and (bound-and-true-p neo-global--window)
+                                      (eq neo-global--window w))))
+                           (window-list))))
+             (assoc ?_ register-alist))
+        (jump-to-register ?_)
+      (window-configuration-to-register ?_)
+      (delete-other-windows))))
+
+#+end_src
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

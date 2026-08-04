@@ -5,6 +5,36 @@
  - [X] add themes
  - [X] add css file to this repo
 
+* info mode
+ - [[https://youtu.be/SBjQuxLV4m0?si=U9NlKD0b2mITJDK6][Emacs: How to get help with Info Mode - YouTube]] 
+| Key   | Action                                              |
+|-------+-----------------------------------------------------|
+| ~n / p~ | Move to the next / previous node at the same level  |
+| ~u~     | Go up one level in the manual hierarchy             |
+| ~m~     | Pick a menu item by name (uses autocomplete)        |
+| ~l / r~ | Move back / forward in your reading history         |
+| ~s~     | Search regular expressions across the entire manual |
+| ~q~     | Quit Info mode                                      |
+
+Structural Hierarchy
+#+begin_src 
+Info Directory Node (dir)
+  ├── Emacs Manual File
+  ├── Elisp Manual File
+  │     ├── Top Node
+  │     │     ├── Chapter: Data Types
+  │     │     │     ├── Section: Numbers
+  │     │     │     └── Section: Strings
+  │     │     └── Chapter: Control Structures
+  │     │           ├── Section: Conditionals
+  │     │           └── Section: Loops
+  │     └── Index Nodes
+  └── Other Info Files
+#+end_src
+
+* learn lisp
+- [[https://youtu.be/_OpZbHtBJkg?si=MwihPGlcAch9KSGv][An Introduction to Emacs Lisp - YouTube]] 
+
 * Dired
  - [[https://xenodium.com/showhide-emacs-dired-details-in-style][Show/hide Emacs dired details in style]]
  - [[https://xenodium.com/hide-another-detail][Hide another detail]]
@@ -31,6 +61,7 @@
  - [[https://emacsnotes.wordpress.com/2020/06/21/create-a-stylesheet-for-your-opendocument-files-and-inline-the-xml-definitions-right-in-your-org-file-think-html_head-or-html_head_extra-but-for-odt-docx-files/][Create a stylesheet for your OpenDocument files, and inline the XML definitions right in your Org file Emacs Notes]]
  - [[https://opensource.com/article/22/8/odt-files][How ODT files are structured | Opensource.com]]
  - [[https://youtu.be/2cACd5i4iU4?si=tTzdINsu3wD94-sj][Emacs Org mode as a word processor: Emacs Writing Studio - YouTube]]
+ - https://github.com/kjambunathan/org-mode-ox-odt/discussions/310
  - =learn more M-x info-display-manual org RET=
 
 Elpaca

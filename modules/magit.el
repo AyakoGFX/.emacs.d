@@ -1,8 +1,10 @@
+
 (use-package transient
   :ensure t)
 
 (use-package magit
   :ensure t
+  :after transient
   :config
   (setq magit-push-always-verify nil)
   (setq git-commit-summary-max-length 50)

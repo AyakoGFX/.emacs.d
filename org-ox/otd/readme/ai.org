@@ -1,0 +1,145 @@
+#+TITLE: How to Get Into ox-odt
+#+SUBTITLE: A Complete Setup, Configuration, and Styling Guide
+#+AUTHOR: kishore
+#+DATE: <2026-08-04 Tue>
+#+OPTIONS: toc:t num:t H:6
+
+# -- ODT EXPORT DIRECTIVES & EXTRA STYLES --
+#+ODT_STYLES_FILE: ./template.ott
+#+ODT_PREFERRED_OUTPUT_FORMAT: pdf
+
+# Custom XML Styles (Callouts, Highlighting, Page Breaks)
+#+odt_extra_styles: <style:style style:name="PageBreak" style:family="paragraph" style:parent-style-name="Standard"><style:paragraph-properties fo:break-before="page"/></style:style>
+#+odt_extra_styles: <style:style style:name="InfoBox" style:family="paragraph" style:parent-style-name="Standard"><style:paragraph-properties fo:background-color="#e3f2fd" fo:padding="0.12in" fo:margin-top="0.1in" fo:margin-bottom="0.1in" fo:border-left="4.5pt solid #1976d2" fo:border-right="none" fo:border-top="none" fo:border-bottom="none"/></style:style>
+#+odt_extra_styles: <style:style style:name="WarningBox" style:family="paragraph" style:parent-style-name="Standard"><style:paragraph-properties fo:background-color="#fff3e0" fo:padding="0.12in" fo:margin-top="0.1in" fo:margin-bottom="0.1in" fo:border-left="4.5pt solid #f57c00" fo:border-right="none" fo:border-top="none" fo:border-bottom="none"/></style:style>
+#+odt_extra_styles: <style:style style:name="Highlighter" style:family="text"><style:text-properties fo:background-color="#fff59d"/></style:style>
+
+# Page Break Macro
+#+MACRO: pagebreak @@odt:<text:p text:style-name="PageBreak"/>@@
+
+
+* Important Links & Pre-requisites
+
+** Important Links
+- [[https://orgmode.org/manual/OpenDocument-Text-Export.html][Official Org Mode ODT Export Manual]]
+- [[https://github.com/kjambunathan/org-mode-ox-odt.git][Enhanced ox-odt Repository (kjambunathan)]]
+- [[https://github.com/kjambunathan/org-mode-ox-odt/discussions][ox-odt GitHub Discussions]]
+
+** Pre-requisites
+- *zip / unzip*: Required by Emacs to pack/unpack OpenDocument archives.
+- *LibreOffice Writer*: Required for viewing output and creating/modifying =.ott= template files.
+
+
+* Setup & Installation
+
+There are two versions of =ox-odt=:
+1. *Built-in ox-odt*: Comes bundled with stock Emacs/Org mode.
+2. *Enhanced ox-odt*: Forked and maintained by the original author with additional features and bug fixes.
+
+** Installing the Enhanced Version (Elpaca)
+[[https://github.com/kjambunathan/org-mode-ox-odt#installation][Installation Manual]]
+
+Add the following block to your Emacs configuration:
+
+#+begin_src emacs-lisp
+(elpaca (ox-odt :host github
+                :repo "kjambunathan/org-mode-ox-odt"
+                :files ("lisp/ox-odt.el"
+                        "lisp/ox-ods.el"
+                        "lisp/odt.el"
+                        "etc"
+                        "docs"
+                        "contrib/odt/LibreOffice")))
+#+end_src
+
+
+* Useful Commands & Workflow
+
+Reference: [[https://orgmode.org/manual/ODT-export-commands.html][ODT Export Commands Manual]]
+
+| Shortcut | Command / Function | Description |
+|----------+--------------------+-------------|
+| ~C-c C-e o o~ | =org-odt-export-to-odt= | Export current buffer to =.odt= and open it |
+| ~C-c C-e o O~ | =org-odt-export-to-odt= | Export and convert directly to PDF/DOCX |
+| ~C-c C-e # odt RET~ | Template Insertion | Insert empty ODT export option headers into buffer |
+
+
+* ODT Specific Export Settings
+
+Reference: [[https://orgmode.org/manual/ODT-specific-export-settings.html][ODT Specific Settings Manual]]
+
+Header options inserted into the top of your document:
+
+#+begin_src org
+  ,#+TITLE: My Document Title
+  ,#+SUBTITLE: Subtitle or Description
+  ,#+AUTHOR: kishore
+  ,#+KEYWORDS: emacs org-mode odt export
+  ,#+OPTIONS: toc:t num:t H:6
+
+  # ODT Directives
+  ,#+ODT_PREFERRED_OUTPUT_FORMAT: pdf
+  ,#+ODT_STYLES_FILE: "./template.ott"
+  ,#+ODT_EXTRA_STYLES: ...
+  ,#+ODT_EXTRA_IMAGES: ...
+  ,#+ODT_EXTRA_AUTOMATIC_STYLES: ...
+  ,#+ODT_MASTER_STYLES: ...
+  ,#+ODT_CONTENT_TEMPLATE_FILE: ...
+  ,#+ODT_AUTOMATIC_STYLES: ...
+#+end_src
+
+** Explanation of Core Options
+- =toc:t= :: Generates a Table of Contents (=toc:nil= to disable).
+- =num:t= :: Numbers section headings automatically (=num:nil= for unnumbered).
+- =H:6= :: Sets headline export depth to 6. *Crucial:* By default, Org mode turns levels deeper than 3 into bullet lists. Setting =H:6= forces levels 1–6 to render as real headings.
+- =#+ODT_PREFERRED_OUTPUT_FORMAT: pdf= :: Automatically invokes LibreOffice in the background to convert `.odt` into `pdf` (or `docx`, `doc`, `rtf`).
+
+
+{{{pagebreak}}}
+
+
+* Applying Custom Styles
+
+Reference: [[https://orgmode.org/manual/Applying-custom-styles.html][Applying Custom Styles Manual]]
+
+** 1. Using a LibreOffice Template (.ott)
+The cleanest approach for document-wide custom styles:
+
+#+begin_src org
+  ,#+ODT_STYLES_FILE: "/path/to/example.ott"
+#+end_src
+
+** 2. Using Inline `odt_extra_styles`
+You can define XML style blocks directly inside your Org document and apply them to elements.
+
+*** Usage Examples:
+
+**** Page Breaks
+Use the macro anywhere in your text to force a new page:
+#+begin_src org
+  {{{pagebreak}}}
+#+end_src
+
+**** Info / Callout Box
+#+attr_odt: :style "InfoBox"
+#+begin_quote
+*Note:* This is an important info box with a blue accent line.
+#+end_quote
+
+**** Warning / Alert Box
+#+attr_odt: :style "WarningBox"
+#+begin_quote
+*Warning:* This is a caution block for critical warnings.
+#+end_quote
+
+**** Text Highlighting
+Highlight inline text using ODT span tags:
+
+This is normal text, but @@odt:<text:span text:style-name="Highlighter">this text is highlighted in yellow</text:span>@@.
+
+
+* Tables, Images, Labels & Captions
+
+- [[https://orgmode.org/manual/Tables-in-ODT-export.html][Tables in ODT export]] :: Custom table formatting, column widths, and grid styling.
+- [[https://orgmode.org/manual/Images-in-ODT-export.html][Images in ODT export]] :: Inline image sizing, alignment, and format conversions.
+- [[https://orgmode.org/manual/Labels-and-captions-in-ODT-export.html][Labels and captions in ODT export]] :: Cross-referencing figures, equations, and tables.

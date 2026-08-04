@@ -10,6 +10,8 @@ projects
 .project
 project-window-list
 .org-id-locations
+ielm-history.eld
+tree-sitter/
 auto-save-list/
 elpaca/
 eln-cache/

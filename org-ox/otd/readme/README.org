@@ -1,0 +1,110 @@
+#+AUTHOR: kishore
+#+TITLE: how to get into ox-odt  
+#+DATE: <2026-08-04 Tue>
+#+odt_preferred_output_format:
+#+odt_styles_file:  ./template.ott
+#+odt_extra_images: 
+#+odt_extra_styles: 
+#+odt_extra_automatic_styles: 
+#+odt_master_styles: 
+#+odt_content_template_file:
+#+odt_automatic_styles:
+
+* Create Document In Emacs with ox-odt
++ Important links 
+  - https://orgmode.org/manual/OpenDocument-Text-Export.html
+  - https://github.com/kjambunathan/org-mode-ox-odt.git
+  - https://github.com/kjambunathan/org-mode-ox-odt/discussions
+
++ There are two different versions of ox-odt 
+  1. ox-odt that comes with default emacs 
+  2. we install forked enhanced version by the Original author of ox-odt 
+
++ install enhanced org-mode-ox-odt
+  - https://github.com/kjambunathan/org-mode-ox-odt#installation
+
+This Is How I Install
+ #+begin_src emacs-lisp
+(elpaca (ox-odt :host github
+                :repo "kjambunathan/org-mode-ox-odt"
+                :files ("lisp/ox-odt.el"
+                        "lisp/ox-ods.el"
+                        "lisp/odt.el"
+                        "etc"
+                        "docs"
+                        "contrib/odt/LibreOffice")))
+ #+end_src
+
++ usefull commands [[https://orgmode.org/manual/ODT-export-commands.html][manual]]
+  - =C-c C-e o o= (org-odt-export-to-odt)
+  - =C-c C-e # otd RET= insert template
+#+begin_src org
+  ,#+odt_preferred_output_format:
+  ,#+odt_styles_file: 
+  ,#+odt_extra_images: 
+  ,#+odt_extra_styles: 
+  ,#+odt_extra_automatic_styles: 
+  ,#+odt_master_styles: 
+  ,#+odt_content_template_file:
+  ,#+odt_automatic_styles:
+#+end_src
+
+** Pre-requisites
+ - *zip*
+ - *libreoffice writer* for Creating /.ott/ Template Files
+
+** ODT specific export settings [[https://orgmode.org/manual/ODT-specific-export-settings.html][manual]] 
+ - ODT_STYLES_FILE
+ - KEYWORDS
+ - SUBTITLE
+
+** Extending ODT export [[https://orgmode.org/manual/Extending-ODT-export.html][manual]]
+#+begin_src org
+  ,#+odt_preferred_output_format: pdf or doc, docx, rtf,
+#+end_src
+
+** Applying custom styles [[https://orgmode.org/manual/Applying-custom-styles.html][manual]]
+Applying custom styles: the easy way
+
+#+begin_src org
+  ,#+OPTIONS: H:10 num:t
+#+end_src
+
+#+begin_src org
+#+ODT_STYLES_FILE: "/path/to/example.ott"
+#+end_src
+
+** Tables in ODT export
+ - https://orgmode.org/manual/Tables-in-ODT-export.html
+
+** Images in ODT export
+ - https://orgmode.org/manual/Images-in-ODT-export.html
+
+** Labels and captions in ODT export
+- https://orgmode.org/manual/Labels-and-captions-in-ODT-export.html
+
+* odt_extra_styles
+#+begin_src org
+    # 2. Info / Callout Box
+    # #+odt_extra_styles: <style:style style:name="InfoBox" style:family="paragraph" style:parent-style-name="Standard"><style:paragraph-properties fo:background-color="#e3f2fd" fo:padding="0.12in" fo:margin-top="0.1in" fo:margin-bottom="0.1in" fo:border-left="4.5pt solid #1976d2" fo:border-right="none" fo:border-top="none" fo:border-bottom="none"/></style:style>
+
+    # 3. Warning / Alert Box
+    # #+odt_extra_styles: <style:style style:name="WarningBox" style:family="paragraph" style:parent-style-name="Standard"><style:paragraph-properties fo:background-color="#fff3e0" fo:padding="0.12in" fo:margin-top="0.1in" fo:margin-bottom="0.1in" fo:border-left="4.5pt solid #f57c00" fo:border-right="none" fo:border-top="none" fo:border-bottom="none"/></style:style>
+
+    # 4. Text Highlighter
+    # #+odt_extra_styles: <style:style style:name="Highlighter" style:family="text"><style:text-properties fo:background-color="#fff59d"/></style:style>
+
+    # Page Break Macro Definition
+    # #+MACRO: pagebreak @@odt:<text:p text:style-name="PageBreak"/>@@
+    # {{{pagebreak}}} or
+    # #+ODT: <text:p text:style-name="PageBreak"/>
+#+end_src
+
+** Explanation of Options:
+- =toc:t= :: Generates a Table of Contents (use =toc:nil= to disable).
+- =num:t= :: Numbers section headings automatically (use =num:nil= for unnumbered).
+- =H:6= :: Sets headline export depth to 6. *Crucial:* By default, Org mode turns levels deeper than 3 into bullet lists. Setting =H:6= forces levels 1–6 to render as real headings.
+
+
+
+
