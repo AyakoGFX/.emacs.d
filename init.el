@@ -1,5 +1,6 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
+(setq custom-safe-themes t)
 ;;; START
 
 ;; font
@@ -11,8 +12,8 @@
 
 (set-default-coding-systems 'utf-8)
 ;;; fixes
-(set-face-attribute 'mode-line nil :height 0.5) ;; Set active mode-line font size (e.g., 0.9x the default font size)
-(set-face-attribute 'mode-line-inactive nil :height 0.5) ;; Set inactive mode-line font size to match
+(set-face-attribute 'mode-line nil :height 0.6) ;; Set active mode-line font size (e.g., 0.9x the default font size)
+(set-face-attribute 'mode-line-inactive nil :height 0.6) ;; Set inactive mode-line font size to match
 
 ;; Normalize inactive and current line numbers to match standard buffer text sizing
 (add-hook 'emacs-startup-hook
