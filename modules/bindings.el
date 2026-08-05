@@ -21,7 +21,7 @@
 
 (global-set-key (kbd "C-x C-k") (lambda () (interactive) (kill-buffer (current-buffer)))) ;; kill buff no asking
 (global-set-key (kbd "C-c q") #'join-line)
-(global-set-key (kbd "<f2>") #'save-buffer)
+;; (global-set-key (kbd "<f2>") #'save-buffer)
 ;; (global-set-key (kbd "C-c j") #'replace-string)
 
 ;; Window manipulation (used with windmove, hence _Ctrl_-shift bindings)

@@ -4,7 +4,6 @@
   :bind (:map dired-mode-map
               ("TAB" . dired-hide-subdir)
               ("<backtab>" . dired-hide-all)
-              ("C-<tab>" . dired-do-kill-lines)
               ("b" . dired-up-directory))
   :config ; Guess a default target directory
   (setq dired-mouse-drag-files t
@@ -17,7 +16,13 @@
         dired-kill-when-opening-new-dired-buffer t)
 
   ;; Show directory first
-  (setq dired-listing-switches "-alh --group-directories-first"))
+  (setq dired-listing-switches "-alh --group-directories-first")
+
+  ;; Keep point in place when toggling subdirectories
+  (advice-add 'dired-hide-subdir :around
+              (lambda (orig-fun &rest args)
+                (save-excursion
+                  (apply orig-fun args)))))
 
 ;; Hide the details in dired
 (add-hook 'dired-mode-hook #'denote-dired-mode)
