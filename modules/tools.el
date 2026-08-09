@@ -15,6 +15,7 @@
 (use-package evil
   :ensure t)
 (global-set-key (kbd "C-x /") #'evil-ex)
+(global-set-key (kbd "<f2>") #'evil-mode)
 
 (use-package keycast
   :ensure t)

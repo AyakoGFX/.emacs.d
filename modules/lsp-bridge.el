@@ -7,7 +7,8 @@
   :load-path "~/Github/lsp-bridge"
   :demand t
   :custom
-  (lsp-bridge-python-command "python-lsp-bridge")
+  ;; (lsp-bridge-python-command "python-lsp-bridge")
+  (lsp-bridge-python-command (expand-file-name "~/Github/lsp-bridge/python-lsp-bridge"))
   (lsp-bridge-enable-auto-format-code nil)
   (lsp-bridge-enable-diagnostics t)
   (lsp-bridge-enable-hover-diagnostic t)

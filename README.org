@@ -1,10 +1,28 @@
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
+* watch
+- https://youtu.be/TxYGHjKBMUg?si=4GZpja7OqlvwqGUa
 * TODO
  - [ ] Emacs Ibuffer in Project Context
- - [ ] Emacs Org Indent
- - [ ] 
+ - [X] auto-fill-mode
+ - [X] Emacs Org Indent
  - [X] add themes
  - [X] add css file to this repo
+ - add org mode yas snippets odt
+ - follow the instructions at https://libera.chat/guides/cloaks to hide it irc
 
+* the fill
+| cmd             | key                          | Description                                           |
+|-----------------+------------------------------+-------------------------------------------------------|
+| set-fill-column | C-x f                        | Sets the width for the current buffer interactively.  |
+| fill-region     | C-x f (then M-x fill-region) | Refills a selected block of text.                     |
+| fill-paragraph  | M-q                          | Refills the current paragraph to fit the fill-column. |
+** auto-fill-mode 
+Once auto-fill-mode is enabled, 
+you can manage existing text blocks manually with these commands:
+#+begin_src emacs-lisp
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'prog-mode-hook 'auto-fill-mode)
+#+end_src
 * info mode
  - [[https://youtu.be/SBjQuxLV4m0?si=U9NlKD0b2mITJDK6][Emacs: How to get help with Info Mode - YouTube]] 
 | Key   | Action                                              |
@@ -42,8 +60,6 @@ Info Directory Node (dir)
  - [[https://xenodium.com/emacs-git-rename-courtesy-of-dired][Emacs: git rename, courtesy of dired]]
  - [[https://xenodium.com/joining-images-from-the-comfort-of-dired][Stitching images from the comfort of dired]]
 
-
-
 * [[https://orgmode.org][Org-Mode]] Links
  - [[https://orgmode.org/guide/index.html][Compact Guide]] 
  - [[https://orgmode.org/manual/index.html][Org Manual]] 
@@ -51,14 +67,17 @@ Info Directory Node (dir)
  - [[https://orgmode.org/tools.html][Org-Tools]]
  - [[https://youtu.be/e9Ucb1JHUfQ?si=huzUXbk_3Uc90QL4][Emacs: Org mode basics - YouTube]]
  - [[https://youtu.be/4rGUdVHwb3I?si=wP7C49uGChCDxOpn][Emacs | Make Your Own Glorious Texinfo Book From Org Mode  - YouTube]]
+ - [[https://github.com/fniessen/org-html-themes/tree/master/org/setup][fniessen/org-html-themes · GitHub]]
+ - [[https://orgmode.org/orgcard.pdf]]
+ - https://orgmode.org/worg/org-contrib/babel/intro.html READ
 
 ** REDDIT POST ABOUT Org-Mode
  - [[https://www.reddit.com/r/emacs/comments/1vbtels/i_made_an_org_mode_advanced_concepts_tutorial/][I made an Org Mode Advanced Concepts Tutorial]] 
 
 ** org-mode-ox-odt
- - [[https://kjambunathan.github.io/org-mode-ox-odt/index.html][Top (OpenDocument Text Exporter for Emacs&rsquo; Org Mode)]]
+ - [[https://kjambunathan.github.io/org-mode-ox-odt/index.html][Top (OpenDocument Text Exporter for Emacs&rsquo; Org Mode)]] 
  - [[https://github.com/kjambunathan/org-mode-ox-odt.git][GitHub - kjambunathan/org-mode-ox-odt: The Authoritative fork of Org mode's ODT exporter · GitHub]]
- - [[https://emacsnotes.wordpress.com/2020/06/21/create-a-stylesheet-for-your-opendocument-files-and-inline-the-xml-definitions-right-in-your-org-file-think-html_head-or-html_head_extra-but-for-odt-docx-files/][Create a stylesheet for your OpenDocument files, and inline the XML definitions right in your Org file Emacs Notes]]
+ - [[https://emacsnotes.wordpress.com/2020/06/21/create-a-stylesheet-for-your-opendocument-files-and-inline-the-xml-definitions-right-in-your-org-file-think-html_head-or-html_head_extra-but-for-odt-docx-files/][Create a stylesheet for your OpenDocument files, and inline the XML definitions right in your Org file Emacs Notes]] 
  - [[https://opensource.com/article/22/8/odt-files][How ODT files are structured | Opensource.com]]
  - [[https://youtu.be/2cACd5i4iU4?si=tTzdINsu3wD94-sj][Emacs Org mode as a word processor: Emacs Writing Studio - YouTube]]
  - https://github.com/kjambunathan/org-mode-ox-odt/discussions/310
@@ -131,3 +150,5 @@ Next we need to tell Emacs how to handle LaTeX.
      (setq org-latex-pdf-process '("tectonic -X compile %f"))
    #+end_src
 
+* cool videos
+- [[https://youtu.be/0g9BcZvQbXU?si=xUPRf-lcHF0VCnYB][Consistent Technical Documents Using Emacs and Org Mode - YouTube]]

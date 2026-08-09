@@ -4,11 +4,15 @@
 
 (use-package ox-odt
   :vc (:url "https://github.com/kjambunathan/org-mode-ox-odt"
-       :lisp-dir "lisp")
+            :lisp-dir "lisp")
   :after org)
+
+;; turn on indent-mode in org mode
+(add-hook 'org-mode-hook #'org-indent-mode)
 
 ;; Hide Org emphasis markers for cleaner display
 (setq org-hide-emphasis-markers t)
+
 
 (defvar my-org-headers
   '((org-level-1 . 1.3)

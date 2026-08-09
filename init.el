@@ -1,6 +1,6 @@
+(setq custom-safe-themes t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
-(setq custom-safe-themes t)
 ;;; START
 
 ;; font
@@ -11,6 +11,12 @@
                '(font . "JetBrainsMono Nerd Font-20")))
 
 (set-default-coding-systems 'utf-8)
+(set-language-environment "UTF-8")
+(prefer-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+
 ;;; fixes
 (set-face-attribute 'mode-line nil :height 0.6) ;; Set active mode-line font size (e.g., 0.9x the default font size)
 (set-face-attribute 'mode-line-inactive nil :height 0.6) ;; Set inactive mode-line font size to match
@@ -118,5 +124,6 @@
 (load (expand-file-name "modules/bindings.el" user-emacs-directory))
 (load (expand-file-name "modules/modeline.el" user-emacs-directory))
 (load (expand-file-name "modules/themes.el" user-emacs-directory))
+(load (expand-file-name "modules/irc.el" user-emacs-directory))
 (load (expand-file-name "modules/testing.el" user-emacs-directory))
 

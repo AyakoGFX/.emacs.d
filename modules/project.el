@@ -22,9 +22,14 @@
    ("M-6" . tab-bar-select-tab)
    ("M-7" . tab-bar-select-tab)
    ("M-8" . tab-bar-select-tab)
-   ("M-9" . tab-bar-select-tab))
-  :custom-face
-  (tab-bar ((t (:font "JetBrainsMono Nerd Font" :height 100)))))
+   ("M-9" . tab-bar-select-tab)))
+
+;; tab bar hight
+(set-face-attribute 'tab-bar nil :height 100)
+
+;; tab line hight
+(global-tab-line-mode 1)
+(set-face-attribute 'tab-line nil :height 100)
 
 (use-package project-x
   :ensure t
