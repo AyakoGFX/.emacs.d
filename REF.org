@@ -1,0 +1,38 @@
++ 1
+ - https://github.com/systematician/emacs-web-dev/blob/master/init.el
+ - https://gist.github.com/rougier/8d5a712aa43e3cc69e7b0e325c84eab4
+ - https://github.com/seagle0128/.emacs.d?tab=readme-ov-file#manual
+ - https://github.com/Bugswriter/.emacs.d/blob/master/config.org
+ - https://github.com/kaushalmodi/.emacs.d/tree/master
+ - https://github.com/Bugswriter/BugsWritersEmacs
+ - https://codeberg.org/thelinuxcast/my-dots.git
+ - https://codeberg.org/CatWizard/myn-macs
+ - https://github.com/doomemacs/doomemacs
+ - https://gitlab.com/Clsmith1/dotfiles
+ - https://github.com/daviwil
+
++ Minimal
+  - https://github.com/SystemCrafters/crafted-emacs
+  - https://github.com/jamescherti/minimal-emacs.d
+  - https://codeberg.org/ashton314/emacs-bedrock
+  - https://sr.ht/~ashton314/emacs-bedrock/
+  - https://github.com/LionyxML/emacs-solo
+  - https://github.com/LionyxML/emacs-kick
+  - https://github.com/MiniApollo/kickstart.emacs.git
+  - https://github.com/skunkdog/emacs-config/tree/main
+
+
++ Modern looking Emacs Config
+  - https://github.com/rougier/elegant-emacs
+  - https://github.com/rougier/nano-emacs.git
+
++ Artical
+  - [[https://jneidel.com/guide/emacs-completion/#fnref:1][Guide to Modern Emacs Completion: vertico, corfu & friends]] 🔺 [[https://github.com/jneidel/dotfiles/blob/master/.emacs.d/dotemacs.org][Arthur config]] 
+
+_Emacs_
++Emacs+
+/Emacs/
+
+#+begin_src emacs-lisp
+(setq org-hide-emphasis-markers t)
+#+end_src

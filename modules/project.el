@@ -27,10 +27,6 @@
 ;; tab bar hight
 (set-face-attribute 'tab-bar nil :height 100)
 
-;; tab line hight
-(global-tab-line-mode 1)
-(set-face-attribute 'tab-line nil :height 100)
-
 (use-package project-x
   :ensure t
   :after project
@@ -46,3 +42,4 @@
 ;; (set-face-attribute 'tab-bar nil
 ;; :font "JetBrainsMono Nerd Font"
 ;; :height 200)
+

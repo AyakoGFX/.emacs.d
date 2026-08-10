@@ -5,25 +5,23 @@
  'nil
 )
 (setq url-cookie-secure-storage
- '((".youtube.com"
-  [url-cookie "VISITOR_PRIVACY_METADATA" "CgJJThIEGgAgJg%3D%3D"
-              "Sun, 31-Jan-2027 20:39:54 GMT" "/" ".youtube.com" t]
-  [url-cookie "VISITOR_INFO1_LIVE" "0eIRe-UD3OE"
-              "Sun, 31-Jan-2027 20:39:54 GMT" "/" ".youtube.com" t]
-  [url-cookie "GPS" "1" "Tue, 04-Aug-2026 21:09:54 GMT" "/"
-              ".youtube.com" t]
-  [url-cookie "__Secure-YNID"
-              "20.YT=fMUuKS90YAhoV7fuQoK_MPsPHetDyiAqMBsFXXpVOItccPi9qG00YodEfcVNsP5auJb3fbR39QsSNFWrGWICczEVAoJtkovymUZOuibl8ElyTAVnuihs1589G40sVk7_vP6QZXWKrkn5CB1hl2VtSNk8XMgB0k0Msi5plc3toNGJnIAw8K2Kl7kJcCxXiLvGW00EL7-B7yJm7zw6ALGBjhE8kmsdZkhqoqpzYUqAIsf-kImOmSNco4UYlgwlh2MxrBU_HpWgl1V6vjeWls-mEkmKsh1S4bUJMdSj15L6-A0AdLTcUH-QBJ-byE93ur6bGOWLqwQWfICHhUVDVA95Wg"
-              "Sun, 31-Jan-2027 19:58:03 GMT" "/" ".youtube.com" t])
- (".github.com"
-  [url-cookie "logged_in" "no" "Mon, 02 Aug 2027 12:30:37 GMT" "/"
-              ".github.com" t]
-  [url-cookie "_octo" "GH1.1.438407254.1785673837"
-              "Mon, 02 Aug 2027 12:30:37 GMT" "/" ".github.com" t])
- ("youtube.com"
+ '(("youtube.com"
   [url-cookie "__Secure-ROLLOUT_TOKEN"
               "COj_xbDe1ZeLmQEQqtfsz_aBlgMYq-PllOGHlgM%3D"
-              "Sun, 31-Jan-2027 19:58:03 GMT" "/" "youtube.com" t]))
+              "Sun, 31-Jan-2027 19:58:03 GMT" "/" "youtube.com" t])
+ (".github.com"
+  [url-cookie "_octo" "GH1.1.438407254.1785673837"
+              "Mon, 02 Aug 2027 12:30:37 GMT" "/" ".github.com" t]
+  [url-cookie "logged_in" "no" "Mon, 02 Aug 2027 12:30:37 GMT" "/"
+              ".github.com" t])
+ (".youtube.com"
+  [url-cookie "__Secure-YNID"
+              "20.YT=fMUuKS90YAhoV7fuQoK_MPsPHetDyiAqMBsFXXpVOItccPi9qG00YodEfcVNsP5auJb3fbR39QsSNFWrGWICczEVAoJtkovymUZOuibl8ElyTAVnuihs1589G40sVk7_vP6QZXWKrkn5CB1hl2VtSNk8XMgB0k0Msi5plc3toNGJnIAw8K2Kl7kJcCxXiLvGW00EL7-B7yJm7zw6ALGBjhE8kmsdZkhqoqpzYUqAIsf-kImOmSNco4UYlgwlh2MxrBU_HpWgl1V6vjeWls-mEkmKsh1S4bUJMdSj15L6-A0AdLTcUH-QBJ-byE93ur6bGOWLqwQWfICHhUVDVA95Wg"
+              "Sun, 31-Jan-2027 19:58:03 GMT" "/" ".youtube.com" t]
+  [url-cookie "VISITOR_INFO1_LIVE" "0eIRe-UD3OE"
+              "Sun, 31-Jan-2027 20:39:54 GMT" "/" ".youtube.com" t]
+  [url-cookie "VISITOR_PRIVACY_METADATA" "CgJJThIEGgAgJg%3D%3D"
+              "Sun, 31-Jan-2027 20:39:54 GMT" "/" ".youtube.com" t]))
 )
 
 ;; Local Variables:

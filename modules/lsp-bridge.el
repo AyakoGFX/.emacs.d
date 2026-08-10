@@ -34,10 +34,21 @@
   (define-key lsp-bridge-prefix-map (kbd "l D") 'lsp-bridge-show-documentation)
   (define-key lsp-bridge-prefix-map (kbd "l l") 'lsp-bridge-diagnostic-list))
 
+;; Set minimum characters to 2 for LSP completion
+(setq acm-backend-lsp-candidate-min-length 2)
+
+;; You may also want to set the same delay for other common backends:
+(setq acm-backend-elisp-candidate-min-length 2)             ;; For Emacs Lisp
+(setq acm-backend-yas-candidate-min-length 2)               ;; For Yasnippet
+(setq acm-backend-search-file-words-candidate-min-length 2) ;; For in-file text words
+
+
 (use-package yasnippet
   :ensure t
   :config
-  (yas-global-mode 1))
+  (yas-global-mode 1)
+  (yas-reload-all)
+  (global-set-key (kbd "C-c y") #'yas-insert-snippet))
 
 (use-package apheleia
   :ensure t
@@ -54,6 +65,8 @@
 (let ((typst-config (expand-file-name "modules/lsp-lsp-bridge/typst.el" user-emacs-directory)))
   (when (file-exists-p typst-config)
     (load typst-config)))
+
+
 
 ;; sudo pacman -S uv
 ;; git clone https://github.com/manateelazycat/lsp-bridge.git

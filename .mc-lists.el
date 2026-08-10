@@ -14,10 +14,12 @@
         multiple-cursors-mode
         my/backward-kill-spaces-or-char-or-word
         org-beginning-of-line
+        org-cycle
         org-delete-char
         org-end-of-line
         org-force-self-insert
         org-self-insert-command
+        org-yank
         pixel-scroll-precision
         read-only-mode
         surround-insert

@@ -44,3 +44,12 @@
    consult-source-recent-file
    consult-source-project-recent-file
    :preview-key '(:debounce 0.4 any)))
+
+
+(use-package embark
+  :ensure t)
+
+(use-package embark-consult
+  :ensure t)
+
+(setq prefix-help-command #'embark-prefix-help-command)

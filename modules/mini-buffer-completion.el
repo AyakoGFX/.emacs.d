@@ -17,6 +17,14 @@
               ("M-DEL" . vertico-directory-delete-word))
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
+(use-package vertico-repeat
+  :ensure nil
+  :after vertico
+  :hook (minibuffer-setup . vertico-repeat-save)
+  :bind
+  ("C-c r r" . vertico-repeat)
+  ("C-c r s" . vertico-repeat-select))
+
 (use-package savehist
   :ensure nil
   :init

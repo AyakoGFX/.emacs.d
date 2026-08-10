@@ -34,15 +34,17 @@
      "2f8af2a3a2fae6b6ea254e7aab6f3a8b5c936428b67869cef647c5f8e7985877"
      "b7a09eb77a1e9b98cafba8ef1bd58871f91958538f6671b22976ea38c2580755"
      default))
+ '(org-agenda-files '("/home/xshaw/denote/org/agenda.org"))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow-home\\.setup\\'"
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow\\.setup\\'"))
  '(package-selected-packages
    '(apheleia consult dashboard denote-menu diff-hl doom-themes ef-themes
-              embark evil exec-path-from-shell expand-region flash
-              flyspell-correct keycast magit marginalia markdown-mode
-              minions move-text multiple-cursors nerd-icons orderless
+              embark erc-hl-nicks erc-image evil exec-path-from-shell
+              expand-region flash flyspell-correct keycast magit
+              marginalia markdown-mode minions move-text
+              multiple-cursors nerd-icons olivetti orderless
               org-appear ox-odt popper project-x quick-fasd
               rainbow-delimiters sudo-edit surround typst-ts-mode
               uv-mode vertico vundo yasnippet))

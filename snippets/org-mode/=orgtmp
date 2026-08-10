@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: =orgtmp
+# key: =orgtmp
+# --
+
+#+TITLE: ${1:title}
+#+AUTHOR: ${2:author}
+#+DATE: C-c .
+$0

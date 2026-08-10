@@ -7,8 +7,12 @@
             :lisp-dir "lisp")
   :after org)
 
-;; turn on indent-mode in org mode
+;; hooks
 (add-hook 'org-mode-hook #'org-indent-mode)
+(add-hook 'org-mode-hook
+          (lambda ()
+            (display-line-numbers-mode -1)
+            (olivetti-mode 1)))
 
 ;; Hide Org emphasis markers for cleaner display
 (setq org-hide-emphasis-markers t)
@@ -42,6 +46,11 @@
 ;;  '(org-level-8 ((t (:height 0.9  :inherit outline-8 normal))))
 ;;  ;; more levels and colors as needed
 ;;  )
+
+
+(use-package olivetti
+  :ensure t)
+(setq-default olivetti-body-width 110)
 
 ;; Block Templates
 ;; This is needed as of Org 9.2

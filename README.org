@@ -7,6 +7,7 @@
  - [X] Emacs Org Indent
  - [X] add themes
  - [X] add css file to this repo
+ - look into ~M-X~ execute-extended-command-for-buffer
  - add org mode yas snippets odt
  - follow the instructions at https://libera.chat/guides/cloaks to hide it irc
 
@@ -16,6 +17,7 @@
 | set-fill-column | C-x f                        | Sets the width for the current buffer interactively.  |
 | fill-region     | C-x f (then M-x fill-region) | Refills a selected block of text.                     |
 | fill-paragraph  | M-q                          | Refills the current paragraph to fit the fill-column. |
+
 ** auto-fill-mode 
 Once auto-fill-mode is enabled, 
 you can manage existing text blocks manually with these commands:
@@ -70,6 +72,7 @@ Info Directory Node (dir)
  - [[https://github.com/fniessen/org-html-themes/tree/master/org/setup][fniessen/org-html-themes · GitHub]]
  - [[https://orgmode.org/orgcard.pdf]]
  - https://orgmode.org/worg/org-contrib/babel/intro.html READ
+ - [[https://emacs.stackexchange.com/questions/27523/org-mode-initial-visibility-with-startup][Org mode initial visibility with #+STARTUP]]
 
 ** REDDIT POST ABOUT Org-Mode
  - [[https://www.reddit.com/r/emacs/comments/1vbtels/i_made_an_org_mode_advanced_concepts_tutorial/][I made an Org Mode Advanced Concepts Tutorial]] 
@@ -125,6 +128,7 @@ Next we need to tell Emacs how to handle LaTeX.
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 

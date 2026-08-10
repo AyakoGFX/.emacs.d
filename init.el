@@ -1,6 +1,7 @@
 (setq custom-safe-themes t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
+
 ;;; START
 
 ;; font
@@ -44,7 +45,7 @@
   (initial-scratch-message ";; HI BRO")
   (repeat-mode 1)
   (global-completion-preview-mode t)
-  (global-display-fill-column-indicator-mode t)
+  ;; (global-display-fill-column-indicator-mode 1)
 
   ;; --- Behavior & Editing ---
   (delete-selection-mode t)                   ;; Select text and delete it by typing
