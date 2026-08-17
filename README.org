@@ -156,3 +156,6 @@ Next we need to tell Emacs how to handle LaTeX.
 
 * cool videos
 - [[https://youtu.be/0g9BcZvQbXU?si=xUPRf-lcHF0VCnYB][Consistent Technical Documents Using Emacs and Org Mode - YouTube]]
+
+* cool packages
+ - https://github.com/TeMPOraL/nyan-mode

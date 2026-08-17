@@ -25,7 +25,7 @@
    ("M-9" . tab-bar-select-tab)))
 
 ;; tab bar hight
-(set-face-attribute 'tab-bar nil :height 100)
+;; (set-face-attribute 'tab-bar nil :height 100)
 
 (use-package project-x
   :ensure t

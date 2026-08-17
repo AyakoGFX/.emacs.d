@@ -7,16 +7,42 @@
             :lisp-dir "lisp")
   :after org)
 
+;; org-draw desable inline images 
+
+(advice-add 'org-draw--refresh-inline-images :override #'ignore)
+
+(use-package org-draw
+  :vc (:url "https://github.com/larrasket/org-draw"
+            :rev :newest)
+  :commands (org-draw org-draw-edit org-draw-setup)
+  :bind (:map org-mode-map
+              ("C-c d d" . org-draw)
+              ("C-c d e" . org-draw-edit)
+              ("C-c d s" . org-draw-setup)))
+
+(setq org-draw-directory "figures")
+(setq org-draw-insert-attr-width nil)
+(setq org-draw-figure-background "transparent") ;  white, dark, or a CSS color string
+(setq org-draw-open-browser nil)
+(setq org-draw-web-open-function nil)
+(setq org-draw-copy-url t)
+
+
+;; org bable
+(setq org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)
+   (python . t)
+   (emacs-lisp . t)))
+
+
 ;; hooks
 (add-hook 'org-mode-hook #'org-indent-mode)
-(add-hook 'org-mode-hook
-          (lambda ()
-            (display-line-numbers-mode -1)
-            (olivetti-mode 1)))
 
 ;; Hide Org emphasis markers for cleaner display
 (setq org-hide-emphasis-markers t)
-
+;; (setq org-image-actual-width 200)
 
 (defvar my-org-headers
   '((org-level-1 . 1.3)
@@ -33,24 +59,6 @@
        (if (equal (face-attribute face :height) height)
            'unspecified
          height)))))
-
-;; (custom-set-faces
-;;  ;; Font sizes and colors for Org mode headers using theme colors
-;;  '(org-level-1 ((t (:height 1.4  :inherit outline-1 ultra-bold))))
-;;  '(org-level-2 ((t (:height 1.3  :inherit outline-2 extra-bold))))
-;;  '(org-level-3 ((t (:height 1.2  :inherit outline-3 bold))))
-;;  '(org-level-4 ((t (:height 1.0  :inherit outline-4 semi-bold))))
-;;  '(org-level-5 ((t (:height 1.0  :inherit outline-5 normal))))
-;;  '(org-level-6 ((t (:height 0.9  :inherit outline-6 normal))))
-;;  '(org-level-7 ((t (:height 0.9  :inherit outline-7 normal))))
-;;  '(org-level-8 ((t (:height 0.9  :inherit outline-8 normal))))
-;;  ;; more levels and colors as needed
-;;  )
-
-
-(use-package olivetti
-  :ensure t)
-(setq-default olivetti-body-width 110)
 
 ;; Block Templates
 ;; This is needed as of Org 9.2

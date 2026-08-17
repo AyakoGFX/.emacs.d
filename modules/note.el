@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (setq denote-org-front-matter
-"#+TITLE:      %s
+      "#+TITLE:      %s
 #+DATE:       %s
 #+FILETAGS:   %s
 #+IDENTIFIER: %s
@@ -34,17 +34,11 @@
 ;; Global Denote keybindings
 (let ((map global-map))
   (define-key map (kbd "C-c d n") #'denote)
-  (define-key map (kbd "C-c d c") #'denote-region)
-  (define-key map (kbd "C-c d N") #'denote-type)
-  (define-key map (kbd "C-c d d") #'denote-date)
-  (define-key map (kbd "C-c d z") #'denote-signature)
-  (define-key map (kbd "C-c d s") #'denote-subdirectory)
-  (define-key map (kbd "C-c d t") #'denote-template)
   (define-key map (kbd "C-c d i") #'denote-link-or-create)
   (define-key map (kbd "C-c d I") #'denote-add-links)
   (define-key map (kbd "C-c d b") #'denote-backlinks)
-  (define-key map (kbd "C-c d f f") #'denote-find-link)
-  (define-key map (kbd "C-c d f b") #'denote-find-backlink)
+  (define-key map (kbd "C-c d B") #'denote-find-backlink)
+  (define-key map (kbd "C-c d l") #'denote-find-link)
   (define-key map (kbd "C-c d r") #'denote-rename-file)
   (define-key map (kbd "C-c d R") #'denote-rename-file-using-front-matter))
 
@@ -126,6 +120,15 @@
               ("e" . denote-menu-export-to-dired)
               ("l" . my-denote-list-all-keywords)
               ("s" . denote-menu-filter-subdir)))
+
+(use-package consult-denote
+  :ensure t
+  :bind
+  (("C-c d f" . consult-denote-find)
+   ("C-c d F" . consult-denote-grep))
+  :config
+  (consult-denote-mode 1))
+
 
 ;;; TODO
 ;; (denote-explore-random-keyword)

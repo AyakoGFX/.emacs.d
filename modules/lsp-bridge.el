@@ -15,8 +15,7 @@
   (lsp-bridge-enable-inlay-hint t)
 
   :bind-keymap
-  ("C-l" . lsp-bridge-prefix-map)
-
+  ("C-S-l" . lsp-bridge-prefix-map)
   :config
   (global-lsp-bridge-mode)
 
@@ -66,7 +65,9 @@
   (when (file-exists-p typst-config)
     (load typst-config)))
 
-
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (electric-pair-local-mode 1)))
 
 ;; sudo pacman -S uv
 ;; git clone https://github.com/manateelazycat/lsp-bridge.git

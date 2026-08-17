@@ -6,7 +6,11 @@
 (put 'set-goal-column 'disabled nil)
 (global-unset-key (kbd "C-x C-c")) ;; Unbind C-x C-c
 (global-set-key (kbd "C-x C-c") 'upcase-initials-region)
-(global-set-key (kbd "C-c C-q") 'save-buffers-kill-terminal)
+;; (global-set-key (kbd "C-c C-q") 'save-buffers-kill-terminal)
+
+;; back-to-indentation M-m
+(global-set-key (kbd "M-[") 'backward-to-indentation)
+(global-set-key (kbd "M-]") 'forward-to-indentation)
 
 (global-set-key [mouse-9] #'next-buffer)
 (global-set-key [mouse-8] #'previous-buffer)
@@ -16,7 +20,6 @@
 (global-set-key (kbd "C-c f") #'find-file-at-point)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
 
 
 (global-set-key (kbd "C-x C-k") (lambda () (interactive) (kill-buffer (current-buffer)))) ;; kill buff no asking

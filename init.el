@@ -2,14 +2,16 @@
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
-;;; START
+;;; Trans
+;; (set-frame-parameter (selected-frame) 'alpha-background 95)
+;; (add-to-list 'default-frame-alist '(alpha-background . 95))
 
-;; font
+;; Font
 (if (eq window-system 'w32)
     (add-to-list 'default-frame-alist
                  '(font . "JetBrainsMono NF-14"))
   (add-to-list 'default-frame-alist
-               '(font . "JetBrainsMono Nerd Font-20")))
+               '(font . "JetBrainsMono Nerd Font-40")))
 
 (set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
@@ -18,15 +20,6 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 
-;;; fixes
-(set-face-attribute 'mode-line nil :height 0.6) ;; Set active mode-line font size (e.g., 0.9x the default font size)
-(set-face-attribute 'mode-line-inactive nil :height 0.6) ;; Set inactive mode-line font size to match
-
-;; Normalize inactive and current line numbers to match standard buffer text sizing
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (set-face-attribute 'line-number nil :inherit 'default)
-            (set-face-attribute 'line-number-current-line nil :inherit 'default)))
 
 (setq-default cursor-type 'bar) ;; Options: 'box, 'bar, 'hollow, 'hbar
 
@@ -42,9 +35,8 @@
   (blink-cursor-mode t)
   (context-menu-mode t)
   (use-dialog-box nil)
-  (initial-scratch-message ";; HI BRO")
+  (initial-scratch-message ";; C-x C-e C-j")
   (repeat-mode 1)
-  (global-completion-preview-mode t)
   ;; (global-display-fill-column-indicator-mode 1)
 
   ;; --- Behavior & Editing ---
@@ -64,7 +56,8 @@
   (delete-by-moving-to-trash t)               ;; Move deleted files to system trash
 
   ;; --- Line & Column Views ---
-  (global-visual-line-mode t)                 ;; Enable line wrapping
+  ;; (global-visual-line-mode t)                 ;; Enable line wrapping
+  ;; (truncate-lines t)                          ;; Disable line wrapping
   (global-display-line-numbers-mode t)        ;; Display line numbers
   (global-hl-line-mode t)                     ;; Highlight current line
   (column-number-mode t)                      ;; Show column number in mode line
@@ -74,12 +67,12 @@
   (warning-minimum-level :error)
   (ring-bell-function 'ignore)
 
-  ;; --- Scrolling Settings ---
-  (scroll-margin 0)
-  (scroll-conservatively 100000)
-  (scroll-preserve-screen-position 1)
-  (pixel-scroll-precision-mode t)
-  (mouse-wheel-progressive-speed t)
+  ;; --- Smooth Scrolling Settings ---
+  (scroll-margin 15)
+  (scroll-conservatively 10) ; 100000
+  ;; (scroll-preserve-screen-position 1)
+  ;; (pixel-scroll-precision-mode t)
+  ;; (mouse-wheel-progressive-speed nil)
 
   ;; --- Indentation & Spacing ---
   (indent-tabs-mode nil)
@@ -102,6 +95,7 @@
    ("<C-wheel-up>" . text-scale-increase)
    ("<C-wheel-down>" . text-scale-decrease)))
 
+
 ;;; load Lisp
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
 
@@ -118,13 +112,16 @@
 (load (expand-file-name "modules/note.el" user-emacs-directory))
 (load (expand-file-name "modules/org.el" user-emacs-directory))
 (load (expand-file-name "modules/project.el" user-emacs-directory))
-(load (expand-file-name "modules/flyspell.el" user-emacs-directory))
 (load (expand-file-name "modules/tools.el" user-emacs-directory))
-(load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory))
+;; (load (expand-file-name "modules/ccp.el" user-emacs-directory)) ; if using this turn off lsp-bridge.el
+;; (load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory)) ; if using this turn off ccp.el
 (load (expand-file-name "modules/my-defun.el" user-emacs-directory))
 (load (expand-file-name "modules/bindings.el" user-emacs-directory))
 (load (expand-file-name "modules/modeline.el" user-emacs-directory))
 (load (expand-file-name "modules/themes.el" user-emacs-directory))
 (load (expand-file-name "modules/irc.el" user-emacs-directory))
+(load (expand-file-name "modules/elisp.el" user-emacs-directory))
 (load (expand-file-name "modules/testing.el" user-emacs-directory))
-
+(load (expand-file-name "modules/flyspell.el" user-emacs-directory))
+(load (expand-file-name "modules/mode-spec.el" user-emacs-directory))
+(load (expand-file-name "modules/fixes.el" user-emacs-directory))

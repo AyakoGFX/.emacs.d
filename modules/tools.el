@@ -8,9 +8,11 @@
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package ace-window
+  :ensure nil
+  :bind ("M-o" . ace-window)
+  :config
+  (ace-window-display-mode 1))
 
 (use-package evil
   :ensure t)

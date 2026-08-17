@@ -6,7 +6,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(ef-dark))
  '(custom-safe-themes
-   '("998bc02f2e52205ad06df88a14d53168aef1ec1bbcc6fe2b0cd15fed8e5c8dae"
+   '("a8c1252f9844caf313a2315ecf1e8ef4d92495c9f2067d875bb1c783b08719ad"
+     "998bc02f2e52205ad06df88a14d53168aef1ec1bbcc6fe2b0cd15fed8e5c8dae"
      "f1e8339b04aef8f145dd4782d03499d9d716fdc0361319411ac2efc603249326"
      "4f1641913dd7705f03f5b3271a570d5b4289bdd974665b8919164f2e43799fbd"
      "7c0179ef765b9bf1d79612235236d29eebcaca9b4a287ff802959ed20db154b6"
@@ -40,16 +41,21 @@
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow-home\\.setup\\'"
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow\\.setup\\'"))
  '(package-selected-packages
-   '(apheleia consult dashboard denote-menu diff-hl doom-themes ef-themes
-              embark erc-hl-nicks erc-image evil exec-path-from-shell
-              expand-region flash flyspell-correct keycast magit
-              marginalia markdown-mode minions move-text
-              multiple-cursors nerd-icons olivetti orderless
-              org-appear ox-odt popper project-x quick-fasd
-              rainbow-delimiters sudo-edit surround typst-ts-mode
-              uv-mode vertico vundo yasnippet))
+   '(aggressive-indent apheleia cape company consult-denote consult-notes
+                       dashboard denote-menu diff-hl doom-themes
+                       ef-themes embark-consult erc-hl-nicks erc-image
+                       evil exec-path-from-shell expand-region flash
+                       flyspell-correct keycast lispy magit marginalia
+                       markdown-mode minions move-text
+                       multiple-cursors nerd-icons nyan-mode olivetti
+                       orderless org-appear org-draw ox-odt paredit
+                       popper project-x quick-fasd racket racket-mode
+                       rainbow-delimiters scroll-restore sudo-edit
+                       surround typst-ts-mode uv-mode vertico vundo
+                       yasnippet))
  '(package-vc-selected-packages
-   '((ox-odt :url "https://github.com/kjambunathan/org-mode-ox-odt"
+   '((org-draw :url "https://github.com/larrasket/org-draw")
+     (ox-odt :url "https://github.com/kjambunathan/org-mode-ox-odt"
              :lisp-dir "lisp")
      (lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge"
                  :branch "master"))))
