@@ -2,8 +2,8 @@
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
-              ("TAB" . dired-hide-subdir)
-              ("<backtab>" . dired-hide-all)
+              ;; ("TAB" . dired-hide-subdir)
+              ;; ("<backtab>" . dired-hide-all)
               ("b" . dired-up-directory))
   :config ; Guess a default target directory
   (setq dired-mouse-drag-files t
@@ -47,3 +47,13 @@
             ("\\.\\(?:mp3\\|flac\\)\\'" ,cmd)
             ("\\.html?\\'" ,cmd)
             ("\\.md\\'" ,cmd)))))
+
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :config
+  (setq dired-subtree-use-backgrounds nil)
+  :bind (:map dired-mode-map
+              ("i" . dired-subtree-toggle)
+              ("I" . dired-subtree-cycle)
+              ("C-i" . dired-subtree-remove)))

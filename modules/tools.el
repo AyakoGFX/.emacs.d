@@ -40,6 +40,7 @@
   (flash-jumplist t) ;; use C-u C-SPC or consult-global-mark and consult-mark
   (flash-label-position 'pre-overlay)
   (flash-jump-position 'start)
+  (flash-autojump t)
   :config
   ;; Search integration (labels during C-s, /, ?)
   (require 'flash-isearch)
@@ -105,3 +106,20 @@
   (vundo-node ((t (:foreground "#808080"))))
   (vundo-stem ((t (:foreground "#808080"))))
   (vundo-highlight ((t (:foreground "#FFFF00")))))
+
+(use-package pulsar
+  :ensure t
+  :bind
+  ( :map global-map
+    ("C-x l" . pulsar-pulse-line) ; overrides `count-lines-page'
+    ("C-x L" . pulsar-highlight-permanently-dwim)) ; or use `pulsar-highlight-temporarily'
+  :init
+  (pulsar-global-mode 1)
+  :config
+  (setq pulsar-delay 0.055)
+  (setq pulsar-iterations 5)
+  ;; (setq pulsar-face 'pulsar-green)
+  ;; (setq pulsar-region-face 'pulsar-yellow)
+  ;; (setq pulsar-highlight-face 'pulsar-magenta)
+  )
+

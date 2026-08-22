@@ -3,8 +3,17 @@
   :ensure nil
   :custom
   (project-vc-extra-root-markers '(".project"))
+  :config
+  (setq project-switch-commands
+        '((project-find-file "File" ?f)
+          (consult-ripgrep "RipGrep" ?r)
+          (project-find-dir "Dir" ?d)
+          (my/magit-project-status "Magit" ?m)
+          (project-any-command "Other" ?o)))
   :bind
-  ([remap project-switch-to-buffer] . consult-project-buffer))
+  ([remap project-switch-to-buffer] . consult-project-buffer)
+  ([remap project-find-regexp] . consult-ripgrep))
+
 
 (use-package tab-bar
   :ensure nil
@@ -13,6 +22,8 @@
   (tab-bar-height 30)
   (tab-bar-tab-hints t)
   (tab-bar-new-tab-choice "*scratch*")
+  :config
+  (keymap-unset tab-bar-mode-map "C-<tab>")
   :bind
   (("M-1" . tab-bar-select-tab)
    ("M-2" . tab-bar-select-tab)
@@ -35,7 +46,7 @@
   (project-x-auto-save-delay 5)
   (project-x-save-extra-buffers t)
   :config
-  (setq project-prompter #'project-x--project-prompt)
+  ;; (setq project-prompter #'project-x--project-prompt)
   (project-x-mode 1)
   (project-x-tabs-mode 1))
 

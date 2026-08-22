@@ -159,3 +159,7 @@ Next we need to tell Emacs how to handle LaTeX.
 
 * cool packages
  - https://github.com/TeMPOraL/nyan-mode
+* Hyperbole
+- [[https://youtu.be/WKwZHSbHmPg?si=9NrvuHUCdGNbnyJ9][GNU Hyperbole - Overview and Demo - YouTube]] 
+- [[https://tilde.town/~ramin_hal9001/articles/intro-to-hyperbole.html][Ramin Honary: What does GNU Hyperbole do?]] 
+

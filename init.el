@@ -3,15 +3,16 @@
 (load custom-file t)
 
 ;;; Trans
-;; (set-frame-parameter (selected-frame) 'alpha-background 95)
-;; (add-to-list 'default-frame-alist '(alpha-background . 95))
+(set-frame-parameter (selected-frame) 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 
 ;; Font
 (if (eq window-system 'w32)
     (add-to-list 'default-frame-alist
                  '(font . "JetBrainsMono NF-14"))
   (add-to-list 'default-frame-alist
-               '(font . "JetBrainsMono Nerd Font-40")))
+               '(font . "JetBrainsMono Nerd Font-20")))
+
 
 (set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
@@ -20,8 +21,11 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 
+;; Shell
+(setq explicit-shell-file-name "/bin/bash")
+(setq shell-file-name "/bin/bash")
 
-(setq-default cursor-type 'bar) ;; Options: 'box, 'bar, 'hollow, 'hbar
+(setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
 
 (use-package emacs
   :ensure nil
@@ -59,7 +63,7 @@
   ;; (global-visual-line-mode t)                 ;; Enable line wrapping
   ;; (truncate-lines t)                          ;; Disable line wrapping
   (global-display-line-numbers-mode t)        ;; Display line numbers
-  (global-hl-line-mode t)                     ;; Highlight current line
+  ;; (global-hl-line-mode t)                     ;; Highlight current line
   (column-number-mode t)                      ;; Show column number in mode line
 
   ;; --- Warnings & Errors ---
@@ -114,7 +118,7 @@
 (load (expand-file-name "modules/project.el" user-emacs-directory))
 (load (expand-file-name "modules/tools.el" user-emacs-directory))
 ;; (load (expand-file-name "modules/ccp.el" user-emacs-directory)) ; if using this turn off lsp-bridge.el
-;; (load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory)) ; if using this turn off ccp.el
+(load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory)) ; if using this turn off ccp.el
 (load (expand-file-name "modules/my-defun.el" user-emacs-directory))
 (load (expand-file-name "modules/bindings.el" user-emacs-directory))
 (load (expand-file-name "modules/modeline.el" user-emacs-directory))
@@ -124,4 +128,4 @@
 (load (expand-file-name "modules/testing.el" user-emacs-directory))
 (load (expand-file-name "modules/flyspell.el" user-emacs-directory))
 (load (expand-file-name "modules/mode-spec.el" user-emacs-directory))
-(load (expand-file-name "modules/fixes.el" user-emacs-directory))
+;; (load (expand-file-name "modules/fixes.el" user-emacs-directory))

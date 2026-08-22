@@ -1,3 +1,40 @@
+(use-package window
+  :ensure nil
+  :custom
+  (display-buffer-alist
+   '(("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|Messages\\|Bookmark List\\|Occur\\|eldoc\\)\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 0))
+     ("\\*\\([Hh]elp\\)\\*"
+      (display-buffer-in-side-window)
+      (window-width . 30)
+      (side . right)
+      (slot . 0))
+     ("\\*Embark Collect.*\\*"
+      (display-buffer-in-side-window)
+      (window-width . 50)
+      (side . right)
+      (slot . 0))
+     ("\\*Python*\\*"
+      (display-buffer-in-side-window)
+      (window-width . 30)
+      (side . right)
+      (slot . 0))
+     ("\\*Embark Export.*\\*"
+      (display-buffer-in-side-window)
+      (window-width . 30)
+      (side . right)
+      (slot . 0))
+     ("\\*\\(Ibuffer\\)\\*"
+      (display-buffer-in-side-window)
+      (window-width . 100)
+      (side . right)
+      (slot . 1)))))
+
+
+
 (use-package popper
   :ensure t
   :bind (("<f8>"   . popper-toggle)
@@ -10,7 +47,7 @@
         '("\\*Messages\\*"
           "Output\\*$"
           "\\*\\(shell\\|.*term\\|.*eshell\\|Occur\\|xref\\|Async Shell Command\\).*\\*"
-          help-mode
+          ;; help-mode
           compilation-mode))
   (popper-mode +1)
   (popper-echo-mode +1))

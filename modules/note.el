@@ -7,7 +7,6 @@
 #+IDENTIFIER: %s
 \n")
 
-(setq org-agenda-files (list "~/denote/org/agenda.org"))
 
 (use-package denote
   :ensure t
@@ -120,6 +119,9 @@
               ("e" . denote-menu-export-to-dired)
               ("l" . my-denote-list-all-keywords)
               ("s" . denote-menu-filter-subdir)))
+
+(use-package denote-org
+  :ensure t)
 
 (use-package consult-denote
   :ensure t

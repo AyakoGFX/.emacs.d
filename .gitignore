@@ -12,6 +12,7 @@ project-window-list
 .org-id-locations
 ielm-history.eld
 bookmarks
+image-dired/
 tree-sitter/
 auto-save-list/
 elpaca/

@@ -35,6 +35,7 @@
 
 ;; window
 (global-set-key (kbd "M-o") 'other-window)
+;; (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-0") 'delete-window)
 
 (defun my/backward-kill-spaces-or-char-or-word ()

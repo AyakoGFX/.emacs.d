@@ -22,6 +22,12 @@
   (let ((pop-up-windows nil))
     (call-interactively 'magit-status)))
 
+(defun my/magit-project-status ()
+  "Don't split window."
+  (interactive)
+  (let ((pop-up-windows nil))
+    (call-interactively 'magit-project-status)))
+
 (use-package diff-hl
   :ensure t
   :config

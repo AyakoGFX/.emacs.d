@@ -31,4 +31,5 @@
 (setq mc/cmds-to-run-once
       '(
         undefined
+        xref-find-definitions
         ))

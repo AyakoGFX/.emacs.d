@@ -4,9 +4,28 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(ef-dark))
+ '(custom-enabled-themes '(doom-ir-black))
  '(custom-safe-themes
-   '("a8c1252f9844caf313a2315ecf1e8ef4d92495c9f2067d875bb1c783b08719ad"
+   '("8f787ed2d75bb7073796c00f7e1033d6e92f39314939446dd2d8e95cbc168422"
+     "0c83e0b50946e39e237769ad368a08f2cd1c854ccbcd1a01d39fdce4d6f86478"
+     "f64189544da6f16bab285747d04a92bd57c7e7813d8c24c30f382f087d460a33"
+     "0f1341c0096825b1e5d8f2ed90996025a0d013a0978677956a9e61408fcd2c77"
+     "21d2bf8d4d1df4859ff94422b5e41f6f2eeff14dd12f01428fa3cb4cb50ea0fb"
+     "d97ac0baa0b67be4f7523795621ea5096939a47e8b46378f79e78846e0e4ad3d"
+     "456697e914823ee45365b843c89fbc79191fdbaff471b29aad9dcbe0ee1d5641"
+     "9b9d7a851a8e26f294e778e02c8df25c8a3b15170e6f9fd6965ac5f2544ef2a9"
+     "166a2faa9dc5b5b3359f7a31a09127ebf7a7926562710367086fcc8fc72145da"
+     "7de64ff2bb2f94d7679a7e9019e23c3bf1a6a04ba54341c36e7cf2d2e56e2bcc"
+     "b5fd9c7429d52190235f2383e47d340d7ff769f141cd8f9e7a4629a81abc6b19"
+     "7ec8fd456c0c117c99e3a3b16aaf09ed3fb91879f6601b1ea0eeaee9c6def5d9"
+     "8c7e832be864674c220f9a9361c851917a93f921fedb7717b1b5ece47690c098"
+     "dfb1c8b5bfa040b042b4ef660d0aab48ef2e89ee719a1f24a4629a0c5ed769e8"
+     "4b88b7ca61eb48bb22e2a4b589be66ba31ba805860db9ed51b4c484f3ef612a7"
+     "f38f24d7468df32f8945a0572c856223f8351b8ea050b717ce36b0051399e3ad"
+     "8d3ef5ff6273f2a552152c7febc40eabca26bae05bd12bc85062e2dc224cde9a"
+     "e1df746a4fa8ab920aafb96c39cd0ab0f1bac558eff34532f453bd32c687b9d6"
+     "a9eeab09d61fef94084a95f82557e147d9630fbbb82a837f971f83e66e21e5ad"
+     "a8c1252f9844caf313a2315ecf1e8ef4d92495c9f2067d875bb1c783b08719ad"
      "998bc02f2e52205ad06df88a14d53168aef1ec1bbcc6fe2b0cd15fed8e5c8dae"
      "f1e8339b04aef8f145dd4782d03499d9d716fdc0361319411ac2efc603249326"
      "4f1641913dd7705f03f5b3271a570d5b4289bdd974665b8919164f2e43799fbd"
@@ -42,14 +61,16 @@
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow\\.setup\\'"))
  '(package-selected-packages
    '(aggressive-indent apheleia cape company consult-denote consult-notes
-                       dashboard denote-menu diff-hl doom-themes
-                       ef-themes embark-consult erc-hl-nicks erc-image
-                       evil exec-path-from-shell expand-region flash
-                       flyspell-correct keycast lispy magit marginalia
-                       markdown-mode minions move-text
+                       dashboard denote-menu denote-org diff-hl
+                       dired-subtree doom-themes ef-themes
+                       embark-consult erc-hl-nicks erc-image evil
+                       exec-path-from-shell expand-region flash
+                       flyspell-correct kdl-mode keycast lispy magit
+                       marginalia markdown-mode minions move-text
                        multiple-cursors nerd-icons nyan-mode olivetti
-                       orderless org-appear org-draw ox-odt paredit
-                       popper project-x quick-fasd racket racket-mode
+                       orderless org-appear org-draw org-present
+                       ox-odt paredit popper project-x pulsar qml-mode
+                       quick-fasd racket racket-mode
                        rainbow-delimiters scroll-restore sudo-edit
                        surround typst-ts-mode uv-mode vertico vundo
                        yasnippet))
