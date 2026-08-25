@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; (use-package lispy
 ;;   :ensure t
 ;;   :hook ((emacs-lisp-mode . lispy-mode)

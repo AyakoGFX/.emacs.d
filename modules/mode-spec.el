@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; 1. Global Default: Truncate lines everywhere (programming, dired, magit, etc.)
 (setq-default truncate-lines t)
 (global-visual-line-mode -1)

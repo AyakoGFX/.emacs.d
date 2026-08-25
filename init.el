@@ -1,10 +1,11 @@
+;; -*- lexical-binding: t; -*-
 (setq custom-safe-themes t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
 ;;; Trans
-(set-frame-parameter (selected-frame) 'alpha-background 95)
-(add-to-list 'default-frame-alist '(alpha-background . 95))
+;; (set-frame-parameter (selected-frame) 'alpha-background 95)
+;; (add-to-list 'default-frame-alist '(alpha-background . 95))
 
 ;; Font
 (if (eq window-system 'w32)

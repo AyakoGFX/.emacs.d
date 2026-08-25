@@ -13,6 +13,7 @@ project-window-list
 ielm-history.eld
 bookmarks
 image-dired/
+tutorial/
 tree-sitter/
 auto-save-list/
 elpaca/

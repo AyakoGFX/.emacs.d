@@ -4,9 +4,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(doom-ir-black))
+ '(custom-enabled-themes '(doom-gruvbox))
  '(custom-safe-themes
-   '("8f787ed2d75bb7073796c00f7e1033d6e92f39314939446dd2d8e95cbc168422"
+   '("22a0d47fe2e6159e2f15449fcb90bbf2fe1940b185ff143995cc604ead1ea171"
+     "83550d0386203f010fa42ad1af064a766cfec06fc2f42eb4f2d89ab646f3ac01"
+     "7c3d62a64bafb2cc95cd2de70f7e4446de85e40098ad314ba2291fc07501b70c"
+     "2f7fa7a92119d9ed63703d12723937e8ba87b6f3876c33d237619ccbd60c96b9"
+     "8f787ed2d75bb7073796c00f7e1033d6e92f39314939446dd2d8e95cbc168422"
      "0c83e0b50946e39e237769ad368a08f2cd1c854ccbcd1a01d39fdce4d6f86478"
      "f64189544da6f16bab285747d04a92bd57c7e7813d8c24c30f382f087d460a33"
      "0f1341c0096825b1e5d8f2ed90996025a0d013a0978677956a9e61408fcd2c77"
@@ -60,20 +64,20 @@
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow-home\\.setup\\'"
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow\\.setup\\'"))
  '(package-selected-packages
-   '(aggressive-indent apheleia cape company consult-denote consult-notes
-                       dashboard denote-menu denote-org diff-hl
-                       dired-subtree doom-themes ef-themes
-                       embark-consult erc-hl-nicks erc-image evil
-                       exec-path-from-shell expand-region flash
-                       flyspell-correct kdl-mode keycast lispy magit
-                       marginalia markdown-mode minions move-text
-                       multiple-cursors nerd-icons nyan-mode olivetti
-                       orderless org-appear org-draw org-present
-                       ox-odt paredit popper project-x pulsar qml-mode
-                       quick-fasd racket racket-mode
-                       rainbow-delimiters scroll-restore sudo-edit
-                       surround typst-ts-mode uv-mode vertico vundo
-                       yasnippet))
+   '(aggressive-indent apheleia cape company consult consult-denote
+                       consult-notes dashboard denote denote-menu
+                       denote-org diff-hl dired-subtree doom-themes
+                       ef-themes embark embark-consult erc-hl-nicks
+                       erc-image evil exec-path-from-shell
+                       expand-region flash flyspell-correct kdl-mode
+                       keycast lispy magit marginalia markdown-mode
+                       minions move-text multiple-cursors nerd-icons
+                       nyan-mode olivetti orderless org-appear
+                       org-draw org-present ox-odt paredit popper
+                       project-x pulsar qml-mode quick-fasd racket
+                       racket-mode rainbow-delimiters scroll-restore
+                       sudo-edit surround typst-ts-mode uv-mode
+                       vertico vundo yasnippet))
  '(package-vc-selected-packages
    '((org-draw :url "https://github.com/larrasket/org-draw")
      (ox-odt :url "https://github.com/kjambunathan/org-mode-ox-odt"

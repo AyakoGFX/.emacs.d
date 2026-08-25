@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; uv python install 3.13
 ;; uv tool install ruff
 ;; uv tool install basedpyright
