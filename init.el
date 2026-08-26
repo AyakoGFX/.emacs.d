@@ -28,11 +28,13 @@
 
 (setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
 
+;; Modern Emacs experience as baseline
+(load-theme 'newcomers-presets)
+
 (use-package emacs
   :ensure nil
   :custom
   ;; --- Appearance & Window Frame ---
-  (font-use-system-font t)
   (menu-bar-mode nil)
   (scroll-bar-mode nil)
   (tool-bar-mode nil)
@@ -41,35 +43,25 @@
   (blink-cursor-mode t)
   (use-dialog-box nil)
   (initial-scratch-message ";; C-x C-e C-j")
-  (frame-resize-pixelwise t)
-  (window-resize-pixelwise t)
-  (frame-inhibit-implied-resize t)
-  (context-menu-mode t)
 
   ;; --- Editing & Text Manipulation ---
-  (delete-selection-mode t)                   ;; Select text and delete it by typing
   (electric-indent-mode nil)                  ;; Turn off default automatic indentation on Return
-  (electric-pair-mode nil)                    ;; Automatic parens pairing
-  (save-place-mode t)                         ;; Remember cursor position in files
-  (editorconfig-mode t)
+  (electric-pair-mode nil)                    ;; Kept: Overrides newcomers-preset (t)
 
   ;; --- Clipboard & Kill-Ring ---
   (x-select-enable-clipboard t)
-  (save-interprogram-paste-before-kill t)
   (yank-pop-change-selection t)
 
   ;; --- Indentation & Spacing ---
-  (indent-tabs-mode nil)
   (tab-width 4)
   (sgml-basic-offset 4)
   (whitespace-style '(face tabs tab-mark trailing))
 
   ;; --- Line, Column & Buffer Displays ---
   (global-display-line-numbers-mode t)        ;; Display line numbers
-  (column-number-mode t)                      ;; Show column number in mode line
   ;; (global-visual-line-mode t)               ;; Enable line wrapping
-  ;; (truncate-lines t)                         ;; Disable line wrapping
-  ;; (global-hl-line-mode t)                    ;; Highlight current line
+  ;; (truncate-lines t)                        ;; Disable line wrapping
+  ;; (global-hl-line-mode t)                   ;; Highlight current line
   ;; (global-display-fill-column-indicator-mode 1)
 
   ;; --- Scrolling Mechanics ---
@@ -81,12 +73,7 @@
 
   ;; --- Minibuffer, Navigation & Completion ---
   (enable-recursive-minibuffers t)
-  (minibuffer-visible-completions t)
   (completion-eager-display t)
-  (completion-eager-update t)
-  (imenu-auto-rescan t)
-  (global-xref-mouse-mode t)
-  (repeat-mode 1)
   (use-short-answers t)                       ;; Use y/n instead of yes/no
 
   ;; --- File System & Backup Management ---
@@ -97,7 +84,6 @@
   (create-lockfiles nil)                      ;; Stop creating .# lockfiles
   (delete-by-moving-to-trash t)               ;; Move deleted files to system trash
   (ibuffer-expert t)                          ;; Disable ibuffer confirmation prompts
-  (shell-command-prompt-show-cwd t)
 
   ;; --- Diagnostics & Alerts ---
   (native-comp-async-report-warnings-errors 'silent)
