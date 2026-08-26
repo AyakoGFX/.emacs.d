@@ -31,64 +31,78 @@
 (use-package emacs
   :ensure nil
   :custom
-  ;; --- UI & Window Elements ---
+  ;; --- Appearance & Window Frame ---
+  (font-use-system-font t)
   (menu-bar-mode nil)
   (scroll-bar-mode nil)
   (tool-bar-mode nil)
   (horizontal-scroll-bar-mode nil)
   (inhibit-startup-message t)
   (blink-cursor-mode t)
-  (context-menu-mode t)
   (use-dialog-box nil)
   (initial-scratch-message ";; C-x C-e C-j")
-  (repeat-mode 1)
-  ;; (global-display-fill-column-indicator-mode 1)
+  (frame-resize-pixelwise t)
+  (window-resize-pixelwise t)
+  (frame-inhibit-implied-resize t)
+  (context-menu-mode t)
 
-  ;; --- Behavior & Editing ---
+  ;; --- Editing & Text Manipulation ---
   (delete-selection-mode t)                   ;; Select text and delete it by typing
   (electric-indent-mode nil)                  ;; Turn off default automatic indentation on Return
   (electric-pair-mode nil)                    ;; Automatic parens pairing
   (save-place-mode t)                         ;; Remember cursor position in files
-  (use-short-answers t)                       ;; Use y/n instead of yes/no
-  (ibuffer-expert t)                          ;; Disable ibuffer confirmation prompts
+  (editorconfig-mode t)
 
-  ;; --- File Handling & Reversion ---
+  ;; --- Clipboard & Kill-Ring ---
+  (x-select-enable-clipboard t)
+  (save-interprogram-paste-before-kill t)
+  (yank-pop-change-selection t)
+
+  ;; --- Indentation & Spacing ---
+  (indent-tabs-mode nil)
+  (tab-width 4)
+  (sgml-basic-offset 4)
+  (whitespace-style '(face tabs tab-mark trailing))
+
+  ;; --- Line, Column & Buffer Displays ---
+  (global-display-line-numbers-mode t)        ;; Display line numbers
+  (column-number-mode t)                      ;; Show column number in mode line
+  ;; (global-visual-line-mode t)               ;; Enable line wrapping
+  ;; (truncate-lines t)                         ;; Disable line wrapping
+  ;; (global-hl-line-mode t)                    ;; Highlight current line
+  ;; (global-display-fill-column-indicator-mode 1)
+
+  ;; --- Scrolling Mechanics ---
+  (scroll-margin 15)
+  (scroll-conservatively 10)                  ;; 100000
+  ;; (scroll-preserve-screen-position 1)
+  ;; (pixel-scroll-precision-mode t)
+  ;; (mouse-wheel-progressive-speed nil)
+
+  ;; --- Minibuffer, Navigation & Completion ---
+  (enable-recursive-minibuffers t)
+  (minibuffer-visible-completions t)
+  (completion-eager-display t)
+  (completion-eager-update t)
+  (imenu-auto-rescan t)
+  (global-xref-mouse-mode t)
+  (repeat-mode 1)
+  (use-short-answers t)                       ;; Use y/n instead of yes/no
+
+  ;; --- File System & Backup Management ---
   (global-auto-revert-mode t)                 ;; Automatically reload file if changed on disk
   (global-auto-revert-non-file-buffers t)     ;; Auto-revert dired and other buffers too
   (make-backup-files nil)                     ;; Stop creating ~ backup files
   (auto-save-default nil)                     ;; Stop creating # auto save files
   (create-lockfiles nil)                      ;; Stop creating .# lockfiles
   (delete-by-moving-to-trash t)               ;; Move deleted files to system trash
+  (ibuffer-expert t)                          ;; Disable ibuffer confirmation prompts
+  (shell-command-prompt-show-cwd t)
 
-  ;; --- Line & Column Views ---
-  ;; (global-visual-line-mode t)                 ;; Enable line wrapping
-  ;; (truncate-lines t)                          ;; Disable line wrapping
-  (global-display-line-numbers-mode t)        ;; Display line numbers
-  ;; (global-hl-line-mode t)                     ;; Highlight current line
-  (column-number-mode t)                      ;; Show column number in mode line
-
-  ;; --- Warnings & Errors ---
+  ;; --- Diagnostics & Alerts ---
   (native-comp-async-report-warnings-errors 'silent)
   (warning-minimum-level :error)
   (ring-bell-function 'ignore)
-
-  ;; --- Smooth Scrolling Settings ---
-  (scroll-margin 15)
-  (scroll-conservatively 10) ; 100000
-  ;; (scroll-preserve-screen-position 1)
-  ;; (pixel-scroll-precision-mode t)
-  ;; (mouse-wheel-progressive-speed nil)
-
-  ;; --- Indentation & Spacing ---
-  (indent-tabs-mode nil)
-  (tab-width 4)
-  (enable-recursive-minibuffers t)
-  (sgml-basic-offset 4)
-  (whitespace-style '(face tabs tab-mark trailing))
-
-  (x-select-enable-clipboard t)
-  (save-interprogram-paste-before-kill t)
-  (yank-pop-change-selection t)
 
   :hook
   (prog-mode . hs-minor-mode)                 ;; Enable folding hide/show globally
@@ -100,6 +114,7 @@
    ("<C-wheel-up>" . text-scale-increase)
    ("<C-wheel-down>" . text-scale-decrease)))
 
+;;; testing
 
 ;;; load Lisp
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))

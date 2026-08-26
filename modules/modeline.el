@@ -4,6 +4,8 @@
 (setq display-time-default-load-average nil)
 (display-time-mode 1)
 
+(setopt mode-line-compact 'long)
+
 (use-package minions
   :ensure t
   :config

@@ -123,3 +123,27 @@
   ;; (setq pulsar-highlight-face 'pulsar-magenta)
   )
 
+(use-package treesit
+  :ensure nil
+  :custom
+  (treesit-auto-install-grammar t)
+  (treesit-enabled-modes t))
+
+;; C-x C-e C-j
+;; TODO if the patch is shiped then remove the advice
+(use-package speedbar
+  :ensure nil
+  :commands (speedbar speedbar-frame)
+  :config
+  (setq speedbar-prefer-window t)
+  (setq speedbar-use-images nil)
+  ;; https://www.reddit.com/r/emacs/comments/1vy7w8r/comment/p5uu81a/?screen_view_count=2&ext-referrer=DIRECT
+  ;; https://debbugs.gnu.org/cgi/bugreport.cgi?msg=8;filename=0001-speedbar-mode-must-be-enabled-in-the-speedbar-window.patch;bug=81699;att=1
+  (defun my/speedbar-window-mode-ensure-major-mode (&rest _)
+    (unless (buffer-live-p speedbar-buffer)
+      (setq speedbar-buffer (get-buffer-create speedbar--buffer-name)))
+    (with-current-buffer speedbar-buffer
+      (unless (derived-mode-p 'speedbar-mode)
+        (speedbar-mode))))
+
+  (advice-add 'speedbar-window-mode :before #'my/speedbar-window-mode-ensure-major-mode))

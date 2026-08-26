@@ -8,6 +8,7 @@
   :config ; Guess a default target directory
   (setq dired-mouse-drag-files t
         dired-dwim-target t
+        dired-auto-revert-buffer t
         dired-omit-verbose nil
         delete-by-moving-to-trash t
         dired-recursive-deletes 'always
