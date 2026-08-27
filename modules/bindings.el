@@ -39,14 +39,21 @@
 (global-set-key (kbd "M-0") 'delete-window)
 
 (defun my/backward-kill-spaces-or-char-or-word ()
+  "Kill whitespace, a word, or a single character before point.
+If the character before point is word-constituent, kill the
+whole preceding word.  If it is horizontal whitespace, delete
+all contiguous whitespace.  Otherwise, delete just the character
+before point."
   (interactive)
-  (cond
-   ((looking-back (rx (char word)) 1)
-    (backward-kill-word 1))
-   ((looking-back (rx (char blank)) 1)
-    (delete-horizontal-space t))
-   (t
-    (backward-delete-char 1))))
+  (let ((char (char-before)))
+    (cond
+     ((and char (eq (char-syntax char) ?w))
+      (backward-kill-word 1))
+     ((and char (memq char '(?\s ?\t)))
+      (delete-horizontal-space t))
+     (t
+      (backward-delete-char 1)))))
+
 (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
 (with-eval-after-load 'org
