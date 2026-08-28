@@ -4,6 +4,9 @@
   :config
   (exec-path-from-shell-initialize))
 
+;; check out expand-region clone
+;; https://github.com/casouri/expreg.git
+
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
@@ -147,3 +150,12 @@
         (speedbar-mode))))
 
   (advice-add 'speedbar-window-mode :before #'my/speedbar-window-mode-ensure-major-mode))
+
+(use-package ultra-scroll
+  :ensure t
+  :init
+  (setq scroll-conservatively 3
+        scroll-margin 0)
+  :config
+  (ultra-scroll-mode 1))
+

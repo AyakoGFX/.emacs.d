@@ -18,8 +18,8 @@
 (use-package tab-bar
   :ensure nil
   :custom
-  (tab-bar-show 1)
-  (tab-bar-height 30)
+  (tab-bar-show 0)
+  (tab-bar-height 10)
   (tab-bar-tab-hints t)
   (tab-bar-new-tab-choice "*scratch*")
   :config

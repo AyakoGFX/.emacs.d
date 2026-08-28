@@ -1,11 +1,12 @@
-;; -*- lexical-binding: t; -*-
+;;; init.el -- Main Config  -*- lexical-binding: t; -*-
+
 (setq custom-safe-themes t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
 
 ;;; Trans
-;; (set-frame-parameter (selected-frame) 'alpha-background 95)
-;; (add-to-list 'default-frame-alist '(alpha-background . 95))
+(set-frame-parameter (selected-frame) 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 
 ;; Font
 (if (eq window-system 'w32)
@@ -30,6 +31,13 @@
 
 ;; Modern Emacs experience as baseline
 (load-theme 'newcomers-presets)
+
+(use-package noctalia-theme
+  :ensure nil
+  :no-require t
+  :init
+  (add-to-list 'custom-theme-load-path (expand-file-name "themes/" user-emacs-directory))
+  (load-theme 'noctalia t))
 
 (use-package emacs
   :ensure nil
@@ -65,11 +73,15 @@
   ;; (global-display-fill-column-indicator-mode 1)
 
   ;; --- Scrolling Mechanics ---
-  (scroll-margin 15)
-  (scroll-conservatively 10)                  ;; 100000
+  ;; Scrolling is now handled with ultra-scroll
+  ;; (scroll-margin 15)
+  ;; (scroll-conservatively 100000)                  ;; 100000
   ;; (scroll-preserve-screen-position 1)
   ;; (pixel-scroll-precision-mode t)
-  ;; (mouse-wheel-progressive-speed nil)
+  ;; (mouse-wheel-progressive-speed t)
+  (pixel-scroll-mode nil)
+  (pixel-scroll-precision-mode nil)
+
 
   ;; --- Minibuffer, Navigation & Completion ---
   (enable-recursive-minibuffers t)

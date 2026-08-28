@@ -2,18 +2,12 @@
 # name: =orgodt
 # key: =orgodt
 # --
-
 #+TITLE: ${1:Title}
 #+AUTHOR: ${2:Author}
 #+SUBTITLE: ${3:Subtitle}
-#+DATE: C-c . 
+#+DATE: C-c .
 #+STARTUP: content
 #+OPTIONS: num:nil toc:nil H:9
 #+odt_preferred_output_format: pdf
 #+odt_styles_file:
-
-#+ODT_EXTRA_STYLES: <style:style style:name="PageBreak" style:family="paragraph"
-#+ODT_EXTRA_STYLES:              style:parent-style-name="Standard">
-#+ODT_EXTRA_STYLES:   <style:paragraph-properties fo:break-before="page"/>
-#+ODT_EXTRA_STYLES: </style:style>
-#+MACRO: pagebreak #+ODT: <text:p text:style-name="PageBreak"/>
+#+SETUPFILE:

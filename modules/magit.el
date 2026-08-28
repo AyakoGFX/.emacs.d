@@ -14,7 +14,6 @@
   ("<f7>" . magit-list-repositories)
   ("<f6>" . my/magit-status))
 
-
 ;; opens magit in full window rather then popup
 (defun my/magit-status ()
   "Don't split window."
