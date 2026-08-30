@@ -20,6 +20,14 @@
               ("C-c d e" . org-draw-edit)
               ("C-c d s" . org-draw-setup)))
 
+(use-package olivetti
+  :ensure t
+  :hook ((text-mode . olivetti-mode)
+         (org-mode . olivetti-mode))
+  :config
+  (setq olivetti-body-width 0.9)
+  (setq olivetti-style nil))
+
 (setq org-draw-directory "figures")
 (setq org-draw-insert-attr-width nil)
 (setq org-draw-figure-background "transparent") ;  white, dark, or a CSS color string
@@ -89,6 +97,9 @@
          :empty-lines 1)
         ("t" "TODO" entry (file+headline "~/denote/org/TODO.org" "TASK-TODO")
          "** TODO %? \n  Added: %U"
+         :empty-lines 1)
+        ("s" "TIME-SEN" entry (file+headline "~/denote/org/TODO.org" "TIME-SENSITIVE")
+         "** TODO %?\nDEADLINE: %^t\n  Added: %U"
          :empty-lines 1)))
 
 (global-set-key (kbd "C-c c") 'org-capture)
@@ -100,34 +111,9 @@
           (tags-todo "idea"
                      ((org-agenda-overriding-header "YouTube Video Ideas:")))
           (tags-todo "watch"
-                     ((org-agenda-overriding-header "Videos to Watch:")))))))
-
-;; (setq org-agenda-custom-commands
-;;       '(("v" "Master Dashboard"
-;;          ((tags-todo "PRIORITY=\"A\""
-;;                      ((org-agenda-overriding-header "High-Priority!")))
-;;           (tags "todo/TODO"
-;;                 ((org-agenda-overriding-header "Tasks / TODO")))
-;;           (alltodo ""
-;;                    ((org-agenda-overriding-header "ALL TODO")))
-;;           (todo "WAIT"
-;;                 ((org-agenda-overriding-header "Waiting / On Hold")))
-;;           (todo "CANCEL"
-;;                 ((org-agenda-overriding-header "Cancelled Tasks")))
-;;           (todo "DONE"
-;;                 ((org-agenda-overriding-header "Completed Tasks")))
-;;           (tags "check"
-;;                 ((org-agenda-overriding-header "Check This Out")))
-;;           (tags "ideas"
-;;                 ((org-agenda-overriding-header "YouTube Video Ideas")))
-;;           (tags "watch"
-;;                 ((org-agenda-overriding-header "Videos to Watch")))
-;;           (tags "remember"
-;;                 ((org-agenda-overriding-header "Remember / Notes")))
-;;           (tags-todo "-{.*}"
-;;                      ((org-agenda-overriding-header "Not Tagged (C-C C-q)")))
-;;           (agenda "" ((org-agenda-span 'week)
-;;                       (org-agenda-overriding-header "Week's Schedule")))))))
+                     ((org-agenda-overriding-header "Videos to Watch:")))
+          (agenda ""
+                  ((org-agenda-overriding-header "Time Sensitive:")))))))
 
 (use-package org-appear
   :ensure t)
@@ -141,19 +127,6 @@
 
 
 (setq org-tags-column 2)
-
-;; (setq org-default-notes-file "~/denote/org-capture/remember.org")
-;; (setq org-capture-templates
-;;       '(("r" "Remember" entry (file "~/denote/org-capture/remember.org")
-;;          "\n* [%<%Y-%m-%d %I:%M:%S %p>]\n %?\n")
-;;         ("q" "Quote" entry (file "~/denote/org-capture/quotes.org")
-;;          "**** \"%?\"\n  -- Name [%<%Y-%m-%d %I:%M %p>]")
-;;         ("l" "Link" entry (file "~/denote/org-capture/link.org")
-;;          "\n* [%<%Y-%m-%d %I:%M:%S %p>]\n %?\n")
-;;         ("t" "Todo" entry (file "~/denote/org-capture/TODO.org")
-;;          "\n* TODO [%<%Y-%m-%d %I:%M:%S %p>]\n %?\n")))
-
-;; (global-set-key (kbd "C-c c") 'org-capture)
 
 ;; %U Inactive timestamp
 ;; %^ {Name} Prompt for something
