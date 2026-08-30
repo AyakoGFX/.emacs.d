@@ -2,7 +2,12 @@
   :ensure nil
   :custom
   (display-buffer-alist
-   '(("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|Messages\\|Bookmark List\\|Occur\\|eldoc\\)\\*"
+   '(("\\*Completions\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 1))
+     ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|Messages\\|Bookmark List\\|Occur\\|eldoc\\)\\*"
       (display-buffer-in-side-window)
       (window-height . 0.25)
       (side . bottom)
