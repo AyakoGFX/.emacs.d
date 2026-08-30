@@ -1,11 +1,6 @@
 ;; (set-face-attribute 'mode-line nil :height 0.6)
 ;; (set-face-attribute 'mode-line-inactive nil :height 0.6)
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (set-face-attribute 'line-number nil :inherit 'default)
-            (set-face-attribute 'line-number-current-line nil :inherit 'default)))
-
 (defvar my/mode-line-height 130)
 (defvar my/tab-bar-height 100)
 
