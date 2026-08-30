@@ -1,14 +1,14 @@
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
 * watch
 - https://youtu.be/TxYGHjKBMUg?si=4GZpja7OqlvwqGUa
-* TODO
+* TODO [5/6]
  - [ ] Emacs Ibuffer in Project Context
  - [X] auto-fill-mode
  - [X] Emacs Org Indent
  - [X] add themes
  - [X] add css file to this repo
  - look into ~M-X~ execute-extended-command-for-buffer
- - add org mode yas snippets odt
+ - [X] add org mode yas snippets odt
  - follow the instructions at https://libera.chat/guides/cloaks to hide it irc
 
 * the fill
@@ -71,8 +71,9 @@ Info Directory Node (dir)
  - [[https://youtu.be/4rGUdVHwb3I?si=wP7C49uGChCDxOpn][Emacs | Make Your Own Glorious Texinfo Book From Org Mode  - YouTube]]
  - [[https://github.com/fniessen/org-html-themes/tree/master/org/setup][fniessen/org-html-themes · GitHub]]
  - [[https://orgmode.org/orgcard.pdf]]
- - https://orgmode.org/worg/org-contrib/babel/intro.html READ
+ - https://orgmode.org/worg/org-contrib/babel/intro.html 
  - [[https://emacs.stackexchange.com/questions/27523/org-mode-initial-visibility-with-startup][Org mode initial visibility with #+STARTUP]]
+ - [[https://youtu.be/48fIhQ9ozH4?si=oFzPJtnBoTTtHiyK][Org Mode Citation and Footnote Features — Straightforward Emacs - YouTube]] 
 
 ** REDDIT POST ABOUT Org-Mode
  - [[https://www.reddit.com/r/emacs/comments/1vbtels/i_made_an_org_mode_advanced_concepts_tutorial/][I made an Org Mode Advanced Concepts Tutorial]] 
@@ -106,33 +107,33 @@ Install all the latex pkgs
 
 Next we need to tell Emacs how to handle LaTeX.
 #+begin_src emacs-lisp
-;; Force Org-mode to export with XeLaTeX
-(setq org-latex-compiler "xelatex")
+  ;; Force Org-mode to export with XeLaTeX
+  (setq org-latex-compiler "xelatex")
 
-;; Set XeLaTeX as the build process (runs twice to resolve TOC and references)
-(setq org-latex-pdf-process
-      '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+  ;; Set XeLaTeX as the build process (runs twice to resolve TOC and references)
+  (setq org-latex-pdf-process
+        '("xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
-(setq org-latex-listings 't)
+  (setq org-latex-listings 't)
 
-(require 'ox-latex)
+  (require 'ox-latex)
 
-;; Custom Class Definition
-(add-to-list 'org-latex-classes
-             '("org-plain-latex"
-               "\\documentclass{article}
-               [NO-DEFAULT-PACKAGES]
-               [PACKAGES]
-               [EXTRA]"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ;; Custom Class Definition
+  (add-to-list 'org-latex-classes
+               '("org-plain-latex"
+                 "\\documentclass{article}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(put 'upcase-region 'disabled nil)
+  (put 'upcase-region 'disabled nil)
 #+end_src
 
  - Initial Org Doc Setup
@@ -159,6 +160,7 @@ Next we need to tell Emacs how to handle LaTeX.
 
 * cool packages
  - https://github.com/TeMPOraL/nyan-mode
+
 * Hyperbole
 - [[https://youtu.be/WKwZHSbHmPg?si=9NrvuHUCdGNbnyJ9][GNU Hyperbole - Overview and Demo - YouTube]] 
 - [[https://tilde.town/~ramin_hal9001/articles/intro-to-hyperbole.html][Ramin Honary: What does GNU Hyperbole do?]] 
