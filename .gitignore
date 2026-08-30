@@ -10,8 +10,9 @@ projects
 .project
 project-window-list
 .org-id-locations
-ielm-history.eld
+*.eld
 bookmarks
+url/cookies
 image-dired/
 tutorial/
 tree-sitter/

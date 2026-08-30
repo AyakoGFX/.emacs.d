@@ -8,3 +8,6 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+(setq frame-resize-pixelwise t
+      frame-inhibit-implied-resize 'force)

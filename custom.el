@@ -4,9 +4,33 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(doom-gruvbox))
+ '(custom-enabled-themes '(noctalia newcomers-presets))
  '(custom-safe-themes
-   '("22a0d47fe2e6159e2f15449fcb90bbf2fe1940b185ff143995cc604ead1ea171"
+   '("854b81231db83bc217b0c8671f23ec92163a96b28f045ff879bba738a9ed88bb"
+     "2b0531a540f4b51e524f551ed7374099f9d743b4de458ade0c52ba18ee6bfe46"
+     "8bffaccb8930a5e9e519485c0ed7e13cf4af4c86cda1e62c6d0bc597329776e9"
+     "068372892e8e4133677252fbf46839dcaf34efd211d4d202148e0371118175f9"
+     "2dd2fe7575d76094652d9e04de604db1cd1cdf1582e1494bc646b2a6e402afb0"
+     "e558acb85628028d35a1a4f37af738aa35062f26a6f8bea535048cca1427b4d2"
+     "acd363510d3e4b638db178783bde3d4492574c0f5c889f845251949f43567d16"
+     "f76e34f676ac1fbce608c5f38033c35e370509619b9a3acd02a518ef58b01107"
+     "8e8acbea18dbf51b41a09e7fc789f8af666b2ca8c099a268b5275bfc4541a5ff"
+     "cc8e6619a14298073d987046081c541b8b3854a6446497bdc254c3fad065cc30"
+     "f2f42f0b7c53736840fc3ff5751235e3b87cc535b04ddaf3423e2926548bfbb4"
+     "7d9c94cc1edddc6162c89c85bbdeed14e5b93a21ec83a55710d6a501bf295cf7"
+     "333b0cc0f985744d97beebf433542bb93b314b331117aa57e91103dbec9c29fe"
+     "ec717a4698b3fa398eb7f8214adba47d4f51bab42c3925ba0ffe3abc5f82712a"
+     "0dd83cb583518e6a20cd7881e4d2251c80c1141b50dc29fbe13198e62f3620f6"
+     "de8c7f41a226981177f0aa5c9d5bad1decf8569d2c168cc4ec6d4493e4356bd4"
+     "8325ce8887001cf97589b3460ee88fd3344a290a815ec248945de6d223b7b01f"
+     "138ed99a323c1b93c52f4b3726caf2bc634b79a76fa63a3d3aff76394db5f28f"
+     "10e330880269244ae45ae9e02fe6f55766da9e15036e7c7f07d7ce228195deb5"
+     "8359c8dcdecbc0c2b6dece1832b27ae8ef84f4da2da61cd6ab1ef02f17471776"
+     "a6da78c5f7f58851076398e5940270bdada3c778b3d34192c0a8d1de87243d70"
+     "e0fbe5caa6e602975e59cdd381c9773a670a864dd7bb7bf2345414856148098b"
+     "5cb84685a211fb46e47ca355dc91e52adf0c185dc0603cfe27c63855f200dd1f"
+     "1d18bef9d0e1b7f30a3290c48fdc52465bdca62564e404c1019bb1fcc8cb0c27"
+     "22a0d47fe2e6159e2f15449fcb90bbf2fe1940b185ff143995cc604ead1ea171"
      "83550d0386203f010fa42ad1af064a766cfec06fc2f42eb4f2d89ab646f3ac01"
      "7c3d62a64bafb2cc95cd2de70f7e4446de85e40098ad314ba2291fc07501b70c"
      "2f7fa7a92119d9ed63703d12723937e8ba87b6f3876c33d237619ccbd60c96b9"
@@ -58,26 +82,28 @@
      "2f8af2a3a2fae6b6ea254e7aab6f3a8b5c936428b67869cef647c5f8e7985877"
      "b7a09eb77a1e9b98cafba8ef1bd58871f91958538f6671b22976ea38c2580755"
      default))
- '(org-agenda-files '("/home/xshaw/denote/org/agenda.org"))
+ '(org-agenda-files '("/home/xshaw/denote/org/youtube.org"))
  '(org-safe-remote-resources
    '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow-home\\.setup\\'"
      "\\`https://fniessen\\.github\\.io/org-html-themes/org/setup/html-theme-bigblow\\.setup\\'"))
  '(package-selected-packages
-   '(aggressive-indent apheleia cape company consult consult-denote
-                       consult-notes dashboard denote denote-menu
-                       denote-org diff-hl dired-subtree doom-themes
-                       ef-themes embark embark-consult erc-hl-nicks
-                       erc-image evil exec-path-from-shell
-                       expand-region flash flyspell-correct kdl-mode
-                       keycast lispy magit marginalia markdown-mode
-                       minions move-text multiple-cursors nerd-icons
-                       nyan-mode olivetti orderless org-appear
-                       org-draw org-present ox-odt paredit popper
-                       project-x pulsar qml-mode quick-fasd racket
-                       racket-mode rainbow-delimiters scroll-restore
-                       sudo-edit surround typst-ts-mode uv-mode
-                       vertico vundo yasnippet))
+   '(aggressive-indent apheleia calfw calfw-org cape company consult
+                       consult-denote consult-notes dashboard denote
+                       denote-menu denote-org diff-hl dired-subtree
+                       doom-themes ef-themes embark embark-consult
+                       erc-hl-nicks erc-image evil
+                       exec-path-from-shell expand-region flash
+                       flyspell-correct fontaine kdl-mode keycast
+                       lispy magit marginalia markdown-mode meow
+                       minions mixed-pitch move-text multiple-cursors
+                       nerd-icons nyan-mode olivetti orderless
+                       org-appear org-draw org-present ox-odt paredit
+                       popper project-x pulsar qml-mode quick-fasd
+                       racket racket-mode rainbow-delimiters
+                       rainbow-mode scroll-restore show-font sudo-edit
+                       surround toml typst-ts-mode ultra-scroll
+                       uv-mode vertico vundo yasnippet))
  '(package-vc-selected-packages
    '((org-draw :url "https://github.com/larrasket/org-draw")
      (ox-odt :url "https://github.com/kjambunathan/org-mode-ox-odt"

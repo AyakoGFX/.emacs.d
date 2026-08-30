@@ -43,7 +43,7 @@
   :after project
   :custom
   (project-x-local-identifier '(".project"))
-  (project-x-auto-save-delay 5)
+  ;; (project-x-auto-save-delay 5)
   (project-x-save-extra-buffers t)
   :config
   ;; (setq project-prompter #'project-x--project-prompt)

@@ -1,30 +1,34 @@
-;; Emacs-W3 HTTP cookies file
+;; Emacs-W3 HTTP cookies file  -*- lexical-binding: t -*-
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
  'nil
 )
 (setq url-cookie-secure-storage
- '((".youtube.com"
-  [url-cookie "VISITOR_PRIVACY_METADATA" "CgJJThIEGgAgJg%3D%3D"
-              "Thu, 18-Feb-2027 15:27:39 GMT" "/" ".youtube.com" t]
-  [url-cookie "VISITOR_INFO1_LIVE" "0eIRe-UD3OE"
-              "Thu, 18-Feb-2027 15:27:39 GMT" "/" ".youtube.com" t]
-  [url-cookie "__Secure-YNID"
-              "21.YT=huVC0ryJ-dw5pTy6lNWsqf0yHDsC4g-M5fSHAgkVqzQPQDacN2Su-Wg-RwZ9OVQhU_JY0nohbu0floqEtRkQqyWDZdV_ihZPwV3zjtwAwTqhpCNG85ffYC0LDKfwez2WskxhZhSUxADM44zCUSB_thCW--_doO0vSABHFn3e71tBMJxuFhRgS7FsSNPQF5rkqtZxy7gKa1B7s9GJjzJY7Gh5SiX0lcH1MKdIpIhF1elOucx0G_khGwRsLrCfS9lVgJ9a43b-WQNOF4cK9GMqa2PHbR0MNlL3YvtvL_Rs1DQ3aqL37LBFE2_o1Cm0wiMRdfSc0x9TS7AReXv2DsbiyA"
-              "Thu, 18-Feb-2027 02:23:20 GMT" "/" ".youtube.com" t])
- (".github.com"
-  [url-cookie "logged_in" "no" "Mon, 02 Aug 2027 12:30:37 GMT" "/"
-              ".github.com" t]
-  [url-cookie "_octo" "GH1.1.438407254.1785673837"
-              "Mon, 02 Aug 2027 12:30:37 GMT" "/" ".github.com" t])
- ("archlinux.org"
-  [url-cookie "csrftoken" "Wi5wP9hsAQulpN6CarqG9gCfXB98jMrK"
-              "Wed Aug 18 01:13:35 2027 GMT" "/" "archlinux.org" t])
- ("youtube.com"
-  [url-cookie "__Secure-ROLLOUT_TOKEN"
-              "COj_xbDe1ZeLmQEQqtfsz_aBlgMY_qOP_pazlgM%3D"
-              "Thu, 18-Feb-2027 02:23:20 GMT" "/" "youtube.com" t]))
+ '(("youtube.com"
+    [url-cookie "__Secure-ROLLOUT_TOKEN"
+                "COj_xbDe1ZeLmQEQqtfsz_aBlgMYn92jr7zGlgM%3D"
+                "Thu, 25-Feb-2027 18:31:10 GMT" "/" "youtube.com" t])
+   ("archlinux.org"
+    [url-cookie "csrftoken" "Wi5wP9hsAQulpN6CarqG9gCfXB98jMrK"
+                "Wed Aug 18 01:13:35 2027 GMT" "/" "archlinux.org" t])
+   (".github.com"
+    [url-cookie "_octo" "GH1.1.438407254.1785673837"
+                "Mon, 02 Aug 2027 12:30:37 GMT" "/" ".github.com" t]
+    [url-cookie "logged_in" "no" "Mon, 02 Aug 2027 12:30:37 GMT" "/"
+                ".github.com" t])
+   (".youtube.com"
+    [url-cookie "__Secure-YNID"
+                "21.YT=afwWPYXR6hC8ns4G7jIygpX2ZsvddNVhNlIYCFuLJxfhipah-oCn_s4iRRx3_b43MC9O2oN0vF4n6uWNUPRClr91gGhI6_dZ240v2rjfWpUnHSi4c8Mh8zl0KFfaE11MINpWYCNTD5i2yH2ZpVdF2TUTOhjyyGsLuIG26hF3mKMtJE94yzVP33s0bZEIKW5g8DQzPvILT8p7wDKXg0bnys0LRZUSsInQPcuy12Hy7DTQJnv9StOU65aA4AsiXVhEfXT7gHp8JeiwlQUWbtfMmUfsyEnNSQmoW3LTFgqr96fEbMZDFnbFFmgyzRNwtH1HrvGIe9zVzn_oKrAhHrVIKQ"
+                "Thu, 25-Feb-2027 18:31:10 GMT" "/" ".youtube.com" t]
+    [url-cookie "VISITOR_INFO1_LIVE" "0eIRe-UD3OE"
+                "Thu, 25-Feb-2027 18:31:10 GMT" "/" ".youtube.com" t]
+    [url-cookie "VISITOR_PRIVACY_METADATA" "CgJJThIEGgAgJg%3D%3D"
+                "Thu, 25-Feb-2027 18:31:10 GMT" "/" ".youtube.com" t]
+    [url-cookie "GPS" "1" "Sat, 29-Aug-2026 19:01:10 GMT" "/"
+                ".youtube.com" t]
+    [url-cookie "__Secure-YEC" "" "Sun, 03-Dec-2023 18:31:10 GMT" "/"
+                ".youtube.com" t]))
 )
 
 ;; Local Variables:

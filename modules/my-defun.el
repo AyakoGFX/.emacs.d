@@ -428,7 +428,7 @@ ACTION can be 'move or 'copy."
 
 ;; ##############################################################
 
-(defcustom my/default-external-terminal "konsole"
+(defcustom my/default-external-terminal "alacritty"
   "Preferred external terminal to open via `my/open-terminal-here`."
   :type 'string
   :group 'environment)
