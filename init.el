@@ -5,16 +5,14 @@
 (load custom-file t)
 
 ;;; Trans
-(set-frame-parameter (selected-frame) 'alpha-background 95)
-(add-to-list 'default-frame-alist '(alpha-background . 95))
+;; (set-frame-parameter (selected-frame) 'alpha-background 95)
+;; (add-to-list 'default-frame-alist '(alpha-background . 95))
 
-;; Font
-(if (eq window-system 'w32)
-    (add-to-list 'default-frame-alist
-                 '(font . "JetBrainsMono NF-14"))
-  (add-to-list 'default-frame-alist
-               '(font . "JetBrainsMono Nerd Font-20")))
+(load (expand-file-name "modules/themes-fonts.el" user-emacs-directory))
 
+;; Modern Emacs experience as baseline
+;; /usr/share/emacs/31.1/etc/themes/newcomers-presets-theme.el
+(load-theme 'newcomers-presets)
 
 (set-default-coding-systems 'utf-8)
 (set-language-environment "UTF-8")
@@ -28,16 +26,6 @@
 (setq shell-file-name "/bin/bash")
 
 (setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
-
-;; Modern Emacs experience as baseline
-(load-theme 'newcomers-presets)
-
-(use-package noctalia-theme
-  :ensure nil
-  :no-require t
-  :init
-  (add-to-list 'custom-theme-load-path (expand-file-name "themes/" user-emacs-directory))
-  (load-theme 'noctalia t))
 
 (use-package emacs
   :ensure nil
@@ -112,8 +100,6 @@
    ("<C-wheel-up>" . text-scale-increase)
    ("<C-wheel-down>" . text-scale-decrease)))
 
-;;; testing
-
 ;;; load Lisp
 (add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
 
@@ -121,6 +107,7 @@
 (require 'org-link-desc)
 
 ;;; Import Modules
+(load (expand-file-name "modules/meow.el" user-emacs-directory))
 (load (expand-file-name "modules/mini-buffer-completion.el" user-emacs-directory))
 (load (expand-file-name "modules/consult.el" user-emacs-directory))
 (load (expand-file-name "modules/dashboard.el" user-emacs-directory))
@@ -136,10 +123,9 @@
 (load (expand-file-name "modules/my-defun.el" user-emacs-directory))
 (load (expand-file-name "modules/bindings.el" user-emacs-directory))
 (load (expand-file-name "modules/modeline.el" user-emacs-directory))
-(load (expand-file-name "modules/themes.el" user-emacs-directory))
 (load (expand-file-name "modules/irc.el" user-emacs-directory))
 (load (expand-file-name "modules/elisp.el" user-emacs-directory))
-(load (expand-file-name "modules/testing.el" user-emacs-directory))
+;; (load (expand-file-name "modules/testing.el" user-emacs-directory))
 (load (expand-file-name "modules/flyspell.el" user-emacs-directory))
 (load (expand-file-name "modules/mode-spec.el" user-emacs-directory))
 ;; (load (expand-file-name "modules/fixes.el" user-emacs-directory))
