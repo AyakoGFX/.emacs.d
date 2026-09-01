@@ -12,6 +12,7 @@ project-window-list
 .org-id-locations
 *.eld
 bookmarks
+easysession/
 url/cookies
 image-dired/
 tutorial/

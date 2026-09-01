@@ -265,7 +265,7 @@ Version: 2022-04-05"
         (browse-url (concat base-url (url-hexify-string query)))
       (message "Unknown search engine: %s" engine))))
 
-(global-set-key (kbd "C-c s") 'my/search)  ;; Bind to C-c s
+(global-set-key (kbd "C-c v") 'my/search)  ;; Bind to C-c v
 
 (defvar my/search-engines
   '(("google" . "https://www.google.com/search?q=")

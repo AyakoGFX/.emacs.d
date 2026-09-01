@@ -107,7 +107,9 @@
 (require 'org-link-desc)
 
 ;;; Import Modules
-(load (expand-file-name "modules/meow.el" user-emacs-directory))
+(load (expand-file-name "modules/testing.el" user-emacs-directory))
+;; (load (expand-file-name "modules/meow.el" user-emacs-directory))
+;; (load (expand-file-name "modules/meep.el" user-emacs-directory))
 (load (expand-file-name "modules/mini-buffer-completion.el" user-emacs-directory))
 (load (expand-file-name "modules/consult.el" user-emacs-directory))
 (load (expand-file-name "modules/dashboard.el" user-emacs-directory))
@@ -125,7 +127,6 @@
 (load (expand-file-name "modules/modeline.el" user-emacs-directory))
 (load (expand-file-name "modules/irc.el" user-emacs-directory))
 (load (expand-file-name "modules/elisp.el" user-emacs-directory))
-;; (load (expand-file-name "modules/testing.el" user-emacs-directory))
 (load (expand-file-name "modules/flyspell.el" user-emacs-directory))
 (load (expand-file-name "modules/mode-spec.el" user-emacs-directory))
 ;; (load (expand-file-name "modules/fixes.el" user-emacs-directory))

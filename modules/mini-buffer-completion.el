@@ -28,7 +28,12 @@
 (use-package savehist
   :ensure nil
   :init
-  (savehist-mode 1))
+  (savehist-mode 1)
+  :config
+  (add-to-list 'savehist-additional-variables 'kill-ring)
+  (add-to-list 'savehist-additional-variables 'mark-ring)
+  (add-to-list 'savehist-additional-variables 'search-ring)
+  (add-to-list 'savehist-additional-variables 'regexp-search-ring))
 
 (use-package emacs
   :ensure nil

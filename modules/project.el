@@ -38,17 +38,17 @@
 ;; tab bar hight
 ;; (set-face-attribute 'tab-bar nil :height 100)
 
-(use-package project-x
-  :ensure t
-  :after project
-  :custom
-  (project-x-local-identifier '(".project"))
-  ;; (project-x-auto-save-delay 5)
-  (project-x-save-extra-buffers t)
-  :config
-  ;; (setq project-prompter #'project-x--project-prompt)
-  (project-x-mode 1)
-  (project-x-tabs-mode 1))
+;; (use-package project-x
+;;   :ensure t
+;;   :after project
+;;   :custom
+;;   (project-x-local-identifier '(".project"))
+;;   ;; (project-x-auto-save-delay 5)
+;;   (project-x-save-extra-buffers t)
+;;   :config
+;;   ;; (setq project-prompter #'project-x--project-prompt)
+;;   (project-x-mode 1)
+;;   (project-x-tabs-mode 1))
 
 ;; (set-face-attribute 'tab-bar nil
 ;; :font "JetBrainsMono Nerd Font"

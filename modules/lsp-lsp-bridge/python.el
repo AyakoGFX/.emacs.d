@@ -5,6 +5,7 @@
 ;; uv tool install basedpyright
 ;; uv tool update-shell
 
+(setq lsp-bridge-python-multi-lsp-server "basedpyright_ruff")
 
 
 (use-package uv-mode

@@ -91,11 +91,11 @@
    '(aggressive-indent apheleia calfw calfw-org cape company consult
                        consult-denote consult-notes dashboard denote
                        denote-menu denote-org diff-hl dired-subtree
-                       doom-themes ef-themes embark embark-consult
-                       erc-hl-nicks erc-image evil
-                       exec-path-from-shell expand-region flash
+                       doom-modeline doom-themes easysession ef-themes
+                       embark embark-consult erc-hl-nicks erc-image
+                       evil exec-path-from-shell expand-region flash
                        flyspell-correct fontaine kdl-mode keycast
-                       lispy magit marginalia markdown-mode meow
+                       lispy magit marginalia markdown-mode meep meow
                        minions mixed-pitch move-text multiple-cursors
                        nerd-icons nyan-mode olivetti orderless
                        org-appear org-draw org-present ox-odt paredit
