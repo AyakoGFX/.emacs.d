@@ -1,4 +1,9 @@
 ;; -*- lexical-binding: t; -*-
+;; Load the specific file directly and activate it
+
+;; (load-file "~/.emacs.d/themes/indian-soft-blue.el")
+;; (enable-theme 'indian-soft-blue)
+
 (use-package noctalia-theme
   :ensure nil
   :no-require t
@@ -35,27 +40,28 @@
   :hook
   (text-mode . mixed-pitch-mode))
 
+;; https://github.com/protesilaos/aporetic.git
 (use-package fontaine
   :ensure t
   :config
   (setq fontaine-presets
         '((regular
-           :default-family "Aporetic Mono"
+           :default-family "Aporetic Sans Mono"
            :default-weight regular
            :default-height 200
-           :fixed-pitch-family "Aporetic Mono"
+           :fixed-pitch-family "Aporetic Sans Mono"
            :fixed-pitch-height 1.0
            :variable-pitch-family "Aporetic Serif"
            :variable-pitch-height 1.0
-           :bold-family "Aporetic Mono"
+           :bold-family "Aporetic Sans Mono"
            :bold-weight bold
-           :italic-family "Aporetic Mono"
+           :italic-family "Aporetic Sans Mono"
            :italic-slant italic)
           (large
-           :default-family "Aporetic Mono"
+           :default-family "Aporetic Sans Mono"
            :default-height 300)
           (t
-           :default-family "Aporetic Mono"
+           :default-family "Aporetic Sans Mono"
            :default-height 110)))
 
   (fontaine-set-preset 'regular)

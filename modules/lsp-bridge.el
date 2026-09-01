@@ -3,6 +3,8 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1MB buffer size for fast LSP communication
 
 ;; --- lsp-bridge (Manual Load) ---
+;; uv python install 3.13
+
 (use-package lsp-bridge
   :load-path "~/Github/lsp-bridge"
   :demand t

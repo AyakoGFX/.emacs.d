@@ -92,5 +92,6 @@
   (meow-global-mode 1)
   (meow-setup-indicator)
   (meow-setup)
-  (setq meow-expand-hint-remove-delay 1)
+  (setq meow-expand-hint-remove-delay 0)
+  (setq meow-expand-exclude-mode-list '()) ;; removing org-mode and markdown-mode
   (setq meow-use-clipboard t))

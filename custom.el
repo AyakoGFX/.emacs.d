@@ -109,7 +109,8 @@
      (ox-odt :url "https://github.com/kjambunathan/org-mode-ox-odt"
              :lisp-dir "lisp")
      (lsp-bridge :url "https://github.com/manateelazycat/lsp-bridge"
-                 :branch "master"))))
+                 :branch "master")))
+ '(safe-local-variable-values '((eval menu-bar--toggle-truncate-long-lines))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -108,7 +108,7 @@
 
 ;;; Import Modules
 (load (expand-file-name "modules/testing.el" user-emacs-directory))
-;; (load (expand-file-name "modules/meow.el" user-emacs-directory))
+(load (expand-file-name "modules/meow.el" user-emacs-directory))
 ;; (load (expand-file-name "modules/meep.el" user-emacs-directory))
 (load (expand-file-name "modules/mini-buffer-completion.el" user-emacs-directory))
 (load (expand-file-name "modules/consult.el" user-emacs-directory))

@@ -28,13 +28,13 @@
 
 (save-place-mode 1)
 
-(use-package quick-fasd
-  :ensure t
-  :bind (("C-x C-d" . quick-fasd-find-path)
-         :map minibuffer-local-completion-map
-         ("C-x C-d" . quick-fasd-find-path))
-  :init
-  (quick-fasd-mode 1)
-  :custom
-  (quick-fasd-enable-initial-prompt nil)
-  (quick-fasd-standard-search '("-a" "-t")))
+;; (use-package quick-fasd
+;;   :ensure t
+;;   :bind (("C-x C-d" . quick-fasd-find-path)
+;;          :map minibuffer-local-completion-map
+;;          ("C-x C-d" . quick-fasd-find-path))
+;;   :init
+;;   (quick-fasd-mode 1)
+;;   :custom
+;;   (quick-fasd-enable-initial-prompt nil)
+;;   (quick-fasd-standard-search '("-a" "-t")))
