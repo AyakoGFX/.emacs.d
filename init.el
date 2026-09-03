@@ -5,8 +5,8 @@
 (load custom-file t)
 
 ;;; Trans
-;; (set-frame-parameter (selected-frame) 'alpha-background 95)
-;; (add-to-list 'default-frame-alist '(alpha-background . 95))
+(set-frame-parameter (selected-frame) 'alpha-background 95)
+(add-to-list 'default-frame-alist '(alpha-background . 95))
 
 (load (expand-file-name "modules/themes-fonts.el" user-emacs-directory))
 
@@ -25,7 +25,7 @@
 (setq explicit-shell-file-name "/bin/bash")
 (setq shell-file-name "/bin/bash")
 
-(setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
+;; (setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
 
 (use-package emacs
   :ensure nil
