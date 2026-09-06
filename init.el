@@ -26,6 +26,9 @@
 (setq shell-file-name "/bin/bash")
 
 ;; (setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
+;; TODO repeat mode
+(with-eval-after-load 'dired-x
+  (put 'dired-jump 'repeat-map nil))
 
 (use-package emacs
   :ensure nil
@@ -107,6 +110,7 @@
 (require 'org-link-desc)
 
 ;;; Import Modules
+(load (expand-file-name "modules/easysession.el" user-emacs-directory))
 (load (expand-file-name "modules/testing.el" user-emacs-directory))
 (load (expand-file-name "modules/meow.el" user-emacs-directory))
 ;; (load (expand-file-name "modules/meep.el" user-emacs-directory))

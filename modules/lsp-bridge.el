@@ -15,7 +15,7 @@
   (lsp-bridge-enable-diagnostics t)
   (lsp-bridge-enable-hover-diagnostic t)
   (lsp-bridge-enable-inlay-hint t)
-
+  (lsp-bridge-enable-mode-line nil)
   :bind-keymap
   ("C-S-l" . lsp-bridge-prefix-map)
   :config
@@ -36,12 +36,12 @@
   (define-key lsp-bridge-prefix-map (kbd "l l") 'lsp-bridge-diagnostic-list))
 
 ;; Set minimum characters to 2 for LSP completion
-(setq acm-backend-lsp-candidate-min-length 2)
+(setq acm-backend-lsp-candidate-min-length 3)
 
 ;; You may also want to set the same delay for other common backends:
-(setq acm-backend-elisp-candidate-min-length 2)             ;; For Emacs Lisp
-(setq acm-backend-yas-candidate-min-length 2)               ;; For Yasnippet
-(setq acm-backend-search-file-words-candidate-min-length 2) ;; For in-file text words
+(setq acm-backend-elisp-candidate-min-length 3)             ;; For Emacs Lisp
+(setq acm-backend-yas-candidate-min-length 3)               ;; For Yasnippet
+(setq acm-backend-search-file-words-candidate-min-length 3) ;; For in-file text words
 
 
 (use-package yasnippet

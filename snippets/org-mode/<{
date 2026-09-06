@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <{
+# key: <{
+# --
+{{{${1:macro_name} (${2:argument}) }}}$0

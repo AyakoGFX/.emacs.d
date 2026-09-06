@@ -11,16 +11,15 @@
   :ensure t
   :bind ("C-=" . er/expand-region))
 
-(use-package ace-window
-  :ensure nil
-  :bind ("M-o" . ace-window)
-  :config
-  (ace-window-display-mode 1))
+;; (use-package ace-window
+;;   :ensure nil
+;;   :bind ("M-o" . ace-window)
+;;   :config
+;;   (ace-window-display-mode 1))
 
 (use-package evil
   :ensure t)
 (global-set-key (kbd "C-x /") #'evil-ex)
-(global-set-key (kbd "<f2>") #'evil-mode)
 
 (use-package keycast
   :ensure t)

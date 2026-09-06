@@ -41,6 +41,9 @@
   (text-mode . mixed-pitch-mode))
 
 ;; https://github.com/protesilaos/aporetic.git
+;; 1. fixed-pitch-family (Monospace Fonts)
+;; 2. variable-pitch-family (Proportional Fonts)
+
 (use-package fontaine
   :ensure t
   :config
@@ -60,11 +63,44 @@
           (large
            :default-family "Aporetic Sans Mono"
            :default-height 300)
+          ;; Inter
+          (inter
+           :inherit regular
+           :variable-pitch-family "Inter"
+           :variable-pitch-height 1.0
+           :bold-family "Inter"
+           :italic-family "Inter"
+           :default-height 200)
+          (noto-sans
+           :default-family "Noto Sans Mono"
+           :default-weight regular
+           :default-height 200
+           :fixed-pitch-family "Noto Sans Mono"
+           :fixed-pitch-height 1.0
+           :variable-pitch-family "Noto Sans"
+           :variable-pitch-height 1.0
+           :bold-family "Noto Sans"
+           :bold-weight bold
+           :italic-family "Noto Sans"
+           :italic-slant italic)
+          (noto-serif
+           :default-family "Noto Sans Mono"
+           :default-weight regular
+           :default-height 200
+           :fixed-pitch-family "Noto Sans Mono"
+           :fixed-pitch-height 1.0
+           :variable-pitch-family "Noto Serif"
+           :variable-pitch-height 1.0
+           :bold-family "Noto Serif"
+           :bold-weight bold
+           :italic-family "Noto Serif"
+           :italic-slant italic)
           (t
+           ;; shared fallback properties
            :default-family "Aporetic Sans Mono"
            :default-height 110)))
 
-  (fontaine-set-preset 'regular)
+  (fontaine-set-preset 'noto-sans)
   (fontaine-mode 1))
 
 ;; fix sum themes line-number

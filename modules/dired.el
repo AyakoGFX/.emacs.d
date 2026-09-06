@@ -30,7 +30,8 @@
 (add-hook 'dired-mode-hook #'dired-hide-details-mode) ;; on in dired
 
 (use-package dired-x
-  :demand t
+  ;; :demand t
+  :after dired
   :config
   (let ((cmd (cond ((eq system-type 'darwin) "open")   ;; macOS
                    ((eq system-type 'gnu/linux) "xdg-open")   ;; Linux

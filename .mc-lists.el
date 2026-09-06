@@ -12,6 +12,11 @@
         indent-for-tab-command
         lsp-ui-doc--handle-mouse-movement
         mark-sexp
+        meow-insert
+        meow-insert-exit
+        meow-prev
+        meow-right
+        meow-undo
         multiple-cursors-mode
         my/backward-kill-spaces-or-char-or-word
         org-beginning-of-line
@@ -27,6 +32,7 @@
         suspend-frame
         text-scale-adjust
         text-scale-decrease
+        wdired-finish-edit
         ))
 
 (setq mc/cmds-to-run-once

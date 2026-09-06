@@ -20,6 +20,13 @@
               ("C-c d e" . org-draw-edit)
               ("C-c d s" . org-draw-setup)))
 
+(setq org-draw-directory "figures")
+(setq org-draw-insert-attr-width nil)
+(setq org-draw-figure-background "transparent") ;  white, dark, or a CSS color string
+(setq org-draw-open-browser nil)
+(setq org-draw-web-open-function nil)
+(setq org-draw-copy-url t)
+
 (use-package olivetti
   :ensure t
   :hook ((text-mode . olivetti-mode)
@@ -28,12 +35,6 @@
   (setq olivetti-body-width 0.9)
   (setq olivetti-style nil))
 
-(setq org-draw-directory "figures")
-(setq org-draw-insert-attr-width nil)
-(setq org-draw-figure-background "transparent") ;  white, dark, or a CSS color string
-(setq org-draw-open-browser nil)
-(setq org-draw-web-open-function nil)
-(setq org-draw-copy-url t)
 
 
 ;; org bable
@@ -50,6 +51,7 @@
 
 ;; Hide Org emphasis markers for cleaner display
 (setq org-hide-emphasis-markers t)
+(setq org-hide-macro-markers t)
 ;; (setq org-image-actual-width '())
 
 (defvar my-org-headers

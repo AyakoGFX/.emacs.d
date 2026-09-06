@@ -93,16 +93,17 @@
                        denote-menu denote-org diff-hl dired-subtree
                        doom-modeline doom-themes easysession ef-themes
                        embark embark-consult erc-hl-nicks erc-image
-                       evil exec-path-from-shell expand-region flash
-                       flyspell-correct fontaine kdl-mode keycast
-                       lispy magit marginalia markdown-mode meep meow
-                       minions mixed-pitch move-text multiple-cursors
+                       evil exec-path-from-shell expand-region
+                       filechooser flash flyspell-correct fontaine
+                       hide-mode-line kdl-mode keycast lispy magit
+                       marginalia markdown-mode meep meow minions
+                       mixed-pitch move-text multiple-cursors
                        nerd-icons nyan-mode olivetti orderless
                        org-appear org-draw org-present ox-odt paredit
                        popper project-x pulsar qml-mode quick-fasd
                        racket racket-mode rainbow-delimiters
                        rainbow-mode scroll-restore show-font sudo-edit
-                       surround toml typst-ts-mode ultra-scroll
+                       surround tmr toml typst-ts-mode ultra-scroll
                        uv-mode vertico vundo yasnippet))
  '(package-vc-selected-packages
    '((org-draw :url "https://github.com/larrasket/org-draw")

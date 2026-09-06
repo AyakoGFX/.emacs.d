@@ -90,8 +90,39 @@
   :ensure t
   :config
   (meow-global-mode 1)
+  ;; (setq meow-replace-state-name-list
+  ;;       '((normal . " N ")
+  ;;         (motion . " M ")
+  ;;         (keypad . " K ")
+  ;;         (insert . " I ")
+  ;;         (beacon . " B ")))
   (meow-setup-indicator)
   (meow-setup)
   (setq meow-expand-hint-remove-delay 0)
   (setq meow-expand-exclude-mode-list '()) ;; removing org-mode and markdown-mode
   (setq meow-use-clipboard t))
+
+(set-face-attribute 'meow-normal-indicator nil
+                    :inherit 'font-lock-keyword-face
+                    :inverse-video t
+                    :weight 'bold)
+
+(set-face-attribute 'meow-insert-indicator nil
+                    :inherit 'font-lock-string-face
+                    :inverse-video t
+                    :weight 'bold)
+
+(set-face-attribute 'meow-motion-indicator nil
+                    :inherit 'font-lock-type-face
+                    :inverse-video t
+                    :weight 'bold)
+
+(set-face-attribute 'meow-keypad-indicator nil
+                    :inherit 'font-lock-builtin-face
+                    :inverse-video t
+                    :weight 'bold)
+
+(set-face-attribute 'meow-beacon-indicator nil
+                    :inherit 'error
+                    :inverse-video t
+                    :weight 'bold)
