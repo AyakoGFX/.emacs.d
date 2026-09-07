@@ -1,8 +1,10 @@
 tramp
 session*
+*.cookie
 *.elc
 tabsession.el
 custom-vars.el
+.user-lisp-autoloads.el
 places
 org-roam.db
 history
