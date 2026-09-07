@@ -24,16 +24,17 @@
   (tab-bar-new-tab-choice "*scratch*")
   :config
   (keymap-unset tab-bar-mode-map "C-<tab>")
-  :bind
-  (("M-1" . tab-bar-select-tab)
-   ("M-2" . tab-bar-select-tab)
-   ("M-3" . tab-bar-select-tab)
-   ("M-4" . tab-bar-select-tab)
-   ("M-5" . tab-bar-select-tab)
-   ("M-6" . tab-bar-select-tab)
-   ("M-7" . tab-bar-select-tab)
-   ("M-8" . tab-bar-select-tab)
-   ("M-9" . tab-bar-select-tab)))
+  ;; :bind
+  ;; (("M-1" . tab-bar-select-tab)
+  ;;  ("M-2" . tab-bar-select-tab)
+  ;;  ("M-3" . tab-bar-select-tab)
+  ;;  ("M-4" . tab-bar-select-tab)
+  ;;  ("M-5" . tab-bar-select-tab)
+  ;;  ("M-6" . tab-bar-select-tab)
+  ;;  ("M-7" . tab-bar-select-tab)
+  ;;  ("M-8" . tab-bar-select-tab)
+  ;;  ("M-9" . tab-bar-select-tab))
+  )
 
 ;; tab bar hight
 ;; (set-face-attribute 'tab-bar nil :height 100)

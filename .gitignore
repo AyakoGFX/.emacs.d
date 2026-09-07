@@ -1,6 +1,7 @@
 tramp
 session*
 *.cookie
+url/cookies
 *.elc
 tabsession.el
 custom-vars.el

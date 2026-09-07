@@ -14,8 +14,11 @@
 
 (global-set-key [mouse-9] #'next-buffer)
 (global-set-key [mouse-8] #'previous-buffer)
-(global-set-key (kbd "<f12>") 'next-buffer)
-(global-set-key (kbd "<S-f12>") 'previous-buffer)
+;; (global-set-key (kbd "<f12>") 'next-buffer)
+;; (global-set-key (kbd "<S-f12>") 'previous-buffer)
+(global-set-key (kbd "M-1") 'next-buffer)
+(global-set-key (kbd "M-2") 'previous-buffer)
+
 (global-set-key (kbd "C-;") 'comment-line)
 (global-set-key (kbd "C-c f") #'find-file-at-point)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -38,6 +41,7 @@
 ;; (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "M-0") 'delete-window)
 
+
 (defun my/backward-kill-spaces-or-char-or-word ()
   "Kill whitespace, a word, or a single character before point.
 If the character before point is word-constituent, kill the
@@ -52,7 +56,7 @@ before point."
      ((and char (memq char '(?\s ?\t)))
       (delete-horizontal-space t))
      (t
-      (backward-delete-char 1)))))
+      (delete-char -1)))))
 
 (global-set-key (kbd "<C-backspace>") 'my/backward-kill-spaces-or-char-or-word)
 
