@@ -59,3 +59,6 @@
               ("i" . dired-subtree-toggle)
               ("I" . dired-subtree-cycle)
               ("C-i" . dired-subtree-remove)))
+
+(provide 'jon-dired)
+;;; jon-dired.el ends here

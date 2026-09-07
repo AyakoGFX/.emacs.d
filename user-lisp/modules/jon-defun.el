@@ -459,3 +459,6 @@ ACTION can be 'move or 'copy."
 
 ;; Optional: Bind it to a convenient keyboard shortcut (e.g., Ctrl-c t)
 (global-set-key (kbd "C-c t") 'my/open-terminal-here)
+
+(provide 'jon-defun)
+;;; jon-defun.el ends here

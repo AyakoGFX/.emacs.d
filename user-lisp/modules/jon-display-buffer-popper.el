@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package window
   :ensure nil
   :custom
@@ -92,3 +93,6 @@
 
 (global-set-key (kbd "<f1>") #'my/toggle-shell)
 (global-set-key (kbd "<C-f1>") #'my/toggle-eshell)
+
+(provide 'jon-display-buffer-popper)
+;;; jon-display-buffer-popper.el ends here

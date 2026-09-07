@@ -45,7 +45,6 @@
    (python . t)
    (emacs-lisp . t)))
 
-
 ;; hooks
 (add-hook 'org-mode-hook #'org-indent-mode)
 
@@ -135,3 +134,6 @@
 ;; %i Active region
 ;; %a Annotation (org-store-1ink) %i Active region
 ;; %? Cursor ends up here
+
+(provide 'jon-org)
+;;; jon-org.el ends here

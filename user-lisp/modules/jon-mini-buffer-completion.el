@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package compat
   :ensure t)
 
@@ -76,3 +78,6 @@
 ;; Single vertical list formatting
 (setq completions-format 'one-column)
 (setq completions-highlight-first-candidate t)
+
+(provide 'jon-mini-buffer-completion)
+;;; jon-mini-buffer-completion.el ends here

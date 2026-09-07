@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package easysession
   ;; ':demand t' ensures the package is loaded immediately upon startup
   :ensure t
@@ -32,3 +33,5 @@
     (require 'easysession-magit)
     (easysession-magit-mode 1))
   )
+(provide 'jon-easysession)
+;;; jon-easysession.el ends here

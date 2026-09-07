@@ -16,4 +16,6 @@
   (define-key flyspell-mode-map (kbd "C-M-i") nil)
 
   (define-key flyspell-mode-map (kbd "C-c =") #'flyspell-correct-wrapper)
-  (define-key flyspell-mode-map (kbd "C-c +") #'flyspell-buffer))
+  (define-key flyspell-mode-map (kbd "C-c +") #'flyspell-buffer)) 
+(provide 'jon-flyspell)
+;;; flyspell.el ends here

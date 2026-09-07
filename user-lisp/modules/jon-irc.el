@@ -46,3 +46,6 @@
 ;;   :ensure t
 ;;   :hook (erc-mode . emojify-mode)
 ;;   :commands emojify-mode)
+
+(provide 'jon-irc)
+;;; jon-irc.el ends here

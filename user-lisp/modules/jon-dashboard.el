@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package nerd-icons
   :ensure t)
 
@@ -38,3 +39,5 @@
 ;;   :custom
 ;;   (quick-fasd-enable-initial-prompt nil)
 ;;   (quick-fasd-standard-search '("-a" "-t")))
+(provide 'jon-dashboard)
+;;; jon-dashboard.el ends here

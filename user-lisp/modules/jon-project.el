@@ -54,3 +54,5 @@
 ;; :font "JetBrainsMono Nerd Font"
 ;; :height 200)
 
+(provide 'jon-project)
+;;; jon-project.el ends here

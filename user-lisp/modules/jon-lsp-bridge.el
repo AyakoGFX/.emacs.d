@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; --- Global Performance Tweaks for LSP ---
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1MB buffer size for fast LSP communication
@@ -59,13 +60,8 @@
 (use-package markdown-mode
   :ensure t)
 
-(let ((python-config (expand-file-name "modules/lsp-lsp-bridge/python.el" user-emacs-directory)))
-  (when (file-exists-p python-config)
-    (load python-config)))
-
-(let ((typst-config (expand-file-name "modules/lsp-lsp-bridge/typst.el" user-emacs-directory)))
-  (when (file-exists-p typst-config)
-    (load typst-config)))
+(require 'jon-lsp-typst)
+(require 'jon-lsp-python)
 
 (add-hook 'prog-mode-hook
           (lambda ()
@@ -74,3 +70,6 @@
 ;; sudo pacman -S uv
 ;; git clone https://github.com/manateelazycat/lsp-bridge.git
 ;; ln -s ~/Github/lsp-bridge/python-lsp-bridge ~/.local/bin/python-lsp-bridge
+
+(provide 'jon-lsp-bridge)
+;;; jon-lsp-bridge.el ends here

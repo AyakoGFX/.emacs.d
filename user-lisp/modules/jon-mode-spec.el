@@ -20,3 +20,5 @@
 (add-hook 'special-mode-hook
           (lambda ()
             (setq truncate-lines t)))
+(provide 'jon-mode-spec)
+;;; jon-mode-spec.el ends here

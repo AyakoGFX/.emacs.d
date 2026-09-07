@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (use-package consult
   :ensure t
   :bind (;; M-y bindings
@@ -53,3 +54,6 @@
   :ensure t)
 
 (setq prefix-help-command #'embark-prefix-help-command)
+
+(provide 'jon-consult)
+;;; jon-consult.el ends here

@@ -1,5 +1,7 @@
 ;;; init.el -- Main Config  -*- lexical-binding: t; -*-
 
+;; trusted-content
+(add-to-list 'trusted-content (abbreviate-file-name user-emacs-directory))
 (setq custom-safe-themes t)
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (load custom-file t)
@@ -8,7 +10,7 @@
 (set-frame-parameter (selected-frame) 'alpha-background 95)
 (add-to-list 'default-frame-alist '(alpha-background . 95))
 
-(load (expand-file-name "modules/themes-fonts.el" user-emacs-directory))
+(require 'jon-themes-fonts)
 
 ;; Modern Emacs experience as baseline
 ;; /usr/share/emacs/31.1/etc/themes/newcomers-presets-theme.el
@@ -103,34 +105,25 @@
    ("<C-wheel-up>" . text-scale-increase)
    ("<C-wheel-down>" . text-scale-decrease)))
 
-;;; load Lisp
-(add-to-list 'load-path (expand-file-name "lisp/" user-emacs-directory))
-
 (require 'time-shift)
 (require 'org-link-desc)
 
-;;; Import Modules
-(load (expand-file-name "modules/easysession.el" user-emacs-directory))
-(load (expand-file-name "modules/testing.el" user-emacs-directory))
-(load (expand-file-name "modules/meow.el" user-emacs-directory))
-;; (load (expand-file-name "modules/meep.el" user-emacs-directory))
-(load (expand-file-name "modules/mini-buffer-completion.el" user-emacs-directory))
-(load (expand-file-name "modules/consult.el" user-emacs-directory))
-(load (expand-file-name "modules/dashboard.el" user-emacs-directory))
-(load (expand-file-name "modules/display-buffer-popper.el" user-emacs-directory))
-(load (expand-file-name "modules/magit.el" user-emacs-directory))
-(load (expand-file-name "modules/dired.el" user-emacs-directory))
-(load (expand-file-name "modules/note.el" user-emacs-directory))
-(load (expand-file-name "modules/org.el" user-emacs-directory))
-(load (expand-file-name "modules/project.el" user-emacs-directory))
-(load (expand-file-name "modules/tools.el" user-emacs-directory))
-;; (load (expand-file-name "modules/ccp.el" user-emacs-directory)) ; if using this turn off lsp-bridge.el
-(load (expand-file-name "modules/lsp-bridge.el" user-emacs-directory)) ; if using this turn off ccp.el
-(load (expand-file-name "modules/my-defun.el" user-emacs-directory))
-(load (expand-file-name "modules/bindings.el" user-emacs-directory))
-(load (expand-file-name "modules/modeline.el" user-emacs-directory))
-(load (expand-file-name "modules/irc.el" user-emacs-directory))
-(load (expand-file-name "modules/elisp.el" user-emacs-directory))
-(load (expand-file-name "modules/flyspell.el" user-emacs-directory))
-(load (expand-file-name "modules/mode-spec.el" user-emacs-directory))
-;; (load (expand-file-name "modules/fixes.el" user-emacs-directory))
+(require 'jon-mini-buffer-completion)
+(require 'jon-easysession)
+(require 'jon-meow)
+(require 'jon-consult)
+(require 'jon-flyspell)
+(require 'jon-dashboard)
+(require 'jon-magit)
+(require 'jon-display-buffer-popper)
+(require 'jon-dired)
+(require 'jon-bindings)
+(require 'jon-note)
+(require 'jon-org)
+(require 'jon-project)
+(require 'jon-tools)
+(require 'jon-defun)
+(require 'jon-modeline)
+(require 'jon-elisp)
+(require 'jon-mode-spec)
+(require 'jon-lsp-bridge)

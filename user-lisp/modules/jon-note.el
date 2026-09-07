@@ -137,3 +137,6 @@
 ;; (denote-explore-list-keywords)
 ;; (denote-explore-count-notes)
 ;; (denote-explore-network)
+
+(provide 'jon-note)
+;;; jon-note.el ends here

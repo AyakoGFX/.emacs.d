@@ -126,3 +126,6 @@
                     :inherit 'error
                     :inverse-video t
                     :weight 'bold)
+
+(provide 'jon-meow)
+;;; jon-meow.el ends here

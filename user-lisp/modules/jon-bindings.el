@@ -58,3 +58,5 @@ before point."
 
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-c d h") #'org-toggle-inline-images))
+(provide 'jon-bindings)
+;;; jon-bindings.el ends here

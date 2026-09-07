@@ -14,3 +14,6 @@
   :ensure t
   :hook (emacs-lisp-mode . rainbow-delimiters-mode)
   (prog-mode . rainbow-delimiters-mode))
+
+(provide 'jon-elisp)
+;;; jon-elisp.el ends here

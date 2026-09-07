@@ -17,3 +17,6 @@
   ;; (text-mode . hide-mode-line-mode)
   :bind
   ("<f2>" . global-hide-mode-line-mode))
+
+(provide 'jon-modeline)
+;;; jon-modeline.el ends here
