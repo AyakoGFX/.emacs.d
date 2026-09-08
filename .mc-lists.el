@@ -37,7 +37,10 @@
 
 (setq mc/cmds-to-run-once
       '(
+        beginning-of-buffer
         kill-region
+        meow-next
+        project-find-file
         undefined
         xref-find-definitions
         ))
