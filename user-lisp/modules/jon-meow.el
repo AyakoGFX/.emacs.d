@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-
+;; https://github.com/joshuablais/studium-emacs/blob/main/lisp/meow-setup.el
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-define-key
@@ -47,8 +47,9 @@
    '("D" . meow-backward-delete)
    '("e" . meow-next-word)
    '("E" . meow-next-symbol)
-   '("f" . meow-find)
+   '("F" . meow-find)
    '("g" . meow-cancel-selection)
+   '("f" . flash-jump)
    '("G" . meow-grab)
    '("h" . meow-left)
    '("H" . meow-left-expand)
@@ -66,10 +67,11 @@
    '("O" . meow-to-block)
    '("p" . meow-yank)
    '("q" . meow-quit)
-   '("Q" . meow-goto-line)
+   ;; '("Q" . meow-goto-line)
    '("r" . meow-replace)
    '("R" . meow-swap-grab)
    '("s" . meow-kill)
+   '("S" . jon-meow-surround)
    '("t" . meow-till)
    '("u" . meow-undo)
    '("U" . meow-undo-in-selection)
@@ -82,26 +84,44 @@
    '("Y" . meow-sync-grab)
    '("z" . meow-pop-selection)
    '("'" . repeat)
+   ;; '("o" . meow-open-below)
+   ;; '("O" . meow-open-above)
    '("/" . consult-line)
+   '("~" . consult-register-store)
+   '("`" . consult-register)
    ;; '("<escape>" . ignore)
    ))
+
+(defun jon-meow-surround (beg end char)
+  "Surround the active region with CHAR."
+  (interactive
+   (list (region-beginning)
+         (region-end)
+         (read-char "Surround with: ")))
+  (save-excursion
+    (goto-char end)
+    (insert char)
+    (goto-char beg)
+    (insert char)))
 
 (use-package meow
   :ensure t
   :config
   (meow-global-mode 1)
-  ;; (setq meow-replace-state-name-list
-  ;;       '((normal . " N ")
-  ;;         (motion . " M ")
-  ;;         (keypad . " K ")
-  ;;         (insert . " I ")
-  ;;         (beacon . " B ")))
+  (setq meow-replace-state-name-list
+        '((normal . "N")
+          (motion . "M")
+          (keypad . "K")
+          (insert . "I")
+          (beacon . "B")))
   (meow-setup-indicator)
   (meow-setup)
-  (setq meow-expand-hint-remove-delay 0)
+  (setq meow-expand-hint-remove-delay 1)
   (setq meow-expand-exclude-mode-list '()) ;; removing org-mode and markdown-mode
   (setq meow-use-clipboard t))
 
+
+;;; mode-line rice
 (set-face-attribute 'meow-normal-indicator nil
                     :inherit 'font-lock-keyword-face
                     :inverse-video t
