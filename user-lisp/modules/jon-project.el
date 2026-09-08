@@ -5,13 +5,14 @@
   (project-vc-extra-root-markers '(".project"))
   :config
   (setq project-switch-commands
-        '((project-find-file "File" ?f)
+        '((consult-project-files-with-preview "File" ?f)
           (consult-ripgrep "RipGrep" ?r)
           (project-find-dir "Dir" ?d)
           (my/magit-project-status "Magit" ?m)
           (project-any-command "Other" ?o)))
   :bind
   ([remap project-switch-to-buffer] . consult-project-buffer)
+  ([remap project-find-file] . consult-project-files-with-preview)
   ([remap project-find-regexp] . consult-ripgrep))
 
 
