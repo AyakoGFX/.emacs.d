@@ -4,12 +4,12 @@
 ;; (load-file "~/.emacs.d/themes/indian-soft-blue.el")
 ;; (enable-theme 'indian-soft-blue)
 
-(use-package noctalia-theme
-  :ensure nil
-  :no-require t
-  :init
-  (add-to-list 'custom-theme-load-path (expand-file-name "themes/" user-emacs-directory))
-  (load-theme 'noctalia t))
+;; (use-package noctalia-theme
+;;   :ensure nil
+;;   :no-require t
+;;   :init
+;;   (add-to-list 'custom-theme-load-path (expand-file-name "themes/" user-emacs-directory))
+;;   (load-theme 'noctalia t))
 
 (use-package doom-themes
   :ensure t
