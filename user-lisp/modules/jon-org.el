@@ -8,7 +8,6 @@
   :after org)
 
 ;; org-draw desable inline images
-
 (advice-add 'org-draw--refresh-inline-images :override #'ignore)
 
 (use-package org-draw

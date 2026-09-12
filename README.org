@@ -1,6 +1,12 @@
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/setup/html-theme-readtheorg.setup
+
+* Books
+- Prot book [[https://github.com/protesilaos/emacs-lisp-elements.git][emacs-lisp-elements]] 
+
 * watch
 - https://youtu.be/TxYGHjKBMUg?si=4GZpja7OqlvwqGUa
+
+
 * TODO [5/6]
  - [ ] Emacs Ibuffer in Project Context
  - [X] auto-fill-mode
