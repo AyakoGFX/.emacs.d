@@ -76,26 +76,9 @@
     (revert-buffer)))
 
 (defun my-denote-list-all-keywords ()
-  "List all unique keywords used in Denote files."
+  "List all unique keywords used in files in `denote-directory'."
   (interactive)
-  (let* ((files (directory-files-recursively (denote-directory) "\\..*$"))
-         (all-keywords '()))
-    (dolist (file files)
-      (when-let ((keywords (denote-retrieve-filename-keywords file)))
-        (setq all-keywords
-              (append all-keywords
-                      (mapcar (lambda (kw)
-                                (split-string
-                                 (replace-regexp-in-string "_" " " kw)
-                                 " " t))
-                              (split-string keywords "--" t))))))
-    (message "All keywords: %s"
-             (string-join
-              (delete-dups
-               (sort (cl-remove-duplicates (apply #'append all-keywords)
-                                           :test #'string-equal)
-                     #'string-lessp))
-              ", "))))
+  (message "Denote Keywords: \n %s" (string-join (sort (denote-keywords)) ", ")))
 
 (global-set-key (kbd "C-c d l") #'my-denote-list-all-keywords)
 (global-set-key (kbd "C-c z") #'list-denotes)
