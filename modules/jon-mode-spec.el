@@ -13,12 +13,12 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (visual-line-mode 1)
-            (display-line-numbers-mode -1)
             (setq truncate-lines nil)))
 
 ;; 3. Ensure special/utility modes (Dired, Magit, Shell) explicitly force line truncation
 (add-hook 'special-mode-hook
           (lambda ()
             (setq truncate-lines t)))
+
 (provide 'jon-mode-spec)
 ;;; jon-mode-spec.el ends here

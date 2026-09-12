@@ -20,7 +20,6 @@
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
-
 (use-package ef-themes
   :ensure t
   :init

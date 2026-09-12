@@ -1,5 +1,13 @@
 ;; -*- lexical-binding: t; -*-
 
+(defun my/recompile-user-lisp ()
+  "Delete all .elc files under `user-lisp-directory', then rebuild."
+  (interactive)
+  (let ((dir (expand-file-name user-lisp-directory)))
+    (when (file-directory-p dir)
+      (mapc #'delete-file (directory-files-recursively dir "\\.elc\\'")))
+    (prepare-user-lisp nil nil t)))
+
 ;; ##############################################################
 (defun toggle-maximize-buffer ()
   "Maximize buffer."
