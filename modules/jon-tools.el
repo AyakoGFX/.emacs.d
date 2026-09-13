@@ -81,7 +81,7 @@
   :bind ("C-c C-0" . sudo-edit))
 
 (use-package which-key
-  :ensure t
+  :ensure nil
   :config
   (which-key-mode))
 

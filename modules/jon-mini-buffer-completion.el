@@ -71,7 +71,7 @@
 (use-package orderless
   :ensure t
   :custom
-  (completion-styles '(orderless basic))
+  (completion-styles '(orderless basic emacs22 flex))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion)))))
 

@@ -27,8 +27,6 @@
 ;; Force emacsclient to open the dashboard instead of *scratch*
 (setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
 
-(save-place-mode 1)
-
 ;; (use-package quick-fasd
 ;;   :ensure t
 ;;   :bind (("C-x C-d" . quick-fasd-find-path)
