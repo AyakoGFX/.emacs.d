@@ -133,6 +133,6 @@
 ;; %i Active region
 ;; %a Annotation (org-store-1ink) %i Active region
 ;; %? Cursor ends up here
-
+(message "jon-org")
 (provide 'jon-org)
 ;;; jon-org.el ends here

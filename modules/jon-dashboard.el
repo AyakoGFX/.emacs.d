@@ -37,5 +37,6 @@
 ;;   :custom
 ;;   (quick-fasd-enable-initial-prompt nil)
 ;;   (quick-fasd-standard-search '("-a" "-t")))
+(message "jon-dashboard")
 (provide 'jon-dashboard)
 ;;; jon-dashboard.el ends here

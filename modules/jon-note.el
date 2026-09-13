@@ -121,5 +121,6 @@
 ;; (denote-explore-count-notes)
 ;; (denote-explore-network)
 
+(message "jon-note")
 (provide 'jon-note)
 ;;; jon-note.el ends here

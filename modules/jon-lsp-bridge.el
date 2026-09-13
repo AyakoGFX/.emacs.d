@@ -60,6 +60,7 @@
 (use-package markdown-mode
   :ensure t)
 
+(add-to-list 'load-path (expand-file-name "modules/jon-lsp-lsp-bridge" user-emacs-directory))
 (require 'jon-lsp-typst)
 (require 'jon-lsp-python)
 
@@ -70,6 +71,6 @@
 ;; sudo pacman -S uv
 ;; git clone https://github.com/manateelazycat/lsp-bridge.git
 ;; ln -s ~/Github/lsp-bridge/python-lsp-bridge ~/.local/bin/python-lsp-bridge
-
+(message "jon-lsp-bridge")
 (provide 'jon-lsp-bridge)
 ;;; jon-lsp-bridge.el ends here

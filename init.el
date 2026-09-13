@@ -114,7 +114,7 @@
   (recentf-mode t)
 
   ;; --- Shell ---
-  (shell-command-prompt-show-cwd t)
+
 
   ;; --- Compilation & Programming ---
   (compilation-scroll-output 'first-error)
@@ -143,7 +143,7 @@
 (require 'time-shift)
 (require 'org-link-desc)
 
-;;(require 'jon-easysession)
+(require 'jon-easysession)
 ;; (require 'jon-meow)
 (require 'jon-bindings)
 (require 'jon-mini-buffer-completion)

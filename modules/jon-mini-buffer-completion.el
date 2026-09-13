@@ -79,5 +79,6 @@
 (setq completions-format 'one-column)
 (setq completions-highlight-first-candidate t)
 
+(message "jon-mini-buffer-completion")
 (provide 'jon-mini-buffer-completion)
 ;;; jon-mini-buffer-completion.el ends here

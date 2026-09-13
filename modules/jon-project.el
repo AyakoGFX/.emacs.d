@@ -55,6 +55,6 @@
 ;; (set-face-attribute 'tab-bar nil
 ;; :font "JetBrainsMono Nerd Font"
 ;; :height 200)
-
+(message "jon-project")
 (provide 'jon-project)
 ;;; jon-project.el ends here

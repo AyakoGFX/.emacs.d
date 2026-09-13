@@ -157,5 +157,7 @@
         scroll-margin 0)
   :config
   (ultra-scroll-mode 1))
+
+(message "jon-tools")
 (provide 'jon-tools)
 ;;; jon-tools.el ends here

@@ -60,5 +60,6 @@
               ("I" . dired-subtree-cycle)
               ("C-i" . dired-subtree-remove)))
 
+(message "jon-dired")
 (provide 'jon-dired)
 ;;; jon-dired.el ends here

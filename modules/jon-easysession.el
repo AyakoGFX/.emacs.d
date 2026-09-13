@@ -33,5 +33,6 @@
     (require 'easysession-magit)
     (easysession-magit-mode 1))
   )
+(message "jon-easysession")
 (provide 'jon-easysession)
 ;;; jon-easysession.el ends here

@@ -34,5 +34,7 @@
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode) ; Enable in Dired
   (global-diff-hl-show-hunk-mouse-mode 1)     ; Enable mouse-click globally
   (diff-hl-margin-mode -1))                   ; Disable margin mode (use fringe)
+
+(message "jon-magit")
 (provide 'jon-magit)
 ;;; jon-magit.el ends here

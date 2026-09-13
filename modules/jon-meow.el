@@ -147,5 +147,6 @@
                     :inverse-video t
                     :weight 'bold)
 
+(message "jon-meow")
 (provide 'jon-meow)
 ;;; jon-meow.el ends here

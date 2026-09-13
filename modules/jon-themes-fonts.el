@@ -108,5 +108,6 @@
             (set-face-attribute 'line-number nil :inherit 'default)
             (set-face-attribute 'line-number-current-line nil :inherit 'default)))
 
+(message "jon-themes-fonts")
 (provide 'jon-themes-fonts)
 ;;; jon-themes-fonts.el ends here

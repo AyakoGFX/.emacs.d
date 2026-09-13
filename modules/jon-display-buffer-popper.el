@@ -15,12 +15,12 @@
       (slot . 0))
      ("\\*\\(shell\\|.*term\\|.*eshell\\|Occur\\|xref\\|Async Shell Command\\).*\\*"
       (display-buffer-in-side-window)
-      (window-height . 0.3)
+      (window-height . 0.4)
       (side . bottom)
       (slot . -1))
      ("\\*\\([Hh]elp\\)\\*"
       (display-buffer-in-side-window)
-      (window-width . 30)
+      (window-width . 45)
       (side . right)
       (slot . 0))
      ("\\*Embark Collect.*\\*"
@@ -77,7 +77,7 @@
           (pop-to-buffer buf)
         (funcall command))
       ;; 3. Wipe window history so Emacs forgets any buffer previously in this slot
-      (when-let ((new-win (get-buffer-window buffer-name)))
+      (when-let* ((new-win (get-buffer-window buffer-name)))
         (set-window-parameter new-win 'quit-restore nil)
         (set-window-prev-buffers new-win nil)))))
 
@@ -94,5 +94,6 @@
 (global-set-key (kbd "<f1>") #'my/toggle-shell)
 (global-set-key (kbd "<C-f1>") #'my/toggle-eshell)
 
+(message "jon-display-buffer-popper")
 (provide 'jon-display-buffer-popper)
 ;;; jon-display-buffer-popper.el ends here

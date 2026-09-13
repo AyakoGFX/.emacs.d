@@ -18,5 +18,7 @@
   :bind
   ("<f2>" . global-hide-mode-line-mode))
 
+(message "jon-modeline")
+
 (provide 'jon-modeline)
 ;;; jon-modeline.el ends here

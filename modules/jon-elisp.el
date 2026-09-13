@@ -15,5 +15,6 @@
   :hook (emacs-lisp-mode . rainbow-delimiters-mode)
   (prog-mode . rainbow-delimiters-mode))
 
+(message "jon-elisp")
 (provide 'jon-elisp)
 ;;; jon-elisp.el ends here

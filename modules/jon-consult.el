@@ -67,6 +67,6 @@
                  :category 'file
                  :state (consult--file-state)
                  :require-match t))
-
+(message "jon-consult")
 (provide 'jon-consult)
 ;;; jon-consult.el ends here

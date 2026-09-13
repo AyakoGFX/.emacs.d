@@ -2,7 +2,7 @@
 
 ;; 1. Global Default: Truncate lines everywhere (programming, dired, magit, etc.)
 (setq-default truncate-lines t)
-(global-visual-line-mode -1)
+(setopt global-visual-line-mode -1)
 
 ;; 2. Exception: Enable visual line wrapping ONLY for prose/text modes (Org, Markdown, etc.)
 (add-hook 'text-mode-hook
@@ -20,5 +20,6 @@
           (lambda ()
             (setq truncate-lines t)))
 
+(message "jon-mode-spec")
 (provide 'jon-mode-spec)
 ;;; jon-mode-spec.el ends here
