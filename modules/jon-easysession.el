@@ -1,6 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 (use-package easysession
-  ;; ':demand t' ensures the package is loaded immediately upon startup
   :ensure t
   :demand t
   :config
@@ -15,7 +14,7 @@
 
   ;; Mode line
   (setq easysession-mode-line-misc-info t)
-  (setq easysession-mode-line-misc-info-prefix " ")
+  (setq easysession-mode-line-misc-info-prefix "🕉 ")
   (setq easysession-mode-line-misc-info-suffix " ")
 
   ;; Save every 10 minutes
