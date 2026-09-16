@@ -91,8 +91,8 @@
   (interactive)
   (my/toggle-buffer "*eshell*" #'eshell))
 
-(global-set-key (kbd "<f1>") #'my/toggle-shell)
-(global-set-key (kbd "<C-f1>") #'my/toggle-eshell)
+(global-set-key (kbd "<C-f1>") #'my/toggle-shell)
+(global-set-key (kbd "<f1>") #'my/toggle-eshell)
 
 (message "jon-display-buffer-popper")
 (provide 'jon-display-buffer-popper)

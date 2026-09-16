@@ -31,7 +31,7 @@
 (setq shell-file-name "/bin/bash")
 
 ;; (setq-default cursor-type 'box) ;; Options: 'box, 'bar, 'hollow, 'hbar
-;; TODO repeat mode
+
 (with-eval-after-load 'dired-x
   (put 'dired-jump 'repeat-map nil))
 
@@ -69,7 +69,7 @@
   (indent-tabs-mode nil)
 
   ;; (global-visual-line-mode t)               ;; Enable line wrapping
-  ;; (truncate-lines t)                        ;; Disable line wrapping
+  ;; (truncate-lines 1)                        ;; Disable line wrapping
   ;; (global-hl-line-mode t)                   ;; Highlight current line
   ;; (global-display-fill-column-indicator-mode 1)
 
@@ -114,18 +114,19 @@
   (recentf-mode t)
 
   ;; --- Shell ---
-
+  (shell-command-prompt-show-cwd t)
 
   ;; --- Compilation & Programming ---
   (compilation-scroll-output 'first-error)
+
 
   ;; --- Diagnostics & Alerts ---
   (native-comp-async-report-warnings-errors 'silent)
   (warning-minimum-level :error)
   (ring-bell-function 'ignore)
 
-  ;; todo
   (save-place-mode 1)
+  (repeat-mode 1)
 
   :hook
   (prog-mode . hs-minor-mode)                 ;; Enable folding hide/show globally

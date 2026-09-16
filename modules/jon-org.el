@@ -29,12 +29,11 @@
 (use-package olivetti
   :ensure t
   :hook ((text-mode . olivetti-mode)
+         (Info-mode . olivetti-mode)
          (org-mode . olivetti-mode))
   :config
   (setq olivetti-body-width 0.9)
   (setq olivetti-style nil))
-
-
 
 ;; org bable
 (setq org-confirm-babel-evaluate nil)
