@@ -119,7 +119,6 @@
   ;; --- Compilation & Programming ---
   (compilation-scroll-output 'first-error)
 
-
   ;; --- Diagnostics & Alerts ---
   (native-comp-async-report-warnings-errors 'silent)
   (warning-minimum-level :error)
@@ -140,6 +139,35 @@
 
 ;; (setopt tab-bar-mode nil)
 ;; (setopt global-display-line-numbers-mode nil)        ;; Display line numbers
+
+(use-package nov
+  :ensure t
+  :mode ("\\.epub\\'" . nov-mode)
+  :config
+  ;; Optional: Enable visual line mode for better text wrapping
+  (add-hook 'nov-mode-hook 'visual-line-mode))
+
+;; uv tool install piper-tts
+;; uv init && uv add piper-tts
+;; > python -m piper.download_voices | grep ljspeech
+;; en_US-ljspeech-high
+;; en_US-ljspeech-medium
+
+(use-package piper
+  :custom
+  (piper-voice-model "~/tts/en_US-ljspeech-high.onnx")
+  (piper-output-directory "~/Music/tts-piper/")
+  (piper-output-format "mp3")
+  :bind-keymap
+  ("C-c p" . piper-command-map)
+  :bind
+  ;; optional extra top-level bindings alongside the prefix map
+  (
+   ;; ("C-c s SPC" . piper-speak-dwim)
+   ("<f9>"      . piper-stop)
+   )
+  :hook
+  (piper-after-speak-hook . (lambda () (message "Done speaking."))))
 
 (require 'time-shift)
 (require 'org-link-desc)
